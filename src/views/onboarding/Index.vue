@@ -1,27 +1,53 @@
 <script setup lang="ts">
-import Screen from '@/global-components/Screen.vue';
-import { ref, watch } from 'vue';
+  import Screen from '@/global-components/Screen.vue';
+  import { ref, watch } from 'vue';
+  import { useRouter } from 'vue-router';
 
-const nativeLanguage: string[] = ['English', 'Russian', '日本語'];
-const educationLanguage: string[] = ['English', 'Russian', '日本語'];
-let choicedNativeLanguage = ref<string>('');
-let choicedEducationLanguage = ref<string>('');
+  const router = useRouter();
+  const languages: string[] = ['English', 'Russian', '日本語'];
+  let nativeLanguage = ref<string>('');
+  let educationLanguage = ref<string>('');
 
-watch(choicedNativeLanguage, (newLang) => {
-  localStorage.setItem('userNaviteLanguage', newLang)
-})
+  watch(nativeLanguage, (newLang) => {
+    localStorage.setItem('userNaviteLanguage', newLang)
+  })
 
+  watch(educationLanguage, (newLang) => {
+    localStorage.setItem('userEducationLanguage', newLang)
+  })
+
+  const goToDictionary = () => {
+    if (nativeLanguage.value && educationLanguage.value) {
+      router.push('/dictionary');
+    } else {
+      alert('Please choose both languages!');
+    }
+  };
 </script>
 
 <template>
   <Screen title="Onboarding">
-    <select v-model="choicedNativeLanguage" name="nativeLanguage" id="nativeLanguage">
-      <option value="">Please, choice your language</option>
-      <option v-for="lang in nativeLanguage" :key="lang" :value="lang">{{ lang }}</option>
-    </select>
-    <select v-model="choicedEducationLanguage" name="educationLanguage" id="educationLanguage">
-      <option value="">Please, choice your education language</option>
-      <option v-for="lang in educationLanguage" :key="lang" :value="lang">{{ lang }}</option>
-    </select>
+    <label>
+      Native language:
+      <select v-model="nativeLanguage" name="languages" id="native-languages">
+        <option value="">Please, choice your language</option>
+        <option v-for="lang in languages" :key="lang" :value="lang">{{ lang }}</option>
+      </select>
+    </label>
+
+    <label>
+      Education language:
+      <select v-model="educationLanguage" name="languages" id="education-languages">
+        <option value="">Please, choice your education language</option>
+        <option v-for="lang in languages" :key="lang" :value="lang">{{ lang }}</option>
+      </select>
+    </label>
+
+    <button
+      :disabled="!nativeLanguage || !educationLanguage"
+      @click="goToDictionary()"
+    >
+      Go on
+    </button>
   </Screen>
 </template>
