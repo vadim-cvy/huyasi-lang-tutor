@@ -10,7 +10,6 @@
 
   watch(nativeLanguage, (newLang) => {
     localStorage.setItem('userNaviteLanguage', newLang)
-    localStorage.setItem('userEducationLanguage', newLang)
   })
 
   watch(educationLanguage, (newLang) => {

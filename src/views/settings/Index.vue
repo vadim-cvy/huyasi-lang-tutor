@@ -7,15 +7,15 @@
 
   const languages = ['English', 'Russian', '日本語'];
 
-  const nativeLanguage = ref(localStorage.getItem('userNativeLanguage') || '');
+  const nativeLanguage = ref(localStorage.getItem('userNaviteLanguage') || '');
   const educationLanguage = ref(localStorage.getItem('userEducationLanguage') || '');
   const chatGptKey = ref(localStorage.getItem('chatGptKey') || '');
 
-  watch(nativeLanguage, (newVal) => {
-    localStorage.setItem('userNativeLanguage', newVal);
+  watch(nativeLanguage, (newLang) => {
+    localStorage.setItem('userNaviteLanguage', newLang);
   });
-  watch(educationLanguage, (newVal) => {
-    localStorage.setItem('userEducationLanguage', newVal);
+  watch(educationLanguage, (newLang) => {
+    localStorage.setItem('userEducationLanguage', newLang);
   });
   watch(chatGptKey, (newVal) => {
     localStorage.setItem('chatGptKey', newVal);
