@@ -5,25 +5,50 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 const languages: string[] = ['English', 'Russian', '日本語'];
-let languagesNativeLanguage = ref<string>('');
-let languagesEducationLanguage = ref<string>('');
+let nativeLanguage = ref<string>('');
+let educationLanguage = ref<string>('');
 
-watch(languagesNativeLanguage, (newLang) => {
+watch(nativeLanguage, (newLang) => {
   localStorage.setItem('userNaviteLanguage', newLang)
+  localStorage.setItem('userEducationLanguage', newLang)
 })
+
+watch(educationLanguage, (newLang) => {
+  localStorage.setItem('userEducationLanguage', newLang)
+})
+
+const goToDictionary = () => {
+  if (nativeLanguage.value && educationLanguage.value) {
+    router.push('/dictionary');
+  } else {
+    alert('Please choose both languages!');
+  }
+};
 
 </script>
 
 <template>
   <Screen>
-    <select v-model="languagesNativeLanguage" name="languages" id="languages">
-      <option value="">Please, choice your language</option>
-      <option v-for="lang in languages" :key="lang" :value="lang">{{ lang }}</option>
-    </select>
-    <select v-model="languagesEducationLanguage" name="languages" id="languages">
-      <option value="">Please, choice your education language</option>
-      <option v-for="lang in languages" :key="lang" :value="lang">{{ lang }}</option>
-    </select>
-    <button @click="router.push('/dictionary')">Go on</button>
+    <label>
+      Native language:
+      <select v-model="nativeLanguage" name="languages" id="native-languages">
+        <option value="">Please, choice your language</option>
+        <option v-for="lang in languages" :key="lang" :value="lang">{{ lang }}</option>
+      </select>
+    </label>
+    <label>
+      Education language:
+      <select v-model="educationLanguage" name="languages" id="education-languages">
+        <option value="">Please, choice your education language</option>
+        <option v-for="lang in languages" :key="lang" :value="lang">{{ lang }}</option>
+      </select>
+    </label>
+    
+    <button 
+      :disabled="!nativeLanguage || !educationLanguage"
+      @click="goToDictionary()"
+    >
+      Go on
+    </button>
   </Screen>
 </template>
