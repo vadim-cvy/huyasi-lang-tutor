@@ -18,6 +18,11 @@ const router = createRouter({
       path: '/dictionary',
       name: 'dictionary',
       component: () => import('../views/dictionary/Index.vue')
+    },
+    {
+      path: '/onboarding',
+      name: 'onboarding',
+      component: () => import('../views/onboarding/Index.vue')
     }
   ],
 })
