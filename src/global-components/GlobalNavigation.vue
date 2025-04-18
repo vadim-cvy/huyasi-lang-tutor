@@ -1,3 +1,3 @@
 <template>
-  // todo
+  // todo: dictionry, practice, settings
 </template>

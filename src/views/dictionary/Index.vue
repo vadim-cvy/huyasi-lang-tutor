@@ -4,6 +4,6 @@ import Screen from '@/global-components/Screen.vue';
 
 <template>
   <Screen>
-    // todo
+    // todo: screen content
   </Screen>
 </template>

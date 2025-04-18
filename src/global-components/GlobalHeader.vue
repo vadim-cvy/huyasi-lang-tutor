@@ -1,3 +1,4 @@
 <template>
-  // todo
+  // todo: logo (pencil)
+  // todo: current screen name
 </template>

@@ -6,7 +6,7 @@ import GlobalNavigation from './GlobalNavigation.vue';
 <template>
   <GlobalHeader/>
 
-  <slot></slot>
+  <slot/>
 
   <GlobalNavigation/>
 </template>
