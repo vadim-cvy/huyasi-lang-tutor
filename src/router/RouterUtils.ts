@@ -30,7 +30,7 @@ export class RouterUtils
       component: () => import('../views/settings/Index.vue')
     },
     {
-      path: '/onborading',
+      path: '/onboarding',
       name: 'onboarding',
       component: () => import('../views/onboarding/Index.vue')
     }
