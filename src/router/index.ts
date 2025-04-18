@@ -1,4 +1,4 @@
-import PracticeView from '@/views/PracticeView.vue'
+import PracticeView from '@/views/practice/Index.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -12,12 +12,12 @@ const router = createRouter({
     {
       path: '/add-dictionary-item',
       name: 'add-dictionary-item',
-      component: () => import('../views/AddDictionaryItemView.vue'),
+      component: () => import('../views/add-dictionary-item/Index.vue')
     },
     {
       path: '/dictionary',
       name: 'dictionary',
-      component: () => import('../views/DictionaryView.vue'),
+      component: () => import('../views/dictionary/Index.vue')
     }
   ],
 })
