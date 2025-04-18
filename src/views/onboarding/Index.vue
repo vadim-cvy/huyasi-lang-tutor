@@ -14,7 +14,7 @@ watch(choicedNativeLanguage, (newLang) => {
 </script>
 
 <template>
-  <Screen>
+  <Screen title="Onboarding">
     <select v-model="choicedNativeLanguage" name="nativeLanguage" id="nativeLanguage">
       <option value="">Please, choice your language</option>
       <option v-for="lang in nativeLanguage" :key="lang" :value="lang">{{ lang }}</option>

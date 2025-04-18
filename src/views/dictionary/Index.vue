@@ -3,7 +3,7 @@ import Screen from '@/global-components/Screen.vue';
 </script>
 
 <template>
-  <Screen>
+  <Screen title="Dictionary">
     // todo: screen content
   </Screen>
 </template>
