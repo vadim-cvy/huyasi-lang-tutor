@@ -1,0 +1,32 @@
+@use './mixins/typography.scss';
+
+html
+{
+  @include typography.common-text;
+  font-family: "Noto Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-variation-settings: "wdth" 100;
+}
+
+h1,
+.h1
+{
+  @include typography.h1;
+}
+
+h2,
+.h2
+{
+  @include typography.h2;
+}
+
+h3, h4, h5, h6,
+.h3, .h4, .h5, .h6
+{
+  @include typography.h3-6;
+}
+
+a
+{
+  text-decoration: none;
+}

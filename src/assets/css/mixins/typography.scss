@@ -1,0 +1,30 @@
+@mixin h1
+{
+  @include _title();
+  font-size: 30px;
+}
+
+@mixin h2
+{
+  @include _title();
+  font-size: 24px;
+}
+
+@mixin h3-6
+{
+  @include _title();
+  font-size: 20px;
+}
+
+@mixin common-text
+{
+  font-weight: 400;
+  line-height: 1.4;
+  font-size: 18px;
+}
+
+@mixin _title()
+{
+  line-height: 1.2;
+  font-weight: 600;
+}
