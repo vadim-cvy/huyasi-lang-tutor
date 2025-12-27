@@ -1,1 +1,2 @@
-export * from './lib/web-public-base-components/web-public-base-components';
+export * from './lib/header/header';
+export * from './lib/sidebar/sidebar';
