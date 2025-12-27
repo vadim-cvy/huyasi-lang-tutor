@@ -2,7 +2,7 @@
   "name": "web-public-base-components",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/web-public-base-components/src",
-  "prefix": "lib",
+  "prefix": "web-public-base-components",
   "projectType": "library",
   "tags": [],
   "targets": {
