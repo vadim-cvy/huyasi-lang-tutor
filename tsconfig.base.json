@@ -16,7 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@huyasi/web-public-base-components": [
-        "libs/web-public-base-components/src/index.ts"
+        "libs/web-public/base-components/src/index.ts"
       ]
     }
   },

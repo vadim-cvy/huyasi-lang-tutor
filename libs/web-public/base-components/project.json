@@ -1,7 +1,7 @@
 {
   "name": "web-public-base-components",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/web-public-base-components/src",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/web-public/base-components/src",
   "prefix": "web-public-base-components",
   "projectType": "library",
   "tags": [],
@@ -10,7 +10,7 @@
       "executor": "@nx/vitest:test",
       "outputs": ["{options.reportsDirectory}"],
       "options": {
-        "reportsDirectory": "../../coverage/libs/web-public-base-components"
+        "reportsDirectory": "../../../coverage/libs/web-public/base-components"
       }
     },
     "lint": {
