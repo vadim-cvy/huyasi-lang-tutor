@@ -1,0 +1,11 @@
+<nav>
+  <ul>
+    @for (navItem of navItems; track navItem.route) {
+      <li>
+        <a [routerLink]="navItem.route" routerLinkActive="active">
+          {{navItem.label}}
+        </a>
+      </li>
+    }
+  </ul>
+</nav>
