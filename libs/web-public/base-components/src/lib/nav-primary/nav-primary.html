@@ -3,7 +3,10 @@
     @for (navItem of navItems; track navItem.route) {
       <li>
         <a [routerLink]="navItem.route" routerLinkActive="active">
-          {{navItem.label}}
+          <!-- TODO: set real icons -->
+          <span>icon: {{navItem.icon}}</span>
+
+          <span>{{navItem.label}}</span>
         </a>
       </li>
     }

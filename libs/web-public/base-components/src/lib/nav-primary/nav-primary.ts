@@ -9,8 +9,12 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class NavPrimary {
   // TODO: replace with real items
-  public readonly navItems: ReadonlyArray<{ label: string; route: string }> = [
-    { label: 'Placeholder link 1', route: '/' },
-    { label: 'Placeholder link 2', route: '/some-route-here' },
+  public readonly navItems: ReadonlyArray<{
+    label: string;
+    route: string;
+    icon: string;
+  }> = [
+    { label: 'Placeholder link 1', route: '/', icon: 'home' },
+    { label: 'Placeholder link 2', route: '/some-route-here', icon: 'info' },
   ]
 }
