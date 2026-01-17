@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
@@ -17,4 +17,6 @@ export class NavPrimary {
     { label: 'Placeholder link 1', route: '/', icon: 'home' },
     { label: 'Placeholder link 2', route: '/some-route-here', icon: 'info' },
   ]
+
+  public readonly areLabelsVisible = input.required<boolean>();
 }

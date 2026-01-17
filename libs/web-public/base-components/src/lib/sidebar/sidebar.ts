@@ -7,4 +7,6 @@ import { NavPrimary } from '../nav-primary/nav-primary';
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.scss',
 })
-export class Sidebar {}
+export class Sidebar {
+  public isSidebarExpanded = true;
+}

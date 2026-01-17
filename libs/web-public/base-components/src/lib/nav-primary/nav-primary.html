@@ -6,7 +6,9 @@
           <!-- TODO: set real icons -->
           <span>icon: {{navItem.icon}}</span>
 
-          <span>{{navItem.label}}</span>
+          @if (areLabelsVisible()) {
+            <span>{{navItem.label}}</span>
+          }
         </a>
       </li>
     }

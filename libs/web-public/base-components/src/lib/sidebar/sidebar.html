@@ -1,5 +1,8 @@
 <div>
-  <web-public-base-components-nav-primary />
+  <web-public-base-components-nav-primary [areLabelsVisible]="isSidebarExpanded" />
 
-  <div>TODO: hide/expand button here</div>
+  <button (click)="isSidebarExpanded = !isSidebarExpanded">
+    <!-- TODO: replace content with icons (leave content for accessibility only) -->
+    {{ isSidebarExpanded ? '< Hide' : 'Open >' }}
+  </button>
 </div>
