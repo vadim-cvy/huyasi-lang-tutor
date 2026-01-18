@@ -1,6 +1,10 @@
+@use '../../../../shared-styles/src/lib/vars.scss';
+
 .header {
   display: flex;
   justify-content: space-between;
+  border-bottom: vars.$border-normal;
+  box-shadow: vars.$box-shadow-normal;
 
   &__actions {
     display: flex;

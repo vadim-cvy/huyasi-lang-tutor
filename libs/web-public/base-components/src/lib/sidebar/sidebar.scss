@@ -1,0 +1,6 @@
+@use '../../../../shared-styles/src/lib/vars.scss';
+
+.sidebar {
+  border-right: vars.$border-normal;
+  box-shadow: vars.$box-shadow-normal;
+}
