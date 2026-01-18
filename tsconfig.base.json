@@ -17,7 +17,8 @@
     "paths": {
       "@huyasi/web-public-base-components": [
         "libs/web-public/base-components/src/index.ts"
-      ]
+      ],
+      "@huyasi/web-public-shared-styles": ["libs/web-public/shared-styles/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

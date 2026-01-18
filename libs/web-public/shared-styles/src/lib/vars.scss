@@ -1,0 +1,22 @@
+/******** START: THEME VARS ********/
+/* These are the vars that are affected by current theme (ex: light or dark mode). */
+/* IMPORTANT: don't forget to update `./theme-vars-assign.scss` when working with these vars. */
+
+$color-1-val: #ccc;
+$color-1-name: --color-1;
+$color-1: var($color-1-name);
+
+$box-shadow-normal-val: 0 2px 4px rgba(0, 0, 0, 0.1);
+$box-shadow-normal-name: --box-shadow-normal;
+$box-shadow-normal: var($box-shadow-normal-name);
+
+/******** END: THEME VARS ********/
+
+
+
+/******** START: COMMON VARS ********/
+/* These are the vars that are NOT affected by current theme (ex: light or dark mode). */
+
+$border-normal: 1px solid $color-1;
+
+/******** END: COMMON VARS ********/
