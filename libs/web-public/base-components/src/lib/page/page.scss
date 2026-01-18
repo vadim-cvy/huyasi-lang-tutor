@@ -5,6 +5,7 @@
     "sidebar  content"
     "footer   footer";
   grid-template-columns: max-content 1fr;
+  grid-template-rows: max-content 1fr max-content;
   height: 100%;
 
   &.--minimalistic {
