@@ -1,0 +1,10 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+}
