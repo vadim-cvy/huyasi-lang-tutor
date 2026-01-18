@@ -1,0 +1,29 @@
+.page {
+  display: grid;
+  grid-template-areas:
+    "header   header"
+    "sidebar  content"
+    "footer   footer";
+  grid-template-columns: max-content 1fr;
+
+  &.--minimalistic {
+    grid-template-areas: "content";
+    grid-template-columns: 1fr;
+  }
+
+  &__header {
+    grid-area: header;
+  }
+
+  &__sidebar {
+    grid-area: sidebar;
+  }
+
+  &__content {
+    grid-area: content;
+  }
+
+  &__footer {
+    grid-area: footer;
+  }
+}

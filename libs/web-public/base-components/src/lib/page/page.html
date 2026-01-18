@@ -1,13 +1,15 @@
-<web-public-base-components-header />
+<div class="page" [class.--minimalistic]="isMinimalistic()">
+  <web-public-base-components-header class="page__header" />
 
-@if (isSidebarBreakpointMatch() && !isMinimalistic()) {
-  <web-public-base-components-sidebar />
-}
+  @if (isSidebarBreakpointMatch() && !isMinimalistic()) {
+    <web-public-base-components-sidebar class="page__sidebar" />
+  }
 
-<main>
-  <ng-content/>
-</main>
+  <main class="page__content">
+    <ng-content/>
+  </main>
 
-@if (isFooterBreakpointMatch() && !isMinimalistic()) {
-  <web-public-base-components-footer />
-}
+  @if (isFooterBreakpointMatch() && !isMinimalistic()) {
+    <web-public-base-components-footer class="page__footer" />
+  }
+</div>
