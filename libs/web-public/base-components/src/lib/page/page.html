@@ -1,0 +1,13 @@
+<web-public-base-components-header />
+
+@if (isSidebarBreakpointMatch() && !isMinimalistic()) {
+  <web-public-base-components-sidebar />
+}
+
+<main>
+  <ng-content/>
+</main>
+
+@if (isFooterBreakpointMatch() && !isMinimalistic()) {
+  <web-public-base-components-footer />
+}
