@@ -1,6 +1,13 @@
 <web-public-base-components-header />
 
-<main>
+@if (isSidebarVisible()) {
   <web-public-base-components-sidebar />
+}
+
+<main>
   <router-outlet></router-outlet>
 </main>
+
+@if (isFooterVisible()) {
+  <web-public-base-components-footer />
+}
