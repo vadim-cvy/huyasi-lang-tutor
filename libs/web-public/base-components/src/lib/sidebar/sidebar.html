@@ -1,5 +1,8 @@
 <div>
-  <web-public-base-components-nav-primary [areLabelsVisible]="isSidebarExpanded" />
+  <web-public-base-components-nav-primary
+    [areLabelsVisible]="isSidebarExpanded"
+    orientation="vertical"
+  />
 
   <button (click)="isSidebarExpanded = !isSidebarExpanded">
     <!-- TODO: replace content with icons (leave content for accessibility only) -->

@@ -19,4 +19,6 @@ export class NavPrimary {
   ]
 
   public readonly areLabelsVisible = input.required<boolean>();
+
+  public readonly orientation = input.required<'horizontal' | 'vertical'>();
 }

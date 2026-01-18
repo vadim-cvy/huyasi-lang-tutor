@@ -1,8 +1,12 @@
-<nav>
-  <ul>
+<nav class="nav --orientation-{{orientation()}}">
+  <ul class="nav__list">
     @for (navItem of navItems; track navItem.route) {
-      <li>
-        <a [routerLink]="navItem.route" routerLinkActive="active">
+      <li class="nav__list__item">
+        <a
+          [routerLink]="navItem.route"
+          routerLinkActive="--active"
+          class="nav__list__item__link"
+        >
           <!-- TODO: set real icons -->
           <span>icon: {{navItem.icon}}</span>
 
