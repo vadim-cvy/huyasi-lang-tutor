@@ -23,6 +23,6 @@ export class Sidebar {
   );
 
   public readonly buttonsSize = computed<ButtonSize>(() =>
-    this.isExpanded() ? 'normal' : 'small'
+    this.isExpanded() ? 'normal' : 'extraSmall'
   );
 }
