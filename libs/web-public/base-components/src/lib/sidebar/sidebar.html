@@ -1,11 +1,18 @@
 <div class="sidebar">
   <web-public-base-components-nav-primary
-    [areLabelsVisible]="isSidebarExpanded"
+    [isMinimalistic]="!isSidebarExpanded"
     orientation="vertical"
   />
 
-  <button (click)="isSidebarExpanded = !isSidebarExpanded">
-    <!-- TODO: replace content with icons (leave content for accessibility only) -->
-    {{ isSidebarExpanded ? '< Hide' : 'Open >' }}
-  </button>
+  <web-public-base-components-button
+    [style]="'transparent'"
+    [icon]="
+      isSidebarExpanded
+      ? { position: 'left', name: 'arrow-left' }
+      : { position: 'top', name: 'arrow-right' }
+    "
+    (click)="isSidebarExpanded = !isSidebarExpanded"
+  >
+    {{ isSidebarExpanded ? 'Collapse' : 'Expand' }}
+  </web-public-base-components-button>
 </div>

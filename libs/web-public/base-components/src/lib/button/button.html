@@ -1,0 +1,17 @@
+<button
+  [class]="[
+    'button',
+    `--style-${style()}`,
+    (icon() ? `--icon-position-${icon()?.position}` : '')
+  ]"
+  [routerLink]="link()?.url"
+  [routerLinkActive]="link()?.isRouterLinkActiveSync ? '--active' : ''"
+>
+  @if (icon(); as _icon) {
+    <web-public-base-components-icon [name]="_icon.name" />
+  }
+
+  <span>
+    <ng-content />
+  </span>
+</button>
