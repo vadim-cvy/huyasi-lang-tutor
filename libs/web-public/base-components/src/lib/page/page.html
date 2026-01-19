@@ -1,6 +1,6 @@
 <div class="page" [class.--minimalistic]="isMinimalistic()">
   <web-public-base-components-header class="page__header">
-    <ng-content select="header-feature-actions" ngProjectAs="feature-actions" />
+    <ng-content select="header-actions" ngProjectAs="actions" />
   </web-public-base-components-header>
 
   @if (isSidebarBreakpointMatch() && !isMinimalistic()) {
