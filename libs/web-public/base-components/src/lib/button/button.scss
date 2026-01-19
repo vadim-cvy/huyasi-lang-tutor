@@ -20,6 +20,10 @@
   }
 
   &.--size {
+    &-extraSmall {
+      padding: 0.5em;
+    }
+
     &-small {
       padding: 0.5em 1em;
     }

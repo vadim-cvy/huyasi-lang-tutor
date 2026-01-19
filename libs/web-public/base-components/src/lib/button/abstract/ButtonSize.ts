@@ -1,1 +1,1 @@
-export type ButtonSize = 'small' | 'normal';
+export type ButtonSize = 'extraSmall' | 'small' | 'normal';
