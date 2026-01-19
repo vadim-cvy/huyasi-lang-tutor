@@ -11,22 +11,5 @@
       flex-direction: row;
       justify-content: space-between;
     }
-
-    &__item {
-      &__link {
-        display: flex;
-        align-items: center;
-
-        .nav.--orientation-vertical & {
-          flex-direction: row;
-          gap: .5em;
-        }
-
-        .nav.--orientation-horizontal & {
-          flex-direction: column;
-          gap: .2em;
-        }
-      }
-    }
   }
 }
