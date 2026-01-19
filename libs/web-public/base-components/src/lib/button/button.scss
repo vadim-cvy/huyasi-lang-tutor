@@ -5,6 +5,7 @@
   // TODO: make active button (ex: selected via TAB) styles differ for accessibility
   outline: none;
   cursor: pointer;
+  padding: 1em 2em;
 
   &.--icon-position {
     &-left {
@@ -17,12 +18,12 @@
 
     &-left,
     &-right {
-      gap: 0.5rem;
+      gap: 0.5em;
     }
 
     &-top {
       flex-direction: column;
-      gap: 0.25rem;
+      gap: 0.25em;
     }
   }
 
