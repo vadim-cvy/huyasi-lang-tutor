@@ -2,6 +2,9 @@
   [class]="[
     'button',
     `--style-${style()}`,
+    `--width-${width()}`,
+    `--size-${size()}`,
+    `--content-align-${contentAlign()}`,
     (icon() ? `--icon-position-${icon()?.position}` : '')
   ]"
   [routerLink]="link()?.url"

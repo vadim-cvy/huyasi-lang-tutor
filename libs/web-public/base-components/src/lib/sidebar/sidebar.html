@@ -1,18 +1,22 @@
 <div class="sidebar">
   <web-public-base-components-nav-primary
-    [isMinimalistic]="!isExpanded"
-    orientation="vertical"
+    [buttonsIconsPosition]="buttonsIconsPosition()"
+    [buttonsContentAlign]="buttonsContentAlign()"
+    [buttonsSize]="buttonsSize()"
+    [orientation]="'vertical'"
   />
 
   <web-public-base-components-button
     [style]="'transparent'"
-    [icon]="
-      isExpanded
-      ? { position: 'left', name: 'arrow-left' }
-      : { position: 'top', name: 'arrow-right' }
-    "
-    (click)="isExpanded = !isExpanded"
+    [icon]="{
+      position: buttonsIconsPosition(),
+      name: isExpanded() ? 'arrow-left' : 'arrow-right'
+    }"
+    [width]="'full'"
+    [size]="buttonsSize()"
+    [contentAlign]="buttonsContentAlign()"
+    (click)="isExpanded.set(!isExpanded())"
   >
-    {{ isExpanded ? 'Collapse' : 'Expand' }}
+    {{ isExpanded() ? 'Collapse' : 'Expand' }}
   </web-public-base-components-button>
 </div>

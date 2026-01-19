@@ -1,5 +1,8 @@
 import { Component, input } from '@angular/core';
 import { Button } from '../button/button';
+import { ButtonIconPosition } from '../button/abstract/ButtonIconPosition';
+import { ButtonContentAlign } from '../button/abstract/ButtonContentAlign';
+import { ButtonSize } from '../button/abstract/ButtonSize';
 
 @Component({
   selector: 'web-public-base-components-nav-primary',
@@ -18,7 +21,11 @@ export class NavPrimary {
     { label: 'Placeholder link 2', route: '/some-route-here', iconName: 'info' },
   ]
 
-  public readonly isMinimalistic = input.required<boolean>();
-
   public readonly orientation = input.required<'horizontal' | 'vertical'>();
+
+  public readonly buttonsIconsPosition = input.required<ButtonIconPosition>();
+
+  public readonly buttonsContentAlign = input.required<ButtonContentAlign>();
+
+  public readonly buttonsSize = input.required<ButtonSize>();
 }

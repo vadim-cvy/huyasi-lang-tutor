@@ -5,7 +5,10 @@
         <web-public-base-components-button
           [link]="{ url: navItem.route, isRouterLinkActiveSync: true }"
           [style]="'transparent'"
-          [icon]="{ position: isMinimalistic() ? 'top': 'left', name: navItem.iconName }"
+          [icon]="{ position: buttonsIconsPosition(), name: navItem.iconName }"
+          [width]="'full'"
+          [contentAlign]="buttonsContentAlign()"
+          [size]="buttonsSize()"
         >
           {{navItem.label}}
         </web-public-base-components-button>

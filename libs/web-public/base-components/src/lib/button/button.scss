@@ -1,11 +1,44 @@
 .button {
   display: flex;
-  justify-content: center;
   align-items: center;
   // TODO: make active button (ex: selected via TAB) styles differ for accessibility
   outline: none;
   cursor: pointer;
-  padding: 1em 2em;
+
+  &.--content-align {
+    &-left {
+      justify-content: flex-start;
+    }
+
+    &-center {
+      justify-content: center;
+    }
+
+    &-right {
+      justify-content: flex-end;
+    }
+  }
+
+  &.--size {
+    &-small {
+      padding: 0.5em 1em;
+    }
+
+    &-normal {
+      padding: 1em 2em;
+    }
+  }
+
+  &.--width {
+    &-auto {
+      width: 100%;
+      max-width: 10em;
+    }
+
+    &-full {
+      width: 100%;
+    }
+  }
 
   &.--icon-position {
     &-left {
