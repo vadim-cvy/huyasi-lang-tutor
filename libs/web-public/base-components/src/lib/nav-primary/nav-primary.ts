@@ -17,8 +17,10 @@ export class NavPrimary {
     route: string;
     iconName: string;
   }> = [
-    { label: 'Placeholder link 1', route: '/', iconName: 'home' },
-    { label: 'Placeholder link 2', route: '/some-route-here', iconName: 'info' },
+    { label: 'Dictionary', route: '/dictionary', iconName: 'book-open' },
+    { label: 'Games', route: '/games', iconName: 'gamepad' },
+    { label: 'Settings', route: '/settings', iconName: 'cog' },
+    { label: 'Profile', route: '/profile', iconName: 'user' },
   ]
 
   public readonly orientation = input.required<'horizontal' | 'vertical'>();
