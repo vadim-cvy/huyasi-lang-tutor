@@ -1,18 +1,18 @@
 <div class="sidebar">
   <web-public-base-components-nav-primary
-    [isMinimalistic]="!isSidebarExpanded"
+    [isMinimalistic]="!isExpanded"
     orientation="vertical"
   />
 
   <web-public-base-components-button
     [style]="'transparent'"
     [icon]="
-      isSidebarExpanded
+      isExpanded
       ? { position: 'left', name: 'arrow-left' }
       : { position: 'top', name: 'arrow-right' }
     "
-    (click)="isSidebarExpanded = !isSidebarExpanded"
+    (click)="isExpanded = !isExpanded"
   >
-    {{ isSidebarExpanded ? 'Collapse' : 'Expand' }}
+    {{ isExpanded ? 'Collapse' : 'Expand' }}
   </web-public-base-components-button>
 </div>

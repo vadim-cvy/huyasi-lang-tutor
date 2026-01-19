@@ -10,5 +10,5 @@ import { Button } from '../button/button';
 })
 export class Sidebar {
   // TODO: rename to isExpanded
-  public isSidebarExpanded = true;
+  public isExpanded = true;
 }
