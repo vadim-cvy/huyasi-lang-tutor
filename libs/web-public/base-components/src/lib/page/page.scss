@@ -1,3 +1,5 @@
+@use '../../../../shared-styles/src/lib/vars.scss';
+
 .page {
   display: grid;
   grid-template-areas:
@@ -7,6 +9,7 @@
   grid-template-columns: max-content 1fr;
   grid-template-rows: max-content 1fr max-content;
   height: 100%;
+  background: vars.$color-3;
 
   &.--minimalistic {
     grid-template-areas: "content";
@@ -19,6 +22,8 @@
 
   &__sidebar {
     grid-area: sidebar;
+    position: relative;
+    z-index: 1;
   }
 
   &__content {

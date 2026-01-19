@@ -5,6 +5,8 @@
   justify-content: space-between;
   border-bottom: vars.$border-normal;
   box-shadow: vars.$box-shadow-normal;
+  background: vars.$color-2;
+  color: vars.$color-3;
 
   &__actions {
     display: flex;
