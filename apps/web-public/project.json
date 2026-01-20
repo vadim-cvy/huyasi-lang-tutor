@@ -18,6 +18,11 @@
           {
             "glob": "**/*",
             "input": "apps/web-public/public"
+          },
+          {
+            "glob": "**/*",
+            "input": "libs/web-public/base-components/src/lib/logo-title/assets",
+            "output": "assets/base-components/logo-title"
           }
         ],
         "styles": ["apps/web-public/src/styles.scss"]

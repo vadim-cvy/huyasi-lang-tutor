@@ -1,0 +1,17 @@
+@use '../../../../shared-styles/src/lib/vars.scss';
+
+.logo-title {
+  display: flex;
+  align-items: center;
+
+  &__logo {
+    height: 2rem;
+    border-radius: vars.$border-radius-small;
+    border: 2px solid #000; // TODO: remove border and make it a part of the logo image
+  }
+
+  &__title {
+    font-size: 2rem;
+    margin-left: .2em;
+  }
+}
