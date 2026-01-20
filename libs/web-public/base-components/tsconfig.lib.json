@@ -7,7 +7,7 @@
     "inlineSources": true,
     "types": []
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts","../../../apps/web-public/img-assets.d.ts"],
   "exclude": [
     "src/**/*.spec.ts",
     "src/**/*.test.ts",

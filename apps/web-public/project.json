@@ -10,6 +10,13 @@
       "executor": "@angular/build:application",
       "outputs": ["{options.outputPath}"],
       "options": {
+        "loader": {
+          ".png": "file",
+          ".jpg": "file",
+          ".jpeg": "file",
+          ".svg": "file",
+          ".webp": "file"
+        },
         "outputPath": "dist/apps/web-public",
         "browser": "apps/web-public/src/main.ts",
         "tsConfig": "apps/web-public/tsconfig.app.json",
