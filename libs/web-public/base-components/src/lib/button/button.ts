@@ -23,7 +23,7 @@ export class Button {
     position: ButtonIconPosition;
   }>>();
 
-  public readonly style = input.required<'transparent'>();
+  public readonly style = input<'transparent'>('transparent');
 
   public readonly width = input<ButtonWidth>('fitContent');
 
