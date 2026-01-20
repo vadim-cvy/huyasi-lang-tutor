@@ -6,4 +6,8 @@
   box-shadow: vars.$box-shadow-normal;
   background: vars.$color-2;
   color: vars.$color-3;
+
+  &.--is-expanded {
+    min-width: 11rem;
+  }
 }

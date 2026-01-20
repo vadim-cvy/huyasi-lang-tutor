@@ -1,4 +1,7 @@
-<div class="sidebar">
+<div [class]="[
+  'sidebar',
+  isExpanded() ? '--is-expanded' : '',
+]">
   <web-public-base-components-nav-primary
     [buttonsIconsPosition]="buttonsIconsPosition()"
     [buttonsContentAlign]="buttonsContentAlign()"
