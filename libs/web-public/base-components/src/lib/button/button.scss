@@ -2,7 +2,6 @@
   display: flex;
   align-items: center;
   // TODO: make active button (ex: selected via TAB) styles differ for accessibility
-  outline: none;
   cursor: pointer;
 
   &.--content-align {
