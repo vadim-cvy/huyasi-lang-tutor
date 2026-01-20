@@ -12,6 +12,12 @@ describe('NavPrimary', () => {
 
     fixture = TestBed.createComponent(NavPrimary);
     component = fixture.componentInstance;
+
+    fixture.componentRef.setInput('orientation', 'horizontal');
+    fixture.componentRef.setInput('buttonsIconsPosition', 'left');
+    fixture.componentRef.setInput('buttonsContentAlign', 'center');
+    fixture.componentRef.setInput('buttonsSize', 'normal');
+
     await fixture.whenStable();
   });
 
