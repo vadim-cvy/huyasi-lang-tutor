@@ -1,0 +1,41 @@
+@use '../../vars/vars-whitespace.scss';
+@use "sass:meta";
+@use "sass:map";
+
+@mixin for-prop($prop-name-full, $prop-name-abbr) {
+  @each $stability in ('static', 'responsive') {
+    @each $size in ('xs', 'sm', 'md', 'lg', 'xl', 'xxl') {
+      $val: map.get(meta.module-variables(vars-whitespace), '#{$size}-#{$stability}');
+
+      .--#{$prop-name-abbr}a-#{$size}-#{$stability} {
+        #{$prop-name-full}: $val;
+      }
+
+      .--#{$prop-name-abbr}x-#{$size}-#{$stability} {
+        #{$prop-name-full}-left: $val;
+        #{$prop-name-full}-right: $val;
+      }
+
+      .--#{$prop-name-abbr}y-#{$size}-#{$stability} {
+        #{$prop-name-full}-top: $val;
+        #{$prop-name-full}-bottom: $val;
+      }
+
+      .--#{$prop-name-abbr}t-#{$size}-#{$stability} {
+        #{$prop-name-full}-top: $val;
+      }
+
+      .--#{$prop-name-abbr}r-#{$size}-#{$stability} {
+        #{$prop-name-full}-right: $val;
+      }
+
+      .--#{$prop-name-abbr}b-#{$size}-#{$stability} {
+        #{$prop-name-full}-bottom: $val;
+      }
+
+      .--#{$prop-name-abbr}l-#{$size}-#{$stability} {
+        #{$prop-name-full}-left: $val;
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+$xs-static: 8px;
+$sm-static: 12px;
+$md-static: 16px;
+$lg-static: 20px;
+$xl-static: 24px;
+$xxl-static: 32px;
+
+$xs-responsive-val--screen-lg: $xs-static;
+$xs-responsive-val--screen-md: $xs-static;
+$xs-responsive-val--screen-sm: $xs-static;
+$xs-responsive-name: --whitespace-xs-responsive;
+$xs-responsive: var($xs-responsive-name);
+
+$sm-responsive-val--screen-lg: $sm-static;
+$sm-responsive-val--screen-md: $sm-static;
+$sm-responsive-val--screen-sm: $xs-static;
+$sm-responsive-name: --whitespace-sm-responsive;
+$sm-responsive: var($sm-responsive-name);
+
+$md-responsive-val--screen-lg: $md-static;
+$md-responsive-val--screen-md: $md-static;
+$md-responsive-val--screen-sm: $sm-static;
+$md-responsive-name: --whitespace-md-responsive;
+$md-responsive: var($md-responsive-name);
+
+$lg-responsive-val--screen-lg: $lg-static;
+$lg-responsive-val--screen-md: $lg-static;
+$lg-responsive-val--screen-sm: $md-static;
+$lg-responsive-name: --whitespace-lg-responsive;
+$lg-responsive: var($lg-responsive-name);
+
+$xl-responsive-val--screen-lg: $xl-static;
+$xl-responsive-val--screen-md: $xl-static;
+$xl-responsive-val--screen-sm: $lg-static;
+$xl-responsive-name: --whitespace-xl-responsive;
+$xl-responsive: var($xl-responsive-name);
+
+$xxl-responsive-val--screen-lg: $xxl-static;
+$xxl-responsive-val--screen-md: $xxl-static;
+$xxl-responsive-val--screen-sm: $xl-static;
+$xxl-responsive-name: --whitespace-xxl-responsive;
+$xxl-responsive: var($xxl-responsive-name);

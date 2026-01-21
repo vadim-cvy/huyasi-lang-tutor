@@ -1,8 +1,35 @@
 @use '../vars/vars-colors.scss';
+@use '../vars/vars-whitespace.scss';
+@use '../mixins/mixins-breakpoints.scss';
 
 :root {
   #{vars-colors.$color-1-name}: #{vars-colors.$color-1-val};
   #{vars-colors.$color-2-name}: #{vars-colors.$color-2-val};
   #{vars-colors.$color-3-name}: #{vars-colors.$color-3-val};
   #{vars-colors.$color-4-name}: #{vars-colors.$color-4-val};
+
+  #{vars-whitespace.$xs-responsive-name}: #{vars-whitespace.$xs-responsive-val--screen-sm};
+  #{vars-whitespace.$sm-responsive-name}: #{vars-whitespace.$sm-responsive-val--screen-sm};
+  #{vars-whitespace.$md-responsive-name}: #{vars-whitespace.$md-responsive-val--screen-sm};
+  #{vars-whitespace.$lg-responsive-name}: #{vars-whitespace.$lg-responsive-val--screen-sm};
+  #{vars-whitespace.$xl-responsive-name}: #{vars-whitespace.$xl-responsive-val--screen-sm};
+  #{vars-whitespace.$xxl-responsive-name}: #{vars-whitespace.$xxl-responsive-val--screen-sm};
+
+  @include mixins-breakpoints.md-up {
+    #{vars-whitespace.$xs-responsive-name}: #{vars-whitespace.$xs-responsive-val--screen-md};
+    #{vars-whitespace.$sm-responsive-name}: #{vars-whitespace.$sm-responsive-val--screen-md};
+    #{vars-whitespace.$md-responsive-name}: #{vars-whitespace.$md-responsive-val--screen-md};
+    #{vars-whitespace.$lg-responsive-name}: #{vars-whitespace.$lg-responsive-val--screen-md};
+    #{vars-whitespace.$xl-responsive-name}: #{vars-whitespace.$xl-responsive-val--screen-md};
+    #{vars-whitespace.$xxl-responsive-name}: #{vars-whitespace.$xxl-responsive-val--screen-md};
+  }
+
+  @include mixins-breakpoints.lg-up {
+    #{vars-whitespace.$xs-responsive-name}: #{vars-whitespace.$xs-responsive-val--screen-lg};
+    #{vars-whitespace.$sm-responsive-name}: #{vars-whitespace.$sm-responsive-val--screen-lg};
+    #{vars-whitespace.$md-responsive-name}: #{vars-whitespace.$md-responsive-val--screen-lg};
+    #{vars-whitespace.$lg-responsive-name}: #{vars-whitespace.$lg-responsive-val--screen-lg};
+    #{vars-whitespace.$xl-responsive-name}: #{vars-whitespace.$xl-responsive-val--screen-lg};
+    #{vars-whitespace.$xxl-responsive-name}: #{vars-whitespace.$xxl-responsive-val--screen-lg};
+  }
 }

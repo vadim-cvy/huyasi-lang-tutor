@@ -1,0 +1,5 @@
+@use '../mixins/internal/internal-mixins-whitespace-selectors.scss';
+
+@include internal-mixins-whitespace-selectors.for-prop('padding', 'p');
+@include internal-mixins-whitespace-selectors.for-prop('margin', 'm');
+@include internal-mixins-whitespace-selectors.for-prop('gap', 'g');
