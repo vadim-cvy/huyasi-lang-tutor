@@ -3,7 +3,7 @@ import { NavPrimary } from '../nav-primary/nav-primary';
 import { Button } from '../button/button';
 import { ButtonIconPosition } from '../button/abstract/ButtonIconPosition';
 import { ButtonContentAlign } from '../button/abstract/ButtonContentAlign';
-import { ButtonSize } from '../button/abstract/ButtonSize';
+import { WhitespaceSize } from '@huyasi/web-public-shared-styles';
 
 @Component({
   selector: 'web-public-base-components-sidebar',
@@ -22,7 +22,7 @@ export class Sidebar {
     this.isExpanded() ? 'left' : 'center'
   );
 
-  public readonly buttonsSize = computed<ButtonSize>(() =>
-    this.isExpanded() ? 'normal' : 'extraSmall'
+  public readonly buttonsPaddingX = computed<WhitespaceSize>(() =>
+    this.isExpanded() ? 'lg' : 'xs'
   );
 }

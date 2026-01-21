@@ -3,9 +3,10 @@
     'button',
     `--style-${style()}`,
     `--width-${width()}`,
-    `--size-${size()}`,
     `--content-align-${contentAlign()}`,
-    (icon() ? `--icon-position-${icon()?.position}` : '')
+    (icon() ? `--icon-position-${icon()?.position}` : ''),
+    `--px-${paddingXFinal()}-responsive`,
+    `--py-${paddingYFinal()}-responsive`,
   ]"
   [routerLink]="link()?.url"
   [routerLinkActive]="link()?.isRouterLinkActiveSync ? '--active' : ''"

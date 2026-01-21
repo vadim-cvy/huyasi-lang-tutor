@@ -1,10 +1,10 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { Icon } from '../icon/icon';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ButtonContentAlign } from './abstract/ButtonContentAlign';
 import { ButtonWidth } from './abstract/ButtonWidth';
 import { ButtonIconPosition } from './abstract/ButtonIconPosition';
-import { ButtonSize } from './abstract/ButtonSize';
+import { WhitespaceSize, WhitespaceSizeEnum, WhitespaceStability } from '@huyasi/web-public-shared-styles';
 
 @Component({
   selector: 'web-public-base-components-button',
@@ -29,5 +29,42 @@ export class Button {
 
   public readonly contentAlign = input<ButtonContentAlign>('center');
 
-  public readonly size = input<ButtonSize>('normal');
+  public readonly paddingStability = input<WhitespaceStability>('responsive');
+
+  public readonly paddingX = input<WhitespaceSize|undefined>();
+  public readonly paddingY = input<WhitespaceSize|undefined>();
+
+  public readonly paddingXFinal = computed<WhitespaceSize>((): WhitespaceSize => {
+    const paddingXCustom = this.paddingX();
+
+    if (paddingXCustom) {
+      return paddingXCustom;
+    }
+
+    const paddingYCustom = this.paddingY();
+
+    if (paddingYCustom) {
+      const paddingOneLvlHigherThanYCustom: WhitespaceSize|undefined =
+        WhitespaceSizeEnum[WhitespaceSizeEnum[paddingYCustom] + 1] as WhitespaceSize | undefined;
+
+      return paddingOneLvlHigherThanYCustom ? paddingOneLvlHigherThanYCustom : paddingYCustom;
+    }
+
+    return 'lg';
+  })
+
+  public readonly paddingYFinal = computed<WhitespaceSize>((): WhitespaceSize => {
+    const paddingYCustom = this.paddingY();
+
+    if (paddingYCustom) {
+      return paddingYCustom;
+    }
+
+    const paddingXFinal = this.paddingXFinal();
+
+    const paddingOneLvlLowerThanXFinal: WhitespaceSize|undefined =
+      WhitespaceSizeEnum[WhitespaceSizeEnum[paddingXFinal] - 1] as WhitespaceSize | undefined;
+
+    return paddingOneLvlLowerThanXFinal ? paddingOneLvlLowerThanXFinal : paddingXFinal;
+  })
 }

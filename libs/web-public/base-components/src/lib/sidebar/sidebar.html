@@ -5,7 +5,7 @@
   <web-public-base-components-nav-primary
     [buttonsIconsPosition]="buttonsIconsPosition()"
     [buttonsContentAlign]="buttonsContentAlign()"
-    [buttonsSize]="buttonsSize()"
+    [buttonsPaddingX]="buttonsPaddingX()"
     [orientation]="'vertical'"
   />
 
@@ -15,7 +15,7 @@
       name: isExpanded() ? 'arrow-left' : 'arrow-right'
     }"
     [width]="'full'"
-    [size]="buttonsSize()"
+    [paddingX]="buttonsPaddingX()"
     [contentAlign]="buttonsContentAlign()"
     (click)="isExpanded.set(!isExpanded())"
   >
