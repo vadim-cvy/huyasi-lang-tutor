@@ -2,8 +2,8 @@
 @use '../../../../shared-styles/src/lib/assets/styles/vars/vars-colors.scss';
 
 .footer {
-  border-top: vars-misc.$border-normal;
-  box-shadow: vars-misc.$box-shadow-normal;
+  border-top: vars-misc.$border;
+  box-shadow: vars-misc.$box-shadow;
   background: vars-colors.$color-2;
   color: vars-colors.$color-3;
 }
