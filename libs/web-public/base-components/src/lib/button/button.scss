@@ -3,6 +3,7 @@
   align-items: center;
   // TODO: make active button (ex: selected via TAB) styles differ for accessibility
   cursor: pointer;
+  color: inherit;
 
   &.--content-align {
     &-left {
