@@ -1,1 +1,1 @@
-Contains shared vars and mixins for web-public app and its libraries.
+Contains **web-public** app global styles. Shared vars and mixins for the app and its libs.
