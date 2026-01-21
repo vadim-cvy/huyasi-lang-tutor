@@ -1,9 +1,0 @@
-@use './vars.scss';
-
-:root {
-  #{vars.$color-1-name}: #{vars.$color-1-val};
-  #{vars.$color-2-name}: #{vars.$color-2-val};
-  #{vars.$color-3-name}: #{vars.$color-3-val};
-
-  #{vars.$box-shadow-normal-name}: #{vars.$box-shadow-normal-val};
-}

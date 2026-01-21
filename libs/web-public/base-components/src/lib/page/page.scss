@@ -1,4 +1,4 @@
-@use '../../../../shared-styles/src/lib/vars.scss';
+@use '../../../../shared-styles/src/lib/assets/styles/vars/vars-colors.scss';
 
 .page {
   display: grid;
@@ -9,7 +9,7 @@
   grid-template-columns: max-content 1fr;
   grid-template-rows: max-content 1fr max-content;
   height: 100%;
-  background: vars.$color-3;
+  background: vars-colors.$color-3;
 
   &.--minimalistic {
     grid-template-areas: "content";

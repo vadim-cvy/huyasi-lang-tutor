@@ -1,4 +1,4 @@
-@use '../../../../shared-styles/src/lib/vars.scss';
+@use '../../../../shared-styles/src/lib/assets/styles/vars/vars-misc.scss';
 
 .logo-title {
   display: flex;
@@ -6,7 +6,7 @@
 
   &__logo {
     height: 2rem;
-    border-radius: vars.$border-radius-small;
+    border-radius: vars-misc.$border-radius-small;
     border: 2px solid #000; // TODO: remove border and make it a part of the logo image
   }
 

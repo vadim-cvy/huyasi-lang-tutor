@@ -1,12 +1,13 @@
-@use '../../../../shared-styles/src/lib/vars.scss';
+@use '../../../../shared-styles/src/lib/assets/styles/vars/vars-misc.scss';
+@use '../../../../shared-styles/src/lib/assets/styles/vars/vars-colors.scss';
 
 .header {
   display: flex;
   justify-content: space-between;
-  border-bottom: vars.$border-normal;
-  box-shadow: vars.$box-shadow-normal;
-  background: vars.$color-2;
-  color: vars.$color-3;
+  border-bottom: vars-misc.$border-normal;
+  box-shadow: vars-misc.$box-shadow-normal;
+  background: vars-colors.$color-2;
+  color: vars-colors.$color-3;
 
   &__actions {
     display: flex;
