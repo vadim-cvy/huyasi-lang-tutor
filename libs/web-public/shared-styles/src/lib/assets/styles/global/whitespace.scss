@@ -1,0 +1,5 @@
+@use '../mixins/internal/internal-mixins-whitespace.scss';
+
+@include internal-mixins-whitespace.for-prop('padding', 'p', true);
+@include internal-mixins-whitespace.for-prop('margin', 'm', true);
+@include internal-mixins-whitespace.for-prop('gap', 'g', false);
