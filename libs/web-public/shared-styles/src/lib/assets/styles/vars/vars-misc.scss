@@ -4,7 +4,4 @@ $border-normal: 1px solid vars-colors.$color-1;
 
 $border-radius-small: 4px;
 
-// TODO: make dependent on dynamic color vars
-$box-shadow-normal-val: 0 2px 4px rgba(0, 0, 0, 0.1);
-$box-shadow-normal-name: --box-shadow-normal;
-$box-shadow-normal: var($box-shadow-normal-name);
+$box-shadow-normal: 0 2px 4px vars-colors.$color-4;
