@@ -4,6 +4,7 @@ import { auditTime, fromEvent, map, startWith } from 'rxjs';
 import { Header } from '../header/header';
 import { Sidebar } from '../sidebar/sidebar';
 import { Footer } from '../footer/footer';
+import { BreakpointEnum } from '@huyasi/web-public-shared-styles';
 
 @Component({
   selector: 'web-public-base-components-page',
@@ -32,10 +33,8 @@ export class Page {
         takeUntilDestroyed(this.destroyRef),
       )
 
-    const footerBreakpointMaxVisiblePx = 959;
-
     screenResize$.subscribe(widthPx => {
-      this.isFooterBreakpointMatch.set(widthPx <= footerBreakpointMaxVisiblePx);
+      this.isFooterBreakpointMatch.set(widthPx <= BreakpointEnum.md);
       this.isSidebarBreakpointMatch.set(!this.isFooterBreakpointMatch());
     });
   }
