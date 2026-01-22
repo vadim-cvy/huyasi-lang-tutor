@@ -1,10 +1,26 @@
-$white-val: #fff;
-$white-name: --color-white;
-$white: var($white-name);
+$bg-base-val: #fff;
+$bg-base-name: --color-bg-base;
+$bg-base: var($bg-base-name);
 
-$primary-val: #303758;
-$primary-name: --color-primary;
-$primary: var($primary-name);
+$bg-accent-val: #303758;
+$bg-accent-name: --color-bg-accent;
+$bg-accent: var($bg-accent-name);
+
+$text-base-for-bg-base-val: #303758;
+$text-base-for-bg-base-name: --color-text-base-for-bg-base;
+$text-base-for-bg-base: var($text-base-for-bg-base-name);
+
+$text-accent-for-bg-base-val: #2cc536;
+$text-accent-for-bg-base-name: --color-text-accent-for-bg-base;
+$text-accent-for-bg-base: var($text-accent-for-bg-base-name);
+
+$text-base-for-bg-accent-val: #ffffff;
+$text-base-for-bg-accent-name: --color-text-base-for-bg-accent;
+$text-base-for-bg-accent: var($text-base-for-bg-accent-name);
+
+$text-accent-for-bg-accent-val: rgb(255, 94, 0);
+$text-accent-for-bg-accent-name: --color-text-accent-for-bg-accent;
+$text-accent-for-bg-accent: var($text-accent-for-bg-accent-name);
 
 $border-val: #ccc;
 $border-name: --color-border;
@@ -14,6 +30,7 @@ $shadow-val: rgba(0, 0, 0, 0.1);
 $shadow-name: --color-shadow;
 $shadow: var($shadow-name);
 
+// This overlay is not visible on all backgrounds - split into different vars (like text colors)
 $overlay-val: rgba(255, 255, 255, 0.1);
 $overlay-name: --color-overlay;
 $overlay: var($overlay-name);
