@@ -41,6 +41,7 @@ html {
 
 // TODO: move to Link base component (if one will ever be created)
 a {
+  color: inherit;
   text-decoration: none;
 }
 
