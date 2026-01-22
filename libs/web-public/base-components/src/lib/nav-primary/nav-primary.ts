@@ -11,7 +11,6 @@ import { WhitespaceSize } from '@huyasi/web-public-shared-styles';
   styleUrl: './nav-primary.scss',
 })
 export class NavPrimary {
-  // TODO: replace with real items
   public readonly navItems: ReadonlyArray<{
     label: string;
     route: string;
