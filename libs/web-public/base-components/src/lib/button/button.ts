@@ -4,7 +4,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ButtonContentAlign } from './abstract/ButtonContentAlign';
 import { ButtonWidth } from './abstract/ButtonWidth';
 import { ButtonIconPosition } from './abstract/ButtonIconPosition';
-import { WhitespaceSize, WhitespaceSizeEnum, WhitespaceStability } from '@huyasi/web-public-shared-styles';
+import { FontSize, WhitespaceSize, WhitespaceSizeEnum, WhitespaceStability } from '@huyasi/web-public-shared-styles';
 
 @Component({
   selector: 'web-public-base-components-button',
@@ -66,5 +66,13 @@ export class Button {
       WhitespaceSizeEnum[WhitespaceSizeEnum[paddingXFinal] - 1] as WhitespaceSize | undefined;
 
     return paddingOneLvlLowerThanXFinal ? paddingOneLvlLowerThanXFinal : paddingXFinal;
+  })
+
+  public readonly fontSize = input<FontSize>();
+
+  public readonly fontSizeFinal = computed<FontSize>((): FontSize => {
+    const fontSizeCustom = this.fontSize()
+
+    return fontSizeCustom || this.paddingYFinal();
   })
 }
