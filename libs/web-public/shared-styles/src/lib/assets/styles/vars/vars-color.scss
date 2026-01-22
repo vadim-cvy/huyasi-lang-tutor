@@ -13,3 +13,7 @@ $border: var($border-name);
 $shadow-val: rgba(0, 0, 0, 0.1);
 $shadow-name: --color-shadow;
 $shadow: var($shadow-name);
+
+$overlay-val: rgba(0, 0, 0, 0.1);
+$overlay-name: --color-overlay;
+$overlay: var($overlay-name);
