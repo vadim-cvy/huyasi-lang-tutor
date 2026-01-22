@@ -1,14 +1,14 @@
-$border-val: #ccc;
-$border-name: --color-border;
-$border: var($border-name);
+$white-val: #fff;
+$white-name: --color-white;
+$white: var($white-name);
 
 $primary-val: #c49b89;
 $primary-name: --color-primary;
 $primary: var($primary-name);
 
-$white-val: #fff;
-$white-name: --color-white;
-$white: var($white-name);
+$border-val: #ccc;
+$border-name: --color-border;
+$border: var($border-name);
 
 $shadow-val: rgba(0, 0, 0, 0.1);
 $shadow-name: --color-shadow;
