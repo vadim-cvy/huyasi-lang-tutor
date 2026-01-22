@@ -2,7 +2,7 @@ $white-val: #fff;
 $white-name: --color-white;
 $white: var($white-name);
 
-$primary-val: #c49b89;
+$primary-val: #303758;
 $primary-name: --color-primary;
 $primary: var($primary-name);
 
@@ -14,6 +14,6 @@ $shadow-val: rgba(0, 0, 0, 0.1);
 $shadow-name: --color-shadow;
 $shadow: var($shadow-name);
 
-$overlay-val: rgba(0, 0, 0, 0.1);
+$overlay-val: rgba(255, 255, 255, 0.1);
 $overlay-name: --color-overlay;
 $overlay: var($overlay-name);
