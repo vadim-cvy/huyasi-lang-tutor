@@ -1,3 +1,5 @@
+@use '../../../../shared-styles/src/lib/assets/styles/vars/vars-color.scss';
+
 .button {
   display: flex;
   align-items: center;
@@ -50,7 +52,7 @@
 
     &:hover,
     &.--active {
-      background-color: rgba(0, 0, 0, 0.1);
+      background-color: vars-color.$overlay;
     }
   }
 }
