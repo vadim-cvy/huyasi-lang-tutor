@@ -47,7 +47,7 @@ a {
 
 @each $stability in ('static', 'responsive') {
   @each $size in ('xs', 'sm', 'md', 'lg', 'xl', 'xxl') {
-    .--fs-#{$size}-#{$stability} {
+    .--text-#{$size}-#{$stability} {
       font-size: map.get(meta.module-variables(vars-font-size), '#{$size}-#{$stability}');
     }
   }
