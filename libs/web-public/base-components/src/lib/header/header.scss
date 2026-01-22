@@ -1,5 +1,4 @@
 @use '../../../../shared-styles/src/lib/assets/styles/vars/vars-misc.scss';
-@use '../../../../shared-styles/src/lib/assets/styles/vars/vars-color.scss';
 
 .header {
   display: flex;
@@ -7,8 +6,6 @@
   align-items: center;
   border-bottom: vars-misc.$border;
   box-shadow: vars-misc.$box-shadow;
-  background: vars-color.$primary;
-  color: vars-color.$white;
 
   &__actions {
     display: flex;

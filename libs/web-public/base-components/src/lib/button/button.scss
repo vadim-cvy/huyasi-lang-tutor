@@ -1,7 +1,7 @@
 @use '../../../../shared-styles/src/lib/assets/styles/vars/vars-color.scss';
 
 .button {
-  display: flex;
+  display: flex; // TODO: make button inline-flex for --width-fitContent
   align-items: center;
   box-sizing: border-box;
   cursor: pointer;
