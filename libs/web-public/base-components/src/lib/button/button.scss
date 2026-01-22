@@ -1,8 +1,8 @@
 .button {
   display: flex;
   align-items: center;
+  box-sizing: border-box;
   cursor: pointer;
-  color: inherit;
 
   &.--content-align {
     &-left {
