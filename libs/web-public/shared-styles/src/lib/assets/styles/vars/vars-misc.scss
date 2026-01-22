@@ -1,7 +1,7 @@
-@use './vars-colors.scss';
+@use './vars-color.scss';
 
-$border: 1px solid vars-colors.$color-1;
+$border: 1px solid vars-color.$color-1;
 
 $border-radius: 4px;
 
-$box-shadow: 0 2px 4px vars-colors.$color-4;
+$box-shadow: 0 2px 4px vars-color.$color-4;

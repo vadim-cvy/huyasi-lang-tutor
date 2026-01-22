@@ -1,8 +1,8 @@
-@use '../vars/vars-colors.scss';
+@use '../vars/vars-color.scss';
 
 :root {
-  #{vars-colors.$color-1-name}: #{vars-colors.$color-1-val};
-  #{vars-colors.$color-2-name}: #{vars-colors.$color-2-val};
-  #{vars-colors.$color-3-name}: #{vars-colors.$color-3-val};
-  #{vars-colors.$color-4-name}: #{vars-colors.$color-4-val};
+  #{vars-color.$color-1-name}: #{vars-color.$color-1-val};
+  #{vars-color.$color-2-name}: #{vars-color.$color-2-val};
+  #{vars-color.$color-3-name}: #{vars-color.$color-3-val};
+  #{vars-color.$color-4-name}: #{vars-color.$color-4-val};
 }

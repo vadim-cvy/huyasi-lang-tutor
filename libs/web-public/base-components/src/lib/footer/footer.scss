@@ -1,9 +1,9 @@
 @use '../../../../shared-styles/src/lib/assets/styles/vars/vars-misc.scss';
-@use '../../../../shared-styles/src/lib/assets/styles/vars/vars-colors.scss';
+@use '../../../../shared-styles/src/lib/assets/styles/vars/vars-color.scss';
 
 .footer {
   border-top: vars-misc.$border;
   box-shadow: vars-misc.$box-shadow;
-  background: vars-colors.$color-2;
-  color: vars-colors.$color-3;
+  background: vars-color.$color-2;
+  color: vars-color.$color-3;
 }

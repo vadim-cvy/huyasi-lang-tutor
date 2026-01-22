@@ -1,12 +1,12 @@
-@use '../../../../shared-styles/src/lib/assets/styles/vars/vars-colors.scss';
+@use '../../../../shared-styles/src/lib/assets/styles/vars/vars-color.scss';
 @use '../../../../shared-styles/src/lib/assets/styles/vars/vars-misc.scss';
 
 .sidebar {
   height: 100%;
   border-right: vars-misc.$border;
   box-shadow: vars-misc.$box-shadow;
-  background: vars-colors.$color-2;
-  color: vars-colors.$color-3;
+  background: vars-color.$color-2;
+  color: vars-color.$color-3;
 
   &.--is-expanded {
     min-width: 11rem;
