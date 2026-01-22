@@ -4,6 +4,7 @@
 .header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border-bottom: vars-misc.$border;
   box-shadow: vars-misc.$box-shadow;
   background: vars-color.$color-2;
