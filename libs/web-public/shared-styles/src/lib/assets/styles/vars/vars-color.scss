@@ -1,17 +1,15 @@
-// TODO: rename colors by their purpose (e.g., $background-primary, $border, etc)
+$border-val: #ccc;
+$border-name: --color-border;
+$border: var($border-name);
 
-$color-1-val: #ccc;
-$color-1-name: --color-1;
-$color-1: var($color-1-name);
+$primary-val: #c49b89;
+$primary-name: --color-primary;
+$primary: var($primary-name);
 
-$color-2-val: #c49b89;
-$color-2-name: --color-2;
-$color-2: var($color-2-name);
+$white-val: #fff;
+$white-name: --color-white;
+$white: var($white-name);
 
-$color-3-val: #fff;
-$color-3-name: --color-3;
-$color-3: var($color-3-name);
-
-$color-4-val: rgba(0, 0, 0, 0.1);
-$color-4-name: --color-4;
-$color-4: var($color-4-name);
+$shadow-val: rgba(0, 0, 0, 0.1);
+$shadow-name: --color-shadow;
+$shadow: var($shadow-name);
