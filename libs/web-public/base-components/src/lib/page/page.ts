@@ -5,10 +5,11 @@ import { Header } from '../header/header';
 import { Sidebar } from '../sidebar/sidebar';
 import { Footer } from '../footer/footer';
 import { BreakpointEnum } from '@huyasi/web-public-shared-styles';
+import { Button } from "../button/button";
 
 @Component({
   selector: 'web-public-base-components-page',
-  imports: [Header, Sidebar, Footer],
+  imports: [Header, Sidebar, Footer, Button],
   templateUrl: './page.html',
   styleUrl: './page.scss',
 })

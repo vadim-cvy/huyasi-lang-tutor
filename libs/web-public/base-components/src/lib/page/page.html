@@ -8,6 +8,29 @@
   }
 
   <main class="page__content">
+    <!-- TODO: remove this div after base components development is done -->
+    <div>
+      <div class="--bg-base">
+        <p>Common text.</p>
+
+        <p class="--text-accent">Common text.</p>
+
+        <web-public-base-components-button>
+          button transparent
+        </web-public-base-components-button>
+      </div>
+
+      <div class="--bg-accent">
+        <p>Common text.</p>
+
+        <p class="--text-accent">Common text.</p>
+
+        <web-public-base-components-button>
+          button transparent
+        </web-public-base-components-button>
+      </div>
+    </div>
+
     <ng-content select="main-content" />
   </main>
 
