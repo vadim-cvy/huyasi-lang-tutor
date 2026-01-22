@@ -6,3 +6,5 @@ export * from './lib/abstract/WhitespaceStability';
 
 export * from './lib/enums/BreakpointEnum';
 
+export * from './lib/enums/FontSizeEnum';
+export * from './lib/abstract/FontSize';

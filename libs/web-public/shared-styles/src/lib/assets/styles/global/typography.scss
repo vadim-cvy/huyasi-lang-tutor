@@ -1,3 +1,6 @@
+@use '../vars/vars-font-size.scss';
+@use 'sass:meta';
+@use 'sass:map';
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 html {
@@ -10,4 +13,12 @@ html {
 // TODO: move to Link base component (if one will ever be created)
 a {
   text-decoration: none;
+}
+
+@each $stability in ('static', 'responsive') {
+  @each $size in ('xs', 'sm', 'md', 'lg', 'xl', 'xxl') {
+    .--fs-#{$size}-#{$stability} {
+      font-size: map.get(meta.module-variables(vars-font-size), '#{$size}-#{$stability}');
+    }
+  }
 }

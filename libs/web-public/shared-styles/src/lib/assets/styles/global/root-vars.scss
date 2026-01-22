@@ -1,5 +1,6 @@
 @use '../vars/vars-colors.scss';
 @use '../vars/vars-whitespace.scss';
+@use '../vars/vars-font-size.scss';
 @use '../mixins/mixins-breakpoints.scss';
 
 :root {
@@ -15,6 +16,13 @@
   #{vars-whitespace.$xl-responsive-name}: #{vars-whitespace.$xl-responsive-val--screen-sm};
   #{vars-whitespace.$xxl-responsive-name}: #{vars-whitespace.$xxl-responsive-val--screen-sm};
 
+  #{vars-font-size.$xs-responsive-name}: #{vars-font-size.$xs-responsive-val--screen-sm};
+  #{vars-font-size.$sm-responsive-name}: #{vars-font-size.$sm-responsive-val--screen-sm};
+  #{vars-font-size.$md-responsive-name}: #{vars-font-size.$md-responsive-val--screen-sm};
+  #{vars-font-size.$lg-responsive-name}: #{vars-font-size.$lg-responsive-val--screen-sm};
+  #{vars-font-size.$xl-responsive-name}: #{vars-font-size.$xl-responsive-val--screen-sm};
+  #{vars-font-size.$xxl-responsive-name}: #{vars-font-size.$xxl-responsive-val--screen-sm};
+
   @include mixins-breakpoints.md-up {
     #{vars-whitespace.$xs-responsive-name}: #{vars-whitespace.$xs-responsive-val--screen-md};
     #{vars-whitespace.$sm-responsive-name}: #{vars-whitespace.$sm-responsive-val--screen-md};
@@ -22,6 +30,13 @@
     #{vars-whitespace.$lg-responsive-name}: #{vars-whitespace.$lg-responsive-val--screen-md};
     #{vars-whitespace.$xl-responsive-name}: #{vars-whitespace.$xl-responsive-val--screen-md};
     #{vars-whitespace.$xxl-responsive-name}: #{vars-whitespace.$xxl-responsive-val--screen-md};
+
+    #{vars-font-size.$xs-responsive-name}: #{vars-font-size.$xs-responsive-val--screen-md};
+    #{vars-font-size.$sm-responsive-name}: #{vars-font-size.$sm-responsive-val--screen-md};
+    #{vars-font-size.$md-responsive-name}: #{vars-font-size.$md-responsive-val--screen-md};
+    #{vars-font-size.$lg-responsive-name}: #{vars-font-size.$lg-responsive-val--screen-md};
+    #{vars-font-size.$xl-responsive-name}: #{vars-font-size.$xl-responsive-val--screen-md};
+    #{vars-font-size.$xxl-responsive-name}: #{vars-font-size.$xxl-responsive-val--screen-md};
   }
 
   @include mixins-breakpoints.lg-up {
@@ -31,5 +46,12 @@
     #{vars-whitespace.$lg-responsive-name}: #{vars-whitespace.$lg-responsive-val--screen-lg};
     #{vars-whitespace.$xl-responsive-name}: #{vars-whitespace.$xl-responsive-val--screen-lg};
     #{vars-whitespace.$xxl-responsive-name}: #{vars-whitespace.$xxl-responsive-val--screen-lg};
+
+    #{vars-font-size.$xs-responsive-name}: #{vars-font-size.$xs-responsive-val--screen-lg};
+    #{vars-font-size.$sm-responsive-name}: #{vars-font-size.$sm-responsive-val--screen-lg};
+    #{vars-font-size.$md-responsive-name}: #{vars-font-size.$md-responsive-val--screen-lg};
+    #{vars-font-size.$lg-responsive-name}: #{vars-font-size.$lg-responsive-val--screen-lg};
+    #{vars-font-size.$xl-responsive-name}: #{vars-font-size.$xl-responsive-val--screen-lg};
+    #{vars-font-size.$xxl-responsive-name}: #{vars-font-size.$xxl-responsive-val--screen-lg};
   }
 }
