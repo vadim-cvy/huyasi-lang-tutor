@@ -1,5 +1,6 @@
 @use './overlay-vars.scss';
 @use './../background/background-vars.scss';
+@use './../transition/transition-vars.scss';
 @use "sass:meta";
 @use "sass:map";
 
@@ -49,7 +50,7 @@
           width: 100%;
           height: 100%;
           background-color: inherit;
-          transition: .3s; // TODO: use global variable instead of hardcoded value here
+          transition: transition-vars.$transition-normal;
         }
 
         &:hover,
