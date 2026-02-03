@@ -5,6 +5,7 @@ import { ButtonContentAlign } from './abstract/ButtonContentAlign';
 import { ButtonWidth } from './abstract/ButtonWidth';
 import { ButtonIconPosition } from './abstract/ButtonIconPosition';
 import { FontSize, WhitespaceSize, WhitespaceSizeEnum, WhitespaceStability } from '@huyasi/web-public-shared-styles';
+import { ButtonBackground } from './abstract/ButtonBackground';
 
 @Component({
   selector: 'web-public-base-components-button',
@@ -23,7 +24,7 @@ export class Button {
     position: ButtonIconPosition;
   }>>();
 
-  public readonly style = input<'transparent'>('transparent');
+  public readonly background = input<ButtonBackground>('transparent');
 
   public readonly width = input<ButtonWidth>('fitContent');
 

@@ -1,0 +1,5 @@
+@use './border-vars.scss';
+
+:root {
+  #{border-vars.$border-color-css-var-name}: #{border-vars.$border-color-css-var-val};
+}

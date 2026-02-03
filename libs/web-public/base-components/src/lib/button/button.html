@@ -2,7 +2,8 @@
 <a
   [class]="[
     'button',
-    `--style-${style()}`,
+    `--bg-${background()}`,
+    `--has-overlay-before`,
     `--width-${width()}`,
     `--content-align-${contentAlign()}`,
     (icon() ? `--icon-position-${icon()?.position}` : ''),

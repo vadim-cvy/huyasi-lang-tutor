@@ -1,11 +1,11 @@
-@use '../../../../shared-styles/src/lib/assets/styles/vars/vars-misc.scss';
+@use '../../../../shared-styles/src/vars.scss';
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: vars-misc.$border;
-  box-shadow: vars-misc.$box-shadow;
+  border-bottom: vars.$border;
+  box-shadow: vars.$box-shadow;
 
   &__actions {
     display: flex;

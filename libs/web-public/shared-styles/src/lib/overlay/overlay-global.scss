@@ -1,0 +1,66 @@
+@use './overlay-vars.scss';
+@use './../background/background-vars.scss';
+@use "sass:meta";
+@use "sass:map";
+
+:root {
+  // Set CSS vars with overlay colors
+  @each $background-type in background-vars.$background-types {
+    $css-var-name:
+      map.get(
+        meta.module-variables(overlay-vars),
+        'overlay-color-css-var-name--over-background-#{$background-type}',
+      );
+
+    $css-var-val:
+      map.get(
+        meta.module-variables(overlay-vars),
+        'overlay-color-css-var-val--over-background-#{$background-type}',
+      );
+
+    #{$css-var-name}: $css-var-val;
+  }
+}
+
+// Set util classes for overlays (based on their parent background class)
+@each $background-type in background-vars.$background-types {
+  $overlay-bg-color-active: map.get(
+    meta.module-variables(overlay-vars),
+    'overlay-color--over-background-#{$background-type}'
+  );
+
+  @each $pseudo-element-type in ('before', 'after') {
+    .--bg-#{$background-type} {
+      &.--has-overlay-#{$pseudo-element-type},
+      .--has-overlay-#{$pseudo-element-type} {
+        position: relative;
+
+        > * {
+          z-index: 1;
+        }
+
+        &::#{$pseudo-element-type} {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 0;
+          display: block;
+          width: 100%;
+          height: 100%;
+          background-color: inherit;
+          transition: .3s; // TODO: use global variable instead of hardcoded value here
+        }
+
+        &:hover,
+        &:active,
+        &:focus
+        &.--is-overlay-active {
+          &::#{$pseudo-element-type} {
+            background-color: $overlay-bg-color-active;
+          }
+        }
+      }
+    }
+  }
+}

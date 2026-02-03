@@ -1,16 +1,16 @@
-@mixin lg-up {
+@mixin breakpoint-lg-up {
   @media (min-width: 1200px) {
     @content;
   }
 }
 
-@mixin md-up {
+@mixin breakpoint-md-up {
   @media (min-width: 992px) {
     @content;
   }
 }
 
-@mixin sm-up {
+@mixin breakpoint-sm-up {
   @media (min-width: 768px) {
     @content;
   }

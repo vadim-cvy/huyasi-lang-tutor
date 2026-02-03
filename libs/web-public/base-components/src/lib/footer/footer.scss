@@ -1,6 +1,6 @@
-@use '../../../../shared-styles/src/lib/assets/styles/vars/vars-misc.scss';
+@use '../../../../shared-styles/src/vars.scss';
 
 .footer {
-  border-top: vars-misc.$border;
-  box-shadow: vars-misc.$box-shadow;
+  border-top: vars.$border;
+  box-shadow: vars.$box-shadow;
 }

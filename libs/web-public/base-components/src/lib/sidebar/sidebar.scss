@@ -1,9 +1,9 @@
-@use '../../../../shared-styles/src/lib/assets/styles/vars/vars-misc.scss';
+@use '../../../../shared-styles/src/vars.scss';
 
 .sidebar {
   height: 100%;
-  border-right: vars-misc.$border;
-  box-shadow: vars-misc.$box-shadow;
+  border-right: vars.$border;
+  box-shadow: vars.$box-shadow;
 
   &.--is-expanded {
     min-width: 11rem;

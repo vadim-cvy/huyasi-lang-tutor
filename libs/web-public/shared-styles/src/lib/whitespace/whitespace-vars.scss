@@ -1,0 +1,45 @@
+$whitespace-stabilities: 'static', 'responsive';
+$whitespace-sizes: 'xs', 'sm', 'md', 'lg', 'xl', 'xxl';
+
+$whitespace-xs-static: 8px;
+$whitespace-sm-static: 12px;
+$whitespace-md-static: 16px;
+$whitespace-lg-static: 20px;
+$whitespace-xl-static: 24px;
+$whitespace-xxl-static: 32px;
+
+$whitespace-css-var-val--xs-responsive--screen-lg: $whitespace-xs-static;
+$whitespace-css-var-val--xs-responsive--screen-md: $whitespace-xs-static;
+$whitespace-css-var-val--xs-responsive--screen-sm: $whitespace-xs-static;
+$whitespace-css-var-name--xs-responsive: --whitespace-xs-responsive;
+$whitespace-xs-responsive: var($whitespace-css-var-name--xs-responsive);
+
+$whitespace-css-var-val--sm-responsive--screen-lg: $whitespace-sm-static;
+$whitespace-css-var-val--sm-responsive--screen-md: $whitespace-sm-static;
+$whitespace-css-var-val--sm-responsive--screen-sm: $whitespace-xs-static;
+$whitespace-css-var-name--sm-responsive: --whitespace-sm-responsive;
+$whitespace-sm-responsive: var($whitespace-css-var-name--sm-responsive);
+
+$whitespace-css-var-val--md-responsive--screen-lg: $whitespace-md-static;
+$whitespace-css-var-val--md-responsive--screen-md: $whitespace-md-static;
+$whitespace-css-var-val--md-responsive--screen-sm: $whitespace-sm-static;
+$whitespace-css-var-name--md-responsive: --whitespace-md-responsive;
+$whitespace-md-responsive: var($whitespace-css-var-name--md-responsive);
+
+$whitespace-css-var-val--lg-responsive--screen-lg: $whitespace-lg-static;
+$whitespace-css-var-val--lg-responsive--screen-md: $whitespace-lg-static;
+$whitespace-css-var-val--lg-responsive--screen-sm: $whitespace-md-static;
+$whitespace-css-var-name--lg-responsive: --whitespace-lg-responsive;
+$whitespace-lg-responsive: var($whitespace-css-var-name--lg-responsive);
+
+$whitespace-css-var-val--xl-responsive--screen-lg: $whitespace-xl-static;
+$whitespace-css-var-val--xl-responsive--screen-md: $whitespace-xl-static;
+$whitespace-css-var-val--xl-responsive--screen-sm: $whitespace-lg-static;
+$whitespace-css-var-name--xl-responsive: --whitespace-xl-responsive;
+$whitespace-xl-responsive: var($whitespace-css-var-name--xl-responsive);
+
+$whitespace-css-var-val--xxl-responsive--screen-lg: $whitespace-xxl-static;
+$whitespace-css-var-val--xxl-responsive--screen-md: $whitespace-xxl-static;
+$whitespace-css-var-val--xxl-responsive--screen-sm: $whitespace-xl-static;
+$whitespace-css-var-name--xxl-responsive: --whitespace-xxl-responsive;
+$whitespace-xxl-responsive: var($whitespace-css-var-name--xxl-responsive);

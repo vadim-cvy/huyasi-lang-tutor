@@ -1,0 +1,7 @@
+$border-color-css-var-val: #ccc;
+$border-color-css-var-name: --border-color;
+$border-color: var($border-color-css-var-name);
+
+$border: 1px solid $border-color;
+
+$border-radius: 4px;

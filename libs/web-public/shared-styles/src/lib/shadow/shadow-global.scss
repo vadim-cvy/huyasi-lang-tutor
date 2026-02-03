@@ -1,0 +1,5 @@
+@use './shadow-vars.scss';
+
+:root {
+  #{shadow-vars.$shadow-color-css-var-name}: #{shadow-vars.$shadow-color-css-var-val};
+}

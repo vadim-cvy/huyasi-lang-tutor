@@ -1,10 +1,9 @@
-@use '../../../../shared-styles/src/lib/assets/styles/vars/vars-color.scss';
-
 .button {
   display: flex; // TODO: make button inline-flex for --width-fitContent
   align-items: center;
   box-sizing: border-box;
   cursor: pointer;
+  border: none;
 
   &.--content-align {
     &-left {
@@ -45,14 +44,8 @@
     }
   }
 
-  &.--style-transparent {
-    border: none;
+  &.--bg-transparent {
     box-shadow: none;
     background: none;
-
-    &:hover,
-    &.--active {
-      background-color: vars-color.$overlay;
-    }
   }
 }
