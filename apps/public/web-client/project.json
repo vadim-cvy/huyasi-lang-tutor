@@ -1,9 +1,9 @@
 {
-  "name": "web-public",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "public-web-client",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "prefix": "app",
-  "sourceRoot": "apps/web-public/src",
+  "sourceRoot": "apps/public/web-client/src",
   "tags": [],
   "targets": {
     "build": {
@@ -17,14 +17,14 @@
           ".svg": "file",
           ".webp": "file"
         },
-        "outputPath": "dist/apps/web-public",
-        "browser": "apps/web-public/src/main.ts",
-        "tsConfig": "apps/web-public/tsconfig.app.json",
+        "outputPath": "dist/apps/public/web-client",
+        "browser": "apps/public/web-client/src/main.ts",
+        "tsConfig": "apps/public/web-client/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
           {
             "glob": "**/*",
-            "input": "apps/web-public/public"
+            "input": "apps/public/web-client/public"
           },
           {
             "glob": "**/*",
@@ -32,7 +32,7 @@
             "output": "assets/base-components/logo-title"
           }
         ],
-        "styles": ["apps/web-public/src/styles.scss"]
+        "styles": ["apps/public/web-client/src/styles.scss"]
       },
       "configurations": {
         "production": {
@@ -63,10 +63,10 @@
       "executor": "@angular/build:dev-server",
       "configurations": {
         "production": {
-          "buildTarget": "web-public:build:production"
+          "buildTarget": "public-web-client:build:production"
         },
         "development": {
-          "buildTarget": "web-public:build:development"
+          "buildTarget": "public-web-client:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -82,9 +82,9 @@
       "continuous": true,
       "executor": "@nx/web:file-server",
       "options": {
-        "buildTarget": "web-public:build",
+        "buildTarget": "public-web-client:build",
         "port": 4200,
-        "staticFilePath": "dist/apps/web-public/browser",
+        "staticFilePath": "dist/apps/public/web-client/browser",
         "spa": true
       }
     }

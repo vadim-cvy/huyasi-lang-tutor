@@ -8,7 +8,6 @@ describe('App', () => {
       imports: [App],
       providers: [provideRouter([])],
     }).compileComponents();
-
   });
 
   it('should render', async () => {
