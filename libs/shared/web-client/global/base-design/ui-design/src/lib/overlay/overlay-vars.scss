@@ -1,7 +1,11 @@
 $overlay-color-css-var-val--over-background-base: rgba(0, 0, 0, 0.1);
 $overlay-color-css-var-name--over-background-base: --overlay-color-over-background-base;
-$overlay-color--over-background-base: var($overlay-color-css-var-name--over-background-base);
+$overlay-color--over-background-base: var(
+  $overlay-color-css-var-name--over-background-base
+);
 
 $overlay-color-css-var-val--over-background-accent: rgba(255, 255, 255, 0.1);
 $overlay-color-css-var-name--over-background-accent: --overlay-color-over-background-accent;
-$overlay-color--over-background-accent: var($overlay-color-css-var-name--over-background-accent);
+$overlay-color--over-background-accent: var(
+  $overlay-color-css-var-name--over-background-accent
+);

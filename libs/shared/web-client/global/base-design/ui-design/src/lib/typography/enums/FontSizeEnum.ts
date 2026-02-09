@@ -4,5 +4,5 @@ export enum FontSizeEnum {
   md,
   lg,
   xl,
-  xxl
+  xxl,
 }

@@ -1,3 +1,3 @@
-import { Background } from '@huyasi/web-public-shared-styles';
+import { Background } from '@huyasi/shared-web-client-global-base-design';
 
 export type ButtonBackground = 'transparent' | Background;

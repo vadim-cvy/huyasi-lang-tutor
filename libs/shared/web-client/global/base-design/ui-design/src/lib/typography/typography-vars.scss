@@ -48,26 +48,32 @@ $text-size-xxl-responsive: var($text-size-css-var-name--xxl-responsive);
 
 // END: SIZES
 
-
-
 // START: COLORS
 
 $text-color-types: 'base', 'accent';
 
 $text-color-css-var-val--base-for-background-base: #303758;
 $text-color-css-var-name--base-for-background-base: --text-color-base-for-background-base;
-$text-color-base-for-background-base: var($text-color-css-var-name--base-for-background-base);
+$text-color-base-for-background-base: var(
+  $text-color-css-var-name--base-for-background-base
+);
 
 $text-color-css-var-val--accent-for-background-base: #2cc536;
 $text-color-css-var-name--accent-for-background-base: --text-color-accent-for-background-base;
-$text-color-accent-for-background-base: var($text-color-css-var-name--accent-for-background-base);
+$text-color-accent-for-background-base: var(
+  $text-color-css-var-name--accent-for-background-base
+);
 
 $text-color-css-var-val--base-for-background-accent: #ffffff;
 $text-color-css-var-name--base-for-background-accent: --text-color-base-for-background-accent;
-$text-color-base-for-background-accent: var($text-color-css-var-name--base-for-background-accent);
+$text-color-base-for-background-accent: var(
+  $text-color-css-var-name--base-for-background-accent
+);
 
 $text-color-css-var-val--accent-for-background-accent: rgb(255, 94, 0);
 $text-color-css-var-name--accent-for-background-accent: --text-color-accent-for-background-accent;
-$text-color-accent-for-background-accent: var($text-color-css-var-name--accent-for-background-accent);
+$text-color-accent-for-background-accent: var(
+  $text-color-css-var-name--accent-for-background-accent
+);
 
 // END: COLORS

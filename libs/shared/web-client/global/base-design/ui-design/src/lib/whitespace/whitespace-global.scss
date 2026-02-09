@@ -1,23 +1,29 @@
 @use './whitespace-vars.scss';
 @use '../breakpoints/breakpoints-mixins.scss';
-@use "sass:meta";
-@use "sass:map";
+@use 'sass:meta';
+@use 'sass:map';
 
 // Generates global selectors for a given CSS property (e.g., padding, margin, gap)
-@mixin _global-selectors-for-prop($prop-name-full, $prop-name-abbr, $has-sides) {
+@mixin _global-selectors-for-prop(
+  $prop-name-full,
+  $prop-name-abbr,
+  $has-sides
+) {
   @each $stability in whitespace-vars.$whitespace-stabilities {
     @each $size in whitespace-vars.$whitespace-sizes {
       $selector-prefix: '.--#{$prop-name-abbr}';
       $selector-suffix: '-#{$size}-#{$stability}';
 
-      $val: map.get(meta.module-variables(whitespace-vars), 'whitespace-#{$size}-#{$stability}');
+      $val: map.get(
+        meta.module-variables(whitespace-vars),
+        'whitespace-#{$size}-#{$stability}'
+      );
 
       @if $has-sides == false {
         #{$selector-prefix}#{$selector-suffix} {
           #{$prop-name-full}: $val;
         }
-      }
-      @else {
+      } @else {
         #{$selector-prefix}a#{$selector-suffix} {
           #{$prop-name-full}: $val;
         }
@@ -55,30 +61,25 @@
 :root {
   // Sets whitespace size variables
   @each $size in whitespace-vars.$whitespace-sizes {
-    $css-var-name:
-      map.get(
-        meta.module-variables(whitespace-vars),
-        'whitespace-css-var-name--#{$size}-responsive',
-      );
+    $css-var-name: map.get(
+      meta.module-variables(whitespace-vars),
+      'whitespace-css-var-name--#{$size}-responsive'
+    );
 
-    $css-var-val--screen-sm:
-      map.get(
-        meta.module-variables(whitespace-vars),
-        'whitespace-css-var-val--#{$size}-responsive--screen-sm',
-      );
+    $css-var-val--screen-sm: map.get(
+      meta.module-variables(whitespace-vars),
+      'whitespace-css-var-val--#{$size}-responsive--screen-sm'
+    );
 
-    $css-var-val--screen-md:
-      map.get(
-        meta.module-variables(whitespace-vars),
-        'whitespace-css-var-val--#{$size}-responsive--screen-md',
-      );
+    $css-var-val--screen-md: map.get(
+      meta.module-variables(whitespace-vars),
+      'whitespace-css-var-val--#{$size}-responsive--screen-md'
+    );
 
-    $css-var-val--screen-lg:
-      map.get(
-        meta.module-variables(whitespace-vars),
-        'whitespace-css-var-val--#{$size}-responsive--screen-lg',
-      );
-
+    $css-var-val--screen-lg: map.get(
+      meta.module-variables(whitespace-vars),
+      'whitespace-css-var-val--#{$size}-responsive--screen-lg'
+    );
 
     #{$css-var-name}: $css-var-val--screen-sm;
 

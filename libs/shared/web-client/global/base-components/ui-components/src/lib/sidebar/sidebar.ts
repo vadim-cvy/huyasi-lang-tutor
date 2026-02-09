@@ -3,7 +3,7 @@ import { NavPrimary } from '../nav-primary/nav-primary';
 import { Button } from '../button/button';
 import { ButtonIconPosition } from '../button/abstract/ButtonIconPosition';
 import { ButtonContentAlign } from '../button/abstract/ButtonContentAlign';
-import { WhitespaceSize } from '@huyasi/web-public-shared-styles';
+import { WhitespaceSize } from '@huyasi/shared-web-client-global-base-design';
 
 @Component({
   selector: 'web-public-base-components-sidebar',

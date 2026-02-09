@@ -1,23 +1,21 @@
 @use './overlay-vars.scss';
 @use './../background/background-vars.scss';
 @use './../transition/transition-vars.scss';
-@use "sass:meta";
-@use "sass:map";
+@use 'sass:meta';
+@use 'sass:map';
 
 :root {
   // Set CSS vars with overlay colors
   @each $background-type in background-vars.$background-types {
-    $css-var-name:
-      map.get(
-        meta.module-variables(overlay-vars),
-        'overlay-color-css-var-name--over-background-#{$background-type}',
-      );
+    $css-var-name: map.get(
+      meta.module-variables(overlay-vars),
+      'overlay-color-css-var-name--over-background-#{$background-type}'
+    );
 
-    $css-var-val:
-      map.get(
-        meta.module-variables(overlay-vars),
-        'overlay-color-css-var-val--over-background-#{$background-type}',
-      );
+    $css-var-val: map.get(
+      meta.module-variables(overlay-vars),
+      'overlay-color-css-var-val--over-background-#{$background-type}'
+    );
 
     #{$css-var-name}: $css-var-val;
   }
@@ -55,8 +53,7 @@
 
         &:hover,
         &:active,
-        &:focus
-        &.--is-overlay-active {
+        &:focus &.--is-overlay-active {
           &::#{$pseudo-element-type} {
             background-color: $overlay-bg-color-active;
           }

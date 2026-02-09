@@ -4,7 +4,7 @@ import { auditTime, fromEvent, map, startWith } from 'rxjs';
 import { Header } from '../header/header';
 import { Sidebar } from '../sidebar/sidebar';
 import { Footer } from '../footer/footer';
-import { BreakpointEnum } from '@huyasi/web-public-shared-styles';
+import { BreakpointEnum } from '@huyasi/shared-web-client-global-base-design';
 import { Button } from '../button/button';
 
 @Component({
