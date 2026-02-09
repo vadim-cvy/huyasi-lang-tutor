@@ -20,7 +20,7 @@ export default [
         'error',
         {
           type: 'element',
-          prefix: 'web-public-base-components',
+          prefix: 'shared-base',
           style: 'kebab-case',
         },
       ],

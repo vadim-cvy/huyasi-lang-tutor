@@ -16,7 +16,7 @@
   [routerLinkActive]="link()?.isRouterLinkActiveSync ? '--active' : ''"
 >
   @if (icon(); as _icon) {
-  <web-public-base-components-icon [name]="_icon.name" />
+  <shared-base-icon [name]="_icon.name" />
   }
 
   <span>

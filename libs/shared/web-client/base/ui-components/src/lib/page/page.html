@@ -1,10 +1,10 @@
 <div class="page --bg-base" [class.--minimalistic]="isMinimalistic()">
-  <web-public-base-components-header class="page__header">
+  <shared-base-header class="page__header">
     <ng-content select="header-actions" ngProjectAs="actions" />
-  </web-public-base-components-header>
+  </shared-base-header>
 
   @if (isSidebarBreakpointMatch() && !isMinimalistic()) {
-  <web-public-base-components-sidebar class="page__sidebar" />
+  <shared-base-sidebar class="page__sidebar" />
   }
 
   <main class="page__content --px-md-responsive --py-xl-responsive">
@@ -15,9 +15,9 @@
 
         <p class="--text-accent">Common text.</p>
 
-        <web-public-base-components-button>
+        <shared-base-button>
           button transparent
-        </web-public-base-components-button>
+        </shared-base-button>
       </div>
 
       <div class="--bg-accent">
@@ -25,9 +25,9 @@
 
         <p class="--text-accent">Common text.</p>
 
-        <web-public-base-components-button>
+        <shared-base-button>
           button transparent
-        </web-public-base-components-button>
+        </shared-base-button>
       </div>
     </div>
 
@@ -35,6 +35,6 @@
   </main>
 
   @if (isFooterBreakpointMatch() && !isMinimalistic()) {
-  <web-public-base-components-footer class="page__footer" />
+  <shared-base-footer class="page__footer" />
   }
 </div>

@@ -2,7 +2,7 @@
   "name": "shared-web-client-base-ui-components",
   "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/shared/web-client/base/ui-components/src",
-  "prefix": "web-public-base-components",
+  "prefix": "shared-base",
   "projectType": "library",
   "tags": [
     "scope:shared-web-client-base",

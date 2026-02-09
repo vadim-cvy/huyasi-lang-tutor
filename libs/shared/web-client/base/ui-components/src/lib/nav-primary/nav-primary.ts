@@ -5,7 +5,7 @@ import { ButtonContentAlign } from '../button/abstract/ButtonContentAlign';
 import { WhitespaceSize } from '@huyasi/shared-web-client-base-ui-design';
 
 @Component({
-  selector: 'web-public-base-components-nav-primary',
+  selector: 'shared-base-nav-primary',
   imports: [Button],
   templateUrl: './nav-primary.html',
   styleUrl: './nav-primary.scss',

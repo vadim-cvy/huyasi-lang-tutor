@@ -2,7 +2,7 @@
   <ul class="nav__list">
     @for (navItem of navItems; track navItem.route) {
     <li>
-      <web-public-base-components-button
+      <shared-base-button
         [link]="{ url: navItem.route, isRouterLinkActiveSync: true }"
         [icon]="{ position: buttonsIconsPosition(), name: navItem.iconName }"
         [width]="'full'"
@@ -10,7 +10,7 @@
         [paddingX]="buttonsPaddingX()"
       >
         {{navItem.label}}
-      </web-public-base-components-button>
+      </shared-base-button>
     </li>
     }
   </ul>

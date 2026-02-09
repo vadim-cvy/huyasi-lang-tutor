@@ -1,7 +1,7 @@
 import { Component, input } from '@angular/core';
 
 @Component({
-  selector: 'web-public-base-components-icon',
+  selector: 'shared-base-icon',
   imports: [],
   templateUrl: './icon.html',
   styleUrl: './icon.scss',

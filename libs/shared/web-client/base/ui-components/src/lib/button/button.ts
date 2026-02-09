@@ -13,7 +13,7 @@ import {
 import { ButtonBackground } from './abstract/ButtonBackground';
 
 @Component({
-  selector: 'web-public-base-components-button',
+  selector: 'shared-base-button',
   imports: [RouterLink, RouterLinkActive, Icon],
   templateUrl: './button.html',
   styleUrl: './button.scss',

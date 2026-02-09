@@ -5,14 +5,14 @@
   '--bg-accent'
 ]"
 >
-  <web-public-base-components-nav-primary
+  <shared-base-nav-primary
     [buttonsIconsPosition]="buttonsIconsPosition()"
     [buttonsContentAlign]="buttonsContentAlign()"
     [buttonsPaddingX]="buttonsPaddingX()"
     [orientation]="'vertical'"
   />
 
-  <web-public-base-components-button
+  <shared-base-button
     [icon]="{
       position: buttonsIconsPosition(),
       name: isExpanded() ? 'arrow-left' : 'arrow-right'
@@ -23,5 +23,5 @@
     (click)="isExpanded.set(!isExpanded())"
   >
     {{ isExpanded() ? 'Collapse' : 'Expand' }}
-  </web-public-base-components-button>
+  </shared-base-button>
 </div>

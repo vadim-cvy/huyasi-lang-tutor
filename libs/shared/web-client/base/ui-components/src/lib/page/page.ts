@@ -8,7 +8,7 @@ import { BreakpointEnum } from '@huyasi/shared-web-client-base-ui-design';
 import { Button } from '../button/button';
 
 @Component({
-  selector: 'web-public-base-components-page',
+  selector: 'shared-base-page',
   imports: [Header, Sidebar, Footer, Button],
   templateUrl: './page.html',
   styleUrl: './page.scss',
