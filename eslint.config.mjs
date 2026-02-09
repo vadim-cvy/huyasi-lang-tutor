@@ -20,7 +20,7 @@ export default [
               sourceTag: 'scope:public-web-client',
               onlyDependOnLibsWithTags: [
                 'scope:public-web-client',
-                'scope:shared-web-client-global',
+                'scope:shared-web-client-base',
                 // Add your custom groups you want to include in this scope like this:
                 // 'scope:shared-web-client-<your-own-group>',
               ],
@@ -28,8 +28,8 @@ export default [
 
 
             {
-              sourceTag: 'scope:shared-web-client-global',
-              onlyDependOnLibsWithTags: ['scope:shared-web-client-global'],
+              sourceTag: 'scope:shared-web-client-base',
+              onlyDependOnLibsWithTags: ['scope:shared-web-client-base'],
             },
             {
               sourceTag: 'scope:shared-service-global',

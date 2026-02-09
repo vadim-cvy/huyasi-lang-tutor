@@ -15,11 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@huyasi/shared-web-client-global-base-components": [
-        "libs/shared/web-client/global/base-components/ui-components/src/index.ts"
+      "@huyasi/shared-web-client-base-ui-components": [
+        "libs/shared/web-client/base/ui-components/src/index.ts"
       ],
-      "@huyasi/shared-web-client-global-base-design": [
-        "libs/shared/web-client/global/base-design/ui-design/src/index.ts"
+      "@huyasi/shared-web-client-base-ui-design": [
+        "libs/shared/web-client/base/ui-design/src/index.ts"
       ]
     }
   },

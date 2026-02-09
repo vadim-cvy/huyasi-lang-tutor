@@ -9,7 +9,7 @@ import {
   WhitespaceSize,
   WhitespaceSizeEnum,
   WhitespaceStability,
-} from '@huyasi/shared-web-client-global-base-design';
+} from '@huyasi/shared-web-client-base-ui-design';
 import { ButtonBackground } from './abstract/ButtonBackground';
 
 @Component({

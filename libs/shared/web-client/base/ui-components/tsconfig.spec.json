@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../../../../../dist/out-tsc",
+    "outDir": "../../../../../dist/out-tsc",
     "types": [
       "vitest/globals",
       "vitest/importMeta",
@@ -24,7 +24,7 @@
     "src/**/*.test.jsx",
     "src/**/*.spec.jsx",
     "src/**/*.d.ts",
-    "../../../../../../apps/web-public/img-assets.d.ts"
+    "../../../../../apps/web-public/img-assets.d.ts"
   ],
   "files": ["src/test-setup.ts"]
 }
