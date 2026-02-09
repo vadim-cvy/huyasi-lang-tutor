@@ -15,10 +15,12 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@huyasi/web-public-base-components": [
-        "libs/web-public/base-components/src/index.ts"
+      "@huyasi/web-public-shared-styles": [
+        "libs/web-public/shared-styles/src/index.ts"
       ],
-      "@huyasi/web-public-shared-styles": ["libs/web-public/shared-styles/src/index.ts"]
+      "@huyasi/shared-web-client-global-base-components": [
+        "libs/shared/web-client/global/base-components/ui-components/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

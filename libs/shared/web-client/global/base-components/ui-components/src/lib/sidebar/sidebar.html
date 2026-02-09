@@ -1,0 +1,27 @@
+<div
+  [class]="[
+  'sidebar',
+  isExpanded() ? '--is-expanded' : '',
+  '--bg-accent'
+]"
+>
+  <web-public-base-components-nav-primary
+    [buttonsIconsPosition]="buttonsIconsPosition()"
+    [buttonsContentAlign]="buttonsContentAlign()"
+    [buttonsPaddingX]="buttonsPaddingX()"
+    [orientation]="'vertical'"
+  />
+
+  <web-public-base-components-button
+    [icon]="{
+      position: buttonsIconsPosition(),
+      name: isExpanded() ? 'arrow-left' : 'arrow-right'
+    }"
+    [width]="'full'"
+    [paddingX]="buttonsPaddingX()"
+    [contentAlign]="buttonsContentAlign()"
+    (click)="isExpanded.set(!isExpanded())"
+  >
+    {{ isExpanded() ? 'Collapse' : 'Expand' }}
+  </web-public-base-components-button>
+</div>

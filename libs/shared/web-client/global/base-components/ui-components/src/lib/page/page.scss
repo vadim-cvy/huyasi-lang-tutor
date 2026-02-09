@@ -1,0 +1,33 @@
+.page {
+  display: grid;
+  grid-template-areas:
+    'header   header'
+    'sidebar  content'
+    'footer   footer';
+  grid-template-columns: max-content 1fr;
+  grid-template-rows: max-content 1fr max-content;
+  height: 100%;
+
+  &.--minimalistic {
+    grid-template-areas: 'content';
+    grid-template-columns: 1fr;
+  }
+
+  &__header {
+    grid-area: header;
+  }
+
+  &__sidebar {
+    grid-area: sidebar;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__content {
+    grid-area: content;
+  }
+
+  &__footer {
+    grid-area: footer;
+  }
+}

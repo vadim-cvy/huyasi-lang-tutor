@@ -1,0 +1,98 @@
+import { Component, computed, input } from '@angular/core';
+import { Icon } from '../icon/icon';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { ButtonContentAlign } from './abstract/ButtonContentAlign';
+import { ButtonWidth } from './abstract/ButtonWidth';
+import { ButtonIconPosition } from './abstract/ButtonIconPosition';
+import {
+  FontSize,
+  WhitespaceSize,
+  WhitespaceSizeEnum,
+  WhitespaceStability,
+} from '@huyasi/web-public-shared-styles';
+import { ButtonBackground } from './abstract/ButtonBackground';
+
+@Component({
+  selector: 'web-public-base-components-button',
+  imports: [RouterLink, RouterLinkActive, Icon],
+  templateUrl: './button.html',
+  styleUrl: './button.scss',
+})
+export class Button {
+  public readonly link = input<{
+    url: string;
+    isRouterLinkActiveSync?: boolean;
+  }>();
+
+  public readonly icon = input<
+    Readonly<{
+      name: string;
+      position: ButtonIconPosition;
+    }>
+  >();
+
+  public readonly background = input<ButtonBackground>('transparent');
+
+  public readonly width = input<ButtonWidth>('fitContent');
+
+  public readonly contentAlign = input<ButtonContentAlign>('center');
+
+  public readonly paddingStability = input<WhitespaceStability>('responsive');
+
+  public readonly paddingX = input<WhitespaceSize | undefined>();
+  public readonly paddingY = input<WhitespaceSize | undefined>();
+
+  public readonly paddingXFinal = computed<WhitespaceSize>(
+    (): WhitespaceSize => {
+      const paddingXCustom = this.paddingX();
+
+      if (paddingXCustom) {
+        return paddingXCustom;
+      }
+
+      const paddingYCustom = this.paddingY();
+
+      if (paddingYCustom) {
+        const paddingOneLvlHigherThanYCustom: WhitespaceSize | undefined =
+          WhitespaceSizeEnum[WhitespaceSizeEnum[paddingYCustom] + 1] as
+            | WhitespaceSize
+            | undefined;
+
+        return paddingOneLvlHigherThanYCustom
+          ? paddingOneLvlHigherThanYCustom
+          : paddingYCustom;
+      }
+
+      return 'lg';
+    },
+  );
+
+  public readonly paddingYFinal = computed<WhitespaceSize>(
+    (): WhitespaceSize => {
+      const paddingYCustom = this.paddingY();
+
+      if (paddingYCustom) {
+        return paddingYCustom;
+      }
+
+      const paddingXFinal = this.paddingXFinal();
+
+      const paddingOneLvlLowerThanXFinal: WhitespaceSize | undefined =
+        WhitespaceSizeEnum[WhitespaceSizeEnum[paddingXFinal] - 1] as
+          | WhitespaceSize
+          | undefined;
+
+      return paddingOneLvlLowerThanXFinal
+        ? paddingOneLvlLowerThanXFinal
+        : paddingXFinal;
+    },
+  );
+
+  public readonly fontSize = input<FontSize>();
+
+  public readonly fontSizeFinal = computed<FontSize>((): FontSize => {
+    const fontSizeCustom = this.fontSize();
+
+    return fontSizeCustom || this.paddingYFinal();
+  });
+}

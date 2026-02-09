@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { Page } from '@huyasi/web-public-base-components';
+import { Page } from '@huyasi/shared-web-client-global-base-components';
 
 @Component({
   imports: [Page, RouterModule],
