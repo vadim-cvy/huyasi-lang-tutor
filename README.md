@@ -46,13 +46,11 @@ Add the following tags for your new lib project:
     * If you're creating a lib **for a specific app**:
         * `scope:<your-scope>`
         * Hint: you will find the scope tag in the `/apps/<path-to-the-app-you're-making-the-lib-for>/project.json`.
-    * If you're creating a lib **to be used by several apps** *(shared)*. Use **ONE** of the following:
-        * `scope:shared-web-client-global`
-        * `scope:shared-web-client-<your-own-group>`
-            * **WARNING:** You must setup custom dependency rules in `/eslint.config.mjs` for your tag!
-        * `scope:shared-service-global`
-        * `scope:shared-service-<your-own-group>`
-            * **WARNING:** You must setup custom dependency rules in `/eslint.config.mjs` for your tag!
+    * If you're creating a **shared** lib.
+        * Use **ONE** of the following:
+            * `scope:shared-web-client-<your-own-group>`
+            * `scope:shared-service-<your-own-group>`
+        * **WARNING:** You must setup custom dependency rules in `/eslint.config.mjs` for your tag!
 * Type tag:
     * For a **web client lib** use **ONE** of the following:
         * `type:web-client-lib-utils`
@@ -67,70 +65,57 @@ Add the following tags for your new lib project:
         * `type:service-lib-presentation`
         * `type:service-lib-infra`
 
-## 3. Project Dirs Organization
 
-### 3.1. App Dirs Organization
+## 3. Projects Naming
 
-**Pattern:** `/apps/<scope-tag-based-path>/`.
+Project names are commonly set during their creation.
 
-**Examples:**
+### 3.1. Apps Naming
 
-* `scope:public-web-client`
+Apps projects names must be the same as their `scope:...` tag.
 
-    Dir: `/apps/public/web-client/`
-* `scope:public-web-bff-service`
+**Example:**
+* Scope tag: `scope:`**_`public-web-client`_**
+* Project name: **_`public-web-client`_**
 
-    Dir: `/apps/public/web-bff-service/`
-* `scope:public-api-composition-service`
+### 3.2. Libs Naming *(app-specific)*
 
-    Dir: `/apps/public/api-composition-service/`
-* `scope:core-example-1-service`
+App-specific lib projects names must be set based on their `scope:...` and `type:...` tags as well as the slice name *(feature sliced design)*.
 
-    Dir: `/apps/core/example-1-service/`
-* `scope:core-example-2-service`
+**Example (web-client):**
+* Scope tag: `scope:`**_`public-web-client`_**
+* Type tag: `type:web-client-lib-`**_`ui-components`_**
+* Slice: games
+* Project name: **_`public-web-client`_**`-games-`**_`ui-components`_**
 
-    Dir: `/apps/core/example-2-service/`
+**Example (service):**
+* Scope tag: `scope:`**_`example-service`_**
+* Type tag: `type:service-lib-`**_`domain`_**
+* Slice: products
+* Project name: **_`example-service`_**`-products-`**_`domain`_**
 
-### 3.2. Lib Dirs Organization *(app-specific)*
+### 3.3. Libs Naming *(shared)*
 
-**Pattern:** `/libs/<scope-tag-based-path>/<slice-based-path>/<type-tag-based-path>/`.
+Shared lib projects names must be set based on their `scope:...` and `type:...` tags.
 
-**Examples:**
+**Example:**
+* Scope tag: `scope:`**_`shared-web-client-base`_**
+* Type tag: `type:web-client-lib-`**_`ui-components`_**
+* Project name: **_`shared-web-client-base`_**`-`**_`ui-components`_**
 
-* `scope:public-web-client` + **Theme** slice + `type:web-client-lib-data-access`
+## 4. Project Dirs Organization
 
-    Dir: `/libs/public/web-client/theme/data-access`
+Keep apps/libs paths **COMPLETELY consistent** with their names.
 
-* `scope:public-web-client` + **Theme** slice + `type:web-client-lib-feature`
+**Apps Examples:**
+* `public-web-client`: `/apps/public/web-client/`
+* `public-web-bff-service`: `/apps/public/web-bff-service/`
+* `core-payments-service`: `/apps/core/payments-service/`
 
-    Dir: `/libs/public/web-client/theme/feature`
+**Libs Examples (app-specific):**
+* `public-web-client-games-feature`: `/libs/public/web-client/games/feature/`
+* `public-web-client-account-ui-components`: `/libs/public/web-client/account/ui-components/`
 
-* `scope:core-billing-service` + **Payment** slice + `type:service-lib-domain`
-
-    Dir: `/libs/core/billing-service/payment/domain`
-
-* `scope:core-billing-service` + **Payment** slice + `type:service-lib-use-cases`
-
-    Dir: `/libs/core/billing-service/payment/use-cases`
-
-### 3.3. Lib Dirs Organization *(shared, app-specific)*
-
-**Warning:** Prefer composition (through your app) over creating shared app-specific libs!
-
-**Pattern:** `/libs/<scope-tag-based-path>/shared/<custom-organization-based-path>/<type-tag-based-path>`.
-
-**Examples:**
-
-* `scope:public-web-client` + **hint** custom organization dir + `type:web-client-lib-ui-components`
-
-    Dir: `/libs/public/web-client/shared/hint/ui-components`
-
-### 3.4. Lib Dirs Organization *(shared, global)*
-
-**Pattern:** `/libs/shared/<scope-tag-based-path>/<custom-organization-based-path>/<type-tag-based-path>`.
-
-**Examples:**
-
-* `scope:shared-web-client-global` + **base-components** custom organization dir + `type:web-client-lib-ui-components`
-
-    Dir: `/libs/shared/web-client/global/base-components/ui-components`
+**Libs Examples (shared):**
+* `shared-web-client-base-ui-components`: `/libs/shared/web-client/base/ui-components/`
+* `shared-web-client-base-ui-design`: `/libs/shared/web-client/base/ui-design/`
