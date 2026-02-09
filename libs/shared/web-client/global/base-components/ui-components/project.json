@@ -4,7 +4,7 @@
   "sourceRoot": "libs/shared/web-client/global/base-components/ui-components/src",
   "prefix": "web-public-base-components",
   "projectType": "library",
-  "tags": [],
+  "tags": ["scope:shared-web-client-global","type:web-client-lib-ui-components"],
   "targets": {
     "test": {
       "executor": "@nx/vitest:test",
