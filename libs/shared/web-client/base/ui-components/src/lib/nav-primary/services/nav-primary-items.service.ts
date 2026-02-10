@@ -5,9 +5,9 @@ import { NavPrimaryItem } from '../abstract/NavPrimaryItem';
   providedIn: 'root',
 })
 export class NavPrimaryItemsService {
-  private _itemsNullable?: Readonly<Readonly<NavPrimaryItem>[]>
+  private _itemsNullable?: NavPrimaryItem[]
 
-  public get items(): Readonly<Readonly<NavPrimaryItem>[]> {
+  public get items(): NavPrimaryItem[] {
     if (!this._itemsNullable) {
       throw new Error('Items are not set yet!')
     }
@@ -15,7 +15,7 @@ export class NavPrimaryItemsService {
     return this._itemsNullable
   }
 
-  public set items(val: Readonly<Readonly<NavPrimaryItem>[]>) {
+  public set items(val: NavPrimaryItem[]) {
     if (this._itemsNullable) {
       throw new Error('Items are set already!')
     }

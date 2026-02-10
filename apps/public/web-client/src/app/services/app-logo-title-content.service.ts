@@ -9,12 +9,12 @@ export class AppLogoTitleContentService {
   private readonly logoTitleContentService = inject(LogoTitleContentService)
 
   public setupContent(): void {
-    this.logoTitleContentService.content.set({
+    this.logoTitleContentService.content = {
       logoSrc,
       text: {
         line1: 'Huyasi',
         line2: 'Lang Tutor',
       }
-    })
+    }
   }
 }

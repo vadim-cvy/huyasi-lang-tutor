@@ -4,6 +4,7 @@ import { ButtonIconPosition } from '../button/abstract/ButtonIconPosition';
 import { ButtonContentAlign } from '../button/abstract/ButtonContentAlign';
 import { WhitespaceSize } from '@huyasi/shared-web-client-base-ui-design';
 import { NavPrimaryItemsService } from './services/nav-primary-items.service';
+import { NavPrimaryItem } from './abstract/NavPrimaryItem';
 
 @Component({
   selector: 'shared-base-nav-primary',
@@ -14,7 +15,9 @@ import { NavPrimaryItemsService } from './services/nav-primary-items.service';
 export class NavPrimary {
   private readonly navPrimaryItemsService = inject(NavPrimaryItemsService)
 
-  public readonly navItems = this.navPrimaryItemsService.items
+  public get navItems(): NavPrimaryItem[] {
+    return this.navPrimaryItemsService.items
+  }
 
   public readonly orientation = input.required<'horizontal' | 'vertical'>();
 
