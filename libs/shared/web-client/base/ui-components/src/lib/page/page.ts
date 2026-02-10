@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, input, signal } from '@angular/core';
+import { Component, DestroyRef, inject, input, OnInit, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { auditTime, fromEvent, map, startWith } from 'rxjs';
 import { Header } from '../header/header';
@@ -13,7 +13,7 @@ import { Button } from '../button/button';
   templateUrl: './page.html',
   styleUrl: './page.scss',
 })
-export class Page {
+export class Page implements OnInit {
   private readonly destroyRef = inject(DestroyRef);
 
   public readonly isMinimalistic = input<boolean>(false);
@@ -21,7 +21,7 @@ export class Page {
   public readonly isSidebarBreakpointMatch = signal<boolean>(true);
   public readonly isFooterBreakpointMatch = signal<boolean>(true);
 
-  constructor() {
+  public ngOnInit(): void {
     this.syncSidebarAndFooterVisibility();
   }
 
