@@ -3,8 +3,8 @@
     <ng-content select="header-actions" ngProjectAs="actions" />
   </shared-base-header>
 
-  @if (isSidebarBreakpointMatch() && !isMinimalistic()) {
-  <shared-base-sidebar class="page__sidebar" />
+  @if (isSidebarVisible()) {
+    <shared-base-sidebar class="page__sidebar" />
   }
 
   <main class="page__content --px-md-responsive --py-xl-responsive">
@@ -34,7 +34,7 @@
     <ng-content select="main-content" />
   </main>
 
-  @if (isFooterBreakpointMatch() && !isMinimalistic()) {
+  @if (isFooterVisible()) {
   <shared-base-footer class="page__footer" />
   }
 </div>

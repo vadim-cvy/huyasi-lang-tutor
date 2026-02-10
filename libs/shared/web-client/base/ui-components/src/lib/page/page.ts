@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, input, OnInit, signal } from '@angular/core';
+import { Component, computed, DestroyRef, inject, input, OnInit, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { auditTime, fromEvent, map, startWith } from 'rxjs';
 import { Header } from '../header/header';
@@ -18,8 +18,18 @@ export class Page implements OnInit {
 
   public readonly isMinimalistic = input<boolean>(false);
 
-  public readonly isSidebarBreakpointMatch = signal<boolean>(true);
-  public readonly isFooterBreakpointMatch = signal<boolean>(true);
+  private readonly isSidebarBreakpointMatch = signal<boolean>(true);
+  private readonly isFooterBreakpointMatch = signal<boolean>(true);
+
+  public readonly isSidebarVisible = computed<boolean>(() =>
+    this.isSidebarBreakpointMatch() &&
+    !this.isMinimalistic()
+  )
+
+  public readonly isFooterVisible = computed<boolean>(() =>
+    this.isFooterBreakpointMatch() &&
+    !this.isMinimalistic()
+  )
 
   public ngOnInit(): void {
     this.syncSidebarAndFooterVisibility();
