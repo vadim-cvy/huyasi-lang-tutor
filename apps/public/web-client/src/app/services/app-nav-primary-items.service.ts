@@ -8,11 +8,11 @@ export class AppNavPrimaryItemsService {
   private readonly navPrimaryItemsService = inject(NavPrimaryItemsService)
 
   public setupItems(): void {
-    this.navPrimaryItemsService.items.set([
+    this.navPrimaryItemsService.items = [
       { label: 'Dictionary', route: '/dictionary', iconName: 'book-open' },
       { label: 'Games', route: '/games', iconName: 'gamepad' },
       { label: 'Settings', route: '/settings', iconName: 'cog' },
       { label: 'Profile', route: '/profile', iconName: 'user' },
-    ])
+    ]
   }
 }

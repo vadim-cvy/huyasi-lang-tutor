@@ -14,7 +14,7 @@ import { NavPrimaryItemsService } from './services/nav-primary-items.service';
 export class NavPrimary {
   private readonly navPrimaryItemsService = inject(NavPrimaryItemsService)
 
-  public readonly navItems = this.navPrimaryItemsService.items.asReadonly()
+  public readonly navItems = this.navPrimaryItemsService.items
 
   public readonly orientation = input.required<'horizontal' | 'vertical'>();
 
