@@ -24,7 +24,6 @@
     "src/**/*.test.jsx",
     "src/**/*.spec.jsx",
     "src/**/*.d.ts",
-    "../../../../../apps/web-public/img-assets.d.ts"
   ],
   "files": ["src/test-setup.ts"]
 }
