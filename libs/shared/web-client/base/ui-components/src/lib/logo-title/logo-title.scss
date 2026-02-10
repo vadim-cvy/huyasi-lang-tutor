@@ -10,12 +10,12 @@
     border: 2px solid #000; // TODO: remove border and make it a part of the logo image
   }
 
-  &__title {
+  &__text {
     display: flex;
     flex-direction: column;
     line-height: 1;
 
-    &__app-name {
+    &__line-2 {
       font-size: 0.63em;
     }
   }

@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import logoSrc from './assets/img/logo.png';
+import { LogoTitleContentService } from './services/logo-title-content.service';
 
 @Component({
   selector: 'shared-base-logo-title',
@@ -9,5 +9,7 @@ import logoSrc from './assets/img/logo.png';
   styleUrl: './logo-title.scss',
 })
 export class LogoTitle {
-  public readonly logoSrc = logoSrc;
+  private readonly logoTitleContentService = inject(LogoTitleContentService)
+
+  public readonly content = this.logoTitleContentService.content.asReadonly()
 }
