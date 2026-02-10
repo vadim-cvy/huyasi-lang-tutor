@@ -1,8 +1,9 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { Button } from '../button/button';
 import { ButtonIconPosition } from '../button/abstract/ButtonIconPosition';
 import { ButtonContentAlign } from '../button/abstract/ButtonContentAlign';
 import { WhitespaceSize } from '@huyasi/shared-web-client-base-ui-design';
+import { NavPrimaryItemsService } from './services/nav-primary-items.service';
 
 @Component({
   selector: 'shared-base-nav-primary',
@@ -11,16 +12,9 @@ import { WhitespaceSize } from '@huyasi/shared-web-client-base-ui-design';
   styleUrl: './nav-primary.scss',
 })
 export class NavPrimary {
-  public readonly navItems: ReadonlyArray<{
-    label: string;
-    route: string;
-    iconName: string;
-  }> = [
-    { label: 'Dictionary', route: '/dictionary', iconName: 'book-open' },
-    { label: 'Games', route: '/games', iconName: 'gamepad' },
-    { label: 'Settings', route: '/settings', iconName: 'cog' },
-    { label: 'Profile', route: '/profile', iconName: 'user' },
-  ];
+  private readonly navPrimaryItemsService = inject(NavPrimaryItemsService)
+
+  public readonly navItems = this.navPrimaryItemsService.items
 
   public readonly orientation = input.required<'horizontal' | 'vertical'>();
 

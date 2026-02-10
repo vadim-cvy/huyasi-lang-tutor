@@ -1,6 +1,6 @@
 <nav class="nav --orientation-{{orientation()}}">
   <ul class="nav__list">
-    @for (navItem of navItems; track navItem.route) {
+    @for (navItem of navItems(); track navItem.route) {
     <li>
       <shared-base-button
         [link]="{ url: navItem.route, isRouterLinkActiveSync: true }"
