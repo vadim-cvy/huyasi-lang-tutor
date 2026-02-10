@@ -21,6 +21,8 @@ export class Page implements OnInit {
   private readonly isSidebarBreakpointMatch = signal<boolean>(true);
   private readonly isFooterBreakpointMatch = signal<boolean>(true);
 
+  public readonly isHeaderVisible = computed<boolean>(() => !this.isMinimalistic())
+
   public readonly isSidebarVisible = computed<boolean>(() =>
     this.isSidebarBreakpointMatch() &&
     !this.isMinimalistic()
