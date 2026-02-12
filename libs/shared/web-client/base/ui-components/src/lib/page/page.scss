@@ -12,6 +12,8 @@
   &.--minimalistic {
     grid-template-areas: 'main-content';
     grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
   }
 
   &__header {
