@@ -48,6 +48,19 @@ $text-size-xxl-responsive: var($text-size-css-var-name--xxl-responsive);
 
 // END: SIZES
 
+// START: SIZE TO MARGIN Y SIZE
+
+$text-size-to-margin-y-size-map: (
+  xxl: xl,
+  xl: lg,
+  lg: md,
+  md: sm,
+  sm: xs,
+  xs: xs,
+);
+
+// END: SIZE TO MARGIN Y SIZE
+
 // START: COLORS
 
 $text-color-types: 'base', 'accent';

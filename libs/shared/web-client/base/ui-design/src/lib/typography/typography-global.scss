@@ -1,4 +1,5 @@
 @use './typography-vars.scss';
+@use '../whitespace/whitespace-vars.scss';
 @use '../background/background-vars.scss';
 @use '../breakpoints/breakpoints-mixins.scss';
 @use 'sass:meta';
@@ -21,6 +22,55 @@ a {
   text-decoration: none;
 }
 
+// END: Base
+
+// START: Sizes
+
+:root {
+  // Sets text size variables
+  @each $text-size in typography-vars.$text-sizes {
+    $css-var-name: map.get(
+      meta.module-variables(typography-vars),
+      'text-size-css-var-name--#{$text-size}-responsive'
+    );
+
+    #{$css-var-name}: map.get(
+      meta.module-variables(typography-vars),
+      'text-size-css-var-val--#{$text-size}-responsive'
+    );
+
+    @include breakpoints-mixins.breakpoint-md-up {
+      #{$css-var-name}: map.get(
+        meta.module-variables(typography-vars),
+        'text-size-css-var-val--#{$text-size}-responsive--screen-md'
+      );
+    }
+
+    @include breakpoints-mixins.breakpoint-lg-up {
+      #{$css-var-name}: map.get(
+        meta.module-variables(typography-vars),
+        'text-size-css-var-val--#{$text-size}-responsive--screen-lg'
+      );
+    }
+  }
+}
+
+// Sets text size utility classes
+@each $text-size-stability in typography-vars.$text-size-stabilities {
+  @each $text-size in typography-vars.$text-sizes {
+    .--text-#{$text-size}-#{$text-size-stability} {
+      font-size: map.get(
+        meta.module-variables(typography-vars),
+        'text-size-#{$text-size}-#{$text-size-stability}'
+      );
+    }
+  }
+}
+
+// END: Sizes
+
+// START: marginY
+
 h1,
 h2,
 h3,
@@ -30,67 +80,39 @@ h6,
 ul,
 ol,
 p {
-  &:first-child {
-    margin-top: 0;
-  }
+  margin-top: 0;
+  margin-bottom: 0;
 
-  &:last-child {
-    margin-bottom: 0;
-  }
-}
+  @each $text-size-stability in typography-vars.$text-size-stabilities {
+    @each $text-size in typography-vars.$text-sizes {
+      $margin-y-stability: $text-size-stability;
+      $margin-y-size: map.get(typography-vars.$text-size-to-margin-y-size-map, $text-size);
 
-// END: Base
-
-// START: Sizes
-
-:root {
-  // Sets text size variables
-  @each $size in typography-vars.$text-sizes {
-    $css-var-name: map.get(
-      meta.module-variables(typography-vars),
-      'text-size-css-var-name--#{$size}-responsive'
-    );
-
-    #{$css-var-name}: map.get(
-      meta.module-variables(typography-vars),
-      'text-size-css-var-val--#{$size}-responsive'
-    );
-
-    @include breakpoints-mixins.breakpoint-md-up {
-      #{$css-var-name}: map.get(
-        meta.module-variables(typography-vars),
-        'text-size-css-var-val--#{$size}-responsive--screen-md'
-      );
-    }
-
-    @include breakpoints-mixins.breakpoint-lg-up {
-      #{$css-var-name}: map.get(
-        meta.module-variables(typography-vars),
-        'text-size-css-var-val--#{$size}-responsive--screen-lg'
-      );
-    }
-  }
-}
-
-// Sets text size utility classes
-@each $stability in typography-vars.$text-size-stabilities {
-  @each $size in typography-vars.$text-sizes {
-    .--text-#{$size}-#{$stability} {
-      font-size: map.get(
-        meta.module-variables(typography-vars),
-        'text-size-#{$size}-#{$stability}'
+      $margin-y-val: map.get(
+        meta.module-variables(whitespace-vars),
+        'whitespace-#{$margin-y-size}-#{$margin-y-stability}'
       );
 
-      .--text-size-based-margin,
-      &.--text-size-based-margin {
-        margin-top: 1em;
-        margin-bottom: 1em;
+      $text-size-class: '.--text-#{$text-size}-#{$text-size-stability}';
+
+      #{$text-size-class} &,
+      &#{$text-size-class} {
+        margin-top: $margin-y-val;
+        margin-bottom: $margin-y-size;
       }
     }
   }
+
+  &:first-child {
+    margin-top: 0 !important;
+  }
+
+  &:last-child {
+    margin-bottom: 0 !important;
+  }
 }
 
-// END: Sizes
+// END: marginY
 
 // START: Colors
 
