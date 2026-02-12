@@ -1,0 +1,19 @@
+<div class="content-404">
+  <h1 class="content-404__title">
+    Ops...
+  </h1>
+
+  <span class="content-404__sub-title">
+    We can't find this page :(
+  </span>
+
+  @if (buttonData(); as buttonData) {
+    <shared-base-button
+      [link]="{url: buttonData.url}"
+      [background]="'accent'"
+      [width]="'fitContent'"
+    >
+      {{buttonData.label}}
+    </shared-base-button>
+  }
+</div>
