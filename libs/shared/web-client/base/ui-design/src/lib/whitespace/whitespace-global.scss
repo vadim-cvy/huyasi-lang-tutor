@@ -1,5 +1,6 @@
 @use './whitespace-vars.scss';
 @use '../breakpoints/breakpoints-mixins.scss';
+@use '../whitespace/whitespace-mixins.scss';
 @use 'sass:meta';
 @use 'sass:map';
 
@@ -29,13 +30,11 @@
         }
 
         #{$selector-prefix}x#{$selector-suffix} {
-          #{$prop-name-full}-left: $val;
-          #{$prop-name-full}-right: $val;
+          @include whitespace-mixins.whitespace-prop-x($prop-name-full, $val);
         }
 
         #{$selector-prefix}y#{$selector-suffix} {
-          #{$prop-name-full}-top: $val;
-          #{$prop-name-full}-bottom: $val;
+          @include whitespace-mixins.whitespace-prop-y($prop-name-full, $val);
         }
 
         #{$selector-prefix}t#{$selector-suffix} {

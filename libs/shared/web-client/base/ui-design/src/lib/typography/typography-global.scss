@@ -1,5 +1,6 @@
 @use './typography-vars.scss';
 @use '../whitespace/whitespace-vars.scss';
+@use '../whitespace/whitespace-mixins.scss';
 @use '../background/background-vars.scss';
 @use '../breakpoints/breakpoints-mixins.scss';
 @use 'sass:meta';
@@ -80,8 +81,7 @@ h6,
 ul,
 ol,
 p {
-  margin-top: 0;
-  margin-bottom: 0;
+  @include whitespace-mixins.margin-y(0);
 
   @each $text-size-stability in typography-vars.$text-size-stabilities {
     @each $text-size in typography-vars.$text-sizes {
@@ -97,8 +97,7 @@ p {
 
       #{$text-size-class} &,
       &#{$text-size-class} {
-        margin-top: $margin-y-val;
-        margin-bottom: $margin-y-size;
+        @include whitespace-mixins.margin-y($margin-y-val);
       }
     }
   }
