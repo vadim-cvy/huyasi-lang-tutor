@@ -53,13 +53,13 @@ export class Button {
       const paddingYCustom = this.paddingY();
 
       if (paddingYCustom) {
-        const paddingOneLvlHigherThanYCustom: WhitespaceSize | undefined =
+        const whitespace1LvlHigherThanPaddingYCustom: WhitespaceSize | undefined =
           WhitespaceSizeEnum[WhitespaceSizeEnum[paddingYCustom] + 1] as
             | WhitespaceSize
             | undefined;
 
-        return paddingOneLvlHigherThanYCustom
-          ? paddingOneLvlHigherThanYCustom
+        return whitespace1LvlHigherThanPaddingYCustom
+          ? whitespace1LvlHigherThanPaddingYCustom
           : paddingYCustom;
       }
 
@@ -77,13 +77,13 @@ export class Button {
 
       const paddingXFinal = this.paddingXFinal();
 
-      const paddingOneLvlLowerThanXFinal: WhitespaceSize | undefined =
+      const whitespace1LvlLowerThanPaddingXFinal: WhitespaceSize | undefined =
         WhitespaceSizeEnum[WhitespaceSizeEnum[paddingXFinal] - 1] as
           | WhitespaceSize
           | undefined;
 
-      return paddingOneLvlLowerThanXFinal
-        ? paddingOneLvlLowerThanXFinal
+      return whitespace1LvlLowerThanPaddingXFinal
+        ? whitespace1LvlLowerThanPaddingXFinal
         : paddingXFinal;
     },
   );
@@ -95,4 +95,15 @@ export class Button {
 
     return fontSizeCustom || this.paddingYFinal();
   });
+
+  public readonly marginY = computed<WhitespaceSize>(() => {
+    const whitespace3LvlHigherThanPaddingY: WhitespaceSize | undefined =
+      WhitespaceSizeEnum[WhitespaceSizeEnum[this.paddingYFinal()] + 3] as
+        | WhitespaceSize
+        | undefined;
+
+    return whitespace3LvlHigherThanPaddingY
+      ? whitespace3LvlHigherThanPaddingY
+      : 'xxl';
+  })
 }

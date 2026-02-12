@@ -1,9 +1,17 @@
 .button {
-  display: flex; // TODO: make button inline-flex for --width-fitContent
+  display: flex;
   align-items: center;
   box-sizing: border-box;
   cursor: pointer;
   border: none;
+
+  :host:first-child & {
+    margin-top: 0;
+  }
+
+  :host:last-child & {
+    margin-bottom: 0;
+  }
 
   &.--content-align {
     &-left {
