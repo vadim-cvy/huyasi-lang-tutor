@@ -9,34 +9,36 @@
     <shared-base-sidebar class="page__sidebar" />
   }
 
-  <main class="page__content --px-md-responsive --py-xl-responsive">
-    <!-- TODO: remove this div after base components development is done -->
-    <div>
-      <div class="--bg-base">
-        <p>Common text.</p>
+  <main class="page__main-content --px-md-responsive --py-xl-responsive">
+    <div class="page__main-content__inner">
+      <!-- TODO: remove this div after base components development is done -->
+      <div>
+        <div class="--bg-base">
+          <p>Common text.</p>
 
-        <p class="--text-accent">Common text.</p>
+          <p class="--text-accent">Common text.</p>
 
-        <shared-base-button>
-          button transparent
-        </shared-base-button>
+          <shared-base-button>
+            button transparent
+          </shared-base-button>
+        </div>
+
+        <div class="--bg-accent">
+          <p>Common text.</p>
+
+          <p class="--text-accent">Common text.</p>
+
+          <shared-base-button>
+            button transparent
+          </shared-base-button>
+        </div>
       </div>
 
-      <div class="--bg-accent">
-        <p>Common text.</p>
-
-        <p class="--text-accent">Common text.</p>
-
-        <shared-base-button>
-          button transparent
-        </shared-base-button>
-      </div>
+      <ng-content select="main-content" />
     </div>
-
-    <ng-content select="main-content" />
   </main>
 
   @if (isFooterVisible()) {
-  <shared-base-footer class="page__footer" />
+    <shared-base-footer class="page__footer" />
   }
 </div>
