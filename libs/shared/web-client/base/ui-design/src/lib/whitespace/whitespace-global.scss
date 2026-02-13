@@ -1,7 +1,7 @@
 @use './whitespace-vars-private.scss';
 @use './whitespace-mixins-private.scss';
 @use './whitespace-functions-private.scss';
-@use '../breakpoints/breakpoints-mixins.scss';
+@use '../breakpoints/breakpoints-mixins-public.scss';
 @use 'sass:map';
 
 :root {
@@ -14,7 +14,7 @@
         #{$css-var-name}: $screen-size-val;
       }
       @else if $screen-size-key == 'screen-md-up' {
-        @include breakpoints-mixins.breakpoint-md-up {
+        @include breakpoints-mixins-public.breakpoint-md-up {
           #{$css-var-name}: $screen-size-val;
         }
       }

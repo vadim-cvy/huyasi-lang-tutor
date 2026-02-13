@@ -2,7 +2,7 @@
 @use '../whitespace/whitespace-functions-public.scss';
 @use '../whitespace/whitespace-mixins-public.scss';
 @use '../background//background-functions-public.scss';
-@use '../breakpoints/breakpoints-mixins.scss';
+@use '../breakpoints/breakpoints-mixins-public.scss';
 @use 'sass:meta';
 @use 'sass:map';
 
@@ -40,14 +40,14 @@ a {
       'text-size-css-var-val--#{$text-size}-responsive'
     );
 
-    @include breakpoints-mixins.breakpoint-md-up {
+    @include breakpoints-mixins-public.breakpoint-md-up {
       #{$css-var-name}: map.get(
         meta.module-variables(typography-vars),
         'text-size-css-var-val--#{$text-size}-responsive--screen-md'
       );
     }
 
-    @include breakpoints-mixins.breakpoint-lg-up {
+    @include breakpoints-mixins-public.breakpoint-lg-up {
       #{$css-var-name}: map.get(
         meta.module-variables(typography-vars),
         'text-size-css-var-val--#{$text-size}-responsive--screen-lg'
