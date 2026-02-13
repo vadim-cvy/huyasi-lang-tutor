@@ -1,97 +1,30 @@
-@use './whitespace-vars.scss';
+@use './whitespace-vars-private.scss';
+@use './whitespace-mixins-private.scss';
+@use './whitespace-functions-private.scss';
 @use '../breakpoints/breakpoints-mixins.scss';
-@use '../whitespace/whitespace-mixins.scss';
-@use 'sass:meta';
 @use 'sass:map';
 
-// Generates global selectors for a given CSS property (e.g., padding, margin, gap)
-@mixin _global-selectors-for-prop(
-  $prop-name-full,
-  $prop-name-abbr,
-  $has-sides
-) {
-  @each $stability in whitespace-vars.$whitespace-stabilities {
-    @each $size in whitespace-vars.$whitespace-sizes {
-      $selector-prefix: '.--#{$prop-name-abbr}';
-      $selector-suffix: '-#{$size}-#{$stability}';
+:root {
+  // Sets whitespace responsive size variables base on the screen size
+  @each $size-key, $size-val in whitespace-vars-private.$whitespace-sizes {
+    $css-var-name: whitespace-functions-private.whitespace-get-size-responsive-css-var-name($size-key);
 
-      $val: map.get(
-        meta.module-variables(whitespace-vars),
-        'whitespace-#{$size}-#{$stability}'
-      );
-
-      @if $has-sides == false {
-        #{$selector-prefix}#{$selector-suffix} {
-          #{$prop-name-full}: $val;
+    @each $screen-size-key, $screen-size-val in map.get($size-val,'responsive') {
+      @if $screen-size-key == 'screen-sm' {
+        #{$css-var-name}: $screen-size-val;
+      }
+      @else if $screen-size-key == 'screen-md-up' {
+        @include breakpoints-mixins.breakpoint-md-up {
+          #{$css-var-name}: $screen-size-val;
         }
-      } @else {
-        #{$selector-prefix}a#{$selector-suffix} {
-          #{$prop-name-full}: $val;
-        }
-
-        #{$selector-prefix}x#{$selector-suffix} {
-          @include whitespace-mixins.whitespace-prop-x($prop-name-full, $val);
-        }
-
-        #{$selector-prefix}y#{$selector-suffix} {
-          @include whitespace-mixins.whitespace-prop-y($prop-name-full, $val);
-        }
-
-        #{$selector-prefix}t#{$selector-suffix} {
-          #{$prop-name-full}-top: $val;
-        }
-
-        #{$selector-prefix}r#{$selector-suffix} {
-          #{$prop-name-full}-right: $val;
-        }
-
-        #{$selector-prefix}b#{$selector-suffix} {
-          #{$prop-name-full}-bottom: $val;
-        }
-
-        #{$selector-prefix}l#{$selector-suffix} {
-          #{$prop-name-full}-left: $val;
-        }
+      }
+      @else {
+        @error 'Unexpected screen size: "#{$screen}"';
       }
     }
   }
 }
 
-:root {
-  // Sets whitespace size variables
-  @each $size in whitespace-vars.$whitespace-sizes {
-    $css-var-name: map.get(
-      meta.module-variables(whitespace-vars),
-      'whitespace-css-var-name--#{$size}-responsive'
-    );
-
-    $css-var-val--screen-sm: map.get(
-      meta.module-variables(whitespace-vars),
-      'whitespace-css-var-val--#{$size}-responsive--screen-sm'
-    );
-
-    $css-var-val--screen-md: map.get(
-      meta.module-variables(whitespace-vars),
-      'whitespace-css-var-val--#{$size}-responsive--screen-md'
-    );
-
-    $css-var-val--screen-lg: map.get(
-      meta.module-variables(whitespace-vars),
-      'whitespace-css-var-val--#{$size}-responsive--screen-lg'
-    );
-
-    #{$css-var-name}: $css-var-val--screen-sm;
-
-    @include breakpoints-mixins.breakpoint-md-up {
-      #{$css-var-name}: $css-var-val--screen-md;
-    }
-
-    @include breakpoints-mixins.breakpoint-lg-up {
-      #{$css-var-name}: $css-var-val--screen-lg;
-    }
-  }
-}
-
-@include _global-selectors-for-prop('padding', 'p', true);
-@include _global-selectors-for-prop('margin', 'm', true);
-@include _global-selectors-for-prop('gap', 'g', false);
+@include whitespace-mixins-private.global-selectors-for-prop('padding', 'p', true);
+@include whitespace-mixins-private.global-selectors-for-prop('margin', 'm', true);
+@include whitespace-mixins-private.global-selectors-for-prop('gap', 'g', false);

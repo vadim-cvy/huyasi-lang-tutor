@@ -40,7 +40,7 @@
     }
 
     &-fitContent {
-      @include mixins.margin-x(auto);
+      @include mixins.whitespace-margin-x(auto);
       width: fit-content;
     }
   }

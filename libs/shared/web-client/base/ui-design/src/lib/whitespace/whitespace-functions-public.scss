@@ -1,0 +1,21 @@
+@use './whitespace-vars-private.scss';
+@use './whitespace-functions-private.scss';
+@use 'sass:map';
+
+@function whitespace-get-size-val($size, $stability) {
+  $_: whitespace-functions-private.whitespace-validate-size-exists($size);
+
+  @if $stability == 'static' {
+    $size-data: map.get(whitespace-vars-private.$whitespace-sizes, $size);
+
+    @return map.get($size-data,'static');
+  }
+  @else if $stability == 'responsive' {
+    $css-var-name: whitespace-functions-private.whitespace-get-size-responsive-css-var-name($size);
+
+    @return var($css-var-name);
+  }
+  @else {
+    @error 'Unexpected stability: "#{$stability}"!'
+  }
+}

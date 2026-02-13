@@ -1,6 +1,6 @@
 @use './typography-vars.scss';
-@use '../whitespace/whitespace-vars.scss';
-@use '../whitespace/whitespace-mixins.scss';
+@use '../whitespace/whitespace-functions-public.scss';
+@use '../whitespace/whitespace-mixins-public.scss';
 @use '../background/background-vars.scss';
 @use '../breakpoints/breakpoints-mixins.scss';
 @use 'sass:meta';
@@ -81,23 +81,23 @@ h6,
 ul,
 ol,
 p {
-  @include whitespace-mixins.margin-y(0);
+  @include whitespace-mixins-public.whitespace-margin-y(0);
 
   @each $text-size-stability in typography-vars.$text-size-stabilities {
     @each $text-size in typography-vars.$text-sizes {
+      $text-size-class: '.--text-#{$text-size}-#{$text-size-stability}';
+
       $margin-y-stability: $text-size-stability;
       $margin-y-size: map.get(typography-vars.$text-size-to-margin-y-size-map, $text-size);
 
-      $margin-y-val: map.get(
-        meta.module-variables(whitespace-vars),
-        'whitespace-#{$margin-y-size}-#{$margin-y-stability}'
+      $margin-y-val: whitespace-functions-public.whitespace-get-size-val(
+        $margin-y-size,
+        $margin-y-stability,
       );
-
-      $text-size-class: '.--text-#{$text-size}-#{$text-size-stability}';
 
       #{$text-size-class} &,
       &#{$text-size-class} {
-        @include whitespace-mixins.margin-y($margin-y-val);
+        @include whitespace-mixins-public.whitespace-margin-y($margin-y-val);
       }
     }
   }

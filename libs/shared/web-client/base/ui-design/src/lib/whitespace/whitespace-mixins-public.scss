@@ -1,0 +1,17 @@
+@use './whitespace-mixins-private.scss';
+
+@mixin whitespace-margin-y($val) {
+  @include whitespace-mixins-private.whitespace-prop-y(margin, $val)
+}
+
+@mixin whitespace-margin-x($val) {
+  @include whitespace-mixins-private.whitespace-prop-x(margin, $val)
+}
+
+@mixin whitespace-padding-y($val) {
+  @include whitespace-mixins-private.whitespace-prop-y(padding, $val)
+}
+
+@mixin whitespace-padding-x($val) {
+  @include whitespace-mixins-private.whitespace-prop-x(padding, $val)
+}

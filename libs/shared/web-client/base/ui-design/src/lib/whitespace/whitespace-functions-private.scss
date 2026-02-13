@@ -1,0 +1,16 @@
+@use './whitespace-vars-private.scss';
+@use 'sass:map';
+
+@function whitespace-validate-size-exists($size) {
+  @if not map.has-key(whitespace-vars-private.$whitespace-sizes, $size) {
+    @error 'Size "#{$size}" does not exist!';
+  }
+
+  @return null;
+}
+
+@function whitespace-get-size-responsive-css-var-name($size) {
+  $validation: whitespace-validate-size-exists($size);
+
+  @return --whitespace-size-responsive-#{$size};
+}

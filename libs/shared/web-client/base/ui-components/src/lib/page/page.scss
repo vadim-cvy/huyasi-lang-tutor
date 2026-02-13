@@ -32,7 +32,7 @@
     grid-area: main-content;
 
     &__inner {
-      @include mixins.margin-x(auto);
+      @include mixins.whitespace-margin-x(auto);
       max-width: 1200px;
     }
   }
