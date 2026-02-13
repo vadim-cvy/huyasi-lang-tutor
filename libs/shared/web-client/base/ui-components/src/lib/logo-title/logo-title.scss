@@ -1,4 +1,5 @@
 @use '../../../../ui-design/src/vars.scss';
+@use '../../../../ui-design/src/functions.scss';
 
 .logo-title {
   display: flex;
@@ -6,7 +7,7 @@
 
   &__logo {
     height: 1.45em;
-    border-radius: vars.$border-radius;
+    border-radius: functions.border-get-radius-val();
     border: 2px solid #000; // TODO: remove border and make it a part of the logo image
   }
 

@@ -1,0 +1,15 @@
+@use './border-vars-private.scss';
+@use './border-functions-private.scss';
+@use 'sass:map';
+
+@function border-get-color-val() {
+  @return var(border-functions-private.border-get-color-css-var-name());
+}
+
+@function border-get-radius-val() {
+  @return border-vars-private.$border-radius;
+}
+
+@function border-get-val() {
+  @return #{border-vars-private.$border-width-and-style} border-get-color-val();
+}

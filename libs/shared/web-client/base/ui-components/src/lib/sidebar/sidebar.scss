@@ -1,8 +1,9 @@
 @use '../../../../ui-design/src/vars.scss';
+@use '../../../../ui-design/src/functions.scss';
 
 .sidebar {
   height: 100%;
-  border-right: vars.$border;
+  border-right: functions.border-get-val();
   box-shadow: vars.$box-shadow;
 
   &.--is-expanded {

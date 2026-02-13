@@ -1,5 +1,7 @@
-@use './border-vars.scss';
+@use './border-vars-private.scss';
+@use './border-functions-private.scss';
 
 :root {
-  #{border-vars.$border-color-css-var-name}: #{border-vars.$border-color-css-var-val};
+  #{border-functions-private.border-get-color-css-var-name()}:
+    #{border-vars-private.$border-color};
 }

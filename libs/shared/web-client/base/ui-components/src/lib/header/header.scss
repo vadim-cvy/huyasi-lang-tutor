@@ -1,10 +1,11 @@
 @use '../../../../ui-design/src/vars.scss';
+@use '../../../../ui-design/src/functions.scss';
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: vars.$border;
+  border-bottom: functions.border-get-border-val();
   box-shadow: vars.$box-shadow;
 
   &__actions {
