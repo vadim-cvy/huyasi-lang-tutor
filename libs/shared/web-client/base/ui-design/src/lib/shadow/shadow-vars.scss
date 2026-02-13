@@ -2,4 +2,4 @@ $shadow-color-css-var-val: rgba(0, 0, 0, 0.1);
 $shadow-color-css-var-name: --shadow-color;
 $shadow-color: var($shadow-color-css-var-name);
 
-$box-shadow: 0 2px 4px $shadow-color;
+$box-shadow: 0 0 2px 4px $shadow-color;
