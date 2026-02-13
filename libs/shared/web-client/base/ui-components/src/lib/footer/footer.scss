@@ -3,5 +3,5 @@
 
 .footer {
   border-top: functions.border-get-border-val();
-  box-shadow: vars.$box-shadow;
+  box-shadow: functions.shadow-get-box-shadow-val('normal');
 }

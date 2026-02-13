@@ -1,5 +1,13 @@
-@use './shadow-vars.scss';
+@use './shadow-vars-private.scss';
+@use './shadow-functions-public.scss';
+@use 'sass:map';
 
 :root {
-  #{shadow-vars.$shadow-color-css-var-name}: #{shadow-vars.$shadow-color-css-var-val};
+  // Sets box-shadow color CSS vars
+  @each $box-shadow-key, $box-shadow-data in shadow-vars-private.$box-shadows {
+    $css-var-name:
+      shadow-functions-public.shadow-get-box-shadow-color-css-var-name($box-shadow-key);
+
+    #{$css-var-name}: map.get($box-shadow-data,'color');
+  }
 }

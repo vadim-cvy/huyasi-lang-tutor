@@ -1,0 +1,32 @@
+@use '../shadow/shadow-vars-private.scss';
+@use 'sass:map';
+
+@function shadow-validate-box-shadow-key-exists($box-shadow-key) {
+  @if not map.has-key(shadow-vars-private.$box-shadows, $box-shadow-key) {
+    @error 'Unexpected box shadow key: "#{$box-shadow-key}"!';
+  }
+
+  @return null;
+}
+
+@function shadow-get-box-shadow-color-css-var-name($box-shadow-key) {
+  $_: shadow-validate-box-shadow-key-exists($box-shadow-key);
+
+  @return --box-shadow-color-#{$box-shadow-key};
+}
+
+@function shadow-get-box-shadow-color-val($box-shadow-key) {
+  @return var(shadow-get-box-shadow-color-css-var-name($box-shadow-key));
+}
+
+@function shadow-get-box-shadow-val($box-shadow-key, $offset-x: 0, $offset-y: 0) {
+  $_: shadow-validate-box-shadow-key-exists($box-shadow-key);
+
+  $box-shadow-data: map.get(shadow-vars-private.$box-shadows, $box-shadow-key);
+
+  $blur-radius: map.get($box-shadow-data, 'blur-radius');
+  $spread-radius: map.get($box-shadow-data, 'spread-radius');
+  $color: shadow-get-box-shadow-color-val($box-shadow-key);
+
+  @return #{$offset-x} #{$offset-y} #{$blur-radius} #{$spread-radius} #{$color};
+}

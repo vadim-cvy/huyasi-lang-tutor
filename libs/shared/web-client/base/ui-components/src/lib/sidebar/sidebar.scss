@@ -1,10 +1,9 @@
-@use '../../../../ui-design/src/vars.scss';
 @use '../../../../ui-design/src/functions.scss';
 
 .sidebar {
   height: 100%;
   border-right: functions.border-get-border-val();
-  box-shadow: vars.$box-shadow;
+  box-shadow: functions.shadow-get-box-shadow-val('normal');
 
   &.--is-expanded {
     min-width: 11rem;
