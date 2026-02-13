@@ -1,9 +1,12 @@
 @use './border-vars-private.scss';
-@use './border-functions-private.scss';
 @use 'sass:map';
 
+@function border-get-color-css-var-name() {
+  @return --border-color;
+}
+
 @function border-get-color-val() {
-  @return var(border-functions-private.border-get-color-css-var-name());
+  @return var(border-get-color-css-var-name());
 }
 
 @function border-get-radius-val() {
