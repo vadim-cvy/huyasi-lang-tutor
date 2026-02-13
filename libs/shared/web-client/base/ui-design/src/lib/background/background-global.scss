@@ -1,30 +1,19 @@
-@use './background-vars.scss';
-@use 'sass:meta';
+@use './background-vars-private.scss';
+@use './background-functions-public.scss';
 @use 'sass:map';
 
 :root {
   // Sets background color CSS variables
-  @each $background-type in background-vars.$background-types {
-    $css-var-name: map.get(
-      meta.module-variables(background-vars),
-      'background-css-var-name--#{$background-type}'
-    );
+  @each $color-key, $color-val in background-vars-private.$background-colors {
+    $css-var-name: #{background-vars-private.$background-color-css-var-name-prefix}-#{$color-key};
 
-    $css-var-val: map.get(
-      meta.module-variables(background-vars),
-      'background-css-var-val--#{$background-type}'
-    );
-
-    #{$css-var-name}: $css-var-val;
+    #{$css-var-name}: $color-val;
   }
 }
 
 // Sets background color utility classes
-@each $background-type in background-vars.$background-types {
-  .--bg-#{$background-type} {
-    background-color: map.get(
-      meta.module-variables(background-vars),
-      'background-#{$background-type}'
-    );
+@each $color-key in background-functions-public.background-get-color-keys() {
+  .--bg-#{$color-key} {
+    background-color: background-functions-public.background-get-color-val($color-key);
   }
 }

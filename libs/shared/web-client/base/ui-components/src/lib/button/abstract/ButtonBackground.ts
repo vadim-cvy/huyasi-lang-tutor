@@ -1,3 +1,3 @@
-import { Background } from '@huyasi/shared-web-client-base-ui-design';
+import { BackgroundColor } from '@huyasi/shared-web-client-base-ui-design';
 
-export type ButtonBackground = 'transparent' | Background;
+export type ButtonBackground = 'transparent' | BackgroundColor;

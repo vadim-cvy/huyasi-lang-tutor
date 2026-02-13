@@ -1,7 +1,7 @@
 @use './typography-vars.scss';
 @use '../whitespace/whitespace-functions-public.scss';
 @use '../whitespace/whitespace-mixins-public.scss';
-@use '../background/background-vars.scss';
+@use '../background//background-functions-public.scss';
 @use '../breakpoints/breakpoints-mixins.scss';
 @use 'sass:meta';
 @use 'sass:map';
@@ -118,15 +118,15 @@ p {
 :root {
   // Sets text color variables
   @each $color-type in typography-vars.$text-color-types {
-    @each $background-type in background-vars.$background-types {
+    @each $background-color-key in background-functions-public.background-get-color-keys() {
       $css-var-name: map.get(
         meta.module-variables(typography-vars),
-        'text-color-css-var-name--#{$color-type}-for-background-#{$background-type}'
+        'text-color-css-var-name--#{$color-type}-for-background-#{$background-color-key}'
       );
 
       $css-var-val: map.get(
         meta.module-variables(typography-vars),
-        'text-color-css-var-val--#{$color-type}-for-background-#{$background-type}'
+        'text-color-css-var-val--#{$color-type}-for-background-#{$background-color-key}'
       );
 
       #{$css-var-name}: $css-var-val;
@@ -135,17 +135,17 @@ p {
 }
 
 // Sets text colors for background types
-@each $background-type in background-vars.$background-types {
-  .--bg-#{$background-type} {
+@each $background-color-key in background-functions-public.background-get-color-keys() {
+  .--bg-#{$background-color-key} {
     color: map.get(
       meta.module-variables(typography-vars),
-      'text-color-base-for-background-#{$background-type}'
+      'text-color-base-for-background-#{$background-color-key}'
     );
 
     .--text-color-accent {
       color: map.get(
         meta.module-variables(typography-vars),
-        'text-color-accent-for-background-#{$background-type}'
+        'text-color-accent-for-background-#{$background-color-key}'
       );
     }
   }

@@ -1,2 +1,2 @@
-export * from './abstract/Background';
-export * from './enums/BackgroundEnum';
+export * from './abstract/BackgroundColor';
+export * from './enums/BackgroundColorEnum';

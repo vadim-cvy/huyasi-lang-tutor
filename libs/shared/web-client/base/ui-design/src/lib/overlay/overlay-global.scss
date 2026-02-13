@@ -1,20 +1,20 @@
 @use './overlay-vars.scss';
-@use './../background/background-vars.scss';
+@use '../background//background-functions-public.scss';
 @use './../transition/transition-vars.scss';
 @use 'sass:meta';
 @use 'sass:map';
 
 :root {
   // Set CSS vars with overlay colors
-  @each $background-type in background-vars.$background-types {
+  @each $background-color-key in background-functions-public.background-get-color-keys() {
     $css-var-name: map.get(
       meta.module-variables(overlay-vars),
-      'overlay-color-css-var-name--over-background-#{$background-type}'
+      'overlay-color-css-var-name--over-background-#{$background-color-key}'
     );
 
     $css-var-val: map.get(
       meta.module-variables(overlay-vars),
-      'overlay-color-css-var-val--over-background-#{$background-type}'
+      'overlay-color-css-var-val--over-background-#{$background-color-key}'
     );
 
     #{$css-var-name}: $css-var-val;
@@ -22,14 +22,14 @@
 }
 
 // Set util classes for overlays (based on their parent background class)
-@each $background-type in background-vars.$background-types {
+@each $background-color-key in background-functions-public.background-get-color-keys() {
   $overlay-bg-color-active: map.get(
     meta.module-variables(overlay-vars),
-    'overlay-color--over-background-#{$background-type}'
+    'overlay-color--over-background-#{$background-color-key}'
   );
 
   @each $pseudo-element-type in ('before', 'after') {
-    .--bg-#{$background-type} {
+    .--bg-#{$background-color-key} {
       &.--has-overlay-#{$pseudo-element-type},
       .--has-overlay-#{$pseudo-element-type} {
         position: relative;
