@@ -1,11 +1,12 @@
 @use './background-vars-private.scss';
 @use './background-functions-public.scss';
+@use './background-functions-private.scss';
 @use 'sass:map';
 
 :root {
   // Sets background color CSS variables
   @each $color-key, $color-val in background-vars-private.$background-colors {
-    $css-var-name: #{background-vars-private.$background-color-css-var-name-prefix}-#{$color-key};
+    $css-var-name: background-functions-private.background-get-color-css-var-name($color-key);
 
     #{$css-var-name}: $color-val;
   }

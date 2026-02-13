@@ -1,0 +1,16 @@
+@use './background-vars-private.scss';
+@use 'sass:map';
+
+@function background-validate-color-key-exists($color-key) {
+  @if not map.has-key(background-vars-private.$background-colors, $color-key) {
+    @error 'Unexpected color key: "#{$color-key}"!';
+  }
+
+  @return null;
+}
+
+@function background-get-color-css-var-name($color-key) {
+  $_: background-validate-color-key-exists($color-key);
+
+  @return --background-color-#{$color-key};
+}
