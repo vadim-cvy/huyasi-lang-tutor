@@ -1,0 +1,16 @@
+@use './transition-vars-private.scss';
+@use 'sass:map';
+
+@function transition-validate-transition-duration-key-exists($transition-duration-key) {
+  @if not map.has-key(transition-vars-private.$transition-durations, $transition-duration-key) {
+    @error 'Unexpected transition duration key: "#{$transition-duration-key}"!';
+  }
+
+  @return null;
+}
+
+@function transition-get-transition-duration-val($transition-duration-key) {
+  $_: transition-validate-transition-duration-key-exists($transition-duration-key);
+
+  @return map.get(transition-vars-private.$transition-durations, $transition-duration-key);
+}

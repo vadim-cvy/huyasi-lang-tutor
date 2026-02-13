@@ -1,6 +1,6 @@
 @use './overlay-vars-private.scss';
 @use './overlay-functions-public.scss';
-@use './../transition/transition-vars.scss';
+@use '../transition/transition-functions-public.scss';
 @use 'sass:map';
 
 :root {
@@ -36,7 +36,7 @@
           width: 100%;
           height: 100%;
           background-color: inherit;
-          transition: transition-vars.$transition-normal;
+          transition: transition-functions-public.transition-get-transition-duration-val('normal');
         }
 
         &:hover,
