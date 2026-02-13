@@ -1,5 +1,4 @@
 @use './background-vars-private.scss';
-@use './background-functions-private.scss';
 @use 'sass:map';
 
 @function background-validate-color-key-exists($color-key) {
@@ -21,5 +20,5 @@
 }
 
 @function background-get-color-val($color-key) {
-  @return var(background-functions-private.background-get-color-css-var-name($color-key));
+  @return var(background-get-color-css-var-name($color-key));
 }

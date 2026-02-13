@@ -13,6 +13,6 @@
   @return border-vars-private.$border-radius;
 }
 
-@function border-get-val() {
+@function border-get-border-val() {
   @return #{border-vars-private.$border-width-and-style} border-get-color-val();
 }

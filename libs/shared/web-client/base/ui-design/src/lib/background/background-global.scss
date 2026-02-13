@@ -5,7 +5,7 @@
 :root {
   // Sets background color CSS variables
   @each $color-key, $color-val in background-vars-private.$background-colors {
-    $css-var-name: background-functions-private.background-get-color-css-var-name($color-key);
+    $css-var-name: background-functions-public.background-get-color-css-var-name($color-key);
 
     #{$css-var-name}: $color-val;
   }

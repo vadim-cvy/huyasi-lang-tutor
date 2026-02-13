@@ -2,6 +2,6 @@
 @use '../../../../ui-design/src/functions.scss';
 
 .footer {
-  border-top: functions.border-get-val();
+  border-top: functions.border-get-border-val();
   box-shadow: vars.$box-shadow;
 }
