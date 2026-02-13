@@ -1,0 +1,20 @@
+@use '../overlay/overlay-vars-private.scss';
+@use 'sass:map';
+
+@function overlay-validate-exists-for-background-color-key($background-color-key) {
+  @if not map.has-key(overlay-vars-private.$background-color-to-overlay-color-map, $background-color-key) {
+    @error 'Unexpected background color key: "#{$background-color-key}"!';
+  }
+
+  @return null;
+}
+
+@function overlay-get-color-for-background-css-var-name($background-color-key) {
+  $_: overlay-validate-exists-for-background-color-key($background-color-key);
+
+  @return --overlay-color-for-bg-#{$background-color-key};
+}
+
+@function overlay-get-color-for-background-val($background-color-key) {
+  @return var(overlay-get-color-for-background-css-var-name($background-color-key));
+}
