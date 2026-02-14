@@ -19,7 +19,7 @@
 ) {
   $selector-prefix: '.--#{$prop-name-abbr}';
 
-  @each $size-key, $size-val in whitespace-vars-private.$whitespace-sizes {
+  @each $size-key, $size-val in whitespace-vars-private.$sizes {
     @each $stability-key, $_ in $size-val {
       $selector-suffix: '-#{$size-key}-#{$stability-key}';
 

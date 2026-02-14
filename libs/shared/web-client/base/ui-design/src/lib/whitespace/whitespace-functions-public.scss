@@ -6,7 +6,7 @@
   $_: whitespace-functions-private.whitespace-validate-size-exists($size);
 
   @if $stability == 'static' {
-    $size-data: map.get(whitespace-vars-private.$whitespace-sizes, $size);
+    $size-data: map.get(whitespace-vars-private.$sizes, $size);
 
     @return map.get($size-data,'static');
   }

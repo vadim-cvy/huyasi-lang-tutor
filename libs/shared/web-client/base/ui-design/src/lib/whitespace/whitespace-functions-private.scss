@@ -2,7 +2,7 @@
 @use 'sass:map';
 
 @function whitespace-validate-size-exists($size) {
-  @if not map.has-key(whitespace-vars-private.$whitespace-sizes, $size) {
+  @if not map.has-key(whitespace-vars-private.$sizes, $size) {
     @error 'Size "#{$size}" does not exist!';
   }
 
