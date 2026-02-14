@@ -1,0 +1,81 @@
+@use './typography-vars-private.scss';
+@use '../whitespace/whitespace-functions-public.scss';
+@use 'sass:map';
+
+@function typography-validate-text-size-key-exists($text-size-key) {
+  @if not map.has-key(typography-vars-private.$typography-sizes, $text-size-key) {
+    @error 'Unexpected text size key: "#{$text-size-key}"!';
+  }
+
+  @return null;
+}
+
+@function typography-get-text-size-responsive-css-var-name($text-size-key) {
+  $_: typography-validate-text-size-key-exists($text-size-key);
+
+  @return --text-size-responsive-#{$text-size-key};
+}
+
+@function typography-get-text-size-val($text-size-key, $stability-key) {
+  $_: typography-validate-text-size-key-exists($text-size-key);
+
+  $text-size-data: map.get(typography-vars-private.$typography-sizes, $text-size-key);
+
+  @if $stability-key == 'static' {
+    @return map.get($text-size-data, 'static');
+  }
+  @else if $stability-key == 'responsive' {
+    $css-var-name: typography-get-text-size-responsive-css-var-name($text-size-key);
+
+    @return var($css-var-name);
+  }
+  @else {
+    @error 'Unexpected stability key: "#{$stability-key}"!';
+  }
+}
+
+@function typography-get-text-size-util-class-name($text-size-key, $stability-key) {
+  @return '.--text-size-#{$text-size-key}-#{$stability-key}';
+}
+
+@function typography-get-text-size-margin-y-val($text-size-key) {
+  $_: typography-validate-text-size-key-exists($text-size-key);
+
+  $text-size-data: map.get(typography-vars-private.$typography-sizes, $text-size-key);
+
+  $margin-y-size-key: map.get($text-size-data, 'margin-y-size-key');
+
+  @return whitespace-functions-public.whitespace-get-size-val($margin-y-size-key);
+}
+
+@function typography-validate-color-exists($background-color-key, $text-color-key) {
+  @if not map.has-key(typography-vars-private.$typography-background-colors-to-text-colors-map, $background-color-key) {
+    @error 'Unexpected background color key: "#{$background-color-key}"!';
+  }
+
+  $text-colors-for-background: map.get(typography-vars-private.$typography-background-colors-to-text-colors-map, $background-color-key);
+
+  @if not map.has-key($text-colors-for-background, $text-color-key) {
+    @error 'Unexpected text color key: "#{$text-color-key}" for background color key: "#{$background-color-key}"!';
+  }
+
+  @return null;
+}
+
+@function typography-get-text-color-css-var-name($text-color-key, $background-color-key) {
+  $_: typography-validate-color-exists($background-color-key, $text-color-key);
+
+  @return --text-color-#{$text-color-key}-for-background-#{$background-color-key};
+}
+
+@function typography-get-text-color-val($text-color-key, $background-color-key) {
+  $_: typography-validate-color-exists($background-color-key, $text-color-key);
+
+  $text-colors-for-background: map.get(typography-vars-private.$typography-background-colors-to-text-colors-map, $background-color-key);
+
+  @return map.get($text-colors-for-background, $text-color-key);
+}
+
+@function typography-get-text-color-util-class-name($text-color-key) {
+  @return '.--text-color-#{$text-color-key}';
+}

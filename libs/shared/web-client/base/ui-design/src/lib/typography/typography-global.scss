@@ -1,9 +1,9 @@
-@use './typography-vars.scss';
+@use './typography-vars-private.scss';
+@use './typography-functions-public.scss';
 @use '../whitespace/whitespace-functions-public.scss';
 @use '../whitespace/whitespace-mixins-public.scss';
 @use '../background//background-functions-public.scss';
 @use '../breakpoints/breakpoints-mixins-public.scss';
-@use 'sass:meta';
 @use 'sass:map';
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
@@ -12,7 +12,7 @@
 
 html {
   font-family: 'Roboto', sans-serif;
-  font-size: typography-vars.$text-size-md-responsive;
+  font-size: typography-functions-public.typography-get-text-size-val('md', 'responsive');
   font-weight: 400;
   font-style: normal;
 }
@@ -25,52 +25,43 @@ a {
 
 // END: Base
 
+
+
 // START: Sizes
 
 :root {
-  // Sets text size variables
-  @each $text-size in typography-vars.$text-sizes {
-    $css-var-name: map.get(
-      meta.module-variables(typography-vars),
-      'text-size-css-var-name--#{$text-size}-responsive'
-    );
+  // Sets text size CSS vars
+  @each $text-size-key, $text-size-data in typography-vars-private.$typography-sizes {
+    $css-var-name:
+      typography-functions-public.typography-get-text-size-responsive-css-var-name($text-size-key);
 
-    #{$css-var-name}: map.get(
-      meta.module-variables(typography-vars),
-      'text-size-css-var-val--#{$text-size}-responsive'
-    );
+    $text-size-responsive-vals: map.get(map.get($text-size-data, 'text-size-vals'), 'responsive');
+
+    #{$css-var-name}: map.get($text-size-responsive-vals, 'screen-sm');
 
     @include breakpoints-mixins-public.breakpoint-md-up {
-      #{$css-var-name}: map.get(
-        meta.module-variables(typography-vars),
-        'text-size-css-var-val--#{$text-size}-responsive--screen-md'
-      );
-    }
-
-    @include breakpoints-mixins-public.breakpoint-lg-up {
-      #{$css-var-name}: map.get(
-        meta.module-variables(typography-vars),
-        'text-size-css-var-val--#{$text-size}-responsive--screen-lg'
-      );
+      #{$css-var-name}: map.get($text-size-responsive-vals, 'screen-md-up');
     }
   }
 }
 
-// Sets text size utility classes
-@each $text-size-stability in typography-vars.$text-size-stabilities {
-  @each $text-size in typography-vars.$text-sizes {
-    .--text-#{$text-size}-#{$text-size-stability} {
-      font-size: map.get(
-        meta.module-variables(typography-vars),
-        'text-size-#{$text-size}-#{$text-size-stability}'
+// Sets text size util classes
+@each $text-size-key, $text-size-data in typography-vars-private.$typography-sizes {
+  @each $stability-key in map.keys(map.get($text-size-data, 'text-size-vals')) {
+    $text-size-util-class-name:
+      typography-functions-public.typography-get-text-size-util-class-name(
+        $text-size-key,
+        $stability-key,
+      );
+
+    #{$text-size-util-class-name} {
+      font-size: typography-functions-public.typography-get-text-size-val(
+        $text-size-key,
+        $stability-key
       );
     }
   }
 }
-
-// END: Sizes
-
-// START: marginY
 
 h1,
 h2,
@@ -82,25 +73,7 @@ ul,
 ol,
 p {
   @include whitespace-mixins-public.whitespace-margin-y(0);
-
-  @each $text-size-stability in typography-vars.$text-size-stabilities {
-    @each $text-size in typography-vars.$text-sizes {
-      $text-size-class: '.--text-#{$text-size}-#{$text-size-stability}';
-
-      $margin-y-stability: $text-size-stability;
-      $margin-y-size: map.get(typography-vars.$text-size-to-margin-y-size-map, $text-size);
-
-      $margin-y-val: whitespace-functions-public.whitespace-get-size-val(
-        $margin-y-size,
-        $margin-y-stability,
-      );
-
-      #{$text-size-class} &,
-      &#{$text-size-class} {
-        @include whitespace-mixins-public.whitespace-margin-y($margin-y-val);
-      }
-    }
-  }
+  font-size: inherit;
 
   &:first-child {
     margin-top: 0 !important;
@@ -109,44 +82,72 @@ p {
   &:last-child {
     margin-bottom: 0 !important;
   }
+
+  @each $text-size-key, $text-size-data in typography-vars-private.$typography-sizes {
+    $margin-y-size-key: map.get($text-size-data, 'margin-y-size-key');
+
+    @each $stability-key in map.keys(map.get($text-size-data, 'text-size-vals')) {
+      $text-size-util-class-name:
+        typography-functions-public.typography-get-text-size-util-class-name(
+          $text-size-key,
+          $stability-key,
+        );
+
+      $margin-y-val:
+        whitespace-functions-public.whitespace-get-size-val(
+          $margin-y-size-key,
+          $stability-key,
+        );
+
+      #{$text-size-util-class-name} &,
+      &#{$text-size-util-class-name} {
+        @include whitespace-mixins-public.whitespace-margin-y($margin-y-val);
+      }
+    }
+  }
 }
 
 // END: marginY
+
+
 
 // START: Colors
 
 :root {
   // Sets text color variables
-  @each $color-type in typography-vars.$text-color-types {
-    @each $background-color-key in background-functions-public.background-get-color-keys() {
-      $css-var-name: map.get(
-        meta.module-variables(typography-vars),
-        'text-color-css-var-name--#{$color-type}-for-background-#{$background-color-key}'
-      );
+  @each $background-color-key, $text-colors-for-background in typography-vars-private.$typography-background-colors-to-text-colors-map {
+    @each $text-color-key, $text-color-val in $text-colors-for-background {
+      $css-var-name:
+        typography-functions-public.typography-get-text-color-css-var-name(
+          $text-color-key,
+          $background-color-key,
+        );
 
-      $css-var-val: map.get(
-        meta.module-variables(typography-vars),
-        'text-color-css-var-val--#{$color-type}-for-background-#{$background-color-key}'
-      );
-
-      #{$css-var-name}: $css-var-val;
+      #{$css-var-name}: $text-color-val;
     }
   }
 }
 
 // Sets text colors for background types
-@each $background-color-key in background-functions-public.background-get-color-keys() {
-  .--bg-#{$background-color-key} {
-    color: map.get(
-      meta.module-variables(typography-vars),
-      'text-color-base-for-background-#{$background-color-key}'
-    );
+@each $background-color-key, $text-colors-for-background in typography-vars-private.$typography-background-colors-to-text-colors-map {
+  @each $text-color-key in map.keys($text-colors-for-background) {
+    .--bg-#{$background-color-key} {
+      @if $text-color-key == 'base' {
+        color: typography-functions-public.typography-get-text-color-val(
+          $text-color-key,
+          $background-color-key,
+        );
+      }
 
-    .--text-color-accent {
-      color: map.get(
-        meta.module-variables(typography-vars),
-        'text-color-accent-for-background-#{$background-color-key}'
-      );
+      $text-color-util-class-name:
+        typography-functions-public.typography-get-text-color-util-class-name($text-color-key);
+
+      #{$text-color-util-class-name} {
+        color: typography-functions-public.typography-get-text-color-val(
+          $text-color-key,
+          $background-color-key,
+        );
+      }
     }
   }
 }
