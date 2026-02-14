@@ -5,7 +5,7 @@ $_size-lg: 20px;
 $_size-xl: 22px;
 $_size-2xl: 26px;
 
-$typography-sizes: (
+$sizes: (
   xs: (
     text-size-vals: (
       static: $_size-xs,
@@ -68,7 +68,7 @@ $typography-sizes: (
   ),
 );
 
-$typography-bg-colors-to-text-colors-map: (
+$bg-colors-to-text-colors-map: (
   /**
   * bg-color-key: (
   *   text-color-key-1: val

@@ -3,7 +3,7 @@
 @use 'sass:map';
 
 @function typography-validate-text-size-key-exists($text-size-key) {
-  @if not map.has-key(typography-vars-private.$typography-sizes, $text-size-key) {
+  @if not map.has-key(typography-vars-private.$sizes, $text-size-key) {
     @error 'Unexpected text size key: "#{$text-size-key}"!';
   }
 
@@ -19,7 +19,7 @@
 @function typography-get-text-size-val($text-size-key, $stability-key) {
   $_: typography-validate-text-size-key-exists($text-size-key);
 
-  $text-size-data: map.get(typography-vars-private.$typography-sizes, $text-size-key);
+  $text-size-data: map.get(typography-vars-private.$sizes, $text-size-key);
 
   @if $stability-key == 'static' {
     @return map.get($text-size-data, 'static');
@@ -41,7 +41,7 @@
 @function typography-get-text-size-margin-y-val($text-size-key) {
   $_: typography-validate-text-size-key-exists($text-size-key);
 
-  $text-size-data: map.get(typography-vars-private.$typography-sizes, $text-size-key);
+  $text-size-data: map.get(typography-vars-private.$sizes, $text-size-key);
 
   $margin-y-size-key: map.get($text-size-data, 'margin-y-size-key');
 
@@ -49,11 +49,11 @@
 }
 
 @function typography-validate-color-exists($bg-color-key, $text-color-key) {
-  @if not map.has-key(typography-vars-private.$typography-bg-colors-to-text-colors-map, $bg-color-key) {
+  @if not map.has-key(typography-vars-private.$bg-colors-to-text-colors-map, $bg-color-key) {
     @error 'Unexpected background color key: "#{$bg-color-key}"!';
   }
 
-  $text-colors-for-bg: map.get(typography-vars-private.$typography-bg-colors-to-text-colors-map, $bg-color-key);
+  $text-colors-for-bg: map.get(typography-vars-private.$bg-colors-to-text-colors-map, $bg-color-key);
 
   @if not map.has-key($text-colors-for-bg, $text-color-key) {
     @error 'Unexpected text color key: "#{$text-color-key}" for bg color key: "#{$bg-color-key}"!';
@@ -71,7 +71,7 @@
 @function typography-get-text-color-val($text-color-key, $bg-color-key) {
   $_: typography-validate-color-exists($bg-color-key, $text-color-key);
 
-  $text-colors-for-bg: map.get(typography-vars-private.$typography-bg-colors-to-text-colors-map, $bg-color-key);
+  $text-colors-for-bg: map.get(typography-vars-private.$bg-colors-to-text-colors-map, $bg-color-key);
 
   @return map.get($text-colors-for-bg, $text-color-key);
 }

@@ -30,7 +30,7 @@ a {
 
 :root {
   // Sets text size CSS vars
-  @each $text-size-key, $text-size-data in typography-vars-private.$typography-sizes {
+  @each $text-size-key, $text-size-data in typography-vars-private.$sizes {
     $css-var-name:
       typography-functions-public.typography-get-text-size-responsive-css-var-name($text-size-key);
 
@@ -45,7 +45,7 @@ a {
 }
 
 // Sets text size util classes
-@each $text-size-key, $text-size-data in typography-vars-private.$typography-sizes {
+@each $text-size-key, $text-size-data in typography-vars-private.$sizes {
   @each $stability-key in map.keys(map.get($text-size-data, 'text-size-vals')) {
     $text-size-util-class-name:
       typography-functions-public.typography-get-text-size-util-class-name(
@@ -82,7 +82,7 @@ p {
     margin-bottom: 0 !important;
   }
 
-  @each $text-size-key, $text-size-data in typography-vars-private.$typography-sizes {
+  @each $text-size-key, $text-size-data in typography-vars-private.$sizes {
     $margin-y-size-key: map.get($text-size-data, 'margin-y-size-key');
 
     @each $stability-key in map.keys(map.get($text-size-data, 'text-size-vals')) {
@@ -114,7 +114,7 @@ p {
 
 :root {
   // Sets text color variables
-  @each $bg-color-key, $text-colors-for-bg in typography-vars-private.$typography-bg-colors-to-text-colors-map {
+  @each $bg-color-key, $text-colors-for-bg in typography-vars-private.$bg-colors-to-text-colors-map {
     @each $text-color-key, $text-color-val in $text-colors-for-bg {
       $css-var-name:
         typography-functions-public.typography-get-text-color-css-var-name(
@@ -128,7 +128,7 @@ p {
 }
 
 // Sets text colors for bg colors
-@each $bg-color-key, $text-colors-for-bg in typography-vars-private.$typography-bg-colors-to-text-colors-map {
+@each $bg-color-key, $text-colors-for-bg in typography-vars-private.$bg-colors-to-text-colors-map {
   @each $text-color-key in map.keys($text-colors-for-bg) {
     .--bg-#{$bg-color-key} {
       @if $text-color-key == 'base' {
