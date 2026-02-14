@@ -1,5 +1,5 @@
-@use './whitespace-vars-private.scss';
-@use './whitespace-functions-private.scss';
+@use './whitespace-vars-private';
+@use './whitespace-functions-private';
 @use 'sass:map';
 
 @function whitespace-get-size-val($size-key, $stability-key) {

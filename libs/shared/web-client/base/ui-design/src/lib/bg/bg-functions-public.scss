@@ -1,4 +1,4 @@
-@use './bg-vars-private.scss';
+@use './bg-vars-private';
 @use 'sass:map';
 
 @function bg-validate-color-key-exists($color-key) {

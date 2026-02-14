@@ -1,4 +1,4 @@
-@use '../overlay/overlay-vars-private.scss';
+@use '../overlay/overlay-vars-private';
 @use 'sass:map';
 
 @function overlay-validate-exists-for-bg-color-key($bg-color-key) {

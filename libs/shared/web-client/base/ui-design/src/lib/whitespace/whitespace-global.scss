@@ -1,7 +1,7 @@
-@use './whitespace-vars-private.scss';
-@use './whitespace-mixins-private.scss';
-@use './whitespace-functions-private.scss';
-@use '../breakpoints/breakpoints-mixins-public.scss';
+@use './whitespace-vars-private';
+@use './whitespace-mixins-private';
+@use './whitespace-functions-private';
+@use '../breakpoints/breakpoints-mixins-public';
 @use 'sass:map';
 
 :root {

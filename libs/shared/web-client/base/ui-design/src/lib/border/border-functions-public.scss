@@ -1,4 +1,4 @@
-@use './border-vars-private.scss';
+@use './border-vars-private';
 @use 'sass:map';
 
 @function border-get-color-css-var-name() {

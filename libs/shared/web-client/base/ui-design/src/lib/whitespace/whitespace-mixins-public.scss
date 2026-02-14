@@ -1,4 +1,4 @@
-@use './whitespace-mixins-private.scss';
+@use './whitespace-mixins-private';
 
 @mixin whitespace-margin-y($val) {
   @include whitespace-mixins-private.whitespace-prop-y(margin, $val)

@@ -1,5 +1,5 @@
-@use './typography-vars-private.scss';
-@use '../whitespace/whitespace-functions-public.scss';
+@use './typography-vars-private';
+@use '../whitespace/whitespace-functions-public';
 @use 'sass:map';
 
 @function typography-validate-text-size-key-exists($text-size-key) {

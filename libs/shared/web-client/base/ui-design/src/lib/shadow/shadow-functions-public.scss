@@ -1,4 +1,4 @@
-@use '../shadow/shadow-vars-private.scss';
+@use '../shadow/shadow-vars-private';
 @use 'sass:map';
 
 @function shadow-validate-box-shadow-key-exists($box-shadow-key) {

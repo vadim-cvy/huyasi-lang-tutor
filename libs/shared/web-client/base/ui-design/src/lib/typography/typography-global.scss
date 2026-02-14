@@ -1,9 +1,9 @@
-@use './typography-vars-private.scss';
-@use './typography-functions-public.scss';
-@use '../whitespace/whitespace-functions-public.scss';
-@use '../whitespace/whitespace-mixins-public.scss';
-@use '../bg/bg-functions-public.scss';
-@use '../breakpoints/breakpoints-mixins-public.scss';
+@use './typography-vars-private';
+@use './typography-functions-public';
+@use '../whitespace/whitespace-functions-public';
+@use '../whitespace/whitespace-mixins-public';
+@use '../bg/bg-functions-public';
+@use '../breakpoints/breakpoints-mixins-public';
 @use 'sass:map';
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');

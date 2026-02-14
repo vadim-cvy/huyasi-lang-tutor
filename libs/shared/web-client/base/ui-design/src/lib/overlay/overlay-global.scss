@@ -1,6 +1,6 @@
-@use './overlay-vars-private.scss';
-@use './overlay-functions-public.scss';
-@use '../transition/transition-functions-public.scss';
+@use './overlay-vars-private';
+@use './overlay-functions-public';
+@use '../transition/transition-functions-public';
 @use 'sass:map';
 
 :root {

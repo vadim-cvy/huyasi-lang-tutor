@@ -1,5 +1,5 @@
-@use './shadow-vars-private.scss';
-@use './shadow-functions-public.scss';
+@use './shadow-vars-private';
+@use './shadow-functions-public';
 @use 'sass:map';
 
 :root {

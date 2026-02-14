@@ -1,4 +1,4 @@
-@use './transition-vars-private.scss';
+@use './transition-vars-private';
 @use 'sass:map';
 
 @function transition-validate-transition-duration-key-exists($transition-duration-key) {

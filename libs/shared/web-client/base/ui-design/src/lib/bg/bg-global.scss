@@ -1,5 +1,5 @@
-@use './bg-vars-private.scss';
-@use './bg-functions-public.scss';
+@use './bg-vars-private';
+@use './bg-functions-public';
 @use 'sass:map';
 
 :root {

@@ -1,5 +1,5 @@
-@use './whitespace-vars-private.scss';
-@use './whitespace-functions-public.scss';
+@use './whitespace-vars-private';
+@use './whitespace-functions-public';
 @use 'sass:map';
 
 @mixin whitespace-prop-y($prop-name, $val) {
