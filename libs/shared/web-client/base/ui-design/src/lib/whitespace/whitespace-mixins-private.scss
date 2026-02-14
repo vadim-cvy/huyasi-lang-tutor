@@ -1,5 +1,6 @@
 @use './whitespace-vars-private.scss';
 @use './whitespace-functions-public.scss';
+@use 'sass:map';
 
 @mixin whitespace-prop-y($prop-name, $val) {
   #{$prop-name}-top: $val;
