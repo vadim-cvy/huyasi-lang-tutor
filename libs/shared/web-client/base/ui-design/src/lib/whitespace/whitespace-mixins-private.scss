@@ -20,7 +20,7 @@
   $selector-prefix: '.--#{$prop-name-abbr}';
 
   @each $size-key, $size-val in whitespace-vars-private.$sizes {
-    @each $stability-key, $_ in $size-val {
+    @each $stability-key in map.keys($size-val) {
       $selector-suffix: '-#{$size-key}-#{$stability-key}';
 
       $val: whitespace-functions-public.whitespace-get-size-val($size-key, $stability-key);

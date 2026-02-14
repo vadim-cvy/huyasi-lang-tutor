@@ -2,20 +2,20 @@
 @use './whitespace-functions-private.scss';
 @use 'sass:map';
 
-@function whitespace-get-size-val($size, $stability) {
-  $_: whitespace-functions-private.whitespace-validate-size-exists($size);
+@function whitespace-get-size-val($size-key, $stability-key) {
+  $_: whitespace-functions-private.whitespace-validate-size-exists($size-key);
 
-  @if $stability == 'static' {
-    $size-data: map.get(whitespace-vars-private.$sizes, $size);
+  @if $stability-key == 'static' {
+    $size-data: map.get(whitespace-vars-private.$sizes, $size-key);
 
     @return map.get($size-data,'static');
   }
-  @else if $stability == 'responsive' {
-    $css-var-name: whitespace-functions-private.whitespace-get-size-responsive-css-var-name($size);
+  @else if $stability-key == 'responsive' {
+    $css-var-name: whitespace-functions-private.whitespace-get-size-responsive-css-var-name($size-key);
 
     @return var($css-var-name);
   }
   @else {
-    @error 'Unexpected stability: "#{$stability}"!'
+    @error 'Unexpected stability: "#{$stability-key}"!';
   }
 }

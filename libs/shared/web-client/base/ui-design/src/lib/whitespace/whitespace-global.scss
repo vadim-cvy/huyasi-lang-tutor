@@ -6,10 +6,10 @@
 
 :root {
   // Sets whitespace responsive size variables base on the screen size
-  @each $size-key, $size-val in whitespace-vars-private.$sizes {
+  @each $size-key, $size-data in whitespace-vars-private.$sizes {
     $css-var-name: whitespace-functions-private.whitespace-get-size-responsive-css-var-name($size-key);
 
-    @each $screen-size-key, $screen-size-val in map.get($size-val,'responsive') {
+    @each $screen-size-key, $screen-size-val in map.get($size-data,'responsive') {
       @if $screen-size-key == 'screen-sm' {
         #{$css-var-name}: $screen-size-val;
       }
@@ -19,7 +19,7 @@
         }
       }
       @else {
-        @error 'Unexpected screen size: "#{$screen}"';
+        @error 'Unexpected screen size: "#{$screen-size-key}"';
       }
     }
   }
