@@ -10,7 +10,7 @@ import {
   WhitespaceSizeEnum,
   WhitespaceStability,
 } from '@huyasi/shared-web-client-base-ui-design';
-import { ButtonBackground } from './abstract/ButtonBackground';
+import { ButtonBg } from './abstract/ButtonBg';
 
 @Component({
   selector: 'shared-base-button',
@@ -31,7 +31,7 @@ export class Button {
     }>
   >();
 
-  public readonly background = input<ButtonBackground>('transparent');
+  public readonly bg = input<ButtonBg>('transparent');
 
   public readonly width = input<ButtonWidth>('fitContent');
 

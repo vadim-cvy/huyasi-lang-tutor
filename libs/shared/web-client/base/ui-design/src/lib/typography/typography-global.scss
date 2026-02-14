@@ -2,7 +2,7 @@
 @use './typography-functions-public.scss';
 @use '../whitespace/whitespace-functions-public.scss';
 @use '../whitespace/whitespace-mixins-public.scss';
-@use '../background//background-functions-public.scss';
+@use '../bg/bg-functions-public.scss';
 @use '../breakpoints/breakpoints-mixins-public.scss';
 @use 'sass:map';
 
@@ -114,12 +114,12 @@ p {
 
 :root {
   // Sets text color variables
-  @each $background-color-key, $text-colors-for-background in typography-vars-private.$typography-background-colors-to-text-colors-map {
-    @each $text-color-key, $text-color-val in $text-colors-for-background {
+  @each $bg-color-key, $text-colors-for-bg in typography-vars-private.$typography-bg-colors-to-text-colors-map {
+    @each $text-color-key, $text-color-val in $text-colors-for-bg {
       $css-var-name:
         typography-functions-public.typography-get-text-color-css-var-name(
           $text-color-key,
-          $background-color-key,
+          $bg-color-key,
         );
 
       #{$css-var-name}: $text-color-val;
@@ -127,14 +127,14 @@ p {
   }
 }
 
-// Sets text colors for background types
-@each $background-color-key, $text-colors-for-background in typography-vars-private.$typography-background-colors-to-text-colors-map {
-  @each $text-color-key in map.keys($text-colors-for-background) {
-    .--bg-#{$background-color-key} {
+// Sets text colors for bg colors
+@each $bg-color-key, $text-colors-for-bg in typography-vars-private.$typography-bg-colors-to-text-colors-map {
+  @each $text-color-key in map.keys($text-colors-for-bg) {
+    .--bg-#{$bg-color-key} {
       @if $text-color-key == 'base' {
         color: typography-functions-public.typography-get-text-color-val(
           $text-color-key,
-          $background-color-key,
+          $bg-color-key,
         );
       }
 
@@ -144,7 +144,7 @@ p {
       #{$text-color-util-class-name} {
         color: typography-functions-public.typography-get-text-color-val(
           $text-color-key,
-          $background-color-key,
+          $bg-color-key,
         );
       }
     }

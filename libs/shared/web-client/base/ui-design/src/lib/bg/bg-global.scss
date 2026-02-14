@@ -1,0 +1,19 @@
+@use './bg-vars-private.scss';
+@use './bg-functions-public.scss';
+@use 'sass:map';
+
+:root {
+  // Sets bg color CSS variables
+  @each $color-key, $color-val in bg-vars-private.$bg-colors {
+    $css-var-name: bg-functions-public.bg-get-color-css-var-name($color-key);
+
+    #{$css-var-name}: $color-val;
+  }
+}
+
+// Sets bg color utility classes
+@each $color-key in bg-functions-public.bg-get-color-keys() {
+  .--bg-#{$color-key} {
+    background-color: bg-functions-public.bg-get-color-val($color-key);
+  }
+}

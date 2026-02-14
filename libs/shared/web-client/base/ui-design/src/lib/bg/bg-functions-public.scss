@@ -1,0 +1,24 @@
+@use './bg-vars-private.scss';
+@use 'sass:map';
+
+@function bg-validate-color-key-exists($color-key) {
+  @if not map.has-key(bg-vars-private.$bg-colors, $color-key) {
+    @error 'Unexpected color key: "#{$color-key}"!';
+  }
+
+  @return null;
+}
+
+@function bg-get-color-css-var-name($color-key) {
+  $_: bg-validate-color-key-exists($color-key);
+
+  @return --bg-color-#{$color-key};
+}
+
+@function bg-get-color-keys() {
+  @return map.keys(bg-vars-private.$bg-colors);
+}
+
+@function bg-get-color-val($color-key) {
+  @return var(bg-get-color-css-var-name($color-key));
+}

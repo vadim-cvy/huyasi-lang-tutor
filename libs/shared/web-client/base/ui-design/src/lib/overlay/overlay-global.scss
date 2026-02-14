@@ -5,19 +5,19 @@
 
 :root {
   // Set CSS vars with overlay colors
-  @each $background-color-key, $overlay-color-val in overlay-vars-private.$background-color-to-overlay-color-map {
-    $css-var-name: overlay-functions-public.overlay-get-color-for-background-css-var-name($background-color-key);
+  @each $bg-color-key, $overlay-color-val in overlay-vars-private.$bg-color-to-overlay-color-map {
+    $css-var-name: overlay-functions-public.overlay-get-color-for-bg-css-var-name($bg-color-key);
 
     #{$css-var-name}: $overlay-color-val;
   }
 }
 
-// Set util classes for overlays (based on their parent background class)
-@each $background-color-key in map.keys(overlay-vars-private.$background-color-to-overlay-color-map) {
-  $overlay-color-val: overlay-functions-public.overlay-get-color-for-background-val($background-color-key);
+// Set util classes for overlays (based on their parent bg class)
+@each $bg-color-key in map.keys(overlay-vars-private.$bg-color-to-overlay-color-map) {
+  $overlay-color-val: overlay-functions-public.overlay-get-color-for-bg-val($bg-color-key);
 
   @each $pseudo-element-type in ('before', 'after') {
-    .--bg-#{$background-color-key} {
+    .--bg-#{$bg-color-key} {
       &.--has-overlay-#{$pseudo-element-type},
       .--has-overlay-#{$pseudo-element-type} {
         position: relative;

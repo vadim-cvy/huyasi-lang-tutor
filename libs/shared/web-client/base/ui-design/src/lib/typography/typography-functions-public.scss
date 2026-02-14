@@ -48,32 +48,32 @@
   @return whitespace-functions-public.whitespace-get-size-val($margin-y-size-key);
 }
 
-@function typography-validate-color-exists($background-color-key, $text-color-key) {
-  @if not map.has-key(typography-vars-private.$typography-background-colors-to-text-colors-map, $background-color-key) {
-    @error 'Unexpected background color key: "#{$background-color-key}"!';
+@function typography-validate-color-exists($bg-color-key, $text-color-key) {
+  @if not map.has-key(typography-vars-private.$typography-bg-colors-to-text-colors-map, $bg-color-key) {
+    @error 'Unexpected background color key: "#{$bg-color-key}"!';
   }
 
-  $text-colors-for-background: map.get(typography-vars-private.$typography-background-colors-to-text-colors-map, $background-color-key);
+  $text-colors-for-bg: map.get(typography-vars-private.$typography-bg-colors-to-text-colors-map, $bg-color-key);
 
-  @if not map.has-key($text-colors-for-background, $text-color-key) {
-    @error 'Unexpected text color key: "#{$text-color-key}" for background color key: "#{$background-color-key}"!';
+  @if not map.has-key($text-colors-for-bg, $text-color-key) {
+    @error 'Unexpected text color key: "#{$text-color-key}" for bg color key: "#{$bg-color-key}"!';
   }
 
   @return null;
 }
 
-@function typography-get-text-color-css-var-name($text-color-key, $background-color-key) {
-  $_: typography-validate-color-exists($background-color-key, $text-color-key);
+@function typography-get-text-color-css-var-name($text-color-key, $bg-color-key) {
+  $_: typography-validate-color-exists($bg-color-key, $text-color-key);
 
-  @return --text-color-#{$text-color-key}-for-background-#{$background-color-key};
+  @return --text-color-#{$text-color-key}-for-bg-#{$bg-color-key};
 }
 
-@function typography-get-text-color-val($text-color-key, $background-color-key) {
-  $_: typography-validate-color-exists($background-color-key, $text-color-key);
+@function typography-get-text-color-val($text-color-key, $bg-color-key) {
+  $_: typography-validate-color-exists($bg-color-key, $text-color-key);
 
-  $text-colors-for-background: map.get(typography-vars-private.$typography-background-colors-to-text-colors-map, $background-color-key);
+  $text-colors-for-bg: map.get(typography-vars-private.$typography-bg-colors-to-text-colors-map, $bg-color-key);
 
-  @return map.get($text-colors-for-background, $text-color-key);
+  @return map.get($text-colors-for-bg, $text-color-key);
 }
 
 @function typography-get-text-color-util-class-name($text-color-key) {
