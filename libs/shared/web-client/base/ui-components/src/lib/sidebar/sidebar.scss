@@ -1,6 +1,9 @@
 @use '../../../../ui-design/src/functions.scss';
 
 .sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   height: 100%;
   border-right: functions.border-get-border-val();
   box-shadow: functions.shadow-get-box-shadow-val('normal');
