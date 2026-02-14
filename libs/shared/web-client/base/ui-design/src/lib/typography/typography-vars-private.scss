@@ -3,7 +3,7 @@ $_size-sm: 16px;
 $_size-md: 18px;
 $_size-lg: 20px;
 $_size-xl: 22px;
-$_size-xxl: 26px;
+$_size-2xl: 26px;
 
 $typography-sizes: (
   xs: (
@@ -56,12 +56,12 @@ $typography-sizes: (
     ),
     margin-y-size-key: lg,
   ),
-  xxl: (
+  2xl: (
     text-size-vals: (
-      static: $_size-xxl,
+      static: $_size-2xl,
       responsive: (
         screen-sm: $_size-xl,
-        screen-md-up: $_size-xxl,
+        screen-md-up: $_size-2xl,
       ),
     ),
     margin-y-size-key: xl,

@@ -3,7 +3,7 @@ $_size-sm: 12px;
 $_size-md: 16px;
 $_size-lg: 20px;
 $_size-xl: 24px;
-$_size-xxl: 32px;
+$_size-2xl: 32px;
 
 $whitespace-sizes: (
   xs: (
@@ -41,11 +41,11 @@ $whitespace-sizes: (
       screen-md-up: $_size-xl,
     )
   ),
-  xxl: (
-    static: $_size-xxl,
+  2xl: (
+    static: $_size-2xl,
     responsive: (
       screen-sm: $_size-xl,
-      screen-md-up: $_size-xxl,
+      screen-md-up: $_size-2xl,
     )
   ),
 );

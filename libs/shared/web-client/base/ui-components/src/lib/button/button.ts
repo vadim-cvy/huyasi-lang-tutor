@@ -104,6 +104,6 @@ export class Button {
 
     return whitespace3LvlHigherThanPaddingY
       ? whitespace3LvlHigherThanPaddingY
-      : 'xxl';
+      : '2xl';
   })
 }

@@ -4,5 +4,5 @@ export enum WhitespaceSizeEnum {
   md,
   lg,
   xl,
-  xxl,
+  '2xl',
 }
