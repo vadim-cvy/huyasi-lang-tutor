@@ -15,10 +15,6 @@
   @return --bg-color-#{$color-key};
 }
 
-@function bg-get-color-keys() {
-  @return map.keys(bg-vars-private.$bg-colors);
-}
-
 @function bg-get-color-val($color-key) {
   @return var(bg-get-color-css-var-name($color-key));
 }
