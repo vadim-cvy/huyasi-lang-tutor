@@ -9,11 +9,10 @@
 </ng-template>
 
 @if (link(); as link) {
-  <!-- TODO: set "--is-overlay-active" -->
   <a
     [class]="cssClasses()"
     [routerLink]="link.url"
-    [routerLinkActive]="link.isRouterLinkActiveSync ? '--active' : ''"
+    [routerLinkActive]="link.isRouterLinkActiveSync ? '--is-overlay-active' : ''"
   >
     <ng-container *ngTemplateOutlet="buttonContent"></ng-container>
   </a>
