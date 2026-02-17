@@ -13,9 +13,14 @@ export class Content404 implements OnInit {
     label: string
   }|null>(null)
 
-  // TODO: on render: add console error / send notification to third party service? so we can track 404
   public ngOnInit(): void {
+    this.track();
     this.setupButton();
+  }
+
+  private track(): void {
+    // TODO: check if this will be caught by monitoring tools
+    console.error('404: page not found');
   }
 
   private setupButton(): void {
