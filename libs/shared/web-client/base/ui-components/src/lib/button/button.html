@@ -1,26 +1,25 @@
-<!-- TODO: make it button if link is not provided -->
-<a
-  [class]="[
-    'button',
-    `--bg-${bg()}`,
-    `--has-overlay-before`,
-    `--width-${width()}`,
-    `--content-align-${contentAlign()}`,
-    (icon() ? `--icon-position-${icon()?.position}` : ''),
-    `--g-${icon()?.position === 'top' ? 'xs' : 'md'}-responsive`,
-    `--my-${marginY()}-responsive`,
-    `--px-${paddingXFinal()}-responsive`,
-    `--py-${paddingYFinal()}-responsive`,
-    `--text-size-${fontSizeFinal()}-responsive`,
-  ]"
-  [routerLink]="link()?.url"
-  [routerLinkActive]="link()?.isRouterLinkActiveSync ? '--active' : ''"
->
+<ng-template #buttonContent>
   @if (icon(); as _icon) {
-  <shared-base-icon [name]="_icon.name" />
+    <shared-base-icon [name]="_icon.name" />
   }
 
   <span>
     <ng-content />
   </span>
-</a>
+</ng-template>
+
+@if (link(); as link) {
+  <!-- TODO: set "--is-overlay-active" -->
+  <a
+    [class]="cssClasses()"
+    [routerLink]="link.url"
+    [routerLinkActive]="link.isRouterLinkActiveSync ? '--active' : ''"
+  >
+    <ng-container *ngTemplateOutlet="buttonContent"></ng-container>
+  </a>
+}
+@else {
+  <button type="button" [class]="cssClasses()">
+    <ng-container *ngTemplateOutlet="buttonContent"></ng-container>
+  </button>
+}

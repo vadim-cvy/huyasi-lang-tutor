@@ -58,4 +58,9 @@
       flex-direction: column;
     }
   }
+
+  &.--bg-transparent {
+    background-color: inherit;
+    color: inherit;
+  }
 }

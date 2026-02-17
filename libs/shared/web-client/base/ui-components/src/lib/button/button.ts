@@ -11,10 +11,11 @@ import {
   WhitespaceStability,
 } from '@huyasi/shared-web-client-base-ui-design';
 import { ButtonBg } from './abstract/ButtonBg';
+import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'shared-base-button',
-  imports: [RouterLink, RouterLinkActive, Icon],
+  imports: [RouterLink, RouterLinkActive, Icon, NgTemplateOutlet],
   templateUrl: './button.html',
   styleUrl: './button.scss',
 })
@@ -106,4 +107,30 @@ export class Button {
       ? whitespace3LvlHigherThanPaddingY
       : '2xl';
   })
+
+  public readonly cssClasses = computed<string[]>(() => {
+    const
+      bg = this.bg(),
+      width = this.width(),
+      contentAlign = this.contentAlign(),
+      icon = this.icon(),
+      marginY = this.marginY(),
+      paddingXFinal = this.paddingXFinal(),
+      paddingYFinal = this.paddingYFinal(),
+      fontSizeFinal = this.fontSizeFinal();
+
+    return [
+      'button',
+      `--bg-${bg}`,
+      `--has-overlay-before`,
+      `--width-${width}`,
+      `--content-align-${contentAlign}`,
+      (icon ? `--icon-position-${icon?.position}` : ''),
+      `--g-${icon?.position === 'top' ? 'xs' : 'md'}-responsive`,
+      `--my-${marginY}-responsive`,
+      `--px-${paddingXFinal}-responsive`,
+      `--py-${paddingYFinal}-responsive`,
+      `--text-size-${fontSizeFinal}-responsive`,
+    ];
+  });
 }
