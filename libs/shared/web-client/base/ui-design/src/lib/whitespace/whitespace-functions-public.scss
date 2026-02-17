@@ -2,6 +2,13 @@
 @use './whitespace-functions-private';
 @use 'sass:map';
 
+/**
+ * Returns whitespace size value for the given size key and stability key.
+ *
+ * @param {string} $size-key - The size key to get the value for.
+ * @param {string} $stability-key - The stability key (`static` or `responsive`).
+ * @return {string} The whitespace size value corresponding to the provided keys.
+ */
 @function whitespace-get-size-val($size-key, $stability-key) {
   $_: whitespace-functions-private.whitespace-validate-size-exists($size-key);
 

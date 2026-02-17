@@ -1,6 +1,13 @@
 @use '../overlay/overlay-vars-private';
 @use 'sass:map';
 
+/**
+ * Validates that the provided background color key exists in the overlay colors map.
+ * Throws an error if the key is invalid.
+ *
+ * @param {string} $bg-color-key - The background color key to validate.
+ * @return {null} Always returns null if validation passes.
+ */
 @function overlay-validate-exists-for-bg-color-key($bg-color-key) {
   @if not map.has-key(overlay-vars-private.$bg-color-to-overlay-color-map, $bg-color-key) {
     @error 'Unexpected background color key: "#{$bg-color-key}"!';
@@ -9,12 +16,27 @@
   @return null;
 }
 
+/**
+ * Returns the CSS var name for the given background color key.
+ *
+ * Don't use it to get the color value directly, use `overlay-get-color-for-bg-val` instead.
+ * This function is useful only if you need to override the CSS var (e.g. dark mode, etc).
+ *
+ * @param {string} $bg-color-key - The background color key to get the CSS var name for.
+ * @return {string} The CSS var name corresponding to the background color key.
+ */
 @function overlay-get-color-for-bg-css-var-name($bg-color-key) {
   $_: overlay-validate-exists-for-bg-color-key($bg-color-key);
 
   @return --overlay-color-for-bg-#{$bg-color-key};
 }
 
+/**
+ * Returns overlay color value for the given background color key.
+ *
+ * @param {string} $bg-color-key - The background color key to get the value for.
+ * @return {string} The CSS var reference for the overlay color corresponding to the background color key.
+ */
 @function overlay-get-color-for-bg-val($bg-color-key) {
   @return var(overlay-get-color-for-bg-css-var-name($bg-color-key));
 }

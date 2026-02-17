@@ -1,6 +1,13 @@
 @use './bg-vars-private';
 @use 'sass:map';
 
+/**
+ * Validates that the provided color key exists in the bg colors map.
+ * Throws an error if the key is invalid.
+ *
+ * @param {string} $color-key - The color key to validate.
+ * @return {null} Always returns null if validation passes.
+ */
 @function bg-validate-color-key-exists($color-key) {
   @if not map.has-key(bg-vars-private.$bg-colors, $color-key) {
     @error 'Unexpected color key: "#{$color-key}"!';
@@ -9,12 +16,27 @@
   @return null;
 }
 
+/**
+ * Returns the CSS var name for the given color key.
+ *
+ * Don't use it to get the color value directly, use `bg-get-color-val` instead.
+ * This function is useful only if you need to override the CSS var (e.g. dark mode, etc).
+ *
+ * @param {string} $color-key - The color key to get the CSS var name for.
+ * @return {string} The CSS var name corresponding to the color key.
+ */
 @function bg-get-color-css-var-name($color-key) {
   $_: bg-validate-color-key-exists($color-key);
 
   @return --bg-color-#{$color-key};
 }
 
+/**
+ * Returns background color value for the given color key.
+ *
+ * @param {string} $color-key - The color key to get the value for.
+ * @return {string} The CSS var reference for the background color corresponding to the color key.
+ */
 @function bg-get-color-val($color-key) {
   @return var(bg-get-color-css-var-name($color-key));
 }

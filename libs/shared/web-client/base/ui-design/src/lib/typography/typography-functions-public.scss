@@ -2,6 +2,13 @@
 @use '../whitespace/whitespace-functions-public';
 @use 'sass:map';
 
+/**
+ * Validates that the provided text size key exists in the typography sizes map.
+ * Throws an error if the key is invalid.
+ *
+ * @param {string} $text-size-key - The text size key to validate.
+ * @return {null} Always returns null if validation passes.
+ */
 @function typography-validate-text-size-key-exists($text-size-key) {
   @if not map.has-key(typography-vars-private.$sizes, $text-size-key) {
     @error 'Unexpected text size key: "#{$text-size-key}"!';
@@ -10,12 +17,28 @@
   @return null;
 }
 
+/**
+ * Returns the CSS var name for the given text size key.
+ *
+ * Don't use it to get the text size value directly, use `typography-get-text-size-val` instead.
+ * This function is useful only if you need to override the CSS var (e.g. responsive typography, etc).
+ *
+ * @param {string} $text-size-key - The text size key to get the CSS var name for.
+ * @return {string} The CSS var name corresponding to the text size key.
+ */
 @function typography-get-text-size-responsive-css-var-name($text-size-key) {
   $_: typography-validate-text-size-key-exists($text-size-key);
 
   @return --text-size-responsive-#{$text-size-key};
 }
 
+/**
+ * Returns text size value for the given text size key and stability key.
+ *
+ * @param {string} $text-size-key - The text size key to get the value for.
+ * @param {string} $stability-key - The stability key (`static` or `responsive`).
+ * @return {string} The text size value corresponding to the provided keys.
+ */
 @function typography-get-text-size-val($text-size-key, $stability-key) {
   $_: typography-validate-text-size-key-exists($text-size-key);
 
@@ -34,10 +57,23 @@
   }
 }
 
+/**
+ * Returns text size utility class name for the given text size key and stability key.
+ *
+ * @param {string} $text-size-key - The text size key to get the utility class name for.
+ * @param {string} $stability-key - The stability key to get the utility class name for.
+ * @return {string} The utility class name corresponding to the provided keys.
+ */
 @function typography-get-text-size-util-class-name($text-size-key, $stability-key) {
   @return '.--text-size-#{$text-size-key}-#{$stability-key}';
 }
 
+/**
+ * Returns text size vertical margin value for the given text size key.
+ *
+ * @param {string} $text-size-key - The text size key to get the margin value for.
+ * @return {string} The vertical margin value corresponding to the text size key.
+ */
 @function typography-get-text-size-margin-y-val($text-size-key) {
   $_: typography-validate-text-size-key-exists($text-size-key);
 
@@ -48,6 +84,14 @@
   @return whitespace-functions-public.whitespace-get-size-val($margin-y-size-key);
 }
 
+/**
+ * Validates that the provided text color key exists for the given background color key.
+ * Throws an error if either key is invalid.
+ *
+ * @param {string} $bg-color-key - The background color key to validate.
+ * @param {string} $text-color-key - The text color key to validate.
+ * @return {null} Always returns null if validation passes.
+ */
 @function typography-validate-color-exists($bg-color-key, $text-color-key) {
   @if not map.has-key(typography-vars-private.$bg-colors-to-text-colors-map, $bg-color-key) {
     @error 'Unexpected background color key: "#{$bg-color-key}"!';
@@ -62,12 +106,29 @@
   @return null;
 }
 
+/**
+ * Returns the CSS var name for the given text color key and background color key.
+ *
+ * Don't use it to get the text color value directly, use `typography-get-text-color-val` instead.
+ * This function is useful only if you need to override the CSS var (e.g. dark mode, etc).
+ *
+ * @param {string} $text-color-key - The text color key to get the CSS var name for.
+ * @param {string} $bg-color-key - The background color key to get the CSS var name for.
+ * @return {string} The CSS var name corresponding to the provided keys.
+ */
 @function typography-get-text-color-css-var-name($text-color-key, $bg-color-key) {
   $_: typography-validate-color-exists($bg-color-key, $text-color-key);
 
   @return --text-color-#{$text-color-key}-for-bg-#{$bg-color-key};
 }
 
+/**
+ * Returns text color value for the given text color key and background color key.
+ *
+ * @param {string} $text-color-key - The text color key to get the value for.
+ * @param {string} $bg-color-key - The background color key to get the value for.
+ * @return {string} The text color value corresponding to the provided keys.
+ */
 @function typography-get-text-color-val($text-color-key, $bg-color-key) {
   $_: typography-validate-color-exists($bg-color-key, $text-color-key);
 
@@ -76,6 +137,12 @@
   @return map.get($text-colors-for-bg, $text-color-key);
 }
 
+/**
+ * Returns text color utility class name for the given text color key.
+ *
+ * @param {string} $text-color-key - The text color key to get the utility class name for.
+ * @return {string} The utility class name corresponding to the text color key.
+ */
 @function typography-get-text-color-util-class-name($text-color-key) {
   @return '.--text-color-#{$text-color-key}';
 }
