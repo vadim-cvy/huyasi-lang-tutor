@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { LogoTitleContent } from '../abstract/LogoTitleContent';
+import { ILogoTitleContentService } from './logo-title-content.service.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class LogoTitleContentService {
+export class LogoTitleContentService implements ILogoTitleContentService {
   private _contentNullable?: LogoTitleContent
 
   public get content(): LogoTitleContent {
