@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Sidebar } from './sidebar';
 import { provideRouter } from '@angular/router';
+import { NavPrimaryItemsService } from '../nav-primary/services/nav-primary-items.service';
+import { NavPrimaryItemsServiceStub } from '../nav-primary/services/nav-primary-items.service.stub';
 
 describe('Sidebar', () => {
   let component: Sidebar;
@@ -9,7 +11,10 @@ describe('Sidebar', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [Sidebar],
-      providers: [provideRouter([])],
+      providers: [
+        provideRouter([]),
+        { provide: NavPrimaryItemsService, useClass: NavPrimaryItemsServiceStub },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(Sidebar);

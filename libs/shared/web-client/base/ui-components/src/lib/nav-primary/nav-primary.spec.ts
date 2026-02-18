@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NavPrimary } from './nav-primary';
 import { provideRouter } from '@angular/router';
+import { NavPrimaryItemsService } from './services/nav-primary-items.service';
+import { NavPrimaryItemsServiceStub } from '../nav-primary/services/nav-primary-items.service.stub';
 
 describe('NavPrimary', () => {
   let component: NavPrimary;
@@ -9,7 +11,10 @@ describe('NavPrimary', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [NavPrimary],
-      providers: [provideRouter([])],
+      providers: [
+        provideRouter([]),
+        { provide: NavPrimaryItemsService, useClass: NavPrimaryItemsServiceStub },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(NavPrimary);
@@ -18,7 +23,7 @@ describe('NavPrimary', () => {
     fixture.componentRef.setInput('orientation', 'horizontal');
     fixture.componentRef.setInput('buttonsIconsPosition', 'left');
     fixture.componentRef.setInput('buttonsContentAlign', 'center');
-    fixture.componentRef.setInput('buttonsSize', 'normal');
+    fixture.componentRef.setInput('buttonsPaddingX', 'normal');
 
     await fixture.whenStable();
   });

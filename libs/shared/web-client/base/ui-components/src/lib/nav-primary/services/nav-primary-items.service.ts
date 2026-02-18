@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { NavPrimaryItem } from '../abstract/NavPrimaryItem';
+import { INavPrimaryItemsService } from './nav-primary-items.service.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class NavPrimaryItemsService {
+export class NavPrimaryItemsService implements INavPrimaryItemsService {
   private _itemsNullable?: NavPrimaryItem[]
 
   public get items(): NavPrimaryItem[] {
