@@ -2,6 +2,5 @@
 @use './border-functions-public';
 
 :root {
-  #{border-functions-public.border-get-color-css-var-name()}:
-    #{border-vars-private.$border-color};
+  #{border-functions-public.border-get-color-css-var-name()}: #{border-vars-private.$border-color};
 }

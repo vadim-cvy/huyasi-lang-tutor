@@ -1,1 +1,1 @@
-export * from './content-404'
+export * from './content-404';

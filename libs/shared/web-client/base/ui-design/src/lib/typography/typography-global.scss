@@ -24,15 +24,14 @@ a {
 
 // END: Base
 
-
-
 // START: Sizes
 
 :root {
   // Sets text size CSS vars
   @each $text-size-key, $text-size-data in typography-vars-private.$sizes {
-    $css-var-name:
-      typography-functions-public.typography-get-text-size-responsive-css-var-name($text-size-key);
+    $css-var-name: typography-functions-public.typography-get-text-size-responsive-css-var-name(
+      $text-size-key
+    );
 
     $text-size-responsive-vals: map.get(map.get($text-size-data, 'text-size-vals'), 'responsive');
 
@@ -47,11 +46,10 @@ a {
 // Sets text size util classes
 @each $text-size-key, $text-size-data in typography-vars-private.$sizes {
   @each $stability-key in map.keys(map.get($text-size-data, 'text-size-vals')) {
-    $text-size-util-class-name:
-      typography-functions-public.typography-get-text-size-util-class-name(
-        $text-size-key,
-        $stability-key,
-      );
+    $text-size-util-class-name: typography-functions-public.typography-get-text-size-util-class-name(
+      $text-size-key,
+      $stability-key
+    );
 
     #{$text-size-util-class-name} {
       font-size: typography-functions-public.typography-get-text-size-val(
@@ -86,17 +84,15 @@ p {
     $margin-y-size-key: map.get($text-size-data, 'margin-y-size-key');
 
     @each $stability-key in map.keys(map.get($text-size-data, 'text-size-vals')) {
-      $text-size-util-class-name:
-        typography-functions-public.typography-get-text-size-util-class-name(
-          $text-size-key,
-          $stability-key,
-        );
+      $text-size-util-class-name: typography-functions-public.typography-get-text-size-util-class-name(
+        $text-size-key,
+        $stability-key
+      );
 
-      $margin-y-val:
-        whitespace-functions-public.whitespace-get-size-val(
-          $margin-y-size-key,
-          $stability-key,
-        );
+      $margin-y-val: whitespace-functions-public.whitespace-get-size-val(
+        $margin-y-size-key,
+        $stability-key
+      );
 
       #{$text-size-util-class-name} &,
       &#{$text-size-util-class-name} {
@@ -108,19 +104,17 @@ p {
 
 // END: marginY
 
-
-
 // START: Colors
 
 :root {
   // Sets text color variables
-  @each $bg-color-key, $text-colors-for-bg in typography-vars-private.$bg-colors-to-text-colors-map {
+  @each $bg-color-key, $text-colors-for-bg in typography-vars-private.$bg-colors-to-text-colors-map
+  {
     @each $text-color-key, $text-color-val in $text-colors-for-bg {
-      $css-var-name:
-        typography-functions-public.typography-get-text-color-css-var-name(
-          $text-color-key,
-          $bg-color-key,
-        );
+      $css-var-name: typography-functions-public.typography-get-text-color-css-var-name(
+        $text-color-key,
+        $bg-color-key
+      );
 
       #{$css-var-name}: $text-color-val;
     }
@@ -134,17 +128,18 @@ p {
       @if $text-color-key == 'base' {
         color: typography-functions-public.typography-get-text-color-val(
           $text-color-key,
-          $bg-color-key,
+          $bg-color-key
         );
       }
 
-      $text-color-util-class-name:
-        typography-functions-public.typography-get-text-color-util-class-name($text-color-key);
+      $text-color-util-class-name: typography-functions-public.typography-get-text-color-util-class-name(
+        $text-color-key
+      );
 
       #{$text-color-util-class-name} {
         color: typography-functions-public.typography-get-text-color-val(
           $text-color-key,
-          $bg-color-key,
+          $bg-color-key
         );
       }
     }

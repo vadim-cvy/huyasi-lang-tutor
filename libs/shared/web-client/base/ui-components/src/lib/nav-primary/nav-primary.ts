@@ -1,10 +1,11 @@
 import { Component, inject, input } from '@angular/core';
-import { Button } from '../button/button';
-import { ButtonIconPosition } from '../button/abstract/ButtonIconPosition';
-import { ButtonContentAlign } from '../button/abstract/ButtonContentAlign';
 import { WhitespaceSize } from '@huyasi/shared-web-client-base-ui-design';
-import { NavPrimaryItemsService } from './services/nav-primary-items.service';
+
+import { ButtonContentAlign } from '../button/abstract/ButtonContentAlign';
+import { ButtonIconPosition } from '../button/abstract/ButtonIconPosition';
+import { Button } from '../button/button';
 import { NavPrimaryItem } from './abstract/NavPrimaryItem';
+import { NavPrimaryItemsService } from './services/nav-primary-items.service';
 
 @Component({
   selector: 'shared-base-nav-primary',
@@ -13,10 +14,10 @@ import { NavPrimaryItem } from './abstract/NavPrimaryItem';
   styleUrl: './nav-primary.scss',
 })
 export class NavPrimary {
-  private readonly navPrimaryItemsService = inject(NavPrimaryItemsService)
+  private readonly navPrimaryItemsService = inject(NavPrimaryItemsService);
 
   public get navItems(): NavPrimaryItem[] {
-    return this.navPrimaryItemsService.items
+    return this.navPrimaryItemsService.items;
   }
 
   public readonly orientation = input.required<'horizontal' | 'vertical'>();

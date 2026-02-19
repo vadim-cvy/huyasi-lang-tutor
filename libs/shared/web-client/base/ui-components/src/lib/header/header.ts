@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 import { LogoTitle } from '../logo-title/logo-title';
 
 @Component({

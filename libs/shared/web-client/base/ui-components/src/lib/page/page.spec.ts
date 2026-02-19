@@ -1,10 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Page } from './page';
 import { provideRouter } from '@angular/router';
+
 import { LogoTitleContentService } from '../logo-title/services/logo-title-content.service';
 import { LogoTitleContentServiceStub } from '../logo-title/services/logo-title-content.service.stub';
 import { NavPrimaryItemsService } from '../nav-primary/services/nav-primary-items.service';
 import { NavPrimaryItemsServiceStub } from '../nav-primary/services/nav-primary-items.service.stub';
+import { Page } from './page';
 
 describe('Page', () => {
   let component: Page;

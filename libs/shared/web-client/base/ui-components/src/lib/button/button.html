@@ -1,6 +1,6 @@
 <ng-template #buttonContent>
   @if (icon(); as _icon) {
-    <shared-base-icon [name]="_icon.name" />
+  <shared-base-icon [name]="_icon.name" />
   }
 
   <span>
@@ -9,16 +9,15 @@
 </ng-template>
 
 @if (link(); as link) {
-  <a
-    [class]="cssClasses()"
-    [routerLink]="link.url"
-    [routerLinkActive]="link.isRouterLinkActiveSync ? '--is-overlay-active' : ''"
-  >
-    <ng-container *ngTemplateOutlet="buttonContent"></ng-container>
-  </a>
-}
-@else {
-  <button type="button" [class]="cssClasses()">
-    <ng-container *ngTemplateOutlet="buttonContent"></ng-container>
-  </button>
+<a
+  [class]="cssClasses()"
+  [routerLink]="link.url"
+  [routerLinkActive]="link.isRouterLinkActiveSync ? '--is-overlay-active' : ''"
+>
+  <ng-container *ngTemplateOutlet="buttonContent"></ng-container>
+</a>
+} @else {
+<button type="button" [class]="cssClasses()">
+  <ng-container *ngTemplateOutlet="buttonContent"></ng-container>
+</button>
 }

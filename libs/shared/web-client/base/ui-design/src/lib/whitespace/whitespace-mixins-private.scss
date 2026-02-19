@@ -13,11 +13,7 @@
 }
 
 // Generates global selectors for a given CSS property (e.g., padding, margin, gap)
-@mixin global-selectors-for-prop(
-  $prop-name-full,
-  $prop-name-abbr,
-  $has-sides
-) {
+@mixin global-selectors-for-prop($prop-name-full, $prop-name-abbr, $has-sides) {
   $selector-prefix: '.--#{$prop-name-abbr}';
 
   @each $size-key, $size-val in whitespace-vars-private.$sizes {

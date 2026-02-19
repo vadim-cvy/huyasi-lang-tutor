@@ -11,41 +11,41 @@ $sizes: (
     responsive: (
       screen-sm: $_size-xs,
       screen-md-up: $_size-xs,
-    )
+    ),
   ),
   sm: (
     static: $_size-sm,
     responsive: (
       screen-sm: $_size-xs,
       screen-md-up: $_size-sm,
-    )
+    ),
   ),
   md: (
     static: $_size-md,
     responsive: (
       screen-sm: $_size-sm,
       screen-md-up: $_size-md,
-    )
+    ),
   ),
   lg: (
     static: $_size-lg,
     responsive: (
       screen-sm: $_size-md,
       screen-md-up: $_size-lg,
-    )
+    ),
   ),
   xl: (
     static: $_size-xl,
     responsive: (
       screen-sm: $_size-lg,
       screen-md-up: $_size-xl,
-    )
+    ),
   ),
   2xl: (
     static: $_size-2xl,
     responsive: (
       screen-sm: $_size-xl,
       screen-md-up: $_size-2xl,
-    )
+    ),
   ),
 );

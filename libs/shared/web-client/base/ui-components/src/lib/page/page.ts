@@ -1,10 +1,11 @@
 import { Component, computed, DestroyRef, inject, input, OnInit, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { BreakpointEnum } from '@huyasi/shared-web-client-base-ui-design';
 import { auditTime, fromEvent, map, startWith } from 'rxjs';
+
+import { Footer } from '../footer/footer';
 import { Header } from '../header/header';
 import { Sidebar } from '../sidebar/sidebar';
-import { Footer } from '../footer/footer';
-import { BreakpointEnum } from '@huyasi/shared-web-client-base-ui-design';
 
 @Component({
   selector: 'shared-base-page',
@@ -20,17 +21,15 @@ export class Page implements OnInit {
   private readonly isSidebarBreakpointMatch = signal<boolean>(true);
   private readonly isFooterBreakpointMatch = signal<boolean>(true);
 
-  public readonly isHeaderVisible = computed<boolean>(() => !this.isMinimalistic())
+  public readonly isHeaderVisible = computed<boolean>(() => !this.isMinimalistic());
 
-  public readonly isSidebarVisible = computed<boolean>(() =>
-    this.isSidebarBreakpointMatch() &&
-    !this.isMinimalistic()
-  )
+  public readonly isSidebarVisible = computed<boolean>(
+    () => this.isSidebarBreakpointMatch() && !this.isMinimalistic(),
+  );
 
-  public readonly isFooterVisible = computed<boolean>(() =>
-    this.isFooterBreakpointMatch() &&
-    !this.isMinimalistic()
-  )
+  public readonly isFooterVisible = computed<boolean>(
+    () => this.isFooterBreakpointMatch() && !this.isMinimalistic(),
+  );
 
   public ngOnInit(): void {
     this.syncSidebarAndFooterVisibility();

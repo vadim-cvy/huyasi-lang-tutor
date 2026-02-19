@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { LogoTitle } from './logo-title';
 import { provideRouter } from '@angular/router';
+
+import { LogoTitle } from './logo-title';
 import { LogoTitleContentService } from './services/logo-title-content.service';
 import { LogoTitleContentServiceStub } from './services/logo-title-content.service.stub';
 

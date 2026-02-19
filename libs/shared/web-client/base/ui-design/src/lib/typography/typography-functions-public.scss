@@ -46,13 +46,11 @@
 
   @if $stability-key == 'static' {
     @return map.get($text-size-data, 'static');
-  }
-  @else if $stability-key == 'responsive' {
+  } @else if $stability-key == 'responsive' {
     $css-var-name: typography-get-text-size-responsive-css-var-name($text-size-key);
 
     @return var($css-var-name);
-  }
-  @else {
+  } @else {
     @error 'Unexpected stability key: "#{$stability-key}"!';
   }
 }
@@ -97,7 +95,10 @@
     @error 'Unexpected background color key: "#{$bg-color-key}"!';
   }
 
-  $text-colors-for-bg: map.get(typography-vars-private.$bg-colors-to-text-colors-map, $bg-color-key);
+  $text-colors-for-bg: map.get(
+    typography-vars-private.$bg-colors-to-text-colors-map,
+    $bg-color-key
+  );
 
   @if not map.has-key($text-colors-for-bg, $text-color-key) {
     @error 'Unexpected text color key: "#{$text-color-key}" for bg color key: "#{$bg-color-key}"!';
@@ -132,7 +133,10 @@
 @function typography-get-text-color-val($text-color-key, $bg-color-key) {
   $_: typography-validate-color-exists($bg-color-key, $text-color-key);
 
-  $text-colors-for-bg: map.get(typography-vars-private.$bg-colors-to-text-colors-map, $bg-color-key);
+  $text-colors-for-bg: map.get(
+    typography-vars-private.$bg-colors-to-text-colors-map,
+    $bg-color-key
+  );
 
   @return map.get($text-colors-for-bg, $text-color-key);
 }

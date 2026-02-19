@@ -1,8 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NavPrimary } from './nav-primary';
 import { provideRouter } from '@angular/router';
-import { NavPrimaryItemsService } from './services/nav-primary-items.service';
+
 import { NavPrimaryItemsServiceStub } from '../nav-primary/services/nav-primary-items.service.stub';
+import { NavPrimary } from './nav-primary';
+import { NavPrimaryItemsService } from './services/nav-primary-items.service';
 
 describe('NavPrimary', () => {
   let component: NavPrimary;

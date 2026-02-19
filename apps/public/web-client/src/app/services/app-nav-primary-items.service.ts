@@ -5,7 +5,7 @@ import { NavPrimaryItemsService } from '@huyasi/shared-web-client-base-ui-compon
   providedIn: 'root',
 })
 export class AppNavPrimaryItemsService {
-  private readonly navPrimaryItemsService = inject(NavPrimaryItemsService)
+  private readonly navPrimaryItemsService = inject(NavPrimaryItemsService);
 
   public setupItems(): void {
     this.navPrimaryItemsService.items = [
@@ -13,6 +13,6 @@ export class AppNavPrimaryItemsService {
       { label: 'Games', route: '/games', iconName: 'gamepad' },
       { label: 'Settings', route: '/settings', iconName: 'cog' },
       { label: 'Profile', route: '/profile', iconName: 'user' },
-    ]
+    ];
   }
 }

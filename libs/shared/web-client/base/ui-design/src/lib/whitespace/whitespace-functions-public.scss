@@ -15,14 +15,14 @@
   @if $stability-key == 'static' {
     $size-data: map.get(whitespace-vars-private.$sizes, $size-key);
 
-    @return map.get($size-data,'static');
-  }
-  @else if $stability-key == 'responsive' {
-    $css-var-name: whitespace-functions-private.whitespace-get-size-responsive-css-var-name($size-key);
+    @return map.get($size-data, 'static');
+  } @else if $stability-key == 'responsive' {
+    $css-var-name: whitespace-functions-private.whitespace-get-size-responsive-css-var-name(
+      $size-key
+    );
 
     @return var($css-var-name);
-  }
-  @else {
+  } @else {
     @error 'Unexpected stability: "#{$stability-key}"!';
   }
 }

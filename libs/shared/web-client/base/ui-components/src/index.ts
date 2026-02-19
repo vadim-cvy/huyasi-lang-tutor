@@ -1,13 +1,10 @@
-export * from './lib/page/page';
-
-export * from './lib/icon';
 export * from './lib/button';
+export * from './lib/content-404';
+export * from './lib/footer';
+export * from './lib/header';
+export * from './lib/icon';
 export * from './lib/logo-title';
 export * from './lib/nav-primary';
-export * from './lib/content-404';
-
-export * from './lib/header';
-export * from './lib/sidebar';
-export * from './lib/footer';
-
 export * from './lib/page';
+export * from './lib/page/page';
+export * from './lib/sidebar';

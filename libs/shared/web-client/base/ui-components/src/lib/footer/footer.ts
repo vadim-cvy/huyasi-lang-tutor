@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 import { NavPrimary } from '../nav-primary/nav-primary';
 
 @Component({

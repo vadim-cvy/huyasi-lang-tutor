@@ -8,5 +8,5 @@ export class LogoTitleContentServiceStub implements ILogoTitleContentService {
       line1: '',
       line2: '',
     },
-  }
+  };
 }

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Content404 } from './content-404';
 import { provideRouter } from '@angular/router';
+
+import { Content404 } from './content-404';
 
 describe('Content404', () => {
   let component: Content404;

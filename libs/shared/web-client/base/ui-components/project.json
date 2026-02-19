@@ -4,10 +4,7 @@
   "sourceRoot": "libs/shared/web-client/base/ui-components/src",
   "prefix": "shared-base",
   "projectType": "library",
-  "tags": [
-    "scope:shared-web-client-base",
-    "type:web-client-lib-ui-components"
-  ],
+  "tags": ["scope:shared-web-client-base", "type:web-client-lib-ui-components"],
   "targets": {
     "test": {
       "executor": "@nx/vitest:test",

@@ -1,9 +1,10 @@
 import { Component, computed, signal } from '@angular/core';
-import { NavPrimary } from '../nav-primary/nav-primary';
-import { Button } from '../button/button';
-import { ButtonIconPosition } from '../button/abstract/ButtonIconPosition';
-import { ButtonContentAlign } from '../button/abstract/ButtonContentAlign';
 import { WhitespaceSize } from '@huyasi/shared-web-client-base-ui-design';
+
+import { ButtonContentAlign } from '../button/abstract/ButtonContentAlign';
+import { ButtonIconPosition } from '../button/abstract/ButtonIconPosition';
+import { Button } from '../button/button';
+import { NavPrimary } from '../nav-primary/nav-primary';
 
 @Component({
   selector: 'shared-base-sidebar',

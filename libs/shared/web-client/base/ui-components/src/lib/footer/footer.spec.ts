@@ -1,8 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Footer } from './footer';
 import { provideRouter } from '@angular/router';
+
 import { NavPrimaryItemsService } from '../nav-primary/services/nav-primary-items.service';
 import { NavPrimaryItemsServiceStub } from '../nav-primary/services/nav-primary-items.service.stub';
+import { Footer } from './footer';
 
 describe('Footer', () => {
   let component: Footer;
