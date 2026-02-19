@@ -1,6 +1,7 @@
 import nx from '@nx/eslint-plugin';
 import unusedImports from 'eslint-plugin-unused-imports';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
+import eslintConfigPrettier from 'eslint-config-prettier/flat';
 
 export default [
   ...nx.configs['flat/base'],
@@ -161,4 +162,5 @@ export default [
     // Override or add rules here
     rules: {},
   },
+  eslintConfigPrettier,
 ];
