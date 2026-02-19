@@ -70,16 +70,17 @@
  * Returns text size vertical margin value for the given text size key.
  *
  * @param {string} $text-size-key - The text size key to get the margin value for.
- * @return {string} The vertical margin value corresponding to the text size key.
+ * @param {string} $stability-key - The stability key to get the margin value for.
+ * @return {string} The vertical margin value corresponding to the text size key and stability key.
  */
-@function typography-get-text-size-margin-y-val($text-size-key) {
+@function typography-get-text-size-margin-y-val($text-size-key, $stability-key) {
   $_: typography-validate-text-size-key-exists($text-size-key);
 
   $text-size-data: map.get(typography-vars-private.$sizes, $text-size-key);
 
   $margin-y-size-key: map.get($text-size-data, 'margin-y-size-key');
 
-  @return whitespace-functions-public.whitespace-get-size-val($margin-y-size-key);
+  @return whitespace-functions-public.whitespace-get-size-val($margin-y-size-key, $stability-key);
 }
 
 /**
