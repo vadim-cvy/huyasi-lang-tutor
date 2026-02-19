@@ -5,7 +5,6 @@ import {
   FontSize,
   WhitespaceSize,
   WhitespaceSizeEnum,
-  WhitespaceStability,
 } from '@huyasi/shared-web-client-base-ui-design';
 
 import { Icon } from '../icon/icon';
@@ -38,8 +37,6 @@ export class Button {
   public readonly width = input<ButtonWidth>('fitContent');
 
   public readonly contentAlign = input<ButtonContentAlign>('center');
-
-  public readonly paddingStability = input<WhitespaceStability>('responsive');
 
   public readonly paddingX = input<WhitespaceSize | undefined>();
   public readonly paddingY = input<WhitespaceSize | undefined>();
