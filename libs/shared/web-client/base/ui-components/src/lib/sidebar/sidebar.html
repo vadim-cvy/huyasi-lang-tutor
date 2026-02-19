@@ -1,9 +1,10 @@
 <div
   [class]="[
-  'sidebar',
-  isExpanded() ? '--is-expanded' : '',
-  '--bg-accent'
-]"
+    'sidebar',
+    isExpanded() ? '--is-expanded' : '',
+    '--bg-accent'
+  ]"
+  aria-label="Sidebar"
 >
   <shared-base-nav-primary
     [buttonsIconsPosition]="buttonsIconsPosition()"
