@@ -41,7 +41,7 @@ export class Button {
   public readonly paddingX = input<WhitespaceSize | undefined>();
   public readonly paddingY = input<WhitespaceSize | undefined>();
 
-  public readonly paddingXFinal = computed<WhitespaceSize>((): WhitespaceSize => {
+  private readonly paddingXFinal = computed<WhitespaceSize>((): WhitespaceSize => {
     const paddingXCustom = this.paddingX();
 
     if (paddingXCustom) {
@@ -63,7 +63,7 @@ export class Button {
     return 'lg';
   });
 
-  public readonly paddingYFinal = computed<WhitespaceSize>((): WhitespaceSize => {
+  private readonly paddingYFinal = computed<WhitespaceSize>((): WhitespaceSize => {
     const paddingYCustom = this.paddingY();
 
     if (paddingYCustom) {
@@ -83,13 +83,13 @@ export class Button {
 
   public readonly fontSize = input<FontSize>();
 
-  public readonly fontSizeFinal = computed<FontSize>((): FontSize => {
+  private readonly fontSizeFinal = computed<FontSize>((): FontSize => {
     const fontSizeCustom = this.fontSize();
 
     return fontSizeCustom || this.paddingYFinal();
   });
 
-  public readonly marginY = computed<WhitespaceSize>(() => {
+  private readonly marginY = computed<WhitespaceSize>(() => {
     const whitespace3LvlHigherThanPaddingY: WhitespaceSize | undefined = WhitespaceSizeEnum[
       WhitespaceSizeEnum[this.paddingYFinal()] + 3
     ] as WhitespaceSize | undefined;
