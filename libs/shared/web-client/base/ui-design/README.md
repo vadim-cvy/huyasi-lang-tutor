@@ -112,7 +112,7 @@ You **must** include `src/global.scss` in your **app** for utility classes, mixi
   - `<stabilityKey>`: `static`, `responsive`
   - Sets font size by key and stability mode.
   - Static mode sizes are fixed and do not change across breakpoints, while responsive mode sizes are designed to scale across different screen sizes automatically.
-  - **Note:** this utility class sets not only font size, but also line height and vertical margins to ensure standardized text spacing.
+  - **Note:** this utility class sets not only font size, but also vertical margins to ensure standardized text spacing.
 - `.--text-color-<textColorKey>`
   - `<textColorKey>`: `base`, `accent`
   - Sets text color inside `.--bg-<bgColorKey>` scope.
