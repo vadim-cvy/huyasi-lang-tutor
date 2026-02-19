@@ -1,4 +1,6 @@
 import nx from '@nx/eslint-plugin';
+import unusedImports from 'eslint-plugin-unused-imports';
+import simpleImportSort from 'eslint-plugin-simple-import-sort';
 
 export default [
   ...nx.configs['flat/base'],
@@ -9,6 +11,10 @@ export default [
   },
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+    plugins: {
+      'unused-imports': unusedImports,
+      'simple-import-sort': simpleImportSort,
+    },
     rules: {
       '@nx/enforce-module-boundaries': [
         'error',
@@ -26,7 +32,6 @@ export default [
               ],
             },
 
-
             {
               sourceTag: 'scope:shared-web-client-base',
               onlyDependOnLibsWithTags: ['scope:shared-web-client-base'],
@@ -36,7 +41,6 @@ export default [
               onlyDependOnLibsWithTags: ['scope:shared-service-global'],
             },
 
-
             {
               sourceTag: 'type:web-client-app',
               onlyDependOnLibsWithTags: ['type:web-client-lib-*'],
@@ -45,7 +49,6 @@ export default [
               sourceTag: 'type:service-app',
               onlyDependOnLibsWithTags: ['type:service-lib-*'],
             },
-
 
             {
               sourceTag: 'type:web-client-lib-utils',
@@ -92,7 +95,6 @@ export default [
               ],
             },
 
-
             /**
              * `type:service-lib-...` are organized based on the Clean Architecture
              * pattern.
@@ -124,6 +126,25 @@ export default [
           ],
         },
       ],
+      'simple-import-sort/imports': 'error',
+      'simple-import-sort/exports': 'error',
+      'unused-imports/no-unused-imports': 'error',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_', ignoreRestSiblings: true },
+      ],
+      semi: ['error', 'always'],
+      quotes: ['error', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
+      eqeqeq: ['error', 'smart'],
+      'prefer-const': 'error',
+      'no-console': ['warn', { allow: ['warn', 'error'] }],
+      'object-curly-spacing': ['error', 'always'],
+      'array-bracket-spacing': ['error', 'never'],
+      'comma-spacing': ['error', { before: false, after: true }],
+      'key-spacing': ['error', { beforeColon: false, afterColon: true }],
+      'space-in-parens': ['error', 'never'],
+      'space-before-blocks': ['error', 'always'],
+      'keyword-spacing': ['error', { before: true, after: true }],
     },
   },
   {
