@@ -25,11 +25,6 @@
           {
             "glob": "**/*",
             "input": "apps/public/web-client/public"
-          },
-          {
-            "glob": "**/*",
-            "input": "libs/web-public/base-components/src/lib/logo-title/assets",
-            "output": "assets/base-components/logo-title"
           }
         ],
         "styles": ["apps/public/web-client/src/styles.scss"]
