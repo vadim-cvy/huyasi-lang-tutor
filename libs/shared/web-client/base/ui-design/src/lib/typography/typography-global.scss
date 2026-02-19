@@ -1,6 +1,5 @@
 @use './typography-vars-private';
 @use './typography-functions-public';
-@use '../whitespace/whitespace-functions-public';
 @use '../whitespace/whitespace-mixins-public';
 @use '../bg/bg-functions-public';
 @use '../breakpoints/breakpoints-mixins-public';
@@ -81,16 +80,14 @@ p {
   }
 
   @each $text-size-key, $text-size-data in typography-vars-private.$sizes {
-    $margin-y-size-key: map.get($text-size-data, 'margin-y-size-key');
-
     @each $stability-key in map.keys(map.get($text-size-data, 'text-size-vals')) {
       $text-size-util-class-name: typography-functions-public.typography-get-text-size-util-class-name(
         $text-size-key,
         $stability-key
       );
 
-      $margin-y-val: whitespace-functions-public.whitespace-get-size-val(
-        $margin-y-size-key,
+      $margin-y-val: typography-functions-public.typography-get-text-size-margin-y-val(
+        $text-size-key,
         $stability-key
       );
 
