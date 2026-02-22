@@ -1,9 +1,5 @@
 # Huyasi Lang Tutor
 
-## TODO: Finish your remote caching setup
-
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/W4ZILrTb9y)
-
 ## 1. Tools
 
 ### 1.1. NX
