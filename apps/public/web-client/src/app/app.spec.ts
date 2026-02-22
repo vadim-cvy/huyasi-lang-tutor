@@ -11,7 +11,7 @@ describe('App', () => {
     }).compileComponents();
   });
 
-  it('should render', async () => {
+  it('should render', () => {
     const fixture = TestBed.createComponent(App);
     const component = fixture.componentInstance;
     expect(component).toBeTruthy();

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { NavPrimaryItem } from '../abstract/NavPrimaryItem';
-import { INavPrimaryItemsService } from './nav-primary-items.service.interface';
+import type { NavPrimaryItem } from '../abstract/NavPrimaryItem';
+import type { INavPrimaryItemsService } from './nav-primary-items.service.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -17,11 +17,11 @@ export class NavPrimaryItemsService implements INavPrimaryItemsService {
     return this._itemsNullable;
   }
 
-  public set items(val: NavPrimaryItem[]) {
+  public set items(val: readonly Readonly<NavPrimaryItem>[]) {
     if (this._itemsNullable) {
       throw new Error('Items are set already!');
     }
 
-    this._itemsNullable = val;
+    this._itemsNullable = [...val];
   }
 }

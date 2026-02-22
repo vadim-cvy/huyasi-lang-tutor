@@ -1,3 +1,3 @@
-import { FontSizeEnum } from '../enums/FontSizeEnum';
+import type { fontSizes } from '../data/fontSizes';
 
-export type FontSize = keyof typeof FontSizeEnum;
+export type FontSize = (typeof fontSizes)[number];

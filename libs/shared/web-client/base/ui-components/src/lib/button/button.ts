@@ -1,17 +1,14 @@
 import { NgTemplateOutlet } from '@angular/common';
 import { Component, computed, input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import {
-  FontSize,
-  WhitespaceSize,
-  WhitespaceSizeEnum,
-} from '@huyasi/shared-web-client-base-ui-design';
+import type { FontSize, WhitespaceSize } from '@huyasi/shared-web-client-base-ui-design';
+import { whitespaceUtils } from '@huyasi/shared-web-client-base-ui-design';
 
 import { Icon } from '../icon/icon';
-import { ButtonBg } from './abstract/ButtonBg';
-import { ButtonContentAlign } from './abstract/ButtonContentAlign';
-import { ButtonIconPosition } from './abstract/ButtonIconPosition';
-import { ButtonWidth } from './abstract/ButtonWidth';
+import type { ButtonBg } from './abstract/ButtonBg';
+import type { ButtonContentAlign } from './abstract/ButtonContentAlign';
+import type { ButtonIconPosition } from './abstract/ButtonIconPosition';
+import type { ButtonWidth } from './abstract/ButtonWidth';
 
 @Component({
   selector: 'shared-base-button',
@@ -51,13 +48,7 @@ export class Button {
     const paddingYCustom = this.paddingY();
 
     if (paddingYCustom) {
-      const whitespace1LvlHigherThanPaddingYCustom: WhitespaceSize | undefined = WhitespaceSizeEnum[
-        WhitespaceSizeEnum[paddingYCustom] + 1
-      ] as WhitespaceSize | undefined;
-
-      return whitespace1LvlHigherThanPaddingYCustom
-        ? whitespace1LvlHigherThanPaddingYCustom
-        : paddingYCustom;
+      return whitespaceUtils.getSizeGreaterOrMax(paddingYCustom, 1);
     }
 
     return 'lg';
@@ -72,13 +63,7 @@ export class Button {
 
     const paddingXFinal = this.paddingXFinal();
 
-    const whitespace1LvlLowerThanPaddingXFinal: WhitespaceSize | undefined = WhitespaceSizeEnum[
-      WhitespaceSizeEnum[paddingXFinal] - 1
-    ] as WhitespaceSize | undefined;
-
-    return whitespace1LvlLowerThanPaddingXFinal
-      ? whitespace1LvlLowerThanPaddingXFinal
-      : paddingXFinal;
+    return whitespaceUtils.getSizeLessOrMin(paddingXFinal, 1);
   });
 
   public readonly fontSize = input<FontSize>();
@@ -90,11 +75,9 @@ export class Button {
   });
 
   private readonly marginY = computed<WhitespaceSize>(() => {
-    const whitespace3LvlHigherThanPaddingY: WhitespaceSize | undefined = WhitespaceSizeEnum[
-      WhitespaceSizeEnum[this.paddingYFinal()] + 3
-    ] as WhitespaceSize | undefined;
+    const stepsBack = 3;
 
-    return whitespace3LvlHigherThanPaddingY ? whitespace3LvlHigherThanPaddingY : '2xl';
+    return whitespaceUtils.getSizeLessOrMin(this.paddingYFinal(), stepsBack);
   });
 
   public readonly cssClasses = computed<string[]>(() => {
@@ -113,7 +96,7 @@ export class Button {
       `--has-overlay-before`,
       `--width-${width}`,
       `--content-align-${contentAlign}`,
-      icon ? `--icon-position-${icon?.position}` : '',
+      icon ? `--icon-position-${icon.position}` : '',
       `--g-${icon?.position === 'top' ? 'xs' : 'md'}-responsive`,
       `--my-${marginY}-responsive`,
       `--px-${paddingXFinal}-responsive`,

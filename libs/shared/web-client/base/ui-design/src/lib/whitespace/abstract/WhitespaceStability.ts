@@ -1,3 +1,3 @@
-import { WhitespaceStabilityEnum } from '../enums/WhitespaceStabilityEnum';
+import type { whitespaceStabilities } from '../data/whitespaceStabilities';
 
-export type WhitespaceStability = keyof typeof WhitespaceStabilityEnum;
+export type WhitespaceStability = (typeof whitespaceStabilities)[number];

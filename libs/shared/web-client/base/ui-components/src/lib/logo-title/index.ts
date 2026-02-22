@@ -1,4 +1,4 @@
-export * from './abstract/LogoTitleContent';
+export type * from './abstract/LogoTitleContent';
 export * from './services/logo-title-content.service';
 /**
  * Add component export if you REALLY NEED it here (and remove this comment).

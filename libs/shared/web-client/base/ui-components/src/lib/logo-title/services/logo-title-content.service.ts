@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { LogoTitleContent } from '../abstract/LogoTitleContent';
-import { ILogoTitleContentService } from './logo-title-content.service.interface';
+import type { LogoTitleContent } from '../abstract/LogoTitleContent';
+import type { ILogoTitleContentService } from './logo-title-content.service.interface';
 
 @Injectable({
   providedIn: 'root',

@@ -1,3 +1,3 @@
-import { BgColorEnum } from '../enums/BgColorEnum';
+import type { bgColors } from '../data/bgColors';
 
-export type BgColor = keyof typeof BgColorEnum;
+export type BgColor = (typeof bgColors)[number];

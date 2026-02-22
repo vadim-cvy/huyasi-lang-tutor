@@ -1,8 +1,8 @@
 import { Component, computed, signal } from '@angular/core';
-import { WhitespaceSize } from '@huyasi/shared-web-client-base-ui-design';
+import type { WhitespaceSize } from '@huyasi/shared-web-client-base-ui-design';
 
-import { ButtonContentAlign } from '../button/abstract/ButtonContentAlign';
-import { ButtonIconPosition } from '../button/abstract/ButtonIconPosition';
+import type { ButtonContentAlign } from '../button/abstract/ButtonContentAlign';
+import type { ButtonIconPosition } from '../button/abstract/ButtonIconPosition';
 import { Button } from '../button/button';
 import { NavPrimary } from '../nav-primary/nav-primary';
 

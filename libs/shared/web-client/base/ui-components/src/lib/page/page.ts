@@ -1,6 +1,7 @@
-import { Component, computed, DestroyRef, inject, input, OnInit, signal } from '@angular/core';
+import type { OnInit } from '@angular/core';
+import { Component, computed, DestroyRef, inject, input, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { BreakpointEnum } from '@huyasi/shared-web-client-base-ui-design';
+import { breakpoints } from '@huyasi/shared-web-client-base-ui-design';
 import { auditTime, fromEvent, map, startWith } from 'rxjs';
 
 import { Footer } from '../footer/footer';
@@ -36,15 +37,17 @@ export class Page implements OnInit {
   }
 
   private syncSidebarAndFooterVisibility(): void {
+    const auditTimeMs = 100;
+
     const screenResize$ = fromEvent(window, 'resize').pipe(
-      auditTime(100),
+      auditTime(auditTimeMs),
       map(() => window.innerWidth),
       startWith(window.innerWidth),
       takeUntilDestroyed(this.destroyRef),
     );
 
     screenResize$.subscribe((widthPx) => {
-      this.isFooterBreakpointMatch.set(widthPx <= BreakpointEnum.md);
+      this.isFooterBreakpointMatch.set(widthPx <= breakpoints.md);
       this.isSidebarBreakpointMatch.set(!this.isFooterBreakpointMatch());
     });
   }

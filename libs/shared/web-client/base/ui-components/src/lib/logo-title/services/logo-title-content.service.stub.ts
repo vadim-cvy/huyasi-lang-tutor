@@ -1,5 +1,5 @@
-import { LogoTitleContent } from '../abstract/LogoTitleContent';
-import { ILogoTitleContentService } from './logo-title-content.service.interface';
+import type { LogoTitleContent } from '../abstract/LogoTitleContent';
+import type { ILogoTitleContentService } from './logo-title-content.service.interface';
 
 export class LogoTitleContentServiceStub implements ILogoTitleContentService {
   public content: LogoTitleContent = {

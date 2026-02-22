@@ -1,3 +1,3 @@
-import { WhitespaceSizeEnum } from '../enums/WhitespaceSizeEnum';
+import type { whitespaceSizes } from '../data/whitespaceSizes';
 
-export type WhitespaceSize = keyof typeof WhitespaceSizeEnum;
+export type WhitespaceSize = (typeof whitespaceSizes)[number];

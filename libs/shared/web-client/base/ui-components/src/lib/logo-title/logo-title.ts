@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import { LogoTitleContent } from './abstract/LogoTitleContent';
+import type { LogoTitleContent } from './abstract/LogoTitleContent';
 import { LogoTitleContentService } from './services/logo-title-content.service';
 
 @Component({

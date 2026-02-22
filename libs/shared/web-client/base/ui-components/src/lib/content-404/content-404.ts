@@ -1,4 +1,5 @@
-import { Component, OnInit, signal } from '@angular/core';
+import type { OnInit } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 import { Button } from '../button';
 
@@ -15,17 +16,17 @@ export class Content404 implements OnInit {
   } | null>(null);
 
   public ngOnInit(): void {
-    this.track();
+    Content404.track();
     this.setupButton();
   }
 
-  private track(): void {
-    // TODO: check if this will be caught by monitoring tools
+  private static track(): void {
+    // TODO: check if this can be caught by monitoring tools, and if not - add some custom tracking for it
     console.error('404: page not found');
   }
 
   private setupButton(): void {
-    // TODO: change url to prev page (if user has some other pages in the history) + change label to "back"
+    // FIXME: change url to prev page (if user has some other pages in the history) + change label to "back"
     this.buttonData.set({ url: '/', label: 'Back to Home' });
   }
 }

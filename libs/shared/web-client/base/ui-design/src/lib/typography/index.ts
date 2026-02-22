@@ -1,2 +1,2 @@
-export * from './abstract/FontSize';
-export * from './enums/FontSizeEnum';
+export type * from './abstract/FontSize';
+export * from './data/fontSizes';

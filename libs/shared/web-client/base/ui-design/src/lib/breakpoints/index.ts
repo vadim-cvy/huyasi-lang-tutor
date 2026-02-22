@@ -1,1 +1,1 @@
-export * from './enums/BreakpointEnum';
+export * from './data/breakpoints';

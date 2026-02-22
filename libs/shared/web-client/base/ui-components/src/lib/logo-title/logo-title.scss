@@ -7,7 +7,7 @@
   &__logo {
     height: 1.45em;
     border-radius: functions.border-get-radius-val();
-    border: 2px solid #000; // TODO: remove border and make it a part of the logo image
+    border: 2px solid #000; // FIXME: remove border and make it a part of the logo image
   }
 
   &__text {
