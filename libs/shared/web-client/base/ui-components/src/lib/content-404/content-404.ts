@@ -26,7 +26,7 @@ export class Content404 implements OnInit {
   }
 
   private setupButton(): void {
-    // FIXME: change url to prev page (if user has some other pages in the history) + change label to "back"
+    // TODO: change url to prev page (if user has some other pages in the history) + change label to "back"
     this.buttonData.set({ url: '/', label: 'Back to Home' });
   }
 }
