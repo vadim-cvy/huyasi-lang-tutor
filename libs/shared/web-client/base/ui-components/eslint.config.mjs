@@ -12,7 +12,7 @@ export default [
         'error',
         {
           type: 'attribute',
-          prefix: 'webPublicBaseComponents',
+          prefix: 'sharedBase',
           style: 'camelCase',
         },
       ],
