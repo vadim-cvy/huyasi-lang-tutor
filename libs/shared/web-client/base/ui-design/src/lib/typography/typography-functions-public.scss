@@ -42,10 +42,11 @@
 @function typography-get-text-size-val($text-size-key, $stability-key) {
   $_: typography-validate-text-size-key-exists($text-size-key);
 
-  $text-size-data: map.get(typography-vars-private.$sizes, $text-size-key);
-
   @if $stability-key == 'static' {
-    @return map.get($text-size-data, 'static');
+    $text-size-data: map.get(typography-vars-private.$sizes, $text-size-key);
+    $text-size-vals: map.get($text-size-data, 'text-size-vals');
+
+    @return map.get($text-size-vals, 'static');
   } @else if $stability-key == 'responsive' {
     $css-var-name: typography-get-text-size-responsive-css-var-name($text-size-key);
 
