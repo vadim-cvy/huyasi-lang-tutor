@@ -2,7 +2,7 @@
 
 ## Linting and Formatting
 
-Ignore all linting and formatting rules during CI and code reviews. Linting and formatting is handled by eslint and prettier, which are configured to run automatically.
+Do not raise linting or formatting issues in code reviews. Linting and formatting are enforced automatically by ESLint and Prettier in CI; those checks must still pass before merging.
 
 ## Additional `AGENTS.*.md` files
 
