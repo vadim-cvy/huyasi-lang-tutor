@@ -1,9 +1,10 @@
 import type { OnInit } from '@angular/core';
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
 import { Button } from '../button';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'shared-base-content-404',
   imports: [Button],
   templateUrl: './content-404.html',

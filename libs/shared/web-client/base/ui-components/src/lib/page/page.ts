@@ -1,5 +1,13 @@
 import type { OnInit } from '@angular/core';
-import { Component, computed, DestroyRef, inject, input, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  DestroyRef,
+  inject,
+  input,
+  signal,
+} from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { breakpoints } from '@huyasi/shared-web-client-base-ui-design';
 import { auditTime, fromEvent, map, startWith } from 'rxjs';
@@ -9,6 +17,7 @@ import { Header } from '../header/header';
 import { Sidebar } from '../sidebar/sidebar';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'shared-base-page',
   imports: [Header, Sidebar, Footer],
   templateUrl: './page.html',

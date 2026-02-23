@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import type { WhitespaceSize } from '@huyasi/shared-web-client-base-ui-design';
 
 import type { ButtonContentAlign } from '../button/abstract/ButtonContentAlign';
@@ -7,6 +7,7 @@ import { Button } from '../button/button';
 import { NavPrimary } from '../nav-primary/nav-primary';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'shared-base-sidebar',
   imports: [NavPrimary, Button],
   templateUrl: './sidebar.html',

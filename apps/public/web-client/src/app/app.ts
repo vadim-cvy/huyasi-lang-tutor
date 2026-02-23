@@ -1,5 +1,5 @@
 import type { OnInit } from '@angular/core';
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Page } from '@huyasi/shared-web-client-base-ui-components';
 
@@ -7,6 +7,7 @@ import { AppLogoTitleContentService } from './services/app-logo-title-content.se
 import { AppNavPrimaryItemsService } from './services/app-nav-primary-items.service';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [Page, RouterModule],
   selector: 'app-root',
   templateUrl: './app.html',
