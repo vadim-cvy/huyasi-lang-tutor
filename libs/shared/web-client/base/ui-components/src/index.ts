@@ -6,5 +6,4 @@ export * from './lib/icon';
 export * from './lib/logo-title';
 export * from './lib/nav-primary';
 export * from './lib/page';
-export * from './lib/page/page';
 export * from './lib/sidebar';
