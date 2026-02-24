@@ -22,6 +22,11 @@
       .--has-overlay-#{$pseudo-element-type} {
         position: relative;
 
+        /*
+         * Make sure all direct children of the element with the overlay have
+         * a higher z-index than the overlay element itself,
+         * so that they are visible above the overlay.
+         */
         > * {
           z-index: 1;
         }
