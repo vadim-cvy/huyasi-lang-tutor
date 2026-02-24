@@ -28,6 +28,7 @@
          * so that they are visible above the overlay.
          */
         > * {
+          position: relative;
           z-index: 1;
         }
 
