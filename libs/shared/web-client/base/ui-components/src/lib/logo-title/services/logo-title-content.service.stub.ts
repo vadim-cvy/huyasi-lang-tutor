@@ -3,7 +3,7 @@ import type { ILogoTitleContentService } from './logo-title-content.service.inte
 
 export class LogoTitleContentServiceStub implements ILogoTitleContentService {
   public content: LogoTitleContent = {
-    logoSrc: '',
+    logoSrc: 'nonexisting-placeholder.jpg',
     text: {
       line1: '',
       line2: '',
