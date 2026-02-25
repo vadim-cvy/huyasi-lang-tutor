@@ -192,7 +192,7 @@ You **must** include `src/global.scss` in your **app** for utility classes, mixi
 ### typography
 
 - `typography-get-text-size-val($text-size-key, $stability-key)`
-- `typography-get-text-size-margin-y-val($text-size-key)`
+- `typography-get-text-size-margin-y-val($text-size-key, $stability-key)`
 - `typography-get-text-color-val($text-color-key, $bg-color-key)`
 - `typography-get-text-size-responsive-css-var-name($text-size-key)`
 - `typography-get-text-color-css-var-name($text-color-key, $bg-color-key)`
