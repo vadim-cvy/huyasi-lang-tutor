@@ -1,3 +1,4 @@
+import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
@@ -7,7 +8,7 @@ import { LogoTitleContentService } from './services/logo-title-content.service';
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'shared-base-logo-title',
-  imports: [RouterLink],
+  imports: [RouterLink, NgOptimizedImage],
   templateUrl: './logo-title.html',
   styleUrl: './logo-title.scss',
 })

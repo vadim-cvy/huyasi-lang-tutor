@@ -1,13 +1,20 @@
 @use '../../../../ui-design/src/functions';
 
+$_line-2-font-size: 0.63em;
+$_logo-border-width: 2px;
+$_logo-height: calc(1em + $_line-2-font-size - ($_logo-border-width * 2));
+
 .logo-title {
   display: flex;
   align-items: center;
 
-  &__logo {
-    height: 1.45em;
+  &__logo-wrapper {
+    position: relative;
+    height: $_logo-height;
+    width: $_logo-height;
     border-radius: functions.border-get-radius-val();
-    border: 2px solid #000; // FIXME: remove border and make it a part of the logo image
+    border: $_logo-border-width solid #000; // FIXME: remove border and make it a part of the logo image
+    overflow: hidden;
   }
 
   &__text {
@@ -16,7 +23,7 @@
     line-height: 1;
 
     &__line-2 {
-      font-size: 0.63em;
+      font-size: $_line-2-font-size;
     }
   }
 }
