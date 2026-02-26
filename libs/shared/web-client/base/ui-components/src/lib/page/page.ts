@@ -56,7 +56,7 @@ export class Page implements OnInit {
     );
 
     screenResize$.subscribe((widthPx) => {
-      this.isFooterBreakpointMatch.set(widthPx <= breakpoints.md);
+      this.isFooterBreakpointMatch.set(widthPx <= breakpoints.sm);
       this.isSidebarBreakpointMatch.set(!this.isFooterBreakpointMatch());
     });
   }
