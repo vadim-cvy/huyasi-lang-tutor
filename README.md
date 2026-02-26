@@ -122,3 +122,9 @@ Keep apps/libs paths **COMPLETELY consistent** with their names.
 
 - `shared-web-client-base-ui-components`: `/libs/shared/web-client/base/ui-components/`
 - `shared-web-client-base-ui-design`: `/libs/shared/web-client/base/ui-design/`
+
+## 4. Code Style
+
+### 4.1. TypeScript
+
+- Whenever you want to create a custom utility type, check if [type-fest](https://github.com/sindresorhus/type-fest) types can be used instead.
