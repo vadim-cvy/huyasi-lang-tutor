@@ -17,7 +17,7 @@ export class NavPrimaryItemsService implements INavPrimaryItemsService {
     return this._itemsNullable;
   }
 
-  public set items(val: readonly Readonly<NavPrimaryItem>[]) {
+  public set items(val: readonly NavPrimaryItem[]) {
     if (this._itemsNullable) {
       throw new Error('Items are set already!');
     }

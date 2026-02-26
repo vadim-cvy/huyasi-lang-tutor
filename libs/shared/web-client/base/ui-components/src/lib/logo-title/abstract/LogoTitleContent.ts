@@ -1,7 +1,9 @@
-export type LogoTitleContent = Readonly<{
+import type { ReadonlyDeep } from 'type-fest';
+
+export type LogoTitleContent = ReadonlyDeep<{
   logoSrc: string;
-  text: Readonly<{
+  text: {
     line1: string;
     line2: string;
-  }>;
+  };
 }>;

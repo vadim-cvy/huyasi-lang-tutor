@@ -5,6 +5,7 @@ import type { IconDefinition } from '@fortawesome/angular-fontawesome';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import type { FontSize, WhitespaceSize } from '@huyasi/shared-web-client-base-ui-design';
 import { whitespaceUtils } from '@huyasi/shared-web-client-base-ui-design';
+import type { ReadonlyDeep } from 'type-fest';
 
 import type { ButtonBg } from './abstract/ButtonBg';
 import type { ButtonContentAlign } from './abstract/ButtonContentAlign';
@@ -25,7 +26,7 @@ export class Button {
   }>();
 
   public readonly icon = input<
-    Readonly<{
+    ReadonlyDeep<{
       definition: IconDefinition;
       position: ButtonIconPosition;
     }>
