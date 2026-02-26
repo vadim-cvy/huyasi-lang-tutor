@@ -1,6 +1,6 @@
 <ng-template #buttonContent>
-  @if (icon(); as _icon) {
-  <shared-base-icon [name]="_icon.name" />
+  @if (icon(); as icon) {
+  <fa-icon [icon]="icon.definition" [ariaHidden]="true" />
   }
 
   <span>

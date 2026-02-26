@@ -1,10 +1,11 @@
 import { NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import type { IconDefinition } from '@fortawesome/angular-fontawesome';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import type { FontSize, WhitespaceSize } from '@huyasi/shared-web-client-base-ui-design';
 import { whitespaceUtils } from '@huyasi/shared-web-client-base-ui-design';
 
-import { Icon } from '../icon/icon';
 import type { ButtonBg } from './abstract/ButtonBg';
 import type { ButtonContentAlign } from './abstract/ButtonContentAlign';
 import type { ButtonIconPosition } from './abstract/ButtonIconPosition';
@@ -13,7 +14,7 @@ import type { ButtonWidth } from './abstract/ButtonWidth';
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'shared-base-button',
-  imports: [RouterLink, RouterLinkActive, Icon, NgTemplateOutlet],
+  imports: [RouterLink, RouterLinkActive, FontAwesomeModule, NgTemplateOutlet],
   templateUrl: './button.html',
   styleUrl: './button.scss',
 })
@@ -25,7 +26,7 @@ export class Button {
 
   public readonly icon = input<
     Readonly<{
-      name: string;
+      definition: IconDefinition;
       position: ButtonIconPosition;
     }>
   >();

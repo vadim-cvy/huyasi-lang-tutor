@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import type { IconDefinition } from '@fortawesome/angular-fontawesome';
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import type { WhitespaceSize } from '@huyasi/shared-web-client-base-ui-design';
 
 import type { ButtonContentAlign } from '../button/abstract/ButtonContentAlign';
@@ -26,5 +28,9 @@ export class Sidebar {
 
   public readonly buttonsPaddingX = computed<WhitespaceSize>(() =>
     this.isExpanded() ? 'lg' : 'xs',
+  );
+
+  public readonly togglerButtonIconDefinition = computed<IconDefinition>(() =>
+    this.isExpanded() ? faArrowLeft : faArrowRight,
   );
 }
