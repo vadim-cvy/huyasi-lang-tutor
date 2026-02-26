@@ -22,6 +22,7 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 
 - It MUST pass all AXE checks.
 - It MUST follow all WCAG AA minimums, including focus management, color contrast, and ARIA attributes.
+- Take special attention to images, icons and any decorative elements.
 
 ## Components
 
