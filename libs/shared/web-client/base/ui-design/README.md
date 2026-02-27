@@ -1,6 +1,12 @@
-# Base CSS styles and utilities + TS design tokens for web client apps/libs
+# Base CSS styles and utilities + TS design tokens and utilities for web client apps/libs
 
-This package provides a set of global CSS variables, utility classes, and TS enums and types for consistent design tokens across web client apps and libs.
+This package provides the following features for web client apps and libs styling:
+
+- global CSS
+- utility CSS classes
+- utility SCSS mixins and functions
+- TS types for consistent design tokens
+- TS utility functions for working with design tokens
 
 ## Lib Structure and Code Organization
 
@@ -83,10 +89,16 @@ This package provides a set of global CSS variables, utility classes, and TS enu
   - Contains SCSS mixins.
 - `./src/lib/<group>/*-mixins-private.scss`
   - Contains SCSS mixins that are supposed to be used ONLY inside the current group.
+- `./src/lib/<group>/assets/[fonts|img]/*`
+  - Contains group-related fonts and images.
 - `./src/lib/<group>/abstract/*.ts` or `./src/lib/<group>/enums/*.ts`
-  - Contains TS types or enums related to the group.
+  - Contains TS types related to the group.
+- `./src/lib/<group>/data/*.ts`
+  - Contains TS constants related to the group.
+- `./src/lib/<group>/utils/*.ts`
+  - Contains TS utility functions related to the group.
 - `./src/lib/<group>/index.ts`
-  - Works as an entry point for the group. It gathers and re-exports types and enums.
+  - Works as an entry point for the group. It gathers and re-exports TS files.
 
 ## Global CSS
 
@@ -107,8 +119,8 @@ You **must** include `src/global.scss` in your **app** for utility classes, mixi
 - `.--is-overlay-active`
   - Forces overlay active state (useful if you want to activate overlay with TS).
   - **NOTE:** Works only if the element has the `.--has-overlay-<pseudoElement>` class.
-- `.--text-size-<textSizeKey>-<stabilityKey>`
-  - `<textSizeKey>`: `xs`, `sm`, `md`, `lg`, `xl`, `2xl`
+- `.--text-size-<sizeKey>-<stabilityKey>`
+  - `<sizeKey>`: `xs`, `sm`, `md`, `lg`, `xl`, `2xl`
   - `<stabilityKey>`: `static`, `responsive`
   - Sets font size by key and stability mode.
   - Static mode sizes are fixed and do not change across breakpoints, while responsive mode sizes are designed to scale across different screen sizes automatically.
@@ -137,18 +149,18 @@ You **must** include `src/global.scss` in your **app** for utility classes, mixi
     - `<sizeKey>`: `xs`, `sm`, `md`, `lg`, `xl`, `2xl`
     - `<stabilityKey>`: `static`, `responsive`
 
-## Mixins
+## SCSS Mixins
 
 **Note:** prefer utility classes over mixins for styling whenever possible!
 
-- `breakpoint-<size>-up`
-  - `<size>`: `sm`, `md`, `lg`
+- `breakpoint-<sizeKey>-up`
+  - `<sizeKey>`: `sm`, `md`, `lg`
   - Applies styles inside media query with min-width equal to the breakpoint value.
 - `whitespace-<prop>-<side>`
   - `<prop>`: `padding`, `margin`
   - `<side>`: `x`, `y`
 
-## Functions
+## SCSS Functions
 
 **Note:** prefer utility classes over functions for styling whenever possible!
 
@@ -204,3 +216,15 @@ You **must** include `src/global.scss` in your **app** for utility classes, mixi
 ### whitespace
 
 - `whitespace-get-size-val($size-key, $stability-key)`
+
+## TS Types
+
+- `BgColor`: matches `<colorKey>` in `.--bg-<colorKey>` utility class.
+- `FontSize`: matches `<sizeKey>` in `.--text-size-<sizeKey>` utility class.
+- `WhitespaceSize`: matches `<sizeKey>` in `.--p<side>-<sizeKey>-<stabilityKey>` utility class.
+- `WhitespaceStability`: matches `<stabilityKey>` in `.--p<side>-<sizeKey>-<stabilityKey>` utility class.
+
+## TS Utility Functions
+
+- `whitespaceUtils.getSizeGreaterOrMax(size: WhitespaceSize, stepsForward: number): WhitespaceSize`
+- `whitespaceUtils.getSizeLessOrMin(size: WhitespaceSize, stepsBack: number): WhitespaceSize`
