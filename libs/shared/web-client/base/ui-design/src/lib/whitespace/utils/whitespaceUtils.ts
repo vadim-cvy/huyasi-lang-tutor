@@ -1,27 +1,53 @@
 import type { WhitespaceSize } from '../abstract/WhitespaceSize';
 import { whitespaceSizes } from '../data/whitespaceSizes';
 
-const getSizeIndex = (size: WhitespaceSize): number => whitespaceSizes.indexOf(size);
+const indexMin = 0;
+const indexMax = whitespaceSizes.length - 1;
+
+const _clampIndex = (index: number): number => {
+  if (index < indexMin) {
+    return indexMin;
+  } else if (index > indexMax) {
+    return indexMax;
+  }
+
+  return index;
+};
+
+const sizeOrIndexUnsafeToSafeIndex = (sizeOrIndex: WhitespaceSize | number): number => {
+  const index =
+    typeof sizeOrIndex === 'number' ? sizeOrIndex : whitespaceSizes.indexOf(sizeOrIndex);
+
+  const indexClamped = _clampIndex(index);
+
+  if (index !== indexClamped) {
+    throw new Error(
+      `Passed index ${index} is out of bounds.` +
+        `Valid range is ${indexMin} to ${indexMax}.` +
+        `Nearest valid index is ${indexClamped}.`,
+    );
+  }
+
+  return index;
+};
 
 const getSizeIndexGreaterOrMax = (
   sizeOrIndex: WhitespaceSize | number,
   stepsForward: number,
 ): number => {
-  const indexCurrent = typeof sizeOrIndex === 'number' ? sizeOrIndex : getSizeIndex(sizeOrIndex);
+  const indexPassed = sizeOrIndexUnsafeToSafeIndex(sizeOrIndex);
 
-  const indexTarget = indexCurrent + stepsForward;
-  const indexMax = whitespaceSizes.length - 1;
+  const indexDesired = indexPassed + stepsForward;
 
-  return Math.min(indexTarget, indexMax);
+  return _clampIndex(indexDesired);
 };
 
 const getSizeIndexLessOrMin = (sizeOrIndex: WhitespaceSize | number, stepsBack: number): number => {
-  const indexCurrent = typeof sizeOrIndex === 'number' ? sizeOrIndex : getSizeIndex(sizeOrIndex);
+  const indexPassed = sizeOrIndexUnsafeToSafeIndex(sizeOrIndex);
 
-  const indexTarget = indexCurrent - stepsBack;
-  const indexMin = 0;
+  const indexDesired = indexPassed - stepsBack;
 
-  return Math.max(indexTarget, indexMin);
+  return _clampIndex(indexDesired);
 };
 
 const getSizeGreaterOrMax = (size: WhitespaceSize, stepsForward: number): WhitespaceSize => {
@@ -37,7 +63,7 @@ const getSizeLessOrMin = (size: WhitespaceSize, stepsBack: number): WhitespaceSi
 };
 
 export const whitespaceUtils = {
-  getSizeIndex,
+  sizeOrIndexUnsafeToSafeIndex,
   getSizeIndexGreaterOrMax,
   getSizeIndexLessOrMin,
   getSizeGreaterOrMax,
