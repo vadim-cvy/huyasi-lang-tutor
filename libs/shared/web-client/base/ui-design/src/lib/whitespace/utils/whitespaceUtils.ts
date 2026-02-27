@@ -14,7 +14,7 @@ const _clampIndex = (index: number): number => {
   return index;
 };
 
-const sizeOrIndexUnsafeToSafeIndex = (sizeOrIndex: WhitespaceSize | number): number => {
+const _sizeOrIndexUnsafeToSafeIndex = (sizeOrIndex: WhitespaceSize | number): number => {
   const index =
     typeof sizeOrIndex === 'number' ? sizeOrIndex : whitespaceSizes.indexOf(sizeOrIndex);
 
@@ -31,19 +31,22 @@ const sizeOrIndexUnsafeToSafeIndex = (sizeOrIndex: WhitespaceSize | number): num
   return index;
 };
 
-const getSizeIndexGreaterOrMax = (
+const _getSizeIndexGreaterOrMax = (
   sizeOrIndex: WhitespaceSize | number,
   stepsForward: number,
 ): number => {
-  const indexPassed = sizeOrIndexUnsafeToSafeIndex(sizeOrIndex);
+  const indexPassed = _sizeOrIndexUnsafeToSafeIndex(sizeOrIndex);
 
   const indexDesired = indexPassed + stepsForward;
 
   return _clampIndex(indexDesired);
 };
 
-const getSizeIndexLessOrMin = (sizeOrIndex: WhitespaceSize | number, stepsBack: number): number => {
-  const indexPassed = sizeOrIndexUnsafeToSafeIndex(sizeOrIndex);
+const _getSizeIndexLessOrMin = (
+  sizeOrIndex: WhitespaceSize | number,
+  stepsBack: number,
+): number => {
+  const indexPassed = _sizeOrIndexUnsafeToSafeIndex(sizeOrIndex);
 
   const indexDesired = indexPassed - stepsBack;
 
@@ -51,21 +54,18 @@ const getSizeIndexLessOrMin = (sizeOrIndex: WhitespaceSize | number, stepsBack: 
 };
 
 const getSizeGreaterOrMax = (size: WhitespaceSize, stepsForward: number): WhitespaceSize => {
-  const indexGreaterOrMax = getSizeIndexGreaterOrMax(size, stepsForward);
+  const indexGreaterOrMax = _getSizeIndexGreaterOrMax(size, stepsForward);
 
   return whitespaceSizes[indexGreaterOrMax];
 };
 
 const getSizeLessOrMin = (size: WhitespaceSize, stepsBack: number): WhitespaceSize => {
-  const indexLessOrMin = getSizeIndexLessOrMin(size, stepsBack);
+  const indexLessOrMin = _getSizeIndexLessOrMin(size, stepsBack);
 
   return whitespaceSizes[indexLessOrMin];
 };
 
 export const whitespaceUtils = {
-  sizeOrIndexUnsafeToSafeIndex,
-  getSizeIndexGreaterOrMax,
-  getSizeIndexLessOrMin,
   getSizeGreaterOrMax,
   getSizeLessOrMin,
 };
