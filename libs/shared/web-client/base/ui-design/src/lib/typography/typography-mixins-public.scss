@@ -1,6 +1,6 @@
 @use './typography-vars-private';
 @use './typography-functions-public';
-@use '../utils/functions' as *;
+@use '../_internal/functions' as *;
 
 /*
  * Sets CSS vars for typography colors. Is useful for color themes overrides.
