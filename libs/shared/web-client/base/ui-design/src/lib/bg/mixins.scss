@@ -1,0 +1,22 @@
+@use './vars';
+@use './functions';
+@use '../_internal/internal-functions';
+
+/*
+ * Sets CSS vars for background colors.
+ *
+ * Is useful for color themes overrides.
+ *
+ * @param $vals - Structure must match `vars.$colors`
+ */
+@mixin bg-set-color-css-vars($vals) {
+  $_: internal-functions.validate-is-map-same-shape(vars.$colors, $vals, '$vals');
+
+  :root {
+    @each $color-key, $color-val in $vals {
+      $css-var-name: functions.get-color-css-var-name($color-key);
+
+      #{$css-var-name}: $color-val;
+    }
+  }
+}
