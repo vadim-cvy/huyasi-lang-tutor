@@ -1,6 +1,6 @@
 @use './typography-vars-private';
 @use './typography-functions-public';
-@use '../_internal/functions' as *;
+@use '../_internal/internal-functions';
 
 /*
  * Sets CSS vars for typography colors. Is useful for color themes overrides.
@@ -8,7 +8,7 @@
  * @param $vals - Structure must match `typography-vars-private.$bg-colors-to-text-colors-map`
  */
 @mixin typography-set-color-css-vars($vals) {
-  $_: validate-is-map-same-shape(
+  $_: internal-functions.validate-is-map-same-shape(
     typography-vars-private.$bg-colors-to-text-colors-map,
     $vals,
     '$vals'
