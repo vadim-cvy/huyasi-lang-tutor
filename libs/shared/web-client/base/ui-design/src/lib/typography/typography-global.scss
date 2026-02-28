@@ -2,7 +2,7 @@
 @use './typography-functions-public';
 @use './typography-mixins-public';
 @use '../whitespace/whitespace-mixins-public';
-@use '../breakpoints/breakpoints-mixins-public';
+@use '../breakpoints/mixins' as breakpoints-mixins;
 @use 'sass:map';
 
 // START: Base
@@ -50,7 +50,7 @@ a {
 
     #{$css-var-name}: map.get($text-size-responsive-vals, 'screen-sm');
 
-    @include breakpoints-mixins-public.breakpoint-md-up {
+    @include breakpoints-mixins.breakpoint-md-up {
       #{$css-var-name}: map.get($text-size-responsive-vals, 'screen-md-up');
     }
   }
