@@ -1,5 +1,6 @@
 @use './typography-vars-private';
 @use './typography-functions-public';
+@use './typography-mixins-public';
 @use '../whitespace/whitespace-mixins-public';
 @use '../breakpoints/breakpoints-mixins-public';
 @use 'sass:map';
@@ -116,22 +117,11 @@ p {
 
 // START: Colors
 
-:root {
-  // Sets text color variables
-  @each $bg-color-key, $text-colors-for-bg in typography-vars-private.$bg-colors-to-text-colors-map
-  {
-    @each $text-color-key, $text-color-val in $text-colors-for-bg {
-      $css-var-name: typography-functions-public.typography-get-text-color-css-var-name(
-        $text-color-key,
-        $bg-color-key
-      );
+@include typography-mixins-public.typography-set-color-css-vars(
+  typography-vars-private.$bg-colors-to-text-colors-map
+);
 
-      #{$css-var-name}: $text-color-val;
-    }
-  }
-}
-
-// Sets text colors for bg colors
+// Sets text colors (for each bg color) utility classes
 @each $bg-color-key, $text-colors-for-bg in typography-vars-private.$bg-colors-to-text-colors-map {
   @each $text-color-key in map.keys($text-colors-for-bg) {
     .--bg-#{$bg-color-key} {
