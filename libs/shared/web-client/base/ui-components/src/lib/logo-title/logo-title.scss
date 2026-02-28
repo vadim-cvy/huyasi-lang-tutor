@@ -1,5 +1,3 @@
-@use '../../../../ui-design/src/functions';
-
 $_line-2-font-size: 0.63em;
 $_logo-border-width: 2px;
 $_logo-height: calc(1em + $_line-2-font-size - ($_logo-border-width * 2));
@@ -12,7 +10,6 @@ $_logo-height: calc(1em + $_line-2-font-size - ($_logo-border-width * 2));
     position: relative;
     height: $_logo-height;
     width: $_logo-height;
-    border-radius: functions.border-get-radius-val();
     border: $_logo-border-width solid #000; // FIXME: remove border and make it a part of the logo image
     overflow: hidden;
   }

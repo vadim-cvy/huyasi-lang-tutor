@@ -1,0 +1,23 @@
+@use 'sass:map';
+
+@mixin side-prop-variants($prop-val, $prop-name, $options) {
+  #{$prop-name}: $prop-val;
+
+  @each $side-key, $side-val in ((t: top, r: right, b: bottom, l: left)) {
+    &-#{$side-key} {
+      #{$prop-name}-#{$side-val}: $prop-val;
+    }
+  }
+
+  @if map.get($options, 'is-with-xy') == true {
+    &-x {
+      #{$prop-name}-left: $prop-val;
+      #{$prop-name}-right: $prop-val;
+    }
+
+    &-y {
+      #{$prop-name}-top: $prop-val;
+      #{$prop-name}-bottom: $prop-val;
+    }
+  }
+}

@@ -1,6 +1,0 @@
-@use './border-vars-private';
-@use './border-functions-public';
-
-:root {
-  #{border-functions-public.border-get-color-css-var-name()}: #{border-vars-private.$border-color};
-}

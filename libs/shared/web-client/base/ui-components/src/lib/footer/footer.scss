@@ -1,6 +1,5 @@
 @use '../../../../ui-design/src/functions';
 
 .footer {
-  border-top: functions.border-get-border-val();
   box-shadow: functions.shadow-get-box-shadow-val('normal');
 }

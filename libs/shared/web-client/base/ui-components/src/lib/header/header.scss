@@ -4,7 +4,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: functions.border-get-border-val();
   box-shadow: functions.shadow-get-box-shadow-val('normal');
 
   &__actions {

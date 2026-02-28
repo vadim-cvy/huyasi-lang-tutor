@@ -1,7 +1,7 @@
 @use './lib/reset/reset-global';
 @use './lib/whitespace/whitespace-global';
-@use './lib/bg/global';
+@use './lib/bg/global' as bg-global;
 @use './lib/overlay/overlay-global';
 @use './lib/typography/typography-global';
-@use './lib/border/border-global';
+@use './lib/border/global' as border-global;
 @use './lib/shadow/shadow-global';
