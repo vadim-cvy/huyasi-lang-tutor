@@ -22,7 +22,7 @@
  * @param {string} $box-shadow-key - The box shadow key to get the CSS var name for.
  * @return {string} The CSS var name corresponding to the box shadow key.
  */
-@function get-box-shadow-css-var-name($box-shadow-key) {
+@function get-css-var-name--box-shadow($box-shadow-key) {
   $_: validate-box-shadow-exists($box-shadow-key);
 
   @return --box-shadow-#{$box-shadow-key};

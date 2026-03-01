@@ -22,7 +22,7 @@
  * @param {string} $bg-color-key - The background color key to get the CSS var name for.
  * @return {string} The CSS var name corresponding to the background color key.
  */
-@function get-overlay-color-for-bg-css-var-name($bg-color-key) {
+@function get-css-var-name--overlay-color-for-bg($bg-color-key) {
   $_: validate-overlay-color-for-bg-exists($bg-color-key);
 
   @return --overlay-color-for-bg-#{$bg-color-key};

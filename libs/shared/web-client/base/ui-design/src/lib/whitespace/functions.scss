@@ -9,7 +9,7 @@
   @return true;
 }
 
-@function get-size-responsive-css-var-name($size) {
+@function get-css-var-name--size-responsive($size) {
   $_: validate-size-exists($size);
 
   @return --whitespace-size-responsive-#{$size};
@@ -30,7 +30,7 @@
 
     @return map.get($size-data, 'static');
   } @else if $stability-key == 'responsive' {
-    $css-var-name: get-size-responsive-css-var-name($size-key);
+    $css-var-name: get-css-var-name--size-responsive($size-key);
 
     @return var($css-var-name);
   } @else {

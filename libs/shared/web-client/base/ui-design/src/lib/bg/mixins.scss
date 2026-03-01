@@ -14,7 +14,7 @@
 
   :root {
     @each $color-key, $color-val in $vals {
-      $css-var-name: functions.get-color-css-var-name($color-key);
+      $css-var-name: functions.get-css-var-name--color($color-key);
 
       #{$css-var-name}: $color-val;
     }

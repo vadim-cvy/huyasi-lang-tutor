@@ -12,6 +12,6 @@
  */
 @each $color-key in map.keys(vars.$colors-map) {
   .--bg-#{$color-key} {
-    background-color: var(functions.get-color-css-var-name($color-key));
+    background-color: var(functions.get-css-var-name--color($color-key));
   }
 }

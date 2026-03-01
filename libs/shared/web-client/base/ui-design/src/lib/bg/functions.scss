@@ -22,7 +22,7 @@
  * @param {string} $color-key - The color key to get the CSS var name for.
  * @return {string} The CSS var name corresponding to the color key.
  */
-@function get-color-css-var-name($color-key) {
+@function get-css-var-name--color($color-key) {
   $_: validate-color-exists($color-key);
 
   @return --bg-color-#{$color-key};

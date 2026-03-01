@@ -9,7 +9,7 @@
  *
  * .--border-{side} (.--border-all, .--border-top, etc.)
  */
-@include internal-mixins.side-prop-variants-utility-classes(
+@include internal-mixins.util-classes--side-prop-variants(
   (
     val: 1px solid var(vars.$color-css-var-name),
     prop-name: 'border',

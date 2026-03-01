@@ -36,7 +36,7 @@ a {
 // Set responsive text size CSS vars
 :root {
   @each $size-key, $size-data in vars.$sizes-map {
-    $css-var-name: functions.get-font-size-responsive-css-var-name($size-key);
+    $css-var-name: functions.get-css-var-name--font-size-responsive($size-key);
     $font-size-responsive-vals: map.get(map.get($size-data, 'font-sizes'), 'responsive');
 
     #{$css-var-name}: map.get($font-size-responsive-vals, 'screen-sm');
@@ -56,19 +56,19 @@ a {
   $font-sizes-data: map.get($size-data, 'font-sizes');
 
   @each $stability-key in map.keys($font-sizes-data) {
-    $text-size-util-class-name: functions.get-text-size-util-class-name($size-key, $stability-key);
+    $util-class--text-size: functions.get-util-class--text-size($size-key, $stability-key);
 
     $font-size-val: null;
 
     @if $stability-key == 'static' {
       $font-size-val: map.get($font-sizes-data, 'static');
     } @else if $stability-key == 'responsive' {
-      $font-size-val: var(functions.get-font-size-responsive-css-var-name($size-key));
+      $font-size-val: var(functions.get-css-var-name--font-size-responsive($size-key));
     } @else {
       @error 'Unexpected stability key: "#{$stability-key}"!';
     }
 
-    #{$text-size-util-class-name} {
+    #{$util-class--text-size} {
       font-size: $font-size-val;
     }
   }
@@ -101,16 +101,13 @@ p {
 
   @each $size-key, $size-data in vars.$sizes-map {
     @each $stability-key in map.keys(map.get($size-data, 'font-sizes')) {
-      $text-size-util-class-name: functions.get-text-size-util-class-name(
-        $size-key,
-        $stability-key
-      );
+      $util-class--text-size: functions.get-util-class--text-size($size-key, $stability-key);
 
       $margin-y-size-key: map.get($size-data, 'margin-y-size-key');
       $margin-y-val: whitespace-functions.get-size-val($margin-y-size-key, $stability-key);
 
-      #{$text-size-util-class-name} &,
-      &#{$text-size-util-class-name} {
+      #{$util-class--text-size} &,
+      &#{$util-class--text-size} {
         margin-top: $margin-y-val;
         margin-bottom: $margin-y-val;
       }
@@ -135,17 +132,17 @@ p {
 @each $bg-color-key, $text-colors-for-bg in vars.$bg-colors-to-text-colors-map {
   @each $text-color-key in map.keys($text-colors-for-bg) {
     .--bg-#{$bg-color-key} {
-      $val: var(functions.get-color-css-var-name($text-color-key, $bg-color-key));
+      $val: var(functions.get-css-var-name--color($text-color-key, $bg-color-key));
 
       // Make "base" text color to be a default color for elements having .--bg-{bg-color-key} class.
       @if $text-color-key == 'base' {
         color: $val;
       }
 
-      $text-color-util-class-name: functions.get-color-util-class-name($text-color-key);
+      $util-class--text-color: functions.get-util-class--color($text-color-key);
 
       // Allow overriding the default text color with .--text-color-{text-color-key}
-      #{$text-color-util-class-name} {
+      #{$util-class--text-color} {
         color: $val;
       }
     }

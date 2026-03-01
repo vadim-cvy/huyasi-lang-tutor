@@ -19,7 +19,7 @@
   :root {
     @each $bg-color-key, $text-colors-for-bg-map in $vals {
       @each $text-color-key, $text-color-val in $text-colors-for-bg-map {
-        $css-var-name: functions.get-color-css-var-name($text-color-key, $bg-color-key);
+        $css-var-name: functions.get-css-var-name--color($text-color-key, $bg-color-key);
 
         #{$css-var-name}: $text-color-val;
       }

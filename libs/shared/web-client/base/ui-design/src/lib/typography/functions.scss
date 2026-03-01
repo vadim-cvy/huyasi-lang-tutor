@@ -33,7 +33,7 @@
  * @param {string} $size-key - The size key to get the CSS var name for.
  * @return {string} The CSS var name corresponding to the size key.
  */
-@function get-font-size-responsive-css-var-name($size-key) {
+@function get-css-var-name--font-size-responsive($size-key) {
   $_: validate-size-exists($size-key);
 
   @return --font-size-responsive-#{$size-key};
@@ -46,7 +46,7 @@
  * @param {string} $stability-key - The stability key to get the utility class name for.
  * @return {string} The utility class name corresponding to the provided keys.
  */
-@function get-text-size-util-class-name($size-key, $stability-key) {
+@function get-util-class--text-size($size-key, $stability-key) {
   $_: validate-size-exists($size-key);
   $__: validate-stability-exists($stability-key);
 
@@ -84,7 +84,7 @@
  * @param {string} $bg-color-key - The background color key to get the CSS var name for.
  * @return {string} The CSS var name corresponding to the provided keys.
  */
-@function get-color-css-var-name($text-color-key, $bg-color-key) {
+@function get-css-var-name--color($text-color-key, $bg-color-key) {
   $_: validate-color-exists($bg-color-key, $text-color-key);
 
   @return --text-color-#{$text-color-key}-for-bg-#{$bg-color-key};
@@ -96,7 +96,7 @@
  * @param {string} $text-color-key - The text color key to get the utility class name for.
  * @return {string} The utility class name corresponding to the text color key.
  */
-@function get-color-util-class-name($text-color-key) {
+@function get-util-class--color($text-color-key) {
   // Any bg color key can be used here, because all bg color keys have the same text color keys.
   $bg-color-key: 'base';
 

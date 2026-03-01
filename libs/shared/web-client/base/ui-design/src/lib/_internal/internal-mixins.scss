@@ -17,7 +17,7 @@
  * @param {Boolean} $options.is-with-xy - Whether to generate utility classes for the x and y axes.
  * @param {String?} $options.class-suffix - An optional suffix to add to the generated class names.
  */
-@mixin side-prop-variants-utility-classes($options) {
+@mixin util-classes--side-prop-variants($options) {
   $val: map.get($options, 'val');
   $prop-name: map.get($options, 'prop-name');
   $is-with-xy: map.get($options, 'is-with-xy');
