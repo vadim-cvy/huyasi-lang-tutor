@@ -1,23 +1,65 @@
 @use 'sass:map';
 
-@mixin side-prop-variants($prop-val, $prop-name, $options) {
-  #{$prop-name}: $prop-val;
+/**
+ * Generates utility classes for the given css prop.
+ *
+ * .--{prop-name}-all{-class-suffix?}
+ * .--{prop-name}-top{-class-suffix?}
+ * .--{prop-name}-right{-class-suffix?}
+ * .--{prop-name}-bottom{-class-suffix?}
+ * .--{prop-name}-left{-class-suffix?}
+ * .--{prop-name}-x{-class-suffix?}
+ * .--{prop-name}-y{-class-suffix?}
+ *
+ * @param {Map} $options - The options for generating the utility classes.
+ * @param {String} $options.val - The value to set for the css prop.
+ * @param {String} $options.prop-name - The name of the css prop to set.
+ * @param {Boolean} $options.is-with-xy - Whether to generate utility classes for the x and y axes.
+ * @param {String?} $options.class-suffix - An optional suffix to add to the generated class names.
+ */
+@mixin side-prop-variants-utility-classes($options) {
+  $val: map.get($options, 'val');
+  $prop-name: map.get($options, 'prop-name');
+  $is-with-xy: map.get($options, 'is-with-xy');
+  $class-suffix: map.get($options, 'class-suffix');
 
-  @each $side-key, $side-val in ((t: top, r: right, b: bottom, l: left)) {
-    &-#{$side-key} {
-      #{$prop-name}-#{$side-val}: $prop-val;
+  @if $val == null {
+    @error 'The "val" option is required.';
+  }
+
+  @if $prop-name == null {
+    @error 'The "prop-name" option is required.';
+  }
+
+  @if $is-with-xy == null {
+    @error 'The "is-with-xy" option is not provided. Defaulting to false.';
+  }
+
+  @if $class-suffix == null {
+    $class-suffix: '';
+  }
+
+  $class-prefix: '.--#{$prop-name}-';
+
+  #{$class-prefix}#{$class-suffix} {
+    #{$prop-name}: $val;
+  }
+
+  @each $side in (top, right, bottom, left) {
+    #{$class-prefix}#{$side}#{$class-suffix} {
+      #{$prop-name}-#{$side}: $val;
     }
   }
 
-  @if map.get($options, 'is-with-xy') == true {
-    &-x {
-      #{$prop-name}-left: $prop-val;
-      #{$prop-name}-right: $prop-val;
+  @if $is-with-xy == true {
+    #{$class-prefix}x#{$class-suffix} {
+      #{$prop-name}-left: $val;
+      #{$prop-name}-right: $val;
     }
 
-    &-y {
-      #{$prop-name}-top: $prop-val;
-      #{$prop-name}-bottom: $prop-val;
+    #{$class-prefix}y#{$class-suffix} {
+      #{$prop-name}-top: $val;
+      #{$prop-name}-bottom: $val;
     }
   }
 }

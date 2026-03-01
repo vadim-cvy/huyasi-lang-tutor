@@ -1,8 +1,7 @@
 @use './vars';
 @use './functions';
 @use './mixins';
-@use '../whitespace/whitespace-mixins-public';
-@use '../whitespace/whitespace-functions-public';
+@use '../whitespace/functions' as whitespace-functions;
 @use '../breakpoints/mixins' as breakpoints-mixins;
 @use 'sass:map';
 
@@ -88,7 +87,8 @@ h6,
 ul,
 ol,
 p {
-  @include whitespace-mixins-public.whitespace-margin-y(0);
+  margin-left: 0;
+  margin-right: 0;
   font-size: inherit;
 
   &:first-child {
@@ -107,14 +107,12 @@ p {
       );
 
       $margin-y-size-key: map.get($size-data, 'margin-y-size-key');
-      $margin-y-val: whitespace-functions-public.whitespace-get-size-val(
-        $margin-y-size-key,
-        $stability-key
-      );
+      $margin-y-val: whitespace-functions.get-size-val($margin-y-size-key, $stability-key);
 
       #{$text-size-util-class-name} &,
       &#{$text-size-util-class-name} {
-        @include whitespace-mixins-public.whitespace-margin-y($margin-y-val);
+        margin-top: $margin-y-val;
+        margin-bottom: $margin-y-val;
       }
     }
   }

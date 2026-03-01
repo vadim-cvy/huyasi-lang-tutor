@@ -100,10 +100,10 @@ export class Button {
       `--width-${width}`,
       `--content-align-${contentAlign}`,
       icon ? `--icon-position-${icon.position}` : '',
-      `--g-${icon?.position === 'top' ? 'xs' : 'md'}-responsive`,
-      `--my-${marginY}-responsive`,
-      `--px-${paddingXFinal}-responsive`,
-      `--py-${paddingYFinal}-responsive`,
+      `--gap-${icon?.position === 'top' ? 'xs' : 'md'}-responsive`,
+      `--margin-y-${marginY}-responsive`,
+      `--padding-x-${paddingXFinal}-responsive`,
+      `--padding-y-${paddingYFinal}-responsive`,
       `--text-size-${fontSizeFinal}-responsive`,
     ];
   });

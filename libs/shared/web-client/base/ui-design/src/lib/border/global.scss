@@ -7,19 +7,15 @@
 /*
  * Generate utility classes for borders.
  *
- * .--border{-side?} (.--border, .--border-top, etc.)
+ * .--border-{side} (.--border-all, .--border-top, etc.)
  */
-.--border {
-  $val: 1px solid var(vars.$color-css-var-name);
-
-  @include internal-mixins.side-prop-variants(
-    $val,
-    'border',
-    (
-      is-with-xy: false,
-    )
-  );
-}
+@include internal-mixins.side-prop-variants-utility-classes(
+  (
+    val: 1px solid var(vars.$color-css-var-name),
+    prop-name: 'border',
+    is-with-xy: false,
+  )
+);
 
 .--border-radius {
   border-radius: 4px;

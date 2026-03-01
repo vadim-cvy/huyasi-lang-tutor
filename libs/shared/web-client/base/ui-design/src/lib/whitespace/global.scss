@@ -1,0 +1,52 @@
+@use './vars';
+@use './functions';
+@use '../breakpoints/mixins' as breakpoints-mixins;
+@use '../_internal/internal-mixins.scss' as internal-mixins;
+@use 'sass:map';
+
+// Sets whitespace responsive size variables based on the screen size
+:root {
+  @each $size-key, $size-data in vars.$sizes {
+    $css-var-name: functions.get-size-responsive-css-var-name($size-key);
+
+    @each $screen-size-key, $screen-size-val in map.get($size-data, 'responsive') {
+      @if $screen-size-key == 'screen-sm' {
+        #{$css-var-name}: $screen-size-val;
+      } @else if $screen-size-key == 'screen-md-up' {
+        @include breakpoints-mixins.breakpoint-md-up {
+          #{$css-var-name}: $screen-size-val;
+        }
+      } @else {
+        @error 'Unexpected screen size: "#{$screen-size-key}"';
+      }
+    }
+  }
+}
+
+/**
+ * Generate utility classes for gap, margin and padding.
+ *
+ * .--{prop-name}{-side-key?}-{size-key}-{stability-key} (.--gap-xs-responsive, .--padding-top-sm-static, .--margin-x-lg-responsive, etc.)
+ */
+@each $size-key, $size-data in vars.$sizes {
+  @each $stability-key in map.keys($size-data) {
+    $class-suffix: '-#{$size-key}-#{$stability-key}';
+
+    $val: functions.get-size-val($size-key, $stability-key);
+
+    .--gap#{$class-suffix} {
+      gap: $val;
+    }
+
+    @each $prop-name in ('padding', 'margin') {
+      @include internal-mixins.side-prop-variants-utility-classes(
+        (
+          val: $val,
+          prop-name: $prop-name,
+          class-suffix: $class-suffix,
+          is-with-xy: true,
+        )
+      );
+    }
+  }
+}

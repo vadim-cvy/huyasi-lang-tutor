@@ -1,9 +1,16 @@
 <header
-  class="header --px-md-responsive --py-sm-responsive --bg-accent --border-b --box-shadow-normal"
+  [class]="[
+    'header',
+    '--padding-x-md-responsive',
+    '--padding-y-sm-responsive',
+    '--bg-accent',
+    '--border-bottom',
+    '--box-shadow-normal',
+  ]"
 >
   <shared-base-logo-title />
 
-  <div class="header__actions --g-lg-responsive">
+  <div class="header__actions --gap-lg-responsive">
     <ng-content select="actions" />
   </div>
 </header>
