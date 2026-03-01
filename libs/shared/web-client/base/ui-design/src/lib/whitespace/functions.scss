@@ -6,7 +6,7 @@
     @error 'Size "#{$size}" does not exist!';
   }
 
-  @return null;
+  @return true;
 }
 
 @function get-size-responsive-css-var-name($size) {

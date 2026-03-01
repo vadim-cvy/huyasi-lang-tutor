@@ -6,14 +6,14 @@
  * Throws an error if the key is invalid.
  *
  * @param {string} $color-key - The color key to validate.
- * @return {null} Always returns null if validation passes.
+ * @return {true} Always returns true if validation passes.
  */
 @function validate-color-key-exists($color-key) {
   @if not map.has-key(vars.$colors, $color-key) {
     @error 'Unexpected color key: "#{$color-key}"!';
   }
 
-  @return null;
+  @return true;
 }
 
 /**

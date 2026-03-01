@@ -6,14 +6,14 @@
  * Throws an error if the key is invalid.
  *
  * @param {string} $size-key - The size key to validate.
- * @return {null} Always returns null if validation passes.
+ * @return {true} Always returns true if validation passes.
  */
 @function validate-size-key-exists($size-key) {
   @if not map.has-key(vars.$sizes, $size-key) {
     @error 'Unexpected size key: "#{$size-key}"!';
   }
 
-  @return null;
+  @return true;
 }
 
 @function validate-stability-key-exists($stability-key) {
@@ -22,7 +22,7 @@
     @error 'Unexpected stability key: "#{$stability-key}"!';
   }
 
-  @return null;
+  @return true;
 }
 
 /**
@@ -59,7 +59,7 @@
  *
  * @param {string} $bg-color-key - The background color key to validate.
  * @param {string} $text-color-key - The text color key to validate.
- * @return {null} Always returns null if validation passes.
+ * @return {true} Always returns true if validation passes.
  */
 @function validate-color-exists($bg-color-key, $text-color-key) {
   @if not map.has-key(vars.$bg-colors-to-text-colors-map, $bg-color-key) {
@@ -72,7 +72,7 @@
     @error 'Unexpected text color key: "#{$text-color-key}" for bg color key: "#{$bg-color-key}"!';
   }
 
-  @return null;
+  @return true;
 }
 
 /**

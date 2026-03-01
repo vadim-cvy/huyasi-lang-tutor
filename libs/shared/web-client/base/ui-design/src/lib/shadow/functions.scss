@@ -6,14 +6,14 @@
  * Throws an error if the key is invalid.
  *
  * @param {string} $box-shadow-key - The box shadow key to validate.
- * @return {null} Always returns null if validation passes.
+ * @return {true} Always returns true if validation passes.
  */
 @function validate-box-shadow-key-exists($box-shadow-key) {
   @if not map.has-key(vars.$box-shadows-map, $box-shadow-key) {
     @error 'Unexpected box shadow key: "#{$box-shadow-key}"!';
   }
 
-  @return null;
+  @return true;
 }
 
 /**
