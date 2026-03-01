@@ -1,0 +1,26 @@
+@use './vars';
+@use './functions';
+@use '../_internal/internal-functions';
+
+/*
+ * Sets CSS vars for overlay colors.
+ *
+ * Is useful for color themes overrides.
+ *
+ * @param $vals - Structure must match `vars.$bg-color-key-to-overlay-color-map`
+ */
+@mixin overlay-set-color-css-vars($vals) {
+  $_: internal-functions.validate-is-map-same-shape(
+    vars.$bg-color-key-to-overlay-color-map,
+    $vals,
+    '$vals'
+  );
+
+  :root {
+    @each $bg-color-key, $overlay-color-val in $vals {
+      $css-var-name: functions.get-overlay-color-for-bg-css-var-name($bg-color-key);
+
+      #{$css-var-name}: $overlay-color-val;
+    }
+  }
+}
