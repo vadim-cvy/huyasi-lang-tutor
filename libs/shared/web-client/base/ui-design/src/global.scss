@@ -1,4 +1,4 @@
-@use './lib/reset/reset-global';
+@use './lib/reset/global' as reset-global;
 @use './lib/whitespace/whitespace-global';
 @use './lib/bg/global' as bg-global;
 @use './lib/overlay/global' as overlay-global;
