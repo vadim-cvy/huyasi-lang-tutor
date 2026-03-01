@@ -4,7 +4,11 @@
 
 @include mixins.border-set-color-css-var(vars.$color);
 
-// Set `.--border?[-{side-key}]` utility classes
+/*
+ * Generate utility classes for borders.
+ *
+ * .--border{-side?} (.--border, .--border-top, etc.)
+ */
 .--border {
   $val: 1px solid var(vars.$color-css-var-name);
 
