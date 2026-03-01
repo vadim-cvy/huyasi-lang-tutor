@@ -1,0 +1,17 @@
+@use './vars';
+@use './functions';
+@use './mixins';
+@use 'sass:map';
+
+@include mixins.shadow-set-box-shadow-css-vars(vars.$box-shadows-map);
+
+/*
+ * Generate utility classes for box shadows.
+ *
+ * .--box-shadow-{box-shadow-key} (.--box-shadow-normal, etc.)
+ */
+@each $box-shadow-key in map.keys(vars.$box-shadows-map) {
+  .--box-shadow-#{$box-shadow-key} {
+    box-shadow: 0 0 var(functions.get-box-shadow-css-var-name($box-shadow-key));
+  }
+}

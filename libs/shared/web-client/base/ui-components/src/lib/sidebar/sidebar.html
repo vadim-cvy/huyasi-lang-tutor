@@ -1,10 +1,6 @@
 <div
-  [class]="[
-    'sidebar',
-    isExpanded() ? '--is-expanded' : '',
-    '--bg-accent',
-    '--border-r',
-  ]"
+  class="sidebar --bg-accent --border-r --box-shadow-normal"
+  [class.--is-expanded]="isExpanded()"
   aria-label="Sidebar"
 >
   <shared-base-nav-primary

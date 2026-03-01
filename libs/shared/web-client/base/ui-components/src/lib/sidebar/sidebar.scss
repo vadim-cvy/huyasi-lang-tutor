@@ -1,11 +1,8 @@
-@use '../../../../ui-design/src/functions';
-
 .sidebar {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-  box-shadow: functions.shadow-get-box-shadow-val('normal');
 
   &.--is-expanded {
     min-width: 11rem;

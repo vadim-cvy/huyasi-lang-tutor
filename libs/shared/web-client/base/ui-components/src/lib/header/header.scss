@@ -1,10 +1,7 @@
-@use '../../../../ui-design/src/functions';
-
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: functions.shadow-get-box-shadow-val('normal');
 
   &__actions {
     display: flex;
