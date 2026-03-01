@@ -8,7 +8,7 @@
  * @param {string} $size-key - The size key to validate.
  * @return {true} Always returns true if validation passes.
  */
-@function validate-size-key-exists($size-key) {
+@function validate-size-exists($size-key) {
   @if not map.has-key(vars.$sizes-map, $size-key) {
     @error 'Unexpected size key: "#{$size-key}"!';
   }
@@ -16,7 +16,7 @@
   @return true;
 }
 
-@function validate-stability-key-exists($stability-key) {
+@function validate-stability-exists($stability-key) {
   // We can check the value against stability keys from any size (all sizes have the same stability keys).
   @if not map.has-key(map.get(vars.$sizes-map, 'xs', 'font-sizes'), $stability-key) {
     @error 'Unexpected stability key: "#{$stability-key}"!';
@@ -34,7 +34,7 @@
  * @return {string} The CSS var name corresponding to the size key.
  */
 @function get-font-size-responsive-css-var-name($size-key) {
-  $_: validate-size-key-exists($size-key);
+  $_: validate-size-exists($size-key);
 
   @return --font-size-responsive-#{$size-key};
 }
@@ -47,8 +47,8 @@
  * @return {string} The utility class name corresponding to the provided keys.
  */
 @function get-text-size-util-class-name($size-key, $stability-key) {
-  $_: validate-size-key-exists($size-key);
-  $__: validate-stability-key-exists($stability-key);
+  $_: validate-size-exists($size-key);
+  $__: validate-stability-exists($stability-key);
 
   @return '.--text-size-#{$size-key}-#{$stability-key}';
 }

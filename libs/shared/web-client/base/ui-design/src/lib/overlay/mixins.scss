@@ -7,11 +7,11 @@
  *
  * Is useful for color themes overrides.
  *
- * @param $vals - Structure must match `vars.$bg-color-key-to-overlay-color-map`
+ * @param $vals - Structure must match `vars.$bg-color-to-overlay-color-map`
  */
 @mixin overlay-set-color-css-vars($vals) {
   $_: internal-functions.validate-is-map-same-shape(
-    vars.$bg-color-key-to-overlay-color-map,
+    vars.$bg-color-to-overlay-color-map,
     $vals,
     '$vals'
   );

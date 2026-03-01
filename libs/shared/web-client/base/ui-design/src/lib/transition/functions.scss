@@ -8,7 +8,7 @@
  * @param {string} $transition-duration-key - The transition duration key to validate.
  * @return {true} Always returns true if validation passes.
  */
-@function validate-duration-key-exists($transition-duration-key) {
+@function validate-duration-exists($transition-duration-key) {
   @if not map.has-key(vars.$durations-map, $transition-duration-key) {
     @error 'Unexpected transition duration key: "#{$transition-duration-key}"!';
   }

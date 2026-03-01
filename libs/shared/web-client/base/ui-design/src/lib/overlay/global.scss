@@ -4,7 +4,7 @@
 @use '../transition/mixins' as transition-mixins;
 @use 'sass:map';
 
-@include mixins.overlay-set-color-css-vars(vars.$bg-color-key-to-overlay-color-map);
+@include mixins.overlay-set-color-css-vars(vars.$bg-color-to-overlay-color-map);
 
 /*
  * Generate utility classes for overlays (based on their parent bg class)
@@ -16,7 +16,7 @@
  *  1. directly to an element with a bg color class (.--bg-{color-key}),
  *  2. or to a child of an element with a bg color class (.--bg-{color-key}).
  */
-@each $bg-color-key in map.keys(vars.$bg-color-key-to-overlay-color-map) {
+@each $bg-color-key in map.keys(vars.$bg-color-to-overlay-color-map) {
   $overlay-color-val: var(functions.get-overlay-color-for-bg-css-var-name($bg-color-key));
 
   @each $pseudo-element-type in ('before', 'after') {

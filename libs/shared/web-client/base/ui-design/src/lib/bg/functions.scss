@@ -8,7 +8,7 @@
  * @param {string} $color-key - The color key to validate.
  * @return {true} Always returns true if validation passes.
  */
-@function validate-color-key-exists($color-key) {
+@function validate-color-exists($color-key) {
   @if not map.has-key(vars.$colors-map, $color-key) {
     @error 'Unexpected color key: "#{$color-key}"!';
   }
@@ -23,7 +23,7 @@
  * @return {string} The CSS var name corresponding to the color key.
  */
 @function get-color-css-var-name($color-key) {
-  $_: validate-color-key-exists($color-key);
+  $_: validate-color-exists($color-key);
 
   @return --bg-color-#{$color-key};
 }

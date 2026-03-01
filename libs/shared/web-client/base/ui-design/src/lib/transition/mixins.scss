@@ -4,7 +4,7 @@
 
 // TODO: rename transition-all
 @mixin transition-set-all($duration-key) {
-  $_: functions.validate-duration-key-exists($duration-key);
+  $_: functions.validate-duration-exists($duration-key);
 
   $duration-val: map.get(vars.$durations-map, $duration-key);
 
