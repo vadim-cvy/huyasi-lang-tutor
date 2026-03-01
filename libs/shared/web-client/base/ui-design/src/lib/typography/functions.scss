@@ -9,7 +9,7 @@
  * @return {true} Always returns true if validation passes.
  */
 @function validate-size-key-exists($size-key) {
-  @if not map.has-key(vars.$sizes, $size-key) {
+  @if not map.has-key(vars.$sizes-map, $size-key) {
     @error 'Unexpected size key: "#{$size-key}"!';
   }
 
@@ -18,7 +18,7 @@
 
 @function validate-stability-key-exists($stability-key) {
   // We can check the value against stability keys from any size (all sizes have the same stability keys).
-  @if not map.has-key(map.get(vars.$sizes, 'xs', 'font-sizes'), $stability-key) {
+  @if not map.has-key(map.get(vars.$sizes-map, 'xs', 'font-sizes'), $stability-key) {
     @error 'Unexpected stability key: "#{$stability-key}"!';
   }
 

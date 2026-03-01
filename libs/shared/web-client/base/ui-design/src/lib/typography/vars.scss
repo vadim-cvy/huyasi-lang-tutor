@@ -5,7 +5,7 @@ $_font-size-lg: 20px;
 $_font-size-xl: 22px;
 $_font-size-2xl: 26px;
 
-$sizes: (
+$sizes-map: (
   xs: (
     font-sizes: (
       static: $_font-size-xs,

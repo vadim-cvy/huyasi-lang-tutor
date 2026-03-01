@@ -9,7 +9,7 @@
  * @return {true} Always returns true if validation passes.
  */
 @function validate-color-key-exists($color-key) {
-  @if not map.has-key(vars.$colors, $color-key) {
+  @if not map.has-key(vars.$colors-map, $color-key) {
     @error 'Unexpected color key: "#{$color-key}"!';
   }
 

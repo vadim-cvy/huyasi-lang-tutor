@@ -35,7 +35,7 @@ a {
 
 // Set responsive text size CSS vars
 :root {
-  @each $size-key, $size-data in vars.$sizes {
+  @each $size-key, $size-data in vars.$sizes-map {
     $css-var-name: functions.get-font-size-responsive-css-var-name($size-key);
     $font-size-responsive-vals: map.get(map.get($size-data, 'font-sizes'), 'responsive');
 
@@ -52,7 +52,7 @@ a {
  *
  * .--text-size-{size-key}-{stability-key} (.--text-size-md-responsive, .--text-size-xs-static, , etc.)
  */
-@each $size-key, $size-data in vars.$sizes {
+@each $size-key, $size-data in vars.$sizes-map {
   $font-sizes-data: map.get($size-data, 'font-sizes');
 
   @each $stability-key in map.keys($font-sizes-data) {
@@ -99,7 +99,7 @@ p {
     margin-bottom: 0 !important;
   }
 
-  @each $size-key, $size-data in vars.$sizes {
+  @each $size-key, $size-data in vars.$sizes-map {
     @each $stability-key in map.keys(map.get($size-data, 'font-sizes')) {
       $text-size-util-class-name: functions.get-text-size-util-class-name(
         $size-key,

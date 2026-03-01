@@ -2,7 +2,7 @@
 @use 'sass:map';
 
 @function validate-size-exists($size) {
-  @if not map.has-key(vars.$sizes, $size) {
+  @if not map.has-key(vars.$sizes-map, $size) {
     @error 'Size "#{$size}" does not exist!';
   }
 
@@ -26,7 +26,7 @@
   $_: validate-size-exists($size-key);
 
   @if $stability-key == 'static' {
-    $size-data: map.get(vars.$sizes, $size-key);
+    $size-data: map.get(vars.$sizes-map, $size-key);
 
     @return map.get($size-data, 'static');
   } @else if $stability-key == 'responsive' {

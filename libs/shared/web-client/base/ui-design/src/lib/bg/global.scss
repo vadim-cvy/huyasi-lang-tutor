@@ -3,14 +3,14 @@
 @use './vars';
 @use 'sass:map';
 
-@include mixins.bg-set-color-css-vars(vars.$colors);
+@include mixins.bg-set-color-css-vars(vars.$colors-map);
 
 /*
  * Generate utility classes for background colors.
  *
  * .--bg-{color-key} (.--bg-base, etc.)
  */
-@each $color-key in map.keys(vars.$colors) {
+@each $color-key in map.keys(vars.$colors-map) {
   .--bg-#{$color-key} {
     background-color: var(functions.get-color-css-var-name($color-key));
   }

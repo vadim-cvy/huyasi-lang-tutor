@@ -6,7 +6,7 @@
 
 // Sets whitespace responsive size variables based on the screen size
 :root {
-  @each $size-key, $size-data in vars.$sizes {
+  @each $size-key, $size-data in vars.$sizes-map {
     $css-var-name: functions.get-size-responsive-css-var-name($size-key);
 
     @each $screen-size-key, $screen-size-val in map.get($size-data, 'responsive') {
@@ -28,7 +28,7 @@
  *
  * .--{prop-name}{-side-key?}-{size-key}-{stability-key} (.--gap-xs-responsive, .--padding-top-sm-static, .--margin-x-lg-responsive, etc.)
  */
-@each $size-key, $size-data in vars.$sizes {
+@each $size-key, $size-data in vars.$sizes-map {
   @each $stability-key in map.keys($size-data) {
     $class-suffix: '-#{$size-key}-#{$stability-key}';
 
