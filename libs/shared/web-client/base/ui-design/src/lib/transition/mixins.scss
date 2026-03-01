@@ -1,0 +1,11 @@
+@use './vars';
+@use './functions';
+@use 'sass:map';
+
+@mixin transition-set-all($duration-key) {
+  $_: functions.validate-duration-key-exists($duration-key);
+
+  $duration-val: map.get(vars.$durations-map, $duration-key);
+
+  transition: all $duration-val;
+}
