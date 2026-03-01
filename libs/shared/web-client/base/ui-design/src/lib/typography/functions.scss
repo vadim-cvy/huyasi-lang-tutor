@@ -17,10 +17,8 @@
 }
 
 @function validate-stability-key-exists($stability-key) {
-  // Get stability keys from the very first size (all sizes have the same stability keys).
-  $valid-stability-keys: map.keys(map.get(vars.$sizes, 'xs', 'font-sizes'));
-
-  @if not index($valid-stability-keys, $stability-key) {
+  // We can check the value against stability keys from any size (all sizes have the same stability keys).
+  @if not map.has-key(map.get(vars.$sizes, 'xs', 'font-sizes'), $stability-key) {
     @error 'Unexpected stability key: "#{$stability-key}"!';
   }
 
