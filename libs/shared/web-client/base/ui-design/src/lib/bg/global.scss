@@ -5,7 +5,11 @@
 
 @include mixins.bg-set-color-css-vars(vars.$colors);
 
-// Sets bg color utility classes
+/*
+ * Generate utility classes for background colors.
+ *
+ * .--bg-{color-key} (.--bg-base, etc.)
+ */
 @each $color-key in map.keys(vars.$colors) {
   .--bg-#{$color-key} {
     background-color: var(functions.get-color-css-var-name($color-key));
