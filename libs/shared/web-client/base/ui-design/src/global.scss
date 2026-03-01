@@ -2,6 +2,6 @@
 @use './lib/whitespace/whitespace-global';
 @use './lib/bg/global' as bg-global;
 @use './lib/overlay/global' as overlay-global;
-@use './lib/typography/typography-global';
+@use './lib/typography/global' as typography-global;
 @use './lib/border/global' as border-global;
 @use './lib/shadow/global' as shadow-global;

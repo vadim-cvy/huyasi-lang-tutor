@@ -1,0 +1,155 @@
+@use './vars';
+@use './functions';
+@use './mixins';
+@use '../whitespace/whitespace-mixins-public';
+@use '../whitespace/whitespace-functions-public';
+@use '../breakpoints/mixins' as breakpoints-mixins;
+@use 'sass:map';
+
+@font-face {
+  font-family: 'Roboto';
+  src: local('Roboto'), url('./assets/fonts/roboto/static/Roboto-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Roboto VF';
+  src: local('Roboto VF'), url('./assets/fonts/roboto/variable/Roboto-VariableFont_wdth\,wght.ttf');
+}
+
+html {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: 'Roboto VF', sans-serif;
+  }
+}
+
+// TODO: move to Link base component (if one will ever be created)
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+// Set responsive text size CSS vars
+:root {
+  @each $size-key, $size-data in vars.$sizes {
+    $css-var-name: functions.get-font-size-responsive-css-var-name($size-key);
+    $font-size-responsive-vals: map.get(map.get($size-data, 'font-sizes'), 'responsive');
+
+    #{$css-var-name}: map.get($font-size-responsive-vals, 'screen-sm');
+
+    @include breakpoints-mixins.breakpoint-md-up {
+      #{$css-var-name}: map.get($font-size-responsive-vals, 'screen-md-up');
+    }
+  }
+}
+
+/**
+ * Generate utility classes for text sizes.
+ *
+ * .--text-size-{size-key}-{stability-key} (.--text-size-md-responsive, .--text-size-xs-static, , etc.)
+ */
+@each $size-key, $size-data in vars.$sizes {
+  $font-sizes-data: map.get($size-data, 'font-sizes');
+
+  @each $stability-key in map.keys($font-sizes-data) {
+    $text-size-util-class-name: functions.get-text-size-util-class-name($size-key, $stability-key);
+
+    $font-size-val: null;
+
+    @if $stability-key == 'static' {
+      $font-size-val: map.get($font-sizes-data, 'static');
+    } @else if $stability-key == 'responsive' {
+      $font-size-val: var(functions.get-font-size-responsive-css-var-name($size-key));
+    } @else {
+      @error 'Unexpected stability key: "#{$stability-key}"!';
+    }
+
+    #{$text-size-util-class-name} {
+      font-size: $font-size-val;
+    }
+  }
+}
+
+/**
+ * Set margin-y for text elements with .--text-size-{size-key}-{stability-key}
+ * utility classes, or children of such elements.
+ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+p {
+  @include whitespace-mixins-public.whitespace-margin-y(0);
+  font-size: inherit;
+
+  &:first-child {
+    margin-top: 0 !important;
+  }
+
+  &:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  @each $size-key, $size-data in vars.$sizes {
+    @each $stability-key in map.keys(map.get($size-data, 'font-sizes')) {
+      $text-size-util-class-name: functions.get-text-size-util-class-name(
+        $size-key,
+        $stability-key
+      );
+
+      $margin-y-size-key: map.get($size-data, 'margin-y-size-key');
+      $margin-y-val: whitespace-functions-public.whitespace-get-size-val(
+        $margin-y-size-key,
+        $stability-key
+      );
+
+      #{$text-size-util-class-name} &,
+      &#{$text-size-util-class-name} {
+        @include whitespace-mixins-public.whitespace-margin-y($margin-y-val);
+      }
+    }
+  }
+}
+
+// Set text color CSS vars (based on element/parent bg color)
+@include mixins.typography-set-color-css-vars(vars.$bg-colors-to-text-colors-map);
+
+/**
+ * Generate utility classes for text colors. As well as sets default text color
+ * for elements having .--bg-{bg-color-key} class.
+ *
+ * Classes generated:
+ * .--text-color-{text-color-key} (.--text-color-base, .--text-color-accent, etc.)
+ *
+ * These utility classes are meant to be used alongside with .--bg-{bg-color-key}
+ * class (provided by bg module). Can be used in the same element having .--bg-{bg-color-key} class,
+ * or in its children elements.
+ */
+@each $bg-color-key, $text-colors-for-bg in vars.$bg-colors-to-text-colors-map {
+  @each $text-color-key in map.keys($text-colors-for-bg) {
+    .--bg-#{$bg-color-key} {
+      $val: var(functions.get-color-css-var-name($text-color-key, $bg-color-key));
+
+      // Make "base" text color to be a default color for elements having .--bg-{bg-color-key} class.
+      @if $text-color-key == 'base' {
+        color: $val;
+      }
+
+      $text-color-util-class-name: functions.get-color-util-class-name($text-color-key);
+
+      // Allow overriding the default text color with .--text-color-{text-color-key}
+      #{$text-color-util-class-name} {
+        color: $val;
+      }
+    }
+  }
+}
