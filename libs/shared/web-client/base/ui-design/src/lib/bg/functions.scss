@@ -2,11 +2,12 @@
 @use 'sass:map';
 
 /**
- * Validates that the provided color key exists in the bg colors map.
+ * Validates that the provided color key exists in vars.$colors-map.
+ *
  * Throws an error if the key is invalid.
  *
- * @param {string} $color-key - The color key to validate.
- * @return {true} Always returns true if validation passes.
+ * @param {string} $color-key
+ * @return {true} Always returns true if error was not thrown.
  */
 @function validate-color-exists($color-key) {
   @if not map.has-key(vars.$colors-map, $color-key) {
@@ -17,10 +18,10 @@
 }
 
 /**
- * Returns the CSS var name for the given color key.
+ * Returns the CSS var name for the given color key from vars.$colors-map.
  *
- * @param {string} $color-key - The color key to get the CSS var name for.
- * @return {string} The CSS var name corresponding to the color key.
+ * @param {string} $color-key
+ * @return {string}
  */
 @function get-css-var-name--color($color-key) {
   $_: validate-color-exists($color-key);

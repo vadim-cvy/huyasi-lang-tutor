@@ -2,11 +2,11 @@
 @use 'sass:map';
 
 /**
- * Validates that the provided background color key exists in the overlay colors map.
+ * Validates that the provided background color key exists in vars.$bg-color-to-overlay-color-map.
  * Throws an error if the key is invalid.
  *
- * @param {string} $bg-color-key - The background color key to validate.
- * @return {true} Always returns true if validation passes.
+ * @param {string} $bg-color-key
+ * @return {true} Always returns true if error was not thrown.
  */
 @function validate-overlay-color-for-bg-exists($bg-color-key) {
   @if not map.has-key(vars.$bg-color-to-overlay-color-map, $bg-color-key) {
@@ -17,10 +17,10 @@
 }
 
 /**
- * Returns the CSS var name for the given background color key.
+ * Returns the CSS var name for the given background color key from vars.$bg-color-to-overlay-color-map.
  *
- * @param {string} $bg-color-key - The background color key to get the CSS var name for.
- * @return {string} The CSS var name corresponding to the background color key.
+ * @param {string} $bg-color-key
+ * @return {string}
  */
 @function get-css-var-name--overlay-color-for-bg($bg-color-key) {
   $_: validate-overlay-color-for-bg-exists($bg-color-key);

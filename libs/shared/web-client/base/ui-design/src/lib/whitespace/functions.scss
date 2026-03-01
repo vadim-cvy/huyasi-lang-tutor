@@ -16,11 +16,11 @@
 }
 
 /**
- * Returns whitespace size value for the given size key and stability key.
+ * Returns whitespace size value for the given size key and stability key from vars.$sizes-map.
  *
- * @param {string} $size-key - The size key to get the value for.
- * @param {string} $stability-key - The stability key (`static` or `responsive`).
- * @return {string} The whitespace size value corresponding to the provided keys.
+ * @param {string} $size-key
+ * @param {string} $stability-key
+ * @return {string} Static value for 'static' stability key, or CSS var for 'responsive' stability key.
  */
 @function get-size-val($size-key, $stability-key) {
   $_: validate-size-exists($size-key);

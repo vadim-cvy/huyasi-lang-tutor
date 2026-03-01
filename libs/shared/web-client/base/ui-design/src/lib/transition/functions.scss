@@ -2,11 +2,12 @@
 @use 'sass:map';
 
 /**
- * Validates that the provided transition duration key exists in the transition durations map.
+ * Validates that the provided transition duration key exists in vars.$durations-map.
+ *
  * Throws an error if the key is invalid.
  *
- * @param {string} $transition-duration-key - The transition duration key to validate.
- * @return {true} Always returns true if validation passes.
+ * @param {string} $transition-duration-key
+ * @return {true} Always returns true if error was not thrown.
  */
 @function validate-duration-exists($transition-duration-key) {
   @if not map.has-key(vars.$durations-map, $transition-duration-key) {
