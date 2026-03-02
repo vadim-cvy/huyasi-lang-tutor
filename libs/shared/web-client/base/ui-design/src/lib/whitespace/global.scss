@@ -30,11 +30,11 @@
  */
 @each $size-key, $size-data in vars.$sizes-map {
   @each $stability-key in map.keys($size-data) {
-    $class-suffix: '-#{$size-key}-#{$stability-key}';
+    $util-class-suffix: '-#{$size-key}-#{$stability-key}';
 
     $val: functions.get-size-val($size-key, $stability-key);
 
-    .--gap#{$class-suffix} {
+    .--gap#{$util-class-suffix} {
       gap: $val;
     }
 
@@ -43,7 +43,7 @@
         (
           val: $val,
           prop-name: $prop-name,
-          class-suffix: $class-suffix,
+          class-suffix: $util-class-suffix,
           is-with-xy: true,
         )
       );
