@@ -41,7 +41,7 @@
         }
 
         &::#{$pseudo-element-type} {
-          @include transition-mixins.transition-set-all('normal');
+          @include transition-mixins.transition-all('normal');
 
           content: '';
           position: absolute;
