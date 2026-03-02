@@ -26,6 +26,9 @@ import { Sidebar } from '../sidebar/sidebar';
 export class Page implements OnInit {
   private readonly destroyRef = inject(DestroyRef);
 
+  /**
+   * When `true`, page is rendered in a minimalistic mode: without header, sidebar and footer.
+   */
   public readonly isMinimalistic = input<boolean>(false);
 
   private readonly isSidebarBreakpointMatch = signal<boolean>(true);
@@ -45,6 +48,11 @@ export class Page implements OnInit {
     this.syncSidebarAndFooterVisibility();
   }
 
+  /**
+   * Syncs sidebar and footer visibility based on the screen width.
+   *
+   * Sidebar and footer are interchangeable and are never visible at the same time.
+   */
   private syncSidebarAndFooterVisibility(): void {
     const auditTimeMs = 100;
 

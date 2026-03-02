@@ -22,6 +22,10 @@ import type { ButtonWidth } from './abstract/ButtonWidth';
 export class Button {
   public readonly link = input<{
     url: string;
+    /**
+     * Indicates whether button should be treated as active (which will affect its styling)
+     * when the current route exactly matches the link url.
+     */
     isRouterLinkActiveSync?: boolean;
   }>();
 
@@ -42,11 +46,18 @@ export class Button {
   public readonly paddingY = input<WhitespaceSize | undefined>();
 
   private readonly paddingXDefault = computed<WhitespaceSize>((): WhitespaceSize => {
+    /**
+     * Use paddingY input (if provided) to ensure consistent vertical and horizontal spacing.
+     *
+     * Why paddingY input (not paddingY final)?
+     * It prevents circular dependency. Because paddingY final already depends on paddingX final.
+     */
     const paddingYInput = this.paddingY();
     if (paddingYInput) {
       return whitespaceUtils.getSizeGreaterOrMax(paddingYInput, 1);
     }
 
+    // Fallback to static value if paddingY input is not provided
     return 'lg';
   });
 
@@ -55,6 +66,7 @@ export class Button {
   );
 
   private readonly paddingYDefault = computed<WhitespaceSize>((): WhitespaceSize => {
+    // Use paddingX final value to ensure consistent vertical and horizontal spacing.
     const paddingXFinal = this.paddingXFinal();
 
     return whitespaceUtils.getSizeLessOrMin(paddingXFinal, 1);
@@ -66,7 +78,10 @@ export class Button {
 
   public readonly fontSize = input<FontSize>();
 
-  private readonly fontSizeDefault = computed<FontSize>(() => this.paddingYFinal());
+  private readonly fontSizeDefault = computed<FontSize>(
+    // Making font size depend on paddingY ensures consistency between text size and vertical spacing.
+    () => this.paddingYFinal(),
+  );
 
   private readonly fontSizeFinal = computed<FontSize>(
     () => this.fontSize() || this.fontSizeDefault(),
@@ -75,6 +90,10 @@ export class Button {
   private readonly marginY = computed<WhitespaceSize>(() => {
     const stepsBack = 3;
 
+    /**
+     * Making vertical margin depend on vertical padding ensures consistent spacing
+     * between button inner content and surrounding elements.
+     */
     return whitespaceUtils.getSizeLessOrMin(this.paddingYFinal(), stepsBack);
   });
 

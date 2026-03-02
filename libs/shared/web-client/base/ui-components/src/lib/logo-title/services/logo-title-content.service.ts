@@ -3,6 +3,14 @@ import { Injectable } from '@angular/core';
 import type { LogoTitleContent } from '../abstract/LogoTitleContent';
 import type { ILogoTitleContentService } from './logo-title-content.service.interface';
 
+/**
+ * Service for injecting content into LogoTitle component (from the apps).
+ *
+ * What's the purpose?:
+ * LogoTitle component can be used in different apps (admin area, client area, etc),
+ * each app needs to display different content in the component, so we can't hardcode
+ * content in the component itself and need to inject it from the apps instead.
+ */
 @Injectable({
   providedIn: 'root',
 })
