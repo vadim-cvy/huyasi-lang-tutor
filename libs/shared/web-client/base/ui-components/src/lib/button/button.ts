@@ -41,41 +41,36 @@ export class Button {
   public readonly paddingX = input<WhitespaceSize | undefined>();
   public readonly paddingY = input<WhitespaceSize | undefined>();
 
-  private readonly paddingXFinal = computed<WhitespaceSize>((): WhitespaceSize => {
-    const paddingXCustom = this.paddingX();
-
-    if (paddingXCustom) {
-      return paddingXCustom;
-    }
-
-    const paddingYCustom = this.paddingY();
-
-    if (paddingYCustom) {
-      return whitespaceUtils.getSizeGreaterOrMax(paddingYCustom, 1);
+  private readonly paddingXDefault = computed<WhitespaceSize>((): WhitespaceSize => {
+    const paddingYInput = this.paddingY();
+    if (paddingYInput) {
+      return whitespaceUtils.getSizeGreaterOrMax(paddingYInput, 1);
     }
 
     return 'lg';
   });
 
-  private readonly paddingYFinal = computed<WhitespaceSize>((): WhitespaceSize => {
-    const paddingYCustom = this.paddingY();
+  private readonly paddingXFinal = computed<WhitespaceSize>(
+    () => this.paddingX() || this.paddingXDefault(),
+  );
 
-    if (paddingYCustom) {
-      return paddingYCustom;
-    }
-
+  private readonly paddingYDefault = computed<WhitespaceSize>((): WhitespaceSize => {
     const paddingXFinal = this.paddingXFinal();
 
     return whitespaceUtils.getSizeLessOrMin(paddingXFinal, 1);
   });
 
+  private readonly paddingYFinal = computed<WhitespaceSize>(
+    () => this.paddingY() || this.paddingYDefault(),
+  );
+
   public readonly fontSize = input<FontSize>();
 
-  private readonly fontSizeFinal = computed<FontSize>((): FontSize => {
-    const fontSizeCustom = this.fontSize();
+  private readonly fontSizeDefault = computed<FontSize>(() => this.paddingYFinal());
 
-    return fontSizeCustom || this.paddingYFinal();
-  });
+  private readonly fontSizeFinal = computed<FontSize>(
+    () => this.fontSize() || this.fontSizeDefault(),
+  );
 
   private readonly marginY = computed<WhitespaceSize>(() => {
     const stepsBack = 3;
