@@ -18,9 +18,9 @@
 
   :root {
     @each $bg-color-key, $overlay-color-val in $vals {
-      $css-var-name: functions.get-css-var-name--overlay-color-for-bg($bg-color-key);
+      $css-var-name--overlay-color: functions.get-css-var-name--overlay-color-for-bg($bg-color-key);
 
-      #{$css-var-name}: $overlay-color-val;
+      #{$css-var-name--overlay-color}: $overlay-color-val;
     }
   }
 }

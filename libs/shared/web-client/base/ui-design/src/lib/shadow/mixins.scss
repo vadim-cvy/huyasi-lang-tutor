@@ -14,9 +14,9 @@
 
   :root {
     @each $box-shadow-key, $box-shadow-val in $vals {
-      $css-var-name: functions.get-css-var-name--box-shadow($box-shadow-key);
+      $css-var-name--box-shadow: functions.get-css-var-name--box-shadow($box-shadow-key);
 
-      #{$css-var-name}: $box-shadow-val;
+      #{$css-var-name--box-shadow}: $box-shadow-val;
     }
   }
 }

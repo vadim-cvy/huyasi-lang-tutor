@@ -37,13 +37,16 @@ a {
 // Set responsive text size CSS vars
 :root {
   @each $size-key, $size-data in vars.$sizes-map {
-    $css-var-name: functions.get-css-var-name--font-size-responsive($size-key);
+    $css-var-name--font-size-responsive: functions.get-css-var-name--font-size-responsive(
+      $size-key
+    );
+
     $font-size-responsive-vals: map.get(map.get($size-data, 'font-sizes'), 'responsive');
 
-    #{$css-var-name}: map.get($font-size-responsive-vals, 'screen-sm');
+    #{$css-var-name--font-size-responsive}: map.get($font-size-responsive-vals, 'screen-sm');
 
     @include breakpoints-mixins.breakpoint-md-up {
-      #{$css-var-name}: map.get($font-size-responsive-vals, 'screen-md-up');
+      #{$css-var-name--font-size-responsive}: map.get($font-size-responsive-vals, 'screen-md-up');
     }
   }
 }
@@ -64,7 +67,11 @@ a {
     @if $stability-key == 'static' {
       $font-size-val: map.get($font-sizes-data, 'static');
     } @else if $stability-key == 'responsive' {
-      $font-size-val: var(functions.get-css-var-name--font-size-responsive($size-key));
+      $css-var-name--font-size-responsive: functions.get-css-var-name--font-size-responsive(
+        $size-key
+      );
+
+      $font-size-val: var($css-var-name--font-size-responsive);
     } @else {
       @error 'Unexpected stability key: "#{$stability-key}"!';
     }

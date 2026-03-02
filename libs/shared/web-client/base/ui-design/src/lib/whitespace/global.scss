@@ -7,14 +7,14 @@
 // Set whitespace responsive size variables based on the screen size
 :root {
   @each $size-key, $size-data in vars.$sizes-map {
-    $css-var-name: functions.get-css-var-name--size-responsive($size-key);
+    $css-var-name--font-size-responsive: functions.get-css-var-name--size-responsive($size-key);
 
     @each $screen-size-key, $screen-size-val in map.get($size-data, 'responsive') {
       @if $screen-size-key == 'screen-sm' {
-        #{$css-var-name}: $screen-size-val;
+        #{$css-var-name--font-size-responsive}: $screen-size-val;
       } @else if $screen-size-key == 'screen-md-up' {
         @include breakpoints-mixins.breakpoint-md-up {
-          #{$css-var-name}: $screen-size-val;
+          #{$css-var-name--font-size-responsive}: $screen-size-val;
         }
       } @else {
         @error 'Unexpected screen size: "#{$screen-size-key}"';

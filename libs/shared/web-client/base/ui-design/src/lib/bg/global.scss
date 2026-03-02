@@ -12,8 +12,9 @@
  */
 @each $color-key in map.keys(vars.$colors-map) {
   $util-class--color: functions.get-util-class--color($color-key);
+  $css-var-name--color: functions.get-css-var-name--color($color-key);
 
   #{$util-class--color} {
-    background-color: var(functions.get-css-var-name--color($color-key));
+    background-color: var($css-var-name--color);
   }
 }

@@ -18,8 +18,6 @@
  *  2. or to a child of an element with a bg color class (.--bg-{bg-color-key}).
  */
 @each $bg-color-key in map.keys(vars.$bg-color-to-overlay-color-map) {
-  $overlay-color-val: var(functions.get-css-var-name--overlay-color-for-bg($bg-color-key));
-
   @each $pseudo-element-type in ('before', 'after') {
     // .--bg-{bg-color-key}
     $util-class--bg-color: bg-functions.get-util-class--color($bg-color-key);
@@ -61,7 +59,11 @@
         &:focus,
         &#{$util-class--is-overlay-active} {
           &::#{$pseudo-element-type} {
-            background-color: $overlay-color-val;
+            $css-var-name--overlay-color: functions.get-css-var-name--overlay-color-for-bg(
+              $bg-color-key
+            );
+
+            background-color: var($css-var-name--overlay-color);
           }
         }
       }

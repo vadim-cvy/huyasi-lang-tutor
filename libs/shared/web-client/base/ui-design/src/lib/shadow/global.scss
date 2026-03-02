@@ -12,8 +12,9 @@
  */
 @each $box-shadow-key in map.keys(vars.$box-shadows-map) {
   $util-class--box-shadow: functions.get-util-class--box-shadow($box-shadow-key);
+  $css-var-name--box-shadow: functions.get-css-var-name--box-shadow($box-shadow-key);
 
   #{$util-class--box-shadow} {
-    box-shadow: 0 0 var(functions.get-css-var-name--box-shadow($box-shadow-key));
+    box-shadow: 0 0 var($css-var-name--box-shadow);
   }
 }
