@@ -145,12 +145,13 @@ p {
     $text-color-val: var(functions.get-css-var-name--color($text-color-key, $bg-color-key));
 
     #{$util-class--bg-color} {
-      // Make "base" text color to be a default color for elements having .--bg-{bg-color-key} class.
+      // Make "base" text color to be a default color
       @if $text-color-key == 'base' {
         color: $text-color-val;
       }
 
-      // Allow overriding the default text color with .--text-color-{text-color-key}
+      // Allow overriding with .--text-color-{text-color-key} class
+      &#{$util-class--text-color},
       #{$util-class--text-color} {
         color: $text-color-val;
       }
