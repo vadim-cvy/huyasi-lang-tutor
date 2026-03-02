@@ -2,6 +2,11 @@
 @use './functions';
 @use 'sass:map';
 
+/**
+ * Sets transition for all properties.
+ *
+ * @param $duration-key - Key of the transition duration in `vars.$durations-map`
+ */
 @mixin transition-all($duration-key) {
   $_: functions.validate-duration-exists($duration-key);
 

@@ -17,6 +17,14 @@
   @return true;
 }
 
+/**
+ * Validates that the provided stability key exists for any size in vars.$sizes-map.
+ *
+ * Throws an error if the key is invalid.
+ *
+ * @param {string} $stability-key
+ * @return {true} Always returns true if error was not thrown.
+ */
 @function validate-stability-exists($stability-key) {
   // We can check the value against stability keys from any size (all sizes have the same stability keys).
   @if not map.has-key(map.get(vars.$sizes-map, 'xs', 'font-sizes'), $stability-key) {
