@@ -2,27 +2,34 @@
 @use './functions';
 @use './mixins';
 @use '../transition/mixins' as transition-mixins;
+@use '../bg/functions' as bg-functions;
 @use 'sass:map';
 
 @include mixins.overlay-set-color-css-vars(vars.$bg-color-to-overlay-color-map);
 
 /*
- * Generate utility classes for overlays (based on their parent bg class)
+ * Generate utility classes for overlays (based on their parent bg class: .--bg-{bg-color-key}).
  *
  * .--has-overlay-{pseudo-element-type} (.--has-overlay-before, .--has-overlay-after)
  * .--has-overlay-{pseudo-element-type}.--is-overlay-active
  *
  * These classes work only when applied either
- *  1. directly to an element with a bg color class (.--bg-{color-key}),
- *  2. or to a child of an element with a bg color class (.--bg-{color-key}).
+ *  1. directly to an element with a bg color class (.--bg-{bg-color-key}),
+ *  2. or to a child of an element with a bg color class (.--bg-{bg-color-key}).
  */
 @each $bg-color-key in map.keys(vars.$bg-color-to-overlay-color-map) {
   $overlay-color-val: var(functions.get-css-var-name--overlay-color-for-bg($bg-color-key));
 
   @each $pseudo-element-type in ('before', 'after') {
-    .--bg-#{$bg-color-key} {
-      &.--has-overlay-#{$pseudo-element-type},
-      .--has-overlay-#{$pseudo-element-type} {
+    // .--bg-{bg-color-key}
+    $util-class--bg-color: bg-functions.get-util-class--color($bg-color-key);
+
+    $util-class--has-overlay: '.--has-overlay-#{$pseudo-element-type}';
+    $util-class--is-overlay-active: '.--is-overlay-active';
+
+    #{$util-class--bg-color} {
+      &#{$util-class--has-overlay}, // same element
+      #{$util-class--has-overlay} /* child element */ {
         position: relative;
 
         /*
@@ -52,7 +59,7 @@
         &:hover,
         &:active,
         &:focus,
-        &.--is-overlay-active {
+        &#{$util-class--is-overlay-active} {
           &::#{$pseudo-element-type} {
             background-color: $overlay-color-val;
           }

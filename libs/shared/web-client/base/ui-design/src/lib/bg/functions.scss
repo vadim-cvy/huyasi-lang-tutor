@@ -28,3 +28,15 @@
 
   @return --bg-color-#{$color-key};
 }
+
+/**
+ * Returns the utility class for the given color key.
+ *
+ * @param {string} $color-key
+ * @return {string} .--bg-{color-key}
+ */
+@function get-util-class--color($color-key) {
+  $_: validate-color-exists($color-key);
+
+  @return '.--bg-#{$color-key}';
+}

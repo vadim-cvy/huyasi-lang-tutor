@@ -4,7 +4,7 @@
 @use '../_internal/internal-mixins.scss' as internal-mixins;
 @use 'sass:map';
 
-// Sets whitespace responsive size variables based on the screen size
+// Set whitespace responsive size variables based on the screen size
 :root {
   @each $size-key, $size-data in vars.$sizes-map {
     $css-var-name: functions.get-css-var-name--size-responsive($size-key);

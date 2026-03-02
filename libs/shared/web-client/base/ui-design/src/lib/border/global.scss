@@ -4,11 +4,7 @@
 
 @include mixins.border-set-color-css-var(vars.$color);
 
-/*
- * Generate utility classes for borders.
- *
- * .--border-{side} (.--border-all, .--border-top, etc.)
- */
+// Generate utility classes for borders (.--border-{side}).
 @include internal-mixins.util-classes--side-prop-variants(
   (
     val: 1px solid var(vars.$color-css-var-name),

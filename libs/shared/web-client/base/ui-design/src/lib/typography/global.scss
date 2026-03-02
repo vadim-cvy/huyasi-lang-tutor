@@ -2,6 +2,7 @@
 @use './functions';
 @use './mixins';
 @use '../whitespace/functions' as whitespace-functions;
+@use '../bg/functions' as bg-functions;
 @use '../breakpoints/mixins' as breakpoints-mixins;
 @use 'sass:map';
 
@@ -131,19 +132,20 @@ p {
  */
 @each $bg-color-key, $text-colors-for-bg in vars.$bg-colors-to-text-colors-map {
   @each $text-color-key in map.keys($text-colors-for-bg) {
-    .--bg-#{$bg-color-key} {
-      $val: var(functions.get-css-var-name--color($text-color-key, $bg-color-key));
+    $util-class--bg-color: bg-functions.get-util-class--color($bg-color-key);
+    $util-class--text-color: functions.get-util-class--color($text-color-key);
 
+    $text-color-val: var(functions.get-css-var-name--color($text-color-key, $bg-color-key));
+
+    #{$util-class--bg-color} {
       // Make "base" text color to be a default color for elements having .--bg-{bg-color-key} class.
       @if $text-color-key == 'base' {
-        color: $val;
+        color: $text-color-val;
       }
-
-      $util-class--text-color: functions.get-util-class--color($text-color-key);
 
       // Allow overriding the default text color with .--text-color-{text-color-key}
       #{$util-class--text-color} {
-        color: $val;
+        color: $text-color-val;
       }
     }
   }

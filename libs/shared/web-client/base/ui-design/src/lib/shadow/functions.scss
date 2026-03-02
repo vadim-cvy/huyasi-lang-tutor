@@ -27,3 +27,15 @@
 
   @return --box-shadow-#{$box-shadow-key};
 }
+
+/**
+ * Returns the utility class for the given box shadow key.
+ *
+ * @param {string} $box-shadow-key
+ * @return {string} .--box-shadow-{box-shadow-key}
+ */
+@function get-util-class--box-shadow($box-shadow-key) {
+  $_: validate-box-shadow-exists($box-shadow-key);
+
+  @return '.--box-shadow-#{$box-shadow-key}';
+}

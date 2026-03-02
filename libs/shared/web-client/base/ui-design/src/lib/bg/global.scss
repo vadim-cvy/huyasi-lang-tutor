@@ -8,10 +8,12 @@
 /*
  * Generate utility classes for background colors.
  *
- * .--bg-{color-key} (.--bg-base, etc.)
+ * .--bg-color-{color-key} (.--bg-color-primary, etc.)
  */
 @each $color-key in map.keys(vars.$colors-map) {
-  .--bg-#{$color-key} {
+  $util-class--color: functions.get-util-class--color($color-key);
+
+  #{$util-class--color} {
     background-color: var(functions.get-css-var-name--color($color-key));
   }
 }
