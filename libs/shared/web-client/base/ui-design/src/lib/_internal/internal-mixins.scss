@@ -1,15 +1,16 @@
 @use 'sass:map';
+@use 'sass:list';
 
 /**
  * Generates utility classes for the given css prop.
  *
- * .--{prop-name}-all{-class-suffix?}
- * .--{prop-name}-top{-class-suffix?}
- * .--{prop-name}-right{-class-suffix?}
- * .--{prop-name}-bottom{-class-suffix?}
- * .--{prop-name}-left{-class-suffix?}
- * .--{prop-name}-x{-class-suffix?}
- * .--{prop-name}-y{-class-suffix?}
+ * .--{prop-name}-all{class-suffix}
+ * .--{prop-name}-top{class-suffix}
+ * .--{prop-name}-right{class-suffix}
+ * .--{prop-name}-bottom{class-suffix}
+ * .--{prop-name}-left{class-suffix}
+ * .--{prop-name}-x{class-suffix}
+ * .--{prop-name}-y{class-suffix}
  *
  * @param {Map} $options - The options for generating the utility classes.
  * @param {String} $options.val - The value to set for the css prop.
@@ -39,27 +40,27 @@
     $class-suffix: '';
   }
 
-  $class-prefix: '.--#{$prop-name}-';
-
-  #{$class-prefix}#{$class-suffix} {
-    #{$prop-name}: $val;
-  }
-
-  @each $side in (top, right, bottom, left) {
-    #{$class-prefix}#{$side}#{$class-suffix} {
-      #{$prop-name}-#{$side}: $val;
-    }
-  }
+  $sides: (top, right, bottom, left, all);
 
   @if $is-with-xy == true {
-    #{$class-prefix}x#{$class-suffix} {
-      #{$prop-name}-left: $val;
-      #{$prop-name}-right: $val;
-    }
+    $sides: list.join($sides, (x, y));
+  }
 
-    #{$class-prefix}y#{$class-suffix} {
-      #{$prop-name}-top: $val;
-      #{$prop-name}-bottom: $val;
+  @each $side in $sides {
+    $class-name: '.--#{$prop-name}-#{$side}#{$class-suffix}';
+
+    #{$class-name} {
+      @if $side == 'all' {
+        #{$prop-name}: $val;
+      } @else if $side == 'x' {
+        #{$prop-name}-left: $val;
+        #{$prop-name}-right: $val;
+      } @else if $side == 'y' {
+        #{$prop-name}-top: $val;
+        #{$prop-name}-bottom: $val;
+      } @else {
+        #{$prop-name}-#{$side}: $val;
+      }
     }
   }
 }
