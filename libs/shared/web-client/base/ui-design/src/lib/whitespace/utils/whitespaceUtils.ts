@@ -4,7 +4,7 @@ import { whitespaceSizes } from '../data/whitespaceSizes';
 const indexMin = 0;
 const indexMax = whitespaceSizes.length - 1;
 
-const _clampIndex = (index: number): number => {
+const clampIndex = (index: number): number => {
   if (index < indexMin) {
     return indexMin;
   } else if (index > indexMax) {
@@ -14,11 +14,11 @@ const _clampIndex = (index: number): number => {
   return index;
 };
 
-const _sizeOrIndexUnsafeToSafeIndex = (sizeOrIndex: WhitespaceSize | number): number => {
+const sizeOrIndexUnsafeToSafeIndex = (sizeOrIndex: WhitespaceSize | number): number => {
   const index =
     typeof sizeOrIndex === 'number' ? sizeOrIndex : whitespaceSizes.indexOf(sizeOrIndex);
 
-  const indexClamped = _clampIndex(index);
+  const indexClamped = clampIndex(index);
 
   if (index !== indexClamped) {
     throw new Error(
@@ -31,36 +31,33 @@ const _sizeOrIndexUnsafeToSafeIndex = (sizeOrIndex: WhitespaceSize | number): nu
   return index;
 };
 
-const _getSizeIndexGreaterOrMax = (
+const getSizeIndexGreaterOrMax = (
   sizeOrIndex: WhitespaceSize | number,
   stepsForward: number,
 ): number => {
-  const indexPassed = _sizeOrIndexUnsafeToSafeIndex(sizeOrIndex);
+  const indexPassed = sizeOrIndexUnsafeToSafeIndex(sizeOrIndex);
 
   const indexDesired = indexPassed + stepsForward;
 
-  return _clampIndex(indexDesired);
+  return clampIndex(indexDesired);
 };
 
-const _getSizeIndexLessOrMin = (
-  sizeOrIndex: WhitespaceSize | number,
-  stepsBack: number,
-): number => {
-  const indexPassed = _sizeOrIndexUnsafeToSafeIndex(sizeOrIndex);
+const getSizeIndexLessOrMin = (sizeOrIndex: WhitespaceSize | number, stepsBack: number): number => {
+  const indexPassed = sizeOrIndexUnsafeToSafeIndex(sizeOrIndex);
 
   const indexDesired = indexPassed - stepsBack;
 
-  return _clampIndex(indexDesired);
+  return clampIndex(indexDesired);
 };
 
 const getSizeGreaterOrMax = (size: WhitespaceSize, stepsForward: number): WhitespaceSize => {
-  const indexGreaterOrMax = _getSizeIndexGreaterOrMax(size, stepsForward);
+  const indexGreaterOrMax = getSizeIndexGreaterOrMax(size, stepsForward);
 
   return whitespaceSizes[indexGreaterOrMax];
 };
 
 const getSizeLessOrMin = (size: WhitespaceSize, stepsBack: number): WhitespaceSize => {
-  const indexLessOrMin = _getSizeIndexLessOrMin(size, stepsBack);
+  const indexLessOrMin = getSizeIndexLessOrMin(size, stepsBack);
 
   return whitespaceSizes[indexLessOrMin];
 };
