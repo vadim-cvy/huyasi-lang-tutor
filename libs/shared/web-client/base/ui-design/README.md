@@ -2,9 +2,9 @@
 
 This package provides the following features for web client apps and libs styling:
 
-- global CSS
+- reset default CSS
 - utility CSS classes
-- utility SCSS mixins and functions
+- utility SCSS mixins
 - TS types for consistent design tokens
 - TS utility functions for working with design tokens
 
@@ -12,219 +12,140 @@ This package provides the following features for web client apps and libs stylin
 
 ### Base Concepts
 
-- Any CSS values that can change at runtime (e.g., colors) are implemented as CSS variables.
-- Each token group (e.g., `bg`, `border`, `breakpoints`) is implemented as a separate module inside the `./src/lib/` folder.
-- Groups inside this library may depend on each other's non-private files. For example, `./src/lib/overlay/` files may use functions from the `./src/lib/bg/` group to get CSS variable names or values. But they **MUST NOT** use private files from other groups (e.g., `*-vars-private.scss`).
-- There are entry-point files in the root `./src/` folder intended for imports from apps and other libs. These files gather and re-export public functions, global CSS, mixins, etc.
+- Any CSS values that can change at runtime _(colors, some responsive values)_ are implemented as CSS variables.
+- Each token group _(`bg`, `border`, `breakpoints`, etc)_ is implemented as a separate module inside the `./src/lib/` folder.
+- Groups inside this library may depend on each other's mixins or functions. For example, `./src/lib/overlay/` files may use functions from the `./src/lib/bg/`.
 
-### Root Files
+### Root Files _(entry points)_
 
 - `./src/global.scss`
-  - Works as an entry point and contains all `./src/lib/<group>/*-global.scss` files.
-  - This file must be imported in **app global styles** to apply global CSS variables and utility classes. **NEVER import it from libraries**.
-- `./src/functions.scss`
-  - Works as an entry point for all SCSS functions defined in `./src/lib/<group>/*-functions-public.scss` files.
-  - You may import this file from both apps and libs.
-  - **NOTE:** prefer utility classes over functions for styling whenever possible!
+  - Re-exports all `./src/lib/<group>/global.scss` files _(if presented)_.
+  - This file must be imported **just once** in **app global styles** to apply global CSS variables and utility classes.
 - `./src/mixins.scss`
-  - Works as an entry point for all SCSS mixins defined in `./src/lib/<group>/*-mixins-public.scss` files.
+  - Re-exports all `./src/lib/<group>/mixins.scss` files _(if presented)_.
   - You may import this file from both apps and libs.
-  - **NOTE:** prefer utility classes over mixins for styling whenever possible!
 - `./src/index.ts`
-  - Works as an entry point for all TS types and enums defined in `./src/lib/<group>/abstract/*.ts` and `./src/lib/<group>/enums/*.ts` files.
+  - Re-exports `./src/lib/<group>/index.ts` files _(if presented)_.
   - You may import this file from both apps and libs.
 
-### Per-Group Files
+### Per-Group Files _(`./src/lib/<group>/*`)_
 
-- `./src/lib/<group>/*-global.scss`
-  - CSS variable definitions as well as utility classes are defined here.
-- `./src/lib/<group>/*-vars-private.scss`
+Each file is optional and is created only if needed.
+
+- `./src/lib/<group>/global.scss`: CSS variable default definitions as well as utility classes are defined here.
+- `./src/lib/<group>/functions.scss`: contains SCSS functions.
+- `./src/lib/<group>/mixins.scss`: contains SCSS mixins.
+- `./src/lib/<group>/vars.scss`
   - Contains all the settings and mappings.
-  - If you want to expose variables to other groups inside this library or to external apps/libs, expose them via `*-functions-public.scss`. Example:
+  - Prefer not to to import this file from other groups. Prefer importing functions/mixins files instead. This reduces coupling between groups, promotes encapsulation and lets you keep some implementation details centralized _(validation, etc)_. Example:
 
     ```scss
-    // ./src/lib/my-group/my-group-vars-private.scss
-    $default-theme-colors: (
+    // ./src/lib/my-group/vars.scss
+    $my-colors-map: (
       base: #fff,
       accent: #000,
     );
     ```
 
     ```scss
-    // ./src/lib/my-group/my-group-global.scss
-    @use './my-group-vars-private';
-    @use './my-group-functions-public';
+    // ./src/lib/my-group/functions.scss
+    @use './vars';
 
-    @each $color-key, $color-val in my-group-vars-private.$default-theme-colors {
-      $css-var-name: my-group-functions-public.my-group-get-color-css-var-name($color-key);
-
-      :root {
-        #{$css-var-name}: #{$color-val};
+    @function validate-color-exists($color-key) {
+      @if not map-has-key(vars.$my-colors-map, $color-key) {
+        @error "Color key `#{$color-key}` does not exist!";
       }
+    }
 
-      .--my-group-#{$color-key} {
-        background-color: my-group-functions-public.my-group-get-color-val($color-key);
-      }
+    @function get-css-var-name--color($color-key) {
+      $_: validate-color-exists($color-key);
+
+      @return '--my-group-color-#{$color-key}';
     }
     ```
 
     ```scss
-    // ./src/lib/my-group/my-group-functions-public.scss
-    @use './my-group-vars-private';
+    // ./src/lib/my-another-awesome-group/global.scss
+    @use '../my-group/functions' as my-group-functions;
 
-    @function my-group-get-color-css-var-name($color-key) {
-      @return '--my-group-color-#{$color-key}';
-    }
-
-    @function my-group-get-color-val($color-key) {
-      @return var(my-group-get-color-css-var-name($color-key));
+    .some-selector {
+      // We safely use the function implemented by `my-group` without worrying about validation, because it's all implemented and maintained inside `my-group`. We would need to re-implement validation logic here if we imported `vars.scss` instead.
+      some-prop: var(my-group-functions.get-css-var-name--color(accent));
     }
     ```
 
-- `./src/lib/<group>/*-functions-public.scss`
-  - Contains SCSS functions. Functions may implement some logic or just expose some values from `*-vars-private.scss`.
-- `./src/lib/<group>/*-functions-private.scss`
-  - Contains SCSS functions that are supposed to be used ONLY inside the current group.
-- `./src/lib/<group>/*-mixins-public.scss`
-  - Contains SCSS mixins.
-- `./src/lib/<group>/*-mixins-private.scss`
-  - Contains SCSS mixins that are supposed to be used ONLY inside the current group.
-- `./src/lib/<group>/assets/[fonts|img]/*`
-  - Contains group-related fonts and images.
-- `./src/lib/<group>/abstract/*.ts` or `./src/lib/<group>/enums/*.ts`
-  - Contains TS types related to the group.
-- `./src/lib/<group>/data/*.ts`
-  - Contains TS constants related to the group.
-- `./src/lib/<group>/utils/*.ts`
-  - Contains TS utility functions related to the group.
-- `./src/lib/<group>/index.ts`
-  - Works as an entry point for the group. It gathers and re-exports TS files.
+- `./src/lib/<group>/assets/fonts/*`: contains group-related fonts.
+- `./src/lib/<group>/assets/img/*`: contains group-related images.
+- `./src/lib/<group>/abstract/*.ts`: contains TS types related to the group.
+- `./src/lib/<group>/data/*.ts`: contains TS constants related to the group.
+- `./src/lib/<group>/utils/*.ts`: contains TS utility functions related to the group.
+- `./src/lib/<group>/index.ts`: works as an entry point for the group. It gathers and re-exports TS files that are supposed to be publicly accessible _(by apps and other libs)_.
 
 ## Global CSS
 
-You **must** include `src/global.scss` in your **app** for utility classes, mixins, and functions from this package to work in that app and its libs.
+You **must** include `src/global.scss` in your **app** _(once only)_ for utility classes from this package to work in that app and its libs.
 
 ## Utility CSS Classes
 
-- `.--bg-<colorKey>`
+- `.--bg-<colorKey>`: applies background color.
   - `<colorKey>`: `base`, `accent`
-  - Applies background color.
-- `.--has-overlay-<pseudoElement>`
-  - `<pseudoElement>`: `before`, `after`
-  - Enables an interactive overlay pseudo-element inside a matching background context.
-  - Overlay is created as the specified pseudo-element (`::before` or `::after`).
-  - Overlay appears on hover/focus/active states of the element.
-  - Overlay color is determined by the element/parent background color utility class (`.--bg-<bgColorKey>`).
-  - **NOTE:** Works only if the element (or its parent) has the `.--bg-<bgColorKey>` class.
-- `.--is-overlay-active`
-  - Forces overlay active state (useful if you want to activate overlay with TS).
-  - **NOTE:** Works only if the element has the `.--has-overlay-<pseudoElement>` class.
-- `.--text-size-<sizeKey>-<stabilityKey>`
+  - **CHILD ELEMENTS / SAME ELEMENT CLASSES:**
+    - `.--has-overlay-<pseudoElement>`: enables an interactive overlay using pseudo-element.
+      - `<pseudoElement>`: `before`, `after`
+        - Controls which pseudo-element to use: `::before` or `::after`.
+      - Overlay appears on `:hover`, `:focus` and `:active` states of the element.
+      - Overlay color is resolved automatically based on the element/parent `.--bg-<bgColorKey>` class _(it will automatically become different for each background color)_.
+      - **SAME ELEMENT CLASSES:**
+        - `.--is-overlay-active`: forces overlay active state
+          - Is useful only if you want to activate an overlay manually _(with TS logic for example)_.
+    - `.--text-color-<textColorKey>`: automatically sets text color contrasting with the element/parent element background color.
+      - `<textColorKey>`: `base`, `accent`
+      - Note: the same `.--text-color-<textColorKey>` class may _(and probably will)_ have different values depending on its element/parent element background color class _(`.--bg-<bgColorKey>`)_. For example, `.--text-color-base` will resolve into
+        - `color: {x}` when appears inside an element with `.--bg-base` class.
+        - `color: {y}` when appears inside an element with `.--bg-accent` class.
+      - For more details [see this file with `.--text-color-<textColorKey>` implementation](./src/lib/typography/global.scss).
+- `.--text-size-<sizeKey>-<stabilityKey>`: sets font size by key and stability mode.
   - `<sizeKey>`: `xs`, `sm`, `md`, `lg`, `xl`, `2xl`
   - `<stabilityKey>`: `static`, `responsive`
-  - Sets font size by key and stability mode.
-  - Static mode sizes are fixed and do not change across breakpoints, while responsive mode sizes are designed to scale across different screen sizes automatically.
-  - **Note:** this utility class sets not only font size, but also vertical margins to ensure standardized text spacing.
-- `.--text-color-<textColorKey>`
-  - `<textColorKey>`: `base`, `accent`
-  - Sets text color inside `.--bg-<bgColorKey>` scope.
-  - Text color is determined by the element/parent background color utility class (`.--bg-<bgColorKey>`).
-  - Note that **base text color** is not equal to **base background color**. Instead, each background type has its own text color set designed for readability. So the same text color key may have different values on different backgrounds. Example:
-    - `.--bg-base` + `.--text-color-base`: base bg is **white**. Base color for base bg is **black**.
-    - `.--bg-accent` + `.--text-color-base`: accent bg is **gray**. Base color for accent bg is **blue**.
-- Whitespace:
-  - Props:
-    - `.--p<side>-<sizeKey>-<stabilityKey>` - padding.
-    - `.--m<side>-<sizeKey>-<stabilityKey>` - margin.
-    - `.--g-<sizeKey>-<stabilityKey>` - gap.
-  - Placeholders:
-    - `<side>`
-      - `a` - all
-      - `x` - horizontal
-      - `y` - vertical
-      - `t` - top
-      - `r` - right
-      - `b` - bottom
-      - `l` - left
-    - `<sizeKey>`: `xs`, `sm`, `md`, `lg`, `xl`, `2xl`
-    - `<stabilityKey>`: `static`, `responsive`
+    - `static` sizes are fixed _(per `sizeKey`)_ and do not change across breakpoints, while `responsive` sizes _(per `sizeKey`)_ are designed to scale across different screen sizes automatically. For example:
+      - `.--text-size-md-static` will have the same font size on all screen sizes.
+      - `.--text-size-md-responsive` will have different font sizes on mobile, tablet and desktop.
+  - Note: this class affects not only font size, but also vertical margins _(to ensure standardized text spacing)_.
+- `.--padding-<side>-<sizeKey>-<stabilityKey>`: sets padding.
+  - `<side>`: `top`, `right`, `bottom`, `left`, `x`, `y`, `all`
+  - `<sizeKey>`: `xs`, `sm`, `md`, `lg`, `xl`, `2xl`
+  - `<stabilityKey>`: `static`, `responsive`
+    - works the same way as for `<stabilityKey>` in `.--text-size-<sizeKey>-<stabilityKey>` class.
+- `.--margin-<side>-<sizeKey>-<stabilityKey>`: sets margin.
+  - works the same way as `.--padding-<side>-<sizeKey>-<stabilityKey>` class.
+- `.--gap-<sizeKey>-<stabilityKey>`: sets gap between elements in a flex or grid container.
+  - works the same way as `.--padding-<side>-<sizeKey>-<stabilityKey>` class _(but without `<side>` part of the class name)_.
+- `.--box-shadow-<boxShadowKey>`: applies box shadow.
+  - `<boxShadowKey>`: `normal` _(yep, we have only one box shadow preset for now, but we'll add more in the future)_
+- `.--border-<sideKey>`: sets border.
+  - `<sideKey>`: `top`, `right`, `bottom`, `left`, `all`
+- `.--border-radius`: sets border radius.
 
-## SCSS Mixins
+## SCSS Mixins _(exposed in `./src/mixins.scss`)_
 
-**Note:** prefer utility classes over mixins for styling whenever possible!
+This is a list of mixins names, see their implementation for more details.
 
-- `breakpoint-<sizeKey>-up`
-  - `<sizeKey>`: `sm`, `md`, `lg`
-  - Applies styles inside media query with min-width equal to the breakpoint value.
-- `whitespace-<prop>-<side>`
-  - `<prop>`: `padding`, `margin`
-  - `<side>`: `x`, `y`
+Mixin names are always prefixed with the group name, for example `breakpoint-*` mixins are implemented in the `./src/lib/breakpoints/mixins.scss` file. This will help you to find appropriate files when you need to check implementation details.
 
-## SCSS Functions
+### Responsive design:
 
-**Note:** prefer utility classes over functions for styling whenever possible!
+- `breakpoint-lg-up() { @content }`
+- `breakpoint-md-up() { @content }`
+- `breakpoint-sm-up() { @content }`
 
-**Notes on functions usage**:
+### Color theming:
 
-- In most cases you'll need `*-get-*-val()` functions, so take a look at them first.
-- `*-get-*-css-var-name()` functions are useful only if you need to override a CSS variable value (e.g., for dark mode).
-- You'll probably never need other functions.
+- `typography-define-css-vars--colors($vals)`
+- `overlay-define-css-vars--colors($vals)`
+- `bg-define-css-vars--colors($vals)`
+- `border-define-css-var--color($val)`
+- `shadow-define-css-vars--box-shadows($vals)`
 
-### bg
+### Misc utilities:
 
-- `bg-get-color-val($color-key)`
-- `bg-get-color-css-var-name($color-key)`
-- `bg-validate-color-key-exists($color-key)`
-
-### border
-
-- `border-get-color-val()`
-- `border-get-radius-val()`
-- `border-get-border-val()`
-- `border-get-color-css-var-name()`
-
-### overlay
-
-- `overlay-get-color-for-bg-val($bg-color-key)`
-- `overlay-get-color-for-bg-css-var-name($bg-color-key)`
-- `overlay-validate-exists-for-bg-color-key($bg-color-key)`
-
-### shadow
-
-- `shadow-get-box-shadow-color-val($box-shadow-key)`
-- `shadow-get-box-shadow-val($box-shadow-key, $offset-x: 0, $offset-y: 0)`
-- `shadow-get-box-shadow-color-css-var-name($box-shadow-key)`
-- `shadow-validate-box-shadow-key-exists($box-shadow-key)`
-
-### transition
-
-- `transition-get-transition-duration-val($transition-duration-key)`
-- `transition-validate-transition-duration-key-exists($transition-duration-key)`
-
-### typography
-
-- `typography-get-text-size-val($text-size-key, $stability-key)`
-- `typography-get-text-size-margin-y-val($text-size-key, $stability-key)`
-- `typography-get-text-color-val($text-color-key, $bg-color-key)`
-- `typography-get-text-size-responsive-css-var-name($text-size-key)`
-- `typography-get-text-color-css-var-name($text-color-key, $bg-color-key)`
-- `typography-get-text-size-util-class-name($text-size-key, $stability-key)`
-- `typography-get-text-color-util-class-name($text-color-key)`
-- `typography-validate-text-size-key-exists($text-size-key)`
-- `typography-validate-color-exists($bg-color-key, $text-color-key)`
-
-### whitespace
-
-- `whitespace-get-size-val($size-key, $stability-key)`
-
-## TS Types
-
-- `BgColor`: matches `<colorKey>` in `.--bg-<colorKey>` utility class.
-- `FontSize`: matches `<sizeKey>` in `.--text-size-<sizeKey>` utility class.
-- `WhitespaceSize`: matches `<sizeKey>` in `.--p<side>-<sizeKey>-<stabilityKey>` utility class.
-- `WhitespaceStability`: matches `<stabilityKey>` in `.--p<side>-<sizeKey>-<stabilityKey>` utility class.
-
-## TS Utility Functions
-
-- `whitespaceUtils.getSizeGreaterOrMax(size: WhitespaceSize, stepsForward: number): WhitespaceSize`
-- `whitespaceUtils.getSizeLessOrMin(size: WhitespaceSize, stepsBack: number): WhitespaceSize`
+- `transition-all($duration-key)`
