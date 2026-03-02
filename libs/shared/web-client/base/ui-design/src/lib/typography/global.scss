@@ -124,7 +124,7 @@ p {
 }
 
 // Set text color CSS vars (based on element/parent bg color)
-@include mixins.typography-set-color-css-vars(vars.$bg-colors-to-text-colors-map);
+@include mixins.typography-define-css-vars--colors(vars.$bg-colors-to-text-colors-map);
 
 /**
  * Generate utility classes for text colors. As well as sets default text color

@@ -5,7 +5,7 @@
 @use '../bg/functions' as bg-functions;
 @use 'sass:map';
 
-@include mixins.overlay-set-color-css-vars(vars.$bg-color-to-overlay-color-map);
+@include mixins.overlay-define-css-vars--colors(vars.$bg-color-to-overlay-color-map);
 
 /*
  * Generate utility classes for overlays (based on their parent bg class: .--bg-{bg-color-key}).

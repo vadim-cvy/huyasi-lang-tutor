@@ -9,7 +9,7 @@
  *
  * @param $vals - Structure must match `vars.$box-shadows-map`
  */
-@mixin shadow-set-box-shadow-css-vars($vals) {
+@mixin shadow-define-css-vars--box-shadows($vals) {
   $_: internal-functions.validate-is-map-same-shape(vars.$box-shadows-map, $vals, '$vals');
 
   :root {

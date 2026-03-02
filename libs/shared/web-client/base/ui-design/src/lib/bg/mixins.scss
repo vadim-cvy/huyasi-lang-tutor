@@ -9,7 +9,7 @@
  *
  * @param $vals - Structure must match `vars.$colors-map`
  */
-@mixin bg-set-color-css-vars($vals) {
+@mixin bg-define-css-vars--colors($vals) {
   $_: internal-functions.validate-is-map-same-shape(vars.$colors-map, $vals, '$vals');
 
   :root {

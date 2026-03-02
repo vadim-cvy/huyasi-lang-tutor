@@ -2,7 +2,7 @@
 @use './vars';
 @use '../_internal/internal-mixins';
 
-@include mixins.border-set-color-css-var(vars.$color);
+@include mixins.border-define-css-var--color(vars.$color);
 
 // Generate utility classes for borders (.--border-{side}).
 @include internal-mixins.util-classes--side-prop-variants(

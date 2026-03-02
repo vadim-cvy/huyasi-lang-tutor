@@ -7,7 +7,7 @@
  *
  * @param $val - Color val
  */
-@mixin border-set-color-css-var($val) {
+@mixin border-define-css-var--color($val) {
   :root {
     #{vars.$color-css-var-name}: $val;
   }

@@ -9,7 +9,7 @@
  *
  * @param $vals - Structure must match `vars.$bg-color-to-overlay-color-map`
  */
-@mixin overlay-set-color-css-vars($vals) {
+@mixin overlay-define-css-vars--colors($vals) {
   $_: internal-functions.validate-is-map-same-shape(
     vars.$bg-color-to-overlay-color-map,
     $vals,

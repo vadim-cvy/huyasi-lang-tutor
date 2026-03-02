@@ -9,7 +9,7 @@
  *
  * @param $vals - Structure must match `vars.$bg-colors-to-text-colors-map`
  */
-@mixin typography-set-color-css-vars($vals) {
+@mixin typography-define-css-vars--colors($vals) {
   $_: internal-functions.validate-is-map-same-shape(
     vars.$bg-colors-to-text-colors-map,
     $vals,
