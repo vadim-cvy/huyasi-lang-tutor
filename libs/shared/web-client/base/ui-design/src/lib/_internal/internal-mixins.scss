@@ -33,6 +33,10 @@
   }
 
   @if $is-with-xy == null {
+    /**
+     * We could've defaulted this to false, but it's better to be explicit about it
+     * so the user knows what to expect just by looking at the mixin call.
+     */
     @error 'The "is-with-xy" option is not provided. Defaulting to false.';
   }
 
