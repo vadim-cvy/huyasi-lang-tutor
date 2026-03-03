@@ -1,5 +1,16 @@
+@use '../color-tokens/functions' as color-tokens-functions;
+
+/**
+ * Structure:
+ * {bg-color-key}: ( {scheme-name}: {overlay color val} )
+ */
 $bg-color-to-overlay-color-map: (
-  // bg-color-key: overlay color val
-  base: rgba(0, 0, 0, 0.1),
-  accent: rgba(255, 255, 255, 0.1)
+  base: (
+    light: var(color-tokens-functions.get-css-var-name--color('black-transparent')),
+    dark: var(color-tokens-functions.get-css-var-name--color('white-transparent')),
+  ),
+  accent: (
+    light: var(color-tokens-functions.get-css-var-name--color('white-transparent')),
+    dark: var(color-tokens-functions.get-css-var-name--color('white-transparent')),
+  ),
 );

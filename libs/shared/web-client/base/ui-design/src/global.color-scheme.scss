@@ -1,0 +1,21 @@
+@use './lib/bg/global.color-scheme.scss' as *;
+@use './lib/border/global.color-scheme.scss' as *;
+@use './lib/overlay/global.color-scheme.scss' as *;
+@use './lib/shadow/global.color-scheme.scss' as *;
+@use './lib/typography/global.color-scheme.scss' as *;
+@use './lib/_internal/internal-mixins';
+
+:root,
+:root.--color-scheme-light {
+  @include internal-mixins.print-registered-color-scheme-css-vars('light');
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    @include internal-mixins.print-registered-color-scheme-css-vars('dark');
+  }
+}
+
+:root.--color-scheme-dark {
+  @include internal-mixins.print-registered-color-scheme-css-vars('dark');
+}

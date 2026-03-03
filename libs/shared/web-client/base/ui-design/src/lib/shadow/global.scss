@@ -1,9 +1,6 @@
 @use './vars';
 @use './functions';
-@use './mixins';
 @use 'sass:map';
-
-@include mixins.shadow-define-css-vars--box-shadows(vars.$box-shadows-map);
 
 /*
  * Generate utility classes for box shadows.

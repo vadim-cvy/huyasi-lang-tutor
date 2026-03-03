@@ -1,3 +1,5 @@
+@use '../color-tokens/functions' as color-tokens-functions;
+
 $_font-size-xs: 14px;
 $_font-size-sm: 16px;
 $_font-size-md: 18px;
@@ -68,20 +70,34 @@ $sizes-map: (
   ),
 );
 
+/**
+* {bg-color-key}: (
+*   {text-color-key}: (
+*     {scheme-name}: {val},
+*     ...
+*   ),
+*   ...
+* )
+*/
 $bg-colors-to-text-colors-map: (
-  /**
-  * bg-color-key: (
-  *   text-color-key-1: val
-  *   text-color-key-2: val
-  *   ...
-  * )
-  */
   base: (
-      base: #303758,
-      accent: #2cc536,
+    base: (
+      light: var(color-tokens-functions.get-css-var-name--color('violet-medium')),
+      dark: var(color-tokens-functions.get-css-var-name--color('white')),
     ),
+    accent: (
+      light: var(color-tokens-functions.get-css-var-name--color('green')),
+      dark: var(color-tokens-functions.get-css-var-name--color('green')),
+    ),
+  ),
   accent: (
-    base: #ffffff,
-    accent: #ff5e00,
-  )
+    base: (
+      light: var(color-tokens-functions.get-css-var-name--color('white')),
+      dark: var(color-tokens-functions.get-css-var-name--color('white')),
+    ),
+    accent: (
+      light: var(color-tokens-functions.get-css-var-name--color('orange')),
+      dark: var(color-tokens-functions.get-css-var-name--color('orange')),
+    ),
+  ),
 );

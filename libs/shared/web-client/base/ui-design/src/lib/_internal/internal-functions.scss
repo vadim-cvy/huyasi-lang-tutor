@@ -43,3 +43,54 @@
 
   @return true;
 }
+
+// This map will be populated during build process.
+$_color-schemes-var-values-map: (
+  light: (),
+  dark: (),
+);
+
+/**
+ * Registers CSS variable values for color schemes.
+ *
+ * The values are stored in $_color-schemes-var-values-map map, which will be used later to print CSS variables.
+ *
+ * @param {String} $var-name - CSS variable name (e.g. --my-awesome-color-var)
+ * @param {Map} $vals-for-color-schemes - Map of values for different color schemes (e.g. (light: #fff, dark: #000))
+ * @return {Null}
+ */
+@function register-color-scheme-css-var-vals($var-name, $vals-for-color-schemes) {
+  $scheme-names: map.keys($_color-schemes-var-values-map);
+
+  @each $scheme-name in $scheme-names {
+    $val-for-color-scheme: map.get($vals-for-color-schemes, $scheme-name);
+
+    $_color-schemes-var-values-map: map.merge(
+      $_color-schemes-var-values-map,
+      (
+        $scheme-name: map.merge(
+            map.get($_color-schemes-var-values-map, $scheme-name),
+            (
+              $var-name: $val-for-color-scheme,
+            )
+          ),
+      )
+    ) !global;
+  }
+
+  @return null;
+}
+
+/**
+ * Returns registered CSS variable values for a specific color scheme.
+ *
+ * @param {String} $scheme-name - Color scheme name (e.g. 'light' or 'dark')
+ * @return {Map} Map of CSS variable names to values for the color scheme. E.g. (--my-awesome-color-var: #fff, ...)
+ */
+@function get-registered-color-scheme-css-vars($scheme-name) {
+  @if not map.has-key($_color-schemes-var-values-map, $scheme-name) {
+    @error "No color scheme registered with name #{$scheme-name}!";
+  }
+
+  @return map.get($_color-schemes-var-values-map, $scheme-name);
+}

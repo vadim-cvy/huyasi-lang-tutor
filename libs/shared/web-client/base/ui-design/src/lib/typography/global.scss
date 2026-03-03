@@ -1,6 +1,5 @@
 @use './vars';
 @use './functions';
-@use './mixins';
 @use '../whitespace/functions' as whitespace-functions;
 @use '../bg/functions' as bg-functions;
 @use '../breakpoints/mixins' as breakpoints-mixins;
@@ -122,9 +121,6 @@ p {
     }
   }
 }
-
-// Set text color CSS vars (based on element/parent bg color)
-@include mixins.typography-define-css-vars--colors(vars.$bg-colors-to-text-colors-map);
 
 /**
  * Generate utility classes for text colors. As well as sets default text color

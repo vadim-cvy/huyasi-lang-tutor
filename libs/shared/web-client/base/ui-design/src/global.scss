@@ -1,3 +1,5 @@
+@use './lib/color-tokens/global' as color-tokens-global;
+@use './global.color-scheme';
 @use './lib/reset/global' as reset-global;
 @use './lib/whitespace/global' as whitespace-global;
 @use './lib/bg/global' as bg-global;

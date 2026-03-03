@@ -1,0 +1,17 @@
+@use './functions';
+@use './vars';
+@use '../_internal/internal-functions';
+
+@each $bg-color-key, $text-colors-for-bg-map in vars.$bg-colors-to-text-colors-map {
+  @each $text-color-key, $color-scheme-vals in $text-colors-for-bg-map {
+    $css-var-name--text-color-for-bg: functions.get-css-var-name--color(
+      $text-color-key,
+      $bg-color-key
+    );
+
+    $_: internal-functions.register-color-scheme-css-var-vals(
+      $css-var-name--text-color-for-bg,
+      $color-scheme-vals
+    );
+  }
+}

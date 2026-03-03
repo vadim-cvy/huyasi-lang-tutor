@@ -1,9 +1,6 @@
 @use './functions';
-@use './mixins';
 @use './vars';
 @use 'sass:map';
-
-@include mixins.bg-define-css-vars--colors(vars.$colors-map);
 
 /*
  * Generate utility classes for background colors.
