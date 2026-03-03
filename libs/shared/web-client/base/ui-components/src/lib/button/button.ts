@@ -24,7 +24,7 @@ export class Button {
     url: string;
     /**
      * Indicates whether button should be treated as active (which will affect its styling)
-     * when the current route exactly matches the link url.
+     * when the current route matches the link url.
      */
     isRouterLinkActiveSync?: boolean;
   }>();
