@@ -18,7 +18,7 @@
     [width]="'full'"
     [paddingX]="buttonsPaddingX()"
     [contentAlign]="buttonsContentAlign()"
-    (click)="isExpanded.set(!isExpanded())"
+    (click)="toggleIsExpanded()"
   >
     {{ isExpanded() ? 'Collapse' : 'Expand' }}
   </shared-base-button>
