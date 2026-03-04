@@ -34,7 +34,7 @@ export class ColorSchemeToggleService {
   /**
    * Reactive color scheme.
    *
-   * Is synced with local storage value.
+   * Is synced with persistent storage value.
    * @see initSyncWithCurTabPersistentStorage
    * @see initSyncWithOtherTabsPersistentStorage
    */
@@ -80,7 +80,7 @@ export class ColorSchemeToggleService {
       const newValParsed = ColorSchemeToggleService.parseScheme(newValRaw);
 
       if (newValParsed === null && newValRaw !== null) {
-        throw new Error(`Invalid color scheme value in localStorage: ${newValRaw}`);
+        throw new Error(`Invalid color scheme value in persistent storage: ${newValRaw}`);
       }
 
       this._scheme.set(ColorSchemeToggleService.fallbackSchemeWithDefault(newValParsed));
