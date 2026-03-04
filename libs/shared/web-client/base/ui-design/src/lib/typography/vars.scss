@@ -83,7 +83,7 @@ $bg-colors-to-text-colors-map: (
   base: (
     base: (
       light: var(color-tokens-functions.get-css-var-name--color('violet-medium')),
-      dark: var(color-tokens-functions.get-css-var-name--color('white')),
+      dark: var(color-tokens-functions.get-css-var-name--color('white-pure')),
     ),
     accent: (
       light: var(color-tokens-functions.get-css-var-name--color('green')),
@@ -92,8 +92,8 @@ $bg-colors-to-text-colors-map: (
   ),
   accent: (
     base: (
-      light: var(color-tokens-functions.get-css-var-name--color('white')),
-      dark: var(color-tokens-functions.get-css-var-name--color('white')),
+      light: var(color-tokens-functions.get-css-var-name--color('white-dirty')),
+      dark: var(color-tokens-functions.get-css-var-name--color('white-pure')),
     ),
     accent: (
       light: var(color-tokens-functions.get-css-var-name--color('orange')),

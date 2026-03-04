@@ -2,7 +2,7 @@
 
 $colors-map: (
   base: (
-    light: var(color-tokens-functions.get-css-var-name--color('white')),
+    light: var(color-tokens-functions.get-css-var-name--color('white-dirty')),
     dark: var(color-tokens-functions.get-css-var-name--color('gray-dark')),
   ),
   accent: (
