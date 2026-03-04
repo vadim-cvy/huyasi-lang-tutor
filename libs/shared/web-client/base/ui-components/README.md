@@ -15,3 +15,4 @@
 - `Sidebar` _(already included in `Page`)_
 - `LogoTitle` _(already included in `Header`)_
 - `NavPrimary` _(already included in `Sidebar` and `Footer`)_
+- `ColorSchemeToggle` _(already included in `Header`)_
