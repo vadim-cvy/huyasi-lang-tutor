@@ -1,4 +1,5 @@
 export * from './lib/button';
+export * from './lib/color-scheme-toggle';
 export * from './lib/content-404';
 export * from './lib/footer';
 export * from './lib/header';
