@@ -6,7 +6,7 @@
 @use './lib/_internal/internal-mixins';
 
 :root,
-:root.--color-scheme-light {
+:root[data-color-scheme='light'] {
   @include internal-mixins.print-registered-color-scheme-css-vars('light');
 }
 
@@ -16,6 +16,6 @@
   }
 }
 
-:root.--color-scheme-dark {
+:root[data-color-scheme='dark'] {
   @include internal-mixins.print-registered-color-scheme-css-vars('dark');
 }
