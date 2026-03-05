@@ -14,8 +14,12 @@ import { ColorSchemeToggleService } from './services/color-scheme-toggle.service
 export class ColorSchemeToggle {
   private readonly colorSchemeToggleService = inject(ColorSchemeToggleService);
 
-  public readonly colorSchemeIconDefinition = computed<IconDefinition>(() => {
+  public readonly buttonIconDefinition = computed<IconDefinition>(() => {
     return this.colorSchemeToggleService.scheme() === 'dark' ? faMoon : faSun;
+  });
+
+  public readonly buttonAriaLabel = computed<string>(() => {
+    return `Switch to ${this.colorSchemeToggleService.scheme() === 'dark' ? 'light' : 'dark'} mode`;
   });
 
   /**

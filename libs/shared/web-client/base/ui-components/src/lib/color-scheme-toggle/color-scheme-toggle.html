@@ -1,9 +1,10 @@
 <shared-base-button
   [icon]="{
-    definition: colorSchemeIconDefinition(),
+    definition: buttonIconDefinition(),
     position: 'top',
   }"
   [paddingStrategy]="'square'"
   [isDense]="true"
+  [ariaLabel]="buttonAriaLabel()"
   (click)="toggleScheme()"
 />
