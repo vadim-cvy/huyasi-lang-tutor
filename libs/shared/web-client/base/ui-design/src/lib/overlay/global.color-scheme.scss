@@ -1,11 +1,11 @@
 @use './functions';
 @use './vars';
-@use '../_internal/internal-functions';
+@use '../_internal/color-scheme/functions' as internal-color-scheme-functions;
 
 @each $bg-color-key, $color-scheme-vals in vars.$bg-color-to-overlay-color-map {
   $css-var-name--overlay-color: functions.get-css-var-name--overlay-color-for-bg($bg-color-key);
 
-  $_: internal-functions.register-color-scheme-css-var-vals(
+  $_: internal-color-scheme-functions.register-color-scheme-css-var(
     $css-var-name--overlay-color,
     $color-scheme-vals
   );

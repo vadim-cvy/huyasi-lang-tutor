@@ -3,19 +3,19 @@
 @use './lib/overlay/global.color-scheme.scss' as *;
 @use './lib/shadow/global.color-scheme.scss' as *;
 @use './lib/typography/global.color-scheme.scss' as *;
-@use './lib/_internal/internal-mixins';
+@use './lib/_internal/color-scheme/mixins' as internal-color-scheme-mixins;
 
 :root,
 :root[data-color-scheme='light'] {
-  @include internal-mixins.print-registered-color-scheme-css-vars('light');
+  @include internal-color-scheme-mixins.print-registered-color-scheme-css-vars('light');
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    @include internal-mixins.print-registered-color-scheme-css-vars('dark');
+    @include internal-color-scheme-mixins.print-registered-color-scheme-css-vars('dark');
   }
 }
 
 :root[data-color-scheme='dark'] {
-  @include internal-mixins.print-registered-color-scheme-css-vars('dark');
+  @include internal-color-scheme-mixins.print-registered-color-scheme-css-vars('dark');
 }

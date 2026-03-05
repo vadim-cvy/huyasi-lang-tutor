@@ -1,4 +1,3 @@
-@use './internal-functions';
 @use 'sass:map';
 @use 'sass:list';
 
@@ -67,18 +66,5 @@
         #{$prop-name}-#{$side}: $val;
       }
     }
-  }
-}
-
-/**
- * Prints CSS variables for a specific color scheme.
- *
- * @param {String} $scheme-name - Color scheme name (e.g. 'light' or 'dark')
- */
-@mixin print-registered-color-scheme-css-vars($scheme-name) {
-  $vars: internal-functions.get-registered-color-scheme-css-vars($scheme-name);
-
-  @each $var-name, $var-val in $vars {
-    #{$var-name}: #{$var-val};
   }
 }

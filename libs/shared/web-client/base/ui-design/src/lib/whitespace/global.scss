@@ -1,7 +1,7 @@
 @use './vars';
 @use './functions';
 @use '../breakpoints/mixins' as breakpoints-mixins;
-@use '../_internal/internal-mixins.scss' as internal-mixins;
+@use '../_internal/misc/mixins' as internal-misc-mixins;
 @use 'sass:map';
 
 // Set whitespace responsive size variables based on the screen size
@@ -39,7 +39,7 @@
     }
 
     @each $prop-name in ('padding', 'margin') {
-      @include internal-mixins.util-classes--side-prop-variants(
+      @include internal-misc-mixins.util-classes--side-prop-variants(
         (
           val: $val,
           prop-name: $prop-name,
