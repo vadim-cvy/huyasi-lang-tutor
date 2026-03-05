@@ -43,6 +43,6 @@ export class Sidebar {
   );
 
   public toggleIsExpanded(): void {
-    this.sidebarToggleService.toggle();
+    this.sidebarToggleService.toggleIsExpanded();
   }
 }

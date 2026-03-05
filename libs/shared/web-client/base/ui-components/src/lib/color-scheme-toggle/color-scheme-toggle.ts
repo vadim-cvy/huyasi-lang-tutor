@@ -21,7 +21,7 @@ export class ColorSchemeToggle {
   /**
    * Toggles the color scheme between 'light' and 'dark'.
    */
-  public toggle(): void {
-    this.colorSchemeToggleService.toggle();
+  public toggleScheme(): void {
+    this.colorSchemeToggleService.toggleScheme();
   }
 }
