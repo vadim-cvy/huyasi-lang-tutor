@@ -4,7 +4,10 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import type { IconDefinition } from '@fortawesome/angular-fontawesome';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import type { FontSize, WhitespaceSize } from '@huyasi/shared-web-client-base-ui-design';
-import { whitespaceSizesNavigator } from '@huyasi/shared-web-client-base-ui-design';
+import {
+  fontSizesNavigator,
+  whitespaceSizesNavigator,
+} from '@huyasi/shared-web-client-base-ui-design';
 import type { ReadonlyDeep } from 'type-fest';
 
 import type { ButtonBg } from './abstract/ButtonBg';
@@ -54,7 +57,18 @@ export class Button {
    */
   public readonly size = input<ButtonSize>('md');
 
-  public readonly fontSize = computed<FontSize>(() => this.size());
+  /**
+   * Base font size for button elements which don't have their own font sizes defined.
+   */
+  public readonly baseFontSize = computed<FontSize>(() => this.size());
+
+  public readonly iconFontSize = computed<FontSize>((): FontSize => {
+    const labelFontSize = this.baseFontSize();
+
+    const stepsForward = 2;
+
+    return fontSizesNavigator.getSizeGreaterOrMax(labelFontSize, stepsForward);
+  });
 
   /**
    * Controls how paddingX and paddingY relate to each other.
@@ -100,7 +114,7 @@ export class Button {
       paddingX = this.paddingX(),
       paddingY = this.paddingY(),
       marginY = this.marginY(),
-      fontSize = this.fontSize();
+      baseFontSize = this.baseFontSize();
 
     return [
       'button',
@@ -113,7 +127,7 @@ export class Button {
       `--padding-x-${paddingX}-responsive`,
       `--padding-y-${paddingY}-responsive`,
       `--margin-y-${marginY}-responsive`,
-      `--text-size-${fontSize}-responsive`,
+      `--text-size-${baseFontSize}-responsive`,
     ];
   });
 }

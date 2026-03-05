@@ -1,6 +1,10 @@
 <ng-template #buttonContent>
   @if (icon(); as icon) {
-  <fa-icon [icon]="icon.definition" [ariaHidden]="true" />
+  <fa-icon
+    [icon]="icon.definition"
+    [ariaHidden]="true"
+    [class]="`--text-size-${iconFontSize()}-responsive`"
+  />
   }
 
   <ng-content />
