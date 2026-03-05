@@ -8,7 +8,16 @@ export default [
   ...nx.configs['flat/typescript'],
   ...nx.configs['flat/javascript'],
   {
-    ignores: ['**/dist', '**/out-tsc', '**/vitest.config.*.timestamp*'],
+    ignores: [
+      '**/node_modules/**',
+      '**/.nx/**',
+      '**/.angular/**',
+      '**/coverage/**',
+      '**/tmp/**',
+      '**/dist/**',
+      '**/out-tsc/**',
+      '**/vitest.config.*.timestamp*',
+    ],
   },
   {
     files: ['**/*.ts', '**/*.tsx'],
