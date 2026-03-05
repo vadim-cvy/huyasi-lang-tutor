@@ -10,6 +10,8 @@ import type { ReadonlyDeep } from 'type-fest';
 import type { ButtonBg } from './abstract/ButtonBg';
 import type { ButtonContentAlign } from './abstract/ButtonContentAlign';
 import type { ButtonIconPosition } from './abstract/ButtonIconPosition';
+import type { ButtonPaddingStrategy } from './abstract/ButtonPaddingStrategy';
+import type { ButtonSize } from './abstract/ButtonSize';
 import type { ButtonWidth } from './abstract/ButtonWidth';
 
 @Component({
@@ -36,76 +38,69 @@ export class Button {
     }>
   >();
 
+  public readonly contentAlign = input<ButtonContentAlign>('center');
+
   public readonly bg = input<ButtonBg>('transparent');
 
   public readonly width = input<ButtonWidth>('fitContent');
 
-  public readonly contentAlign = input<ButtonContentAlign>('center');
+  /**
+   * Makes button more compact.
+   */
+  public readonly isDense = input<boolean>(false);
 
-  public readonly paddingX = input<WhitespaceSize | undefined>();
-  public readonly paddingY = input<WhitespaceSize | undefined>();
+  /**
+   * Controls button size by affecting font size, padding, etc.
+   */
+  public readonly size = input<ButtonSize>('md');
 
-  private readonly paddingXDefault = computed<WhitespaceSize>((): WhitespaceSize => {
-    /**
-     * Use paddingY input (if provided) to ensure consistent vertical and horizontal spacing.
-     *
-     * Why paddingY input (not paddingY final)?
-     * It prevents circular dependency. Because paddingY final already depends on paddingX final.
-     */
-    const paddingYInput = this.paddingY();
-    if (paddingYInput) {
-      return whitespaceSizesNavigator.getSizeGreaterOrMax(paddingYInput, 1);
+  public readonly fontSize = computed<FontSize>(() => this.size());
+
+  /**
+   * Controls how paddingX and paddingY relate to each other.
+   *
+   * Rectangle: paddingY is smaller than paddingX.
+   * Square: paddingY is equal to paddingX.
+   */
+  public readonly paddingStrategy = input<ButtonPaddingStrategy>('rectangle');
+
+  private readonly paddingX = computed<WhitespaceSize>((): WhitespaceSize => {
+    const defaultNonDense: WhitespaceSize = 'lg';
+
+    if (this.isDense()) {
+      const stepsBack = 2;
+
+      return whitespaceSizesNavigator.getSizeLessOrMin(defaultNonDense, stepsBack);
     }
 
-    // Fallback to static value if paddingY input is not provided
-    return 'lg';
+    return defaultNonDense;
   });
 
-  private readonly paddingXFinal = computed<WhitespaceSize>(
-    () => this.paddingX() || this.paddingXDefault(),
-  );
+  private readonly paddingY = computed<WhitespaceSize>((): WhitespaceSize => {
+    const paddingX = this.paddingX();
 
-  private readonly paddingYDefault = computed<WhitespaceSize>((): WhitespaceSize => {
-    // Use paddingX final value to ensure consistent vertical and horizontal spacing.
-    const paddingXFinal = this.paddingXFinal();
-
-    return whitespaceSizesNavigator.getSizeLessOrMin(paddingXFinal, 1);
+    switch (this.paddingStrategy()) {
+      case 'rectangle':
+        return whitespaceSizesNavigator.getSizeLessOrMin(paddingX, 1);
+      case 'square':
+        return paddingX;
+      default:
+        // Shutup eslint
+        throw new Error('Must never happen.');
+    }
   });
 
-  private readonly paddingYFinal = computed<WhitespaceSize>(
-    () => this.paddingY() || this.paddingYDefault(),
-  );
-
-  public readonly fontSize = input<FontSize>();
-
-  private readonly fontSizeDefault = computed<FontSize>(
-    // Making font size depend on paddingY ensures consistency between text size and vertical spacing.
-    () => this.paddingYFinal(),
-  );
-
-  private readonly fontSizeFinal = computed<FontSize>(
-    () => this.fontSize() || this.fontSizeDefault(),
-  );
-
-  private readonly marginY = computed<WhitespaceSize>(() => {
-    const stepsBack = 3;
-
-    /**
-     * Making vertical margin depend on vertical padding ensures consistent spacing
-     * between button inner content and surrounding elements.
-     */
-    return whitespaceSizesNavigator.getSizeLessOrMin(this.paddingYFinal(), stepsBack);
-  });
+  private readonly marginY = computed<WhitespaceSize>(() => this.size());
 
   public readonly cssClasses = computed<string[]>(() => {
     const bg = this.bg(),
       width = this.width(),
       contentAlign = this.contentAlign(),
       icon = this.icon(),
+      paddingX = this.paddingX(),
+      paddingY = this.paddingY(),
       marginY = this.marginY(),
-      paddingXFinal = this.paddingXFinal(),
-      paddingYFinal = this.paddingYFinal(),
-      fontSizeFinal = this.fontSizeFinal();
+      fontSize = this.fontSize();
 
     return [
       'button',
@@ -115,10 +110,10 @@ export class Button {
       `--content-align-${contentAlign}`,
       icon ? `--icon-position-${icon.position}` : '',
       `--gap-${icon?.position === 'top' ? 'xs' : 'md'}-responsive`,
+      `--padding-x-${paddingX}-responsive`,
+      `--padding-y-${paddingY}-responsive`,
       `--margin-y-${marginY}-responsive`,
-      `--padding-x-${paddingXFinal}-responsive`,
-      `--padding-y-${paddingYFinal}-responsive`,
-      `--text-size-${fontSizeFinal}-responsive`,
+      `--text-size-${fontSize}-responsive`,
     ];
   });
 }

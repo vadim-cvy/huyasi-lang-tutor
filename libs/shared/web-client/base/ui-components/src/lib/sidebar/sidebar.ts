@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import type { IconDefinition } from '@fortawesome/angular-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import type { WhitespaceSize } from '@huyasi/shared-web-client-base-ui-design';
 
 import type { ButtonContentAlign } from '../button/abstract/ButtonContentAlign';
 import type { ButtonIconPosition } from '../button/abstract/ButtonIconPosition';
+import type { ButtonPaddingStrategy } from '../button/abstract/ButtonPaddingStrategy';
+import type { ButtonSize } from '../button/abstract/ButtonSize';
 import { Button } from '../button/button';
 import { NavPrimary } from '../nav-primary/nav-primary';
 import { SidebarToggleService } from './services/sidebar-toggle.service';
@@ -25,12 +26,16 @@ export class Sidebar {
     this.isExpanded() ? 'left' : 'top',
   );
 
-  public readonly buttonsContentAlign = computed<ButtonContentAlign>(() =>
-    this.isExpanded() ? 'left' : 'center',
+  public readonly buttonsPaddingStrategy = computed<ButtonPaddingStrategy>(() =>
+    this.isExpanded() ? 'rectangle' : 'square',
   );
 
-  public readonly buttonsPaddingX = computed<WhitespaceSize>(() =>
-    this.isExpanded() ? 'lg' : 'xs',
+  public readonly areButtonsDense = computed<boolean>(() => !this.isExpanded());
+
+  public readonly buttonsSize = computed<ButtonSize>(() => (this.isExpanded() ? 'md' : 'sm'));
+
+  public readonly buttonsContentAlign = computed<ButtonContentAlign>(() =>
+    this.isExpanded() ? 'left' : 'center',
   );
 
   public readonly togglerButtonIconDefinition = computed<IconDefinition>(() =>

@@ -7,7 +7,9 @@
         [icon]="{ position: buttonsIconsPosition(), definition: navItem.iconDefinition}"
         [width]="'full'"
         [contentAlign]="buttonsContentAlign()"
-        [paddingX]="buttonsPaddingX()"
+        [isDense]="areButtonsDense()"
+        [paddingStrategy]="buttonsPaddingStrategy()"
+        [size]="buttonsSize()"
       >
         {{navItem.label}}
       </shared-base-button>

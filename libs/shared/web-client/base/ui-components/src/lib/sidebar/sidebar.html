@@ -5,8 +5,10 @@
 >
   <shared-base-nav-primary
     [buttonsIconsPosition]="buttonsIconsPosition()"
+    [buttonsPaddingStrategy]="buttonsPaddingStrategy()"
+    [areButtonsDense]="areButtonsDense()"
+    [buttonsSize]="buttonsSize()"
     [buttonsContentAlign]="buttonsContentAlign()"
-    [buttonsPaddingX]="buttonsPaddingX()"
     [orientation]="'vertical'"
   />
 
@@ -15,8 +17,10 @@
       position: buttonsIconsPosition(),
       definition: togglerButtonIconDefinition(),
     }"
+    [isDense]="areButtonsDense()"
+    [paddingStrategy]="buttonsPaddingStrategy()"
+    [size]="buttonsSize()"
     [width]="'full'"
-    [paddingX]="buttonsPaddingX()"
     [contentAlign]="buttonsContentAlign()"
     (click)="toggleIsExpanded()"
   >
