@@ -33,23 +33,6 @@ a {
   text-decoration: none;
 }
 
-// Set responsive text size CSS vars
-:root {
-  @each $size-key, $size-data in vars.$sizes-map {
-    $css-var-name--font-size-responsive: functions.get-css-var-name--font-size-responsive(
-      $size-key
-    );
-
-    $font-size-responsive-vals: map.get(map.get($size-data, 'font-sizes'), 'responsive');
-
-    #{$css-var-name--font-size-responsive}: map.get($font-size-responsive-vals, 'screen-sm');
-
-    @include breakpoints-mixins.breakpoint-md-up {
-      #{$css-var-name--font-size-responsive}: map.get($font-size-responsive-vals, 'screen-md-up');
-    }
-  }
-}
-
 /**
  * Generate utility classes for text sizes.
  *

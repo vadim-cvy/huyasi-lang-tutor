@@ -1,0 +1,17 @@
+@use './functions';
+
+/**
+ * Prints responsive CSS variables for a given breakpoint.
+ *
+ * IMPORTANT: This mixin should be used inside a media query for the corresponding
+ * breakpoint! It does not include media query itself.
+ *
+ * @param {String} $breakpoint - Breakpoint name (e.g. 'sm-up', 'md-up', 'lg-up')
+ */
+@mixin print-registered-size-responsive-css-vars($breakpoint) {
+  $breakpoint-vars: functions.get-registered-size-responsive-css-vars($breakpoint);
+
+  @each $var-name, $var-val in $breakpoint-vars {
+    #{$var-name}: #{$var-val};
+  }
+}

@@ -4,25 +4,6 @@
 @use '../_internal/misc/mixins' as internal-misc-mixins;
 @use 'sass:map';
 
-// Set whitespace responsive size variables based on the screen size
-:root {
-  @each $size-key, $size-data in vars.$sizes-map {
-    $css-var-name--font-size-responsive: functions.get-css-var-name--size-responsive($size-key);
-
-    @each $screen-size-key, $screen-size-val in map.get($size-data, 'responsive') {
-      @if $screen-size-key == 'screen-sm' {
-        #{$css-var-name--font-size-responsive}: $screen-size-val;
-      } @else if $screen-size-key == 'screen-md-up' {
-        @include breakpoints-mixins.breakpoint-md-up {
-          #{$css-var-name--font-size-responsive}: $screen-size-val;
-        }
-      } @else {
-        @error 'Unexpected screen size: "#{$screen-size-key}"';
-      }
-    }
-  }
-}
-
 /**
  * Generate utility classes for gap, margin and padding.
  *

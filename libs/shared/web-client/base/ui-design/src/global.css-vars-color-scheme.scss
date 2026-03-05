@@ -1,8 +1,8 @@
-@use './lib/bg/global.color-scheme.scss' as *;
-@use './lib/border/global.color-scheme.scss' as *;
-@use './lib/overlay/global.color-scheme.scss' as *;
-@use './lib/shadow/global.color-scheme.scss' as *;
-@use './lib/typography/global.color-scheme.scss' as *;
+@use './lib/bg/global.css-vars-color-scheme.scss' as *;
+@use './lib/border/global.css-vars-color-scheme.scss' as *;
+@use './lib/overlay/global.css-vars-color-scheme.scss' as *;
+@use './lib/shadow/global.css-vars-color-scheme.scss' as *;
+@use './lib/typography/global.css-vars-color-scheme.scss' as *;
 @use './lib/_internal/color-scheme/mixins' as internal-color-scheme-mixins;
 
 :root,
