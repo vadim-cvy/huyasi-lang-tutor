@@ -1,2 +1,2 @@
 export type * from './abstract/FontSize';
-export * from './data/fontSizes';
+export * from './utils/fontSizesNavigator';

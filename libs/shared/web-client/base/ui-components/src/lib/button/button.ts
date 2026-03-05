@@ -4,7 +4,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import type { IconDefinition } from '@fortawesome/angular-fontawesome';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import type { FontSize, WhitespaceSize } from '@huyasi/shared-web-client-base-ui-design';
-import { whitespaceUtils } from '@huyasi/shared-web-client-base-ui-design';
+import { whitespaceSizesNavigator } from '@huyasi/shared-web-client-base-ui-design';
 import type { ReadonlyDeep } from 'type-fest';
 
 import type { ButtonBg } from './abstract/ButtonBg';
@@ -54,7 +54,7 @@ export class Button {
      */
     const paddingYInput = this.paddingY();
     if (paddingYInput) {
-      return whitespaceUtils.getSizeGreaterOrMax(paddingYInput, 1);
+      return whitespaceSizesNavigator.getSizeGreaterOrMax(paddingYInput, 1);
     }
 
     // Fallback to static value if paddingY input is not provided
@@ -69,7 +69,7 @@ export class Button {
     // Use paddingX final value to ensure consistent vertical and horizontal spacing.
     const paddingXFinal = this.paddingXFinal();
 
-    return whitespaceUtils.getSizeLessOrMin(paddingXFinal, 1);
+    return whitespaceSizesNavigator.getSizeLessOrMin(paddingXFinal, 1);
   });
 
   private readonly paddingYFinal = computed<WhitespaceSize>(
@@ -94,7 +94,7 @@ export class Button {
      * Making vertical margin depend on vertical padding ensures consistent spacing
      * between button inner content and surrounding elements.
      */
-    return whitespaceUtils.getSizeLessOrMin(this.paddingYFinal(), stepsBack);
+    return whitespaceSizesNavigator.getSizeLessOrMin(this.paddingYFinal(), stepsBack);
   });
 
   public readonly cssClasses = computed<string[]>(() => {
