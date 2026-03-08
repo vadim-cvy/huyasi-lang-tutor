@@ -1,0 +1,30 @@
+@use './vars';
+@use 'sass:map';
+
+/**
+ * Validates that the provided color key exists in vars.$colors-map.
+ *
+ * Throws an error if the key is invalid.
+ *
+ * @param {string} $color-key
+ * @return {true} Always returns true if error was not thrown.
+ */
+@function validate-color-exists($color-key) {
+  @if not map.has-key(vars.$colors-map, $color-key) {
+    @error 'Unexpected color key: "#{$color-key}"!';
+  }
+
+  @return true;
+}
+
+/**
+ * Returns the CSS var name for the given color key from vars.$colors-map.
+ *
+ * @param {string} $color-key
+ * @return {string}
+ */
+@function get-css-var-name--color($color-key) {
+  $_: validate-color-exists($color-key);
+
+  @return --color-#{$color-key};
+}

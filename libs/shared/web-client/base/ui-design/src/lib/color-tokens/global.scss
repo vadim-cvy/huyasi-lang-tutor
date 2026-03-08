@@ -1,0 +1,7 @@
+@use './vars';
+
+:root {
+  @each $color-key, $color-val in vars.$colors-map {
+    --color-#{$color-key}: #{$color-val};
+  }
+}

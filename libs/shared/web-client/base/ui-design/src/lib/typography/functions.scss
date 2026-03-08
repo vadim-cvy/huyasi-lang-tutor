@@ -1,0 +1,112 @@
+@use './vars';
+@use 'sass:map';
+
+/**
+ * Validates that the provided size key exists in vars.$sizes-map.
+ *
+ * Throws an error if the key is invalid.
+ *
+ * @param {string} $size-key
+ * @return {true} Always returns true if error was not thrown.
+ */
+@function validate-size-exists($size-key) {
+  @if not map.has-key(vars.$sizes-map, $size-key) {
+    @error 'Unexpected size key: "#{$size-key}"!';
+  }
+
+  @return true;
+}
+
+/**
+ * Validates that the provided stability key exists for any size in vars.$sizes-map.
+ *
+ * Throws an error if the key is invalid.
+ *
+ * @param {string} $stability-key
+ * @return {true} Always returns true if error was not thrown.
+ */
+@function validate-stability-exists($stability-key) {
+  // We can check the value against stability keys from any size (all sizes have the same stability keys).
+  @if not map.has-key(map.get(vars.$sizes-map, 'xs', 'font-sizes'), $stability-key) {
+    @error 'Unexpected stability key: "#{$stability-key}"!';
+  }
+
+  @return true;
+}
+
+/**
+ * Returns the CSS var name for a responsive font size for the given size key from vars.$sizes-map.
+ *
+ * @param {string} $size-key
+ * @return {string}
+ */
+@function get-css-var-name--font-size-responsive($size-key) {
+  $_: validate-size-exists($size-key);
+
+  @return --font-size-responsive-#{$size-key};
+}
+
+/**
+ * Returns size utility class name for the given size key and stability key from vars.$sizes-map.
+ *
+ * @param {string} $size-key
+ * @param {string} $stability-key
+ * @return {string}
+ */
+@function get-util-class--text-size($size-key, $stability-key) {
+  $_: validate-size-exists($size-key);
+  $__: validate-stability-exists($stability-key);
+
+  @return '.--text-size-#{$size-key}-#{$stability-key}';
+}
+
+/**
+ * Validates that the provided text color key exists for the given background color key in vars.$bg-colors-to-text-colors-map.
+ *
+ * Throws an error if either key is invalid.
+ *
+ * @param {string} $bg-color-key
+ * @param {string} $text-color-key
+ * @return {true} Always returns true if error was not thrown.
+ */
+@function validate-color-exists($bg-color-key, $text-color-key) {
+  @if not map.has-key(vars.$bg-colors-to-text-colors-map, $bg-color-key) {
+    @error 'Unexpected background color key: "#{$bg-color-key}"!';
+  }
+
+  $text-colors-for-bg: map.get(vars.$bg-colors-to-text-colors-map, $bg-color-key);
+
+  @if not map.has-key($text-colors-for-bg, $text-color-key) {
+    @error 'Unexpected text color key: "#{$text-color-key}" for bg color key: "#{$bg-color-key}"!';
+  }
+
+  @return true;
+}
+
+/**
+ * Returns the CSS var name for the given text color key and background color key from vars.$bg-colors-to-text-colors-map.
+ *
+ * @param {string} $text-color-key
+ * @param {string} $bg-color-key
+ * @return {string}
+ */
+@function get-css-var-name--color($text-color-key, $bg-color-key) {
+  $_: validate-color-exists($bg-color-key, $text-color-key);
+
+  @return --text-color-#{$text-color-key}-for-bg-#{$bg-color-key};
+}
+
+/**
+ * Returns text color utility class name for the given text color key from vars.$bg-colors-to-text-colors-map.
+ *
+ * @param {string} $text-color-key
+ * @return {string}
+ */
+@function get-util-class--color($text-color-key) {
+  // Any bg color key can be used here, because all bg color keys have the same text color keys.
+  $bg-color-key: 'base';
+
+  $_: validate-color-exists($bg-color-key, $text-color-key);
+
+  @return '.--text-color-#{$text-color-key}';
+}

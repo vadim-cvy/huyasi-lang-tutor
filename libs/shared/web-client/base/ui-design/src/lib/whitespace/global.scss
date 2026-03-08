@@ -1,0 +1,33 @@
+@use './vars';
+@use './functions';
+@use '../breakpoints/mixins' as breakpoints-mixins;
+@use '../_internal/misc/mixins' as internal-misc-mixins;
+@use 'sass:map';
+
+/**
+ * Generate utility classes for gap, margin and padding.
+ *
+ * .--{prop-name}{-side-key?}-{size-key}-{stability-key} (.--gap-xs-responsive, .--padding-top-sm-static, .--margin-x-lg-responsive, etc.)
+ */
+@each $size-key, $size-data in vars.$sizes-map {
+  @each $stability-key in map.keys($size-data) {
+    $util-class-suffix: '-#{$size-key}-#{$stability-key}';
+
+    $val: functions.get-size-val($size-key, $stability-key);
+
+    .--gap#{$util-class-suffix} {
+      gap: $val;
+    }
+
+    @each $prop-name in ('padding', 'margin') {
+      @include internal-misc-mixins.util-classes--side-prop-variants(
+        (
+          val: $val,
+          prop-name: $prop-name,
+          class-suffix: $util-class-suffix,
+          is-with-xy: true,
+        )
+      );
+    }
+  }
+}

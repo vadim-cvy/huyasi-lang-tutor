@@ -1,0 +1,103 @@
+@use '../color-tokens/functions' as color-tokens-functions;
+
+$_font-size-xs: 14px;
+$_font-size-sm: 16px;
+$_font-size-md: 18px;
+$_font-size-lg: 21px;
+$_font-size-xl: 24px;
+$_font-size-2xl: 30px;
+
+$sizes-map: (
+  xs: (
+    font-sizes: (
+      static: $_font-size-xs,
+      responsive: (
+        screen-sm: $_font-size-xs,
+        screen-md-up: $_font-size-xs,
+      ),
+    ),
+    margin-y-size-key: xs,
+  ),
+  sm: (
+    font-sizes: (
+      static: $_font-size-sm,
+      responsive: (
+        screen-sm: $_font-size-xs,
+        screen-md-up: $_font-size-sm,
+      ),
+    ),
+    margin-y-size-key: xs,
+  ),
+  md: (
+    font-sizes: (
+      static: $_font-size-md,
+      responsive: (
+        screen-sm: $_font-size-sm,
+        screen-md-up: $_font-size-md,
+      ),
+    ),
+    margin-y-size-key: sm,
+  ),
+  lg: (
+    font-sizes: (
+      static: $_font-size-lg,
+      responsive: (
+        screen-sm: $_font-size-md,
+        screen-md-up: $_font-size-lg,
+      ),
+    ),
+    margin-y-size-key: md,
+  ),
+  xl: (
+    font-sizes: (
+      static: $_font-size-xl,
+      responsive: (
+        screen-sm: $_font-size-lg,
+        screen-md-up: $_font-size-xl,
+      ),
+    ),
+    margin-y-size-key: lg,
+  ),
+  2xl: (
+    font-sizes: (
+      static: $_font-size-2xl,
+      responsive: (
+        screen-sm: $_font-size-xl,
+        screen-md-up: $_font-size-2xl,
+      ),
+    ),
+    margin-y-size-key: xl,
+  ),
+);
+
+/**
+* {bg-color-key}: (
+*   {text-color-key}: (
+*     {scheme-name}: {val},
+*     ...
+*   ),
+*   ...
+* )
+*/
+$bg-colors-to-text-colors-map: (
+  base: (
+    base: (
+      light: var(color-tokens-functions.get-css-var-name--color('violet-medium')),
+      dark: var(color-tokens-functions.get-css-var-name--color('white-pure')),
+    ),
+    accent: (
+      light: var(color-tokens-functions.get-css-var-name--color('green')),
+      dark: var(color-tokens-functions.get-css-var-name--color('green')),
+    ),
+  ),
+  accent: (
+    base: (
+      light: var(color-tokens-functions.get-css-var-name--color('white-dirty')),
+      dark: var(color-tokens-functions.get-css-var-name--color('white-pure')),
+    ),
+    accent: (
+      light: var(color-tokens-functions.get-css-var-name--color('orange')),
+      dark: var(color-tokens-functions.get-css-var-name--color('orange')),
+    ),
+  ),
+);

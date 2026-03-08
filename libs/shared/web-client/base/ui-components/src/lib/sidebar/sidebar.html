@@ -1,0 +1,29 @@
+<div
+  class="sidebar --bg-accent --border-right --box-shadow-normal"
+  [class.--is-expanded]="isExpanded()"
+  aria-label="Sidebar"
+>
+  <shared-base-nav-primary
+    [buttonsIconsPosition]="buttonsIconsPosition()"
+    [buttonsPaddingStrategy]="buttonsPaddingStrategy()"
+    [areButtonsDense]="areButtonsDense()"
+    [buttonsSize]="buttonsSize()"
+    [buttonsContentAlign]="buttonsContentAlign()"
+    [orientation]="'vertical'"
+  />
+
+  <shared-base-button
+    [icon]="{
+      position: buttonsIconsPosition(),
+      definition: togglerButtonIconDefinition(),
+    }"
+    [isDense]="areButtonsDense()"
+    [paddingStrategy]="buttonsPaddingStrategy()"
+    [size]="buttonsSize()"
+    [width]="'full'"
+    [contentAlign]="buttonsContentAlign()"
+    [label]="toggleButtonLabel()"
+    class="sidebar__toggle-button"
+    (click)="toggleIsExpanded()"
+  />
+</div>

@@ -1,0 +1,17 @@
+@use './functions';
+@use './vars';
+@use 'sass:map';
+
+/*
+ * Generate utility classes for background colors.
+ *
+ * .--bg-{color-key} (.--bg-accent, etc.)
+ */
+@each $color-key in map.keys(vars.$colors-map) {
+  $util-class--color: functions.get-util-class--color($color-key);
+  $css-var-name--color: functions.get-css-var-name--color($color-key);
+
+  #{$util-class--color} {
+    background-color: var($css-var-name--color);
+  }
+}

@@ -1,0 +1,12 @@
+@use './lib/typography/global.css-vars-size-responsive' as *;
+@use './lib/whitespace/global.css-vars-size-responsive' as *;
+@use './lib/_internal/sizing/mixins' as internal-sizing-mixins;
+@use './lib/breakpoints/mixins' as breakpoints-mixins;
+
+:root {
+  @include internal-sizing-mixins.print-registered-size-responsive-css-vars('screen-sm');
+
+  @include breakpoints-mixins.breakpoint-md-up {
+    @include internal-sizing-mixins.print-registered-size-responsive-css-vars('screen-md-up');
+  }
+}

@@ -1,0 +1,37 @@
+@use 'sass:map';
+
+// This map will be populated during build process.
+$_size-responsive-vars-map: (
+  'screen-sm': (),
+  'screen-md-up': (),
+);
+
+@function register-size-responsive-css-var($var-name, $vals-for-breakpoints) {
+  $breakpoints: map.keys($_size-responsive-vars-map);
+
+  @each $breakpoint in $breakpoints {
+    $val-for-breakpoint: map.get($vals-for-breakpoints, $breakpoint);
+
+    $_size-responsive-vars-map: map.merge(
+      $_size-responsive-vars-map,
+      (
+        $breakpoint: map.merge(
+            map.get($_size-responsive-vars-map, $breakpoint),
+            (
+              $var-name: $val-for-breakpoint,
+            )
+          ),
+      )
+    ) !global;
+  }
+
+  @return null;
+}
+
+@function get-registered-size-responsive-css-vars($breakpoint) {
+  @if not map.has-key($_size-responsive-vars-map, $breakpoint) {
+    @error "No size responsive vars registered for breakpoint #{$breakpoint}!";
+  }
+
+  @return map.get($_size-responsive-vars-map, $breakpoint);
+}

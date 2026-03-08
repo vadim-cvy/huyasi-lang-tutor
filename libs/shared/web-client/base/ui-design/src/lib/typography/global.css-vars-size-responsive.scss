@@ -1,0 +1,15 @@
+@use './functions';
+@use './vars';
+@use '../_internal/sizing/functions' as internal-sizing-functions;
+@use 'sass:map';
+
+@each $size-key, $size-data in vars.$sizes-map {
+  $css-var-name--font-size-responsive: functions.get-css-var-name--font-size-responsive($size-key);
+
+  $font-size-responsive-vals: map.get(map.get($size-data, 'font-sizes'), 'responsive');
+
+  $_: internal-sizing-functions.register-size-responsive-css-var(
+    $css-var-name--font-size-responsive,
+    $font-size-responsive-vals
+  );
+}

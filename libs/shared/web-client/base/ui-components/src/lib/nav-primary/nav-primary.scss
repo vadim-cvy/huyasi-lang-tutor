@@ -1,0 +1,14 @@
+.nav {
+  &__list {
+    display: flex;
+
+    .nav.--orientation-vertical & {
+      flex-direction: column;
+    }
+
+    .nav.--orientation-horizontal & {
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+}

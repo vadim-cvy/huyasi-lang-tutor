@@ -1,0 +1,19 @@
+<div class="page --text-size-md-responsive --bg-base" [class.--minimalistic]="isMinimalistic()">
+  @if (isHeaderVisible()) {
+  <shared-base-header class="page__header">
+    <ng-content select="header-actions" ngProjectAs="actions" />
+  </shared-base-header>
+  } @if (isSidebarVisible()) {
+  <shared-base-sidebar class="page__sidebar" />
+  }
+
+  <main class="page__main-content --padding-x-md-responsive --padding-y-xl-responsive">
+    <div class="page__main-content__inner">
+      <ng-content select="main-content" />
+    </div>
+  </main>
+
+  @if (isFooterVisible()) {
+  <shared-base-footer class="page__footer" />
+  }
+</div>

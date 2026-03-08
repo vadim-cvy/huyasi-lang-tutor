@@ -1,0 +1,53 @@
+@use './vars';
+@use 'sass:map';
+
+/**
+ * Validates that the provided size key exists in vars.$sizes-map.
+ *
+ * Throws an error if the key is invalid.
+ *
+ * @param {string} $size
+ * @return {true} Always returns true if error was not thrown.
+ */
+@function validate-size-exists($size) {
+  @if not map.has-key(vars.$sizes-map, $size) {
+    @error 'Size "#{$size}" does not exist!';
+  }
+
+  @return true;
+}
+
+/**
+ * Returns the CSS var name for a responsive whitespace size for the given size key from vars.$sizes-map.
+ *
+ * @param {string} $size
+ * @return {string}
+ */
+@function get-css-var-name--size-responsive($size) {
+  $_: validate-size-exists($size);
+
+  @return --whitespace-size-responsive-#{$size};
+}
+
+/**
+ * Returns whitespace size value for the given size key and stability key from vars.$sizes-map.
+ *
+ * @param {string} $size-key
+ * @param {string} $stability-key
+ * @return {string} Static value for 'static' stability key, or CSS var for 'responsive' stability key.
+ */
+@function get-size-val($size-key, $stability-key) {
+  $_: validate-size-exists($size-key);
+
+  @if $stability-key == 'static' {
+    $size-data: map.get(vars.$sizes-map, $size-key);
+
+    @return map.get($size-data, 'static');
+  } @else if $stability-key == 'responsive' {
+    $css-var-name: get-css-var-name--size-responsive($size-key);
+
+    @return var($css-var-name);
+  } @else {
+    @error 'Unexpected stability: "#{$stability-key}"!';
+  }
+}

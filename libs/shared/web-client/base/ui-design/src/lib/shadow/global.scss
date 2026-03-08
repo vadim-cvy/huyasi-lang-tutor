@@ -1,0 +1,17 @@
+@use './vars';
+@use './functions';
+@use 'sass:map';
+
+/*
+ * Generate utility classes for box shadows.
+ *
+ * .--box-shadow-{box-shadow-key} (.--box-shadow-normal, etc.)
+ */
+@each $box-shadow-key in map.keys(vars.$box-shadows-map) {
+  $util-class--box-shadow: functions.get-util-class--box-shadow($box-shadow-key);
+  $css-var-name--box-shadow: functions.get-css-var-name--box-shadow($box-shadow-key);
+
+  #{$util-class--box-shadow} {
+    box-shadow: var($css-var-name--box-shadow);
+  }
+}

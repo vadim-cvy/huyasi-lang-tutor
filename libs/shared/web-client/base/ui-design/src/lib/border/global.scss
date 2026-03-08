@@ -1,0 +1,16 @@
+@use './vars';
+@use '../_internal/misc/mixins.scss' as internal-misc-mixins;
+
+// Generate utility classes for borders (.--border-{side}).
+@include internal-misc-mixins.util-classes--side-prop-variants(
+  (
+    val: 1px solid var(vars.$color-css-var-name),
+    prop-name: 'border',
+    is-with-xy: false,
+  )
+);
+
+.--border-radius {
+  border-radius: 4px;
+  overflow: hidden;
+}

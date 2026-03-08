@@ -1,0 +1,13 @@
+<div class="content-404">
+  <h1 class="--text-size-2xl-responsive">Oops...</h1>
+
+  <p>We can't find this page :(</p>
+
+  @if (buttonData(); as buttonData) {
+  <shared-base-button
+    [link]="{url: buttonData.url}"
+    [bg]="'accent'"
+    [label]="{ content: buttonData.label }"
+  />
+  }
+</div>

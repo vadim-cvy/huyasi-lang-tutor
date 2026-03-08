@@ -1,0 +1,7 @@
+@use './vars';
+@use '../_internal/color-scheme/functions' as internal-color-scheme-functions;
+
+$_: internal-color-scheme-functions.register-color-scheme-css-var(
+  vars.$color-css-var-name,
+  vars.$color
+);

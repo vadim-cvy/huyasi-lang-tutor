@@ -1,0 +1,41 @@
+@use './vars';
+@use 'sass:map';
+
+/**
+ * Validates that the provided box shadow key exists in vars.$box-shadows-map.
+ * Throws an error if the key is invalid.
+ *
+ * @param {string} $box-shadow-key
+ * @return {true} Always returns true if error was not thrown.
+ */
+@function validate-box-shadow-exists($box-shadow-key) {
+  @if not map.has-key(vars.$box-shadows-map, $box-shadow-key) {
+    @error 'Unexpected box shadow key: "#{$box-shadow-key}"!';
+  }
+
+  @return true;
+}
+
+/**
+ * Returns the CSS var name for the given box shadow key from vars.$box-shadows-map.
+ *
+ * @param {string} $box-shadow-key
+ * @return {string}
+ */
+@function get-css-var-name--box-shadow($box-shadow-key) {
+  $_: validate-box-shadow-exists($box-shadow-key);
+
+  @return --box-shadow-#{$box-shadow-key};
+}
+
+/**
+ * Returns the utility class for the given box shadow key.
+ *
+ * @param {string} $box-shadow-key
+ * @return {string} .--box-shadow-{box-shadow-key}
+ */
+@function get-util-class--box-shadow($box-shadow-key) {
+  $_: validate-box-shadow-exists($box-shadow-key);
+
+  @return '.--box-shadow-#{$box-shadow-key}';
+}

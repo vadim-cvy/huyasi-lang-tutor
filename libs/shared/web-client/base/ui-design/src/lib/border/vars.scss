@@ -1,0 +1,8 @@
+@use '../color-tokens/functions' as color-tokens-functions;
+
+$color-css-var-name: --border-color;
+
+$color: (
+  light: var(color-tokens-functions.get-css-var-name--color('gray-light')),
+  dark: var(color-tokens-functions.get-css-var-name--color('gray-medium')),
+);

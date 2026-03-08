@@ -1,0 +1,12 @@
+@use '../color-tokens/functions' as color-tokens-functions;
+
+$colors-map: (
+  base: (
+    light: var(color-tokens-functions.get-css-var-name--color('white-dirty')),
+    dark: var(color-tokens-functions.get-css-var-name--color('gray-dark')),
+  ),
+  accent: (
+    light: var(color-tokens-functions.get-css-var-name--color('violet-medium')),
+    dark: var(color-tokens-functions.get-css-var-name--color('violet-dark')),
+  ),
+);

@@ -1,0 +1,8 @@
+@use '../color-tokens/functions' as color-tokens-functions;
+
+$box-shadows-map: (
+  normal: (
+    light: 0 0 6px 2px var(color-tokens-functions.get-css-var-name--color('black-transparent')),
+    dark: none,
+  ),
+);

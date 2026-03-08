@@ -1,0 +1,15 @@
+:host {
+  // Hides box shadow of the sidebar top side (as it overflows the header).
+  overflow-y: clip;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+
+  &.--is-expanded {
+    min-width: 11rem;
+  }
+}

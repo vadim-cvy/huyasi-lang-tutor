@@ -1,0 +1,20 @@
+{
+  "name": "shared-web-client-base-ui-components",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/web-client/base/ui-components/src",
+  "prefix": "shared-base",
+  "projectType": "library",
+  "tags": ["scope:shared-web-client-base", "type:web-client-lib-ui-components"],
+  "targets": {
+    "test": {
+      "executor": "@nx/vitest:test",
+      "outputs": ["{options.reportsDirectory}"],
+      "options": {
+        "reportsDirectory": "../../../../../coverage/libs/shared/web-client/base/ui-components"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

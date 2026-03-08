@@ -1,0 +1,70 @@
+@use 'sass:map';
+@use 'sass:list';
+
+/**
+ * Generates utility classes for the given css prop.
+ *
+ * .--{prop-name}-all{class-suffix}
+ * .--{prop-name}-top{class-suffix}
+ * .--{prop-name}-right{class-suffix}
+ * .--{prop-name}-bottom{class-suffix}
+ * .--{prop-name}-left{class-suffix}
+ * .--{prop-name}-x{class-suffix}
+ * .--{prop-name}-y{class-suffix}
+ *
+ * @param {Map} $options - The options for generating the utility classes.
+ * @param {String} $options.val - The value to set for the css prop.
+ * @param {String} $options.prop-name - The name of the css prop to set.
+ * @param {Boolean} $options.is-with-xy - Whether to generate utility classes for the x and y axes.
+ * @param {String?} $options.class-suffix - An optional suffix to add to the generated class names.
+ */
+@mixin util-classes--side-prop-variants($options) {
+  $val: map.get($options, 'val');
+  $prop-name: map.get($options, 'prop-name');
+  $is-with-xy: map.get($options, 'is-with-xy');
+  $class-suffix: map.get($options, 'class-suffix');
+
+  @if $val == null {
+    @error 'The "val" option is required.';
+  }
+
+  @if $prop-name == null {
+    @error 'The "prop-name" option is required.';
+  }
+
+  @if $is-with-xy == null {
+    /**
+     * We could've defaulted this to false, but it's better to be explicit about it
+     * so the user knows what to expect just by looking at the mixin call.
+     */
+    @error 'The "is-with-xy" option is not provided.';
+  }
+
+  @if $class-suffix == null {
+    $class-suffix: '';
+  }
+
+  $sides: (top, right, bottom, left, all);
+
+  @if $is-with-xy == true {
+    $sides: list.join($sides, (x, y));
+  }
+
+  @each $side in $sides {
+    $class-name: '.--#{$prop-name}-#{$side}#{$class-suffix}';
+
+    #{$class-name} {
+      @if $side == 'all' {
+        #{$prop-name}: $val;
+      } @else if $side == 'x' {
+        #{$prop-name}-left: $val;
+        #{$prop-name}-right: $val;
+      } @else if $side == 'y' {
+        #{$prop-name}-top: $val;
+        #{$prop-name}-bottom: $val;
+      } @else {
+        #{$prop-name}-#{$side}: $val;
+      }
+    }
+  }
+}

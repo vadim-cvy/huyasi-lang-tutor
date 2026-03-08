@@ -1,0 +1,11 @@
+<shared-base-button
+  [icon]="{
+    definition: buttonIconDefinition(),
+    position: 'top',
+  }"
+  [paddingStrategy]="'square'"
+  [isDense]="true"
+  [label]="{ aria: buttonAriaLabel() }"
+  [isRounded]="true"
+  (click)="toggleScheme()"
+/>

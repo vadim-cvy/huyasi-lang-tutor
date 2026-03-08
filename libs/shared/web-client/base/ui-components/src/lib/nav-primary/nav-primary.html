@@ -1,0 +1,18 @@
+<nav class="nav --orientation-{{orientation()}}" aria-label="Primary navigation">
+  <ul class="nav__list">
+    @for (navItem of navItems; track navItem.route) {
+    <li>
+      <shared-base-button
+        [link]="{ url: navItem.route, isRouterLinkActiveSync: true }"
+        [icon]="{ position: buttonsIconsPosition(), definition: navItem.iconDefinition}"
+        [width]="'full'"
+        [contentAlign]="buttonsContentAlign()"
+        [isDense]="areButtonsDense()"
+        [paddingStrategy]="buttonsPaddingStrategy()"
+        [size]="buttonsSize()"
+        [label]="{ content: navItem.label }"
+      />
+    </li>
+    }
+  </ul>
+</nav>

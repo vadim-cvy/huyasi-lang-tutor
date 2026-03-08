@@ -1,0 +1,18 @@
+<header
+  [class]="[
+    'header',
+    '--padding-x-md-responsive',
+    '--padding-y-sm-responsive',
+    '--bg-accent',
+    '--border-bottom',
+    '--box-shadow-normal',
+  ]"
+>
+  <shared-base-logo-title />
+
+  <div class="header__actions --gap-lg-responsive">
+    <ng-content select="actions" />
+
+    <shared-base-color-scheme-toggle />
+  </div>
+</header>

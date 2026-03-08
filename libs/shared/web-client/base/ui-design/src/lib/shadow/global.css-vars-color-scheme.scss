@@ -1,0 +1,12 @@
+@use './functions';
+@use './vars';
+@use '../_internal/color-scheme/functions' as internal-color-scheme-functions;
+
+@each $box-shadow-key, $color-scheme-vals in vars.$box-shadows-map {
+  $css-var-name--box-shadow: functions.get-css-var-name--box-shadow($box-shadow-key);
+
+  $_: internal-color-scheme-functions.register-color-scheme-css-var(
+    $css-var-name--box-shadow,
+    $color-scheme-vals
+  );
+}

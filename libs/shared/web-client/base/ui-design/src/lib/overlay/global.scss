@@ -1,0 +1,68 @@
+@use './vars';
+@use './functions';
+@use '../transition/mixins' as transition-mixins;
+@use '../bg/functions' as bg-functions;
+@use 'sass:map';
+
+/*
+ * Generate utility classes for overlays (based on their parent bg class: .--bg-{bg-color-key}).
+ *
+ * .--has-overlay-{pseudo-element-type} (.--has-overlay-before, .--has-overlay-after)
+ * .--has-overlay-{pseudo-element-type}.--is-force-overlay-visible
+ *
+ * These classes work properly only when applied either
+ *  1. directly to an element with a bg color class (.--bg-{bg-color-key}),
+ *  2. or to a child of an element with a bg color class (.--bg-{bg-color-key}).
+ */
+
+.--has-overlay-before,
+.--has-overlay-after {
+  position: relative;
+
+  /**
+   * Make sure all direct children of the element with the overlay have
+   * a higher z-index than the overlay element itself,
+   * so that they are visible above the overlay.
+   */
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.--has-overlay-before::before,
+.--has-overlay-after::after {
+  @include transition-mixins.transition-all('normal');
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: inherit;
+}
+
+@each $bg-color-key in map.keys(vars.$bg-color-to-overlay-color-map) {
+  // .--bg-{bg-color-key}
+  $util-class--bg-color: bg-functions.get-util-class--color($bg-color-key);
+
+  // Generates the following selectors:
+  // .--bg-{bg-color-key}.--has-overlay-{pseudo-element-type}:hover::{pseudo-element-type}
+  // .--bg-{bg-color-key}.--has-overlay-{pseudo-element-type}.--is-force-overlay-visible::{pseudo-element-type}
+  // .--bg-{bg-color-key} .--has... (same 2 selectors as above but with a space before `.--has-overlay...`)
+  #{$util-class--bg-color}.--has-overlay,
+  #{$util-class--bg-color} .--has-overlay {
+    @each $pseudo-element-type in ('before', 'after') {
+      &-#{$pseudo-element-type}:hover::#{$pseudo-element-type},
+      &-#{$pseudo-element-type}.--is-force-overlay-visible::#{$pseudo-element-type} {
+        $css-var-name--overlay-color: functions.get-css-var-name--overlay-color-for-bg(
+          $bg-color-key
+        );
+
+        background-color: var($css-var-name--overlay-color);
+      }
+    }
+  }
+}

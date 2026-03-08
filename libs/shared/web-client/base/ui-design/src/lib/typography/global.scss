@@ -1,0 +1,139 @@
+@use './vars';
+@use './functions';
+@use '../whitespace/functions' as whitespace-functions;
+@use '../bg/functions' as bg-functions;
+@use '../breakpoints/mixins' as breakpoints-mixins;
+@use 'sass:map';
+
+@font-face {
+  font-family: 'Roboto';
+  src: local('Roboto'), url('./assets/fonts/roboto/static/Roboto-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Roboto VF';
+  src: local('Roboto VF'), url('./assets/fonts/roboto/variable/Roboto-VariableFont_wdth\,wght.ttf');
+}
+
+html {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: 'Roboto VF', sans-serif;
+  }
+}
+
+// TODO: move to Link base component (if one will ever be created)
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/**
+ * Generate utility classes for text sizes.
+ *
+ * .--text-size-{size-key}-{stability-key} (.--text-size-md-responsive, .--text-size-xs-static, , etc.)
+ */
+@each $size-key, $size-data in vars.$sizes-map {
+  $font-sizes-data: map.get($size-data, 'font-sizes');
+
+  @each $stability-key in map.keys($font-sizes-data) {
+    $util-class--text-size: functions.get-util-class--text-size($size-key, $stability-key);
+
+    $font-size-val: null;
+
+    @if $stability-key == 'static' {
+      $font-size-val: map.get($font-sizes-data, 'static');
+    } @else if $stability-key == 'responsive' {
+      $css-var-name--font-size-responsive: functions.get-css-var-name--font-size-responsive(
+        $size-key
+      );
+
+      $font-size-val: var($css-var-name--font-size-responsive);
+    } @else {
+      @error 'Unexpected stability key: "#{$stability-key}"!';
+    }
+
+    #{$util-class--text-size} {
+      font-size: $font-size-val;
+    }
+  }
+}
+
+/**
+ * Set margin-y for text elements with .--text-size-{size-key}-{stability-key}
+ * utility classes, or children of such elements.
+ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+p {
+  margin-left: 0;
+  margin-right: 0;
+  font-size: inherit;
+
+  &:first-child {
+    margin-top: 0 !important;
+  }
+
+  &:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  @each $size-key, $size-data in vars.$sizes-map {
+    @each $stability-key in map.keys(map.get($size-data, 'font-sizes')) {
+      $util-class--text-size: functions.get-util-class--text-size($size-key, $stability-key);
+
+      $margin-y-size-key: map.get($size-data, 'margin-y-size-key');
+      $margin-y-val: whitespace-functions.get-size-val($margin-y-size-key, $stability-key);
+
+      #{$util-class--text-size} &,
+      &#{$util-class--text-size} {
+        margin-top: $margin-y-val;
+        margin-bottom: $margin-y-val;
+      }
+    }
+  }
+}
+
+/**
+ * Generate utility classes for text colors. As well as sets default text color
+ * for elements having .--bg-{bg-color-key} class.
+ *
+ * Classes generated:
+ * .--text-color-{text-color-key} (.--text-color-base, .--text-color-accent, etc.)
+ *
+ * These utility classes are meant to be used alongside with .--bg-{bg-color-key}
+ * class (provided by bg module). Can be used in the same element having .--bg-{bg-color-key} class,
+ * or in its children elements.
+ */
+@each $bg-color-key, $text-colors-for-bg in vars.$bg-colors-to-text-colors-map {
+  @each $text-color-key in map.keys($text-colors-for-bg) {
+    $util-class--bg-color: bg-functions.get-util-class--color($bg-color-key);
+    $util-class--text-color: functions.get-util-class--color($text-color-key);
+
+    $text-color-val: var(functions.get-css-var-name--color($text-color-key, $bg-color-key));
+
+    #{$util-class--bg-color} {
+      // Make "base" text color to be a default color
+      @if $text-color-key == 'base' {
+        color: $text-color-val;
+      }
+
+      // Allow overriding with .--text-color-{text-color-key} class
+      &#{$util-class--text-color},
+      #{$util-class--text-color} {
+        color: $text-color-val;
+      }
+    }
+  }
+}
