@@ -1,4 +1,4 @@
-import type { ComponentFixture} from '@angular/core/testing';
+import type { ComponentFixture } from '@angular/core/testing';
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 
@@ -25,7 +25,6 @@ describe('NavPrimary', () => {
     fixture.componentRef.setInput('orientation', 'horizontal');
     fixture.componentRef.setInput('buttonsIconsPosition', 'left');
     fixture.componentRef.setInput('buttonsContentAlign', 'center');
-    fixture.componentRef.setInput('buttonsPaddingX', 'md');
 
     await fixture.whenStable();
   });
