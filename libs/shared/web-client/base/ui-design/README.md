@@ -138,14 +138,6 @@ Mixin names are always prefixed with the group name, for example `breakpoint-*` 
 - `breakpoint-md-up() { @content }`
 - `breakpoint-sm-up() { @content }`
 
-### Color theming:
-
-- `typography-define-css-vars--colors($vals)`
-- `overlay-define-css-vars--colors($vals)`
-- `bg-define-css-vars--colors($vals)`
-- `border-define-css-var--color($val)`
-- `shadow-define-css-vars--box-shadows($vals)`
-
 ### Misc utilities:
 
 - `transition-all($duration-key)`
