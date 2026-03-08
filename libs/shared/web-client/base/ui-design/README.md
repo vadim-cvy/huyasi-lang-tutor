@@ -96,7 +96,7 @@ You **must** include `src/global.scss` in your **app** _(once only)_ for utility
       - Overlay appears on `:hover`, `:focus` and `:active` states of the element.
       - Overlay color is resolved automatically based on the element/parent `.--bg-<bgColorKey>` class _(it will automatically become different for each background color)_.
       - **SAME ELEMENT CLASSES:**
-        - `.--is-overlay-active`: forces overlay active state
+        - `.--is-force-overlay-visible`: forces overlay active state
           - Is useful only if you want to activate an overlay manually _(with TS logic for example)_.
     - `.--text-color-<textColorKey>`: automatically sets text color contrasting with the element/parent element background color.
       - `<textColorKey>`: `base`, `accent`

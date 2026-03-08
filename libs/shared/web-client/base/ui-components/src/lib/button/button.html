@@ -19,7 +19,7 @@
   [class]="cssClasses()"
   [aria-label]="ariaLabel()"
   [routerLink]="link.url"
-  [routerLinkActive]="link.isRouterLinkActiveSync ? '--is-overlay-active' : ''"
+  [routerLinkActive]="link.isRouterLinkActiveSync ? '--is-force-overlay-visible' : ''"
 >
   <ng-container *ngTemplateOutlet="buttonContent"></ng-container>
 </a>
