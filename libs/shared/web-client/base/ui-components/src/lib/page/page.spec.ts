@@ -1,4 +1,4 @@
-import type { ComponentFixture} from '@angular/core/testing';
+import type { ComponentFixture } from '@angular/core/testing';
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 
@@ -8,11 +8,27 @@ import { NavPrimaryItemsService } from '../nav-primary/services/nav-primary-item
 import { NavPrimaryItemsServiceStub } from '../nav-primary/services/nav-primary-items.service.stub';
 import { Page } from './page';
 
+/**
+ * window.matchMedia is undefined in the test environment, while the
+ * ColorSchemeToggleService (which is a dependency of the Page component) uses it.
+ *
+ * This is a simple mock to prevent errors related to window.matchMedia.matches.
+ */
+const mockMatchMedia = (): void => {
+  Object.defineProperty(window, 'matchMedia', {
+    value: vi.fn(() => ({ matches: false })),
+    writable: true,
+    configurable: true,
+  });
+};
+
 describe('Page', () => {
   let component: Page;
   let fixture: ComponentFixture<Page>;
 
   beforeEach(async () => {
+    mockMatchMedia();
+
     await TestBed.configureTestingModule({
       imports: [Page],
       providers: [
