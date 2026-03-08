@@ -12,15 +12,19 @@ export class SidebarToggleService {
   private readonly _isExpanded = injectLocalStorage<boolean>(this.isExpandedStorageKey, {
     defaultValue: this.isExpandedDefault,
     parse: (valJSON): boolean => {
-      const val = JSON.parse(valJSON) as unknown;
+      try {
+        const val = JSON.parse(valJSON) as unknown;
 
-      if (typeof val === 'boolean') {
-        return val;
+        if (typeof val === 'boolean') {
+          return val;
+        }
+      } catch (err) {
+        console.warn(
+          `Invalid ${this.isExpandedStorageKey} value in local storage: "${valJSON}".` +
+            ` Err details: "${JSON.stringify(err)}".` +
+            ' Falling back to default value.',
+        );
       }
-
-      console.warn(
-        `Invalid ${this.isExpandedStorageKey} value in local storage: "${valJSON}". Falling back to default value.`,
-      );
 
       return this.isExpandedDefault;
     },

@@ -17,15 +17,19 @@ export class ColorSchemeToggleService {
   private readonly _scheme = injectLocalStorage<ColorScheme>(this.schemeStorageKey, {
     defaultValue: this.schemeDefault,
     parse: (valJSON): ColorScheme => {
-      const val = JSON.parse(valJSON) as unknown;
+      try {
+        const val = JSON.parse(valJSON) as unknown;
 
-      if (val === 'light' || val === 'dark') {
-        return val;
+        if (val === 'light' || val === 'dark') {
+          return val;
+        }
+      } catch (err) {
+        console.warn(
+          `Invalid ${this.schemeStorageKey} value in local storage: "${valJSON}".` +
+            ` Err details: "${JSON.stringify(err)}".` +
+            ' Falling back to default value.',
+        );
       }
-
-      console.warn(
-        `Invalid ${this.schemeStorageKey} value in local storage: "${valJSON}". Falling back to default value.`,
-      );
 
       return this.schemeDefault;
     },
