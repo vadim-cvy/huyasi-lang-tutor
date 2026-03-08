@@ -13,6 +13,7 @@ import type { ReadonlyDeep } from 'type-fest';
 import type { ButtonBg } from './abstract/ButtonBg';
 import type { ButtonContentAlign } from './abstract/ButtonContentAlign';
 import type { ButtonIconPosition } from './abstract/ButtonIconPosition';
+import type { ButtonLabel } from './abstract/ButtonLabel';
 import type { ButtonPaddingStrategy } from './abstract/ButtonPaddingStrategy';
 import type { ButtonSize } from './abstract/ButtonSize';
 import type { ButtonWidth } from './abstract/ButtonWidth';
@@ -41,22 +42,11 @@ export class Button {
     }>
   >();
 
-  public readonly label = input.required<{
-    text: string;
-    as: 'content' | 'ariaLabel';
-  }>();
+  public readonly label = input.required<ButtonLabel>();
 
-  public readonly ariaLabel = computed<string | null>(() => {
-    const label = this.label();
+  public readonly ariaLabel = computed<string | undefined>(() => this.label().aria);
 
-    return label.as === 'ariaLabel' ? label.text : null;
-  });
-
-  public readonly contentLabel = computed<string | null>(() => {
-    const label = this.label();
-
-    return label.as === 'content' ? label.text : null;
-  });
+  public readonly contentLabel = computed<string | undefined>(() => this.label().content);
 
   public readonly contentAlign = input<ButtonContentAlign>('center');
 

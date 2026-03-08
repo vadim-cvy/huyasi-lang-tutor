@@ -22,7 +22,7 @@
     [size]="buttonsSize()"
     [width]="'full'"
     [contentAlign]="buttonsContentAlign()"
-    [label]="{ as: 'content', text: isExpanded() ? 'Collapse' : 'Expand' }"
+    [label]="toggleButtonLabel()"
     class="sidebar__toggle-button"
     (click)="toggleIsExpanded()"
   />

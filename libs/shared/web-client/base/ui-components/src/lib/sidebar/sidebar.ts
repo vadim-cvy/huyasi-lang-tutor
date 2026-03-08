@@ -4,6 +4,7 @@ import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 import type { ButtonContentAlign } from '../button/abstract/ButtonContentAlign';
 import type { ButtonIconPosition } from '../button/abstract/ButtonIconPosition';
+import type { ButtonLabel } from '../button/abstract/ButtonLabel';
 import type { ButtonPaddingStrategy } from '../button/abstract/ButtonPaddingStrategy';
 import type { ButtonSize } from '../button/abstract/ButtonSize';
 import { Button } from '../button/button';
@@ -41,6 +42,15 @@ export class Sidebar {
   public readonly togglerButtonIconDefinition = computed<IconDefinition>(() =>
     this.isExpanded() ? faArrowLeft : faArrowRight,
   );
+
+  public readonly toggleButtonLabel = computed<ButtonLabel>(() => {
+    const action = this.isExpanded() ? 'Collapse' : 'Expand';
+
+    return {
+      content: action,
+      aria: `${action} sidebar`,
+    };
+  });
 
   public toggleIsExpanded(): void {
     this.sidebarToggleService.toggleIsExpanded();
