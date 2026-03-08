@@ -5,6 +5,6 @@
   }"
   [paddingStrategy]="'square'"
   [isDense]="true"
-  [ariaLabel]="buttonAriaLabel()"
+  [label]="{ as: 'ariaLabel', text: buttonAriaLabel() }"
   (click)="toggleScheme()"
 />

@@ -7,19 +7,24 @@
   />
   }
 
-  <ng-content />
+  <!-- this comment prevents prettier to stack @if as if they're part of the same. just ignore it -->
+
+  @if (contentLabel(); as contentLabel) {
+  <span class="button__content">{{ contentLabel }}</span>
+  }
 </ng-template>
 
 @if (link(); as link) {
 <a
   [class]="cssClasses()"
+  [aria-label]="ariaLabel()"
   [routerLink]="link.url"
   [routerLinkActive]="link.isRouterLinkActiveSync ? '--is-overlay-active' : ''"
 >
   <ng-container *ngTemplateOutlet="buttonContent"></ng-container>
 </a>
 } @else {
-<button type="button" [class]="cssClasses()">
+<button type="button" [class]="cssClasses()" [aria-label]="ariaLabel()">
   <ng-container *ngTemplateOutlet="buttonContent"></ng-container>
 </button>
 }

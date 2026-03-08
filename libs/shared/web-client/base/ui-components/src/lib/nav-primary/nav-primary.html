@@ -10,9 +10,8 @@
         [isDense]="areButtonsDense()"
         [paddingStrategy]="buttonsPaddingStrategy()"
         [size]="buttonsSize()"
-      >
-        {{navItem.label}}
-      </shared-base-button>
+        [label]="{ as: 'content', text: navItem.label }"
+      />
     </li>
     }
   </ul>

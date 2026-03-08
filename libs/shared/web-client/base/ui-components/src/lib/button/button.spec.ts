@@ -1,4 +1,4 @@
-import type { ComponentFixture} from '@angular/core/testing';
+import type { ComponentFixture } from '@angular/core/testing';
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 
@@ -16,6 +16,9 @@ describe('Button', () => {
 
     fixture = TestBed.createComponent(Button);
     component = fixture.componentInstance;
+
+    fixture.componentRef.setInput('label', { as: 'content', text: 'Test Label' });
+
     await fixture.whenStable();
   });
 

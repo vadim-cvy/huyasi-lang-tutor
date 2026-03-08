@@ -22,8 +22,8 @@
     [size]="buttonsSize()"
     [width]="'full'"
     [contentAlign]="buttonsContentAlign()"
+    [label]="{ as: 'content', text: isExpanded() ? 'Collapse' : 'Expand' }"
+    class="sidebar__toggle-button"
     (click)="toggleIsExpanded()"
-  >
-    {{ isExpanded() ? 'Collapse' : 'Expand' }}
-  </shared-base-button>
+  />
 </div>

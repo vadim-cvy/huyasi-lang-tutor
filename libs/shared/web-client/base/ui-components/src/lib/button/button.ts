@@ -41,6 +41,23 @@ export class Button {
     }>
   >();
 
+  public readonly label = input.required<{
+    text: string;
+    as: 'content' | 'ariaLabel';
+  }>();
+
+  public readonly ariaLabel = computed<string | null>(() => {
+    const label = this.label();
+
+    return label.as === 'ariaLabel' ? label.text : null;
+  });
+
+  public readonly contentLabel = computed<string | null>(() => {
+    const label = this.label();
+
+    return label.as === 'content' ? label.text : null;
+  });
+
   public readonly contentAlign = input<ButtonContentAlign>('center');
 
   public readonly bg = input<ButtonBg>('transparent');

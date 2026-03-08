@@ -4,8 +4,10 @@
   <p>We can't find this page :(</p>
 
   @if (buttonData(); as buttonData) {
-  <shared-base-button [link]="{url: buttonData.url}" [bg]="'accent'">
-    {{buttonData.label}}
-  </shared-base-button>
+  <shared-base-button
+    [link]="{url: buttonData.url}"
+    [bg]="'accent'"
+    [label]="{ as: 'content', text: buttonData.label }"
+  />
   }
 </div>
