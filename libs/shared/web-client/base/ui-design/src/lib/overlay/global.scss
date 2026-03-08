@@ -50,14 +50,12 @@
 
   // Generates the following selectors:
   // .--bg-{bg-color-key}.--has-overlay-{pseudo-element-type}:hover::{pseudo-element-type}
-  // .--bg-{bg-color-key}.--has-overlay-{pseudo-element-type}:active::{pseudo-element-type}
   // .--bg-{bg-color-key}.--has-overlay-{pseudo-element-type}.--is-overlay-active::{pseudo-element-type}
-  // .--bg-{bg-color-key} .--has... (same 3 selectors as above but with a space before `.--has-overlay...`)
+  // .--bg-{bg-color-key} .--has... (same 2 selectors as above but with a space before `.--has-overlay...`)
   #{$util-class--bg-color}.--has-overlay,
   #{$util-class--bg-color} .--has-overlay {
     @each $pseudo-element-type in ('before', 'after') {
       &-#{$pseudo-element-type}:hover::#{$pseudo-element-type},
-      &-#{$pseudo-element-type}:active::#{$pseudo-element-type},
       &-#{$pseudo-element-type}.--is-overlay-active::#{$pseudo-element-type} {
         $css-var-name--overlay-color: functions.get-css-var-name--overlay-color-for-bg(
           $bg-color-key
