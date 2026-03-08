@@ -2,7 +2,7 @@
 
 $box-shadows-map: (
   normal: (
-    light: 6px 2px var(color-tokens-functions.get-css-var-name--color('black-transparent')),
+    light: 0 0 6px 2px var(color-tokens-functions.get-css-var-name--color('black-transparent')),
     dark: none,
   ),
 );
