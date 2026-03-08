@@ -7,14 +7,14 @@ import type { ColorScheme } from '../abstract/ColorScheme';
   providedIn: 'root',
 })
 export class ColorSchemeToggleService {
-  private readonly storageKey = 'colorScheme';
+  private readonly schemeStorageKey = 'colorScheme';
 
   private readonly schemeDefault: ColorScheme = window.matchMedia('(prefers-color-scheme: dark)')
     .matches
     ? 'dark'
     : 'light';
 
-  private readonly _scheme = injectLocalStorage<ColorScheme>(this.storageKey, {
+  private readonly _scheme = injectLocalStorage<ColorScheme>(this.schemeStorageKey, {
     defaultValue: this.schemeDefault,
     parse: (valJSON): ColorScheme => {
       const val = JSON.parse(valJSON) as unknown;
@@ -24,7 +24,7 @@ export class ColorSchemeToggleService {
       }
 
       console.warn(
-        `Invalid ${this.storageKey} value in local storage: "${valJSON}". Falling back to default value.`,
+        `Invalid ${this.schemeStorageKey} value in local storage: "${valJSON}". Falling back to default value.`,
       );
 
       return this.schemeDefault;

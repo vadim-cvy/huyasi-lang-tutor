@@ -5,11 +5,11 @@ import { injectLocalStorage } from 'ngxtension/inject-local-storage';
   providedIn: 'root',
 })
 export class SidebarToggleService {
-  private readonly storageKey = 'isSidebarExpanded';
+  private readonly isExpandedStorageKey = 'isSidebarExpanded';
 
   private readonly isExpandedDefault = true;
 
-  private readonly _isExpanded = injectLocalStorage<boolean>(this.storageKey, {
+  private readonly _isExpanded = injectLocalStorage<boolean>(this.isExpandedStorageKey, {
     defaultValue: this.isExpandedDefault,
     parse: (valJSON): boolean => {
       const val = JSON.parse(valJSON) as unknown;
@@ -19,7 +19,7 @@ export class SidebarToggleService {
       }
 
       console.warn(
-        `Invalid ${this.storageKey} value in local storage: "${valJSON}". Falling back to default value.`,
+        `Invalid ${this.isExpandedStorageKey} value in local storage: "${valJSON}". Falling back to default value.`,
       );
 
       return this.isExpandedDefault;
