@@ -74,6 +74,8 @@ export class Button {
    */
   public readonly size = input<ButtonSize>('md');
 
+  public readonly isRounded = input<boolean>(false);
+
   /**
    * Base font size for button elements which don't have their own font sizes defined.
    */
@@ -131,7 +133,8 @@ export class Button {
       paddingX = this.paddingX(),
       paddingY = this.paddingY(),
       marginY = this.marginY(),
-      baseFontSize = this.baseFontSize();
+      baseFontSize = this.baseFontSize(),
+      isRounded = this.isRounded();
 
     return [
       'button',
@@ -145,6 +148,7 @@ export class Button {
       `--padding-y-${paddingY}-responsive`,
       `--margin-y-${marginY}-responsive`,
       `--text-size-${baseFontSize}-responsive`,
+      isRounded ? '--border-radius' : '',
     ];
   });
 }
