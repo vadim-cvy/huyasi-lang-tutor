@@ -41,6 +41,11 @@ export default [
           allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$'],
           depConstraints: [
             {
+              sourceTag: 'scope:core-auth-bff',
+              onlyDependOnLibsWithTags: ['scope:core-auth-bff'],
+            },
+
+            {
               sourceTag: 'scope:public-web-client',
               onlyDependOnLibsWithTags: [
                 'scope:public-web-client',

@@ -20,7 +20,8 @@
       ],
       "@huyasi/shared-web-client-base-ui-design": [
         "libs/shared/web-client/base/ui-design/src/index.ts"
-      ]
+      ],
+      "@huyasi/core-auth-bff-app-context": ["libs/core/auth-bff/app-context/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
