@@ -1,0 +1,9 @@
+{
+  "name": "core-auth-bff-session",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/core/auth-bff/session/src",
+  "projectType": "library",
+  "tags": ["scope:core-auth-bff", "type:service-lib-infra"],
+  "// targets": "to see all targets run: nx show project core-auth-bff-session --web",
+  "targets": {}
+}
