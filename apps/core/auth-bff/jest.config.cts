@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'auth-bff',
+  displayName: 'core-auth-bff',
   preset: '../../../jest.preset.js',
   testEnvironment: 'node',
   transform: {

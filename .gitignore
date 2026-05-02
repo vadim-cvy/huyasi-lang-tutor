@@ -46,3 +46,8 @@ Thumbs.db
 __screenshots__/
 
 vitest.config.*.timestamp*
+
+config.yaml
+config.*.yaml
+!config.example.yaml
+!config.*.example.yaml
