@@ -1,3 +1,8 @@
+appType:
+  appBaseUrl:
+    public: 'http://localhost:PORT or https://app-domain.com'
+    admin: 'http://localhost:PORT or https://admin.app-domain.com'
+
 session:
   storage:
     redisUrl: 'redis://foo:bar@awesome.redis.server:6380'

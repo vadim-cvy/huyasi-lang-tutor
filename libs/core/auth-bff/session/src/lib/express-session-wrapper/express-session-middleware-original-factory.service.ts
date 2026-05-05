@@ -1,4 +1,4 @@
-import { AppContext } from '@huyasi/core-auth-bff-app-context';
+import { AppType } from '@huyasi/core-auth-bff-app-type';
 import { Injectable } from '@nestjs/common';
 import session from 'express-session';
 
@@ -13,10 +13,10 @@ export class ExpressSessionMiddlewareOriginalFactoryService {
   ) {}
 
   public async createExpressSessionMiddlewareOriginal(
-    appContext: AppContext,
+    appType: AppType,
   ): Promise<ReturnType<typeof session>> {
     return session({
-      store: await this.sessionStoreService.getStore(appContext),
+      store: await this.sessionStoreService.getStore(appType),
       secret: [...this.sessionConfigService.get('cookie').signIdSecrets],
       resave: false,
       // FIXME: set false
@@ -28,7 +28,7 @@ export class ExpressSessionMiddlewareOriginalFactoryService {
         // FIXME: this will not work in local environment
         // secure: true,
         // sameSite: 'strict',
-        maxAge: this.sessionConfigService.get('ttl').idleMs[appContext],
+        maxAge: this.sessionConfigService.get('ttl').idleMs[appType],
       },
     });
   }

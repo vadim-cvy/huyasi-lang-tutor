@@ -1,3 +1,4 @@
+import { AppTypeModule } from '@huyasi/core-auth-bff-app-type';
 import { MiddlewareConsumer, Module } from '@nestjs/common';
 
 import { SessionConfigService } from './config/session-config.service';
@@ -10,6 +11,7 @@ import { SessionTtlAbsoluteHandlerFactoryService } from './session-ttl-absolute/
 import { SessionTTLAbsoluteMiddleware } from './session-ttl-absolute/session-ttl-absolute.middleware';
 
 @Module({
+  imports: [AppTypeModule],
   providers: [
     SessionConfigService,
     RedisClientService,

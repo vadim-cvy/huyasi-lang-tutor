@@ -1,3 +1,4 @@
+import { AppTypeModule } from '@huyasi/core-auth-bff-app-type';
 import { SessionModule } from '@huyasi/core-auth-bff-session';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
@@ -10,6 +11,7 @@ import { loadConfig } from './load-config.util';
       isGlobal: true,
       load: [loadConfig],
     }),
+    AppTypeModule,
     SessionModule,
   ],
 })

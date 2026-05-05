@@ -1,9 +1,0 @@
-{
-  "name": "core-auth-bff-app-context",
-  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/core/auth-bff/app-context/src",
-  "projectType": "library",
-  "tags": ["scope:core-auth-bff", "type:service-lib-infra"],
-  "// targets": "to see all targets run: nx show project core-auth-bff-app-context --web",
-  "targets": {}
-}
