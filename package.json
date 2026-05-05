@@ -84,6 +84,7 @@
     "express-session": "^1.19.0",
     "js-yaml": "^4.1.1",
     "ngxtension": "^7.2.0",
+    "openid-client": "^6.8.2",
     "redis": "^5.11.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~7.8.0",

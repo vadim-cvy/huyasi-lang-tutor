@@ -34,3 +34,13 @@ session:
     absoluteMs:
       public: 99999
       admin: 99999
+
+openidConnect:
+  authServer:
+    url: 'https://...auth0.com/'
+    clientId:
+      public: '...'
+      admin: '...'
+    clientSecret:
+      public: '...'
+      admin: '...'

@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 import { appTypeConfigSchema } from '@huyasi/core-auth-bff-app-type';
+import { openidConnectConfigSchema } from '@huyasi/core-auth-bff-openid-connect';
 import { sessionConfigSchema } from '@huyasi/core-auth-bff-session';
 import * as yaml from 'js-yaml';
 import z from 'zod';
@@ -15,6 +16,7 @@ export const loadConfig = (): z.infer<typeof configSchema> => {
   const configSchema = z.strictObject({
     ...appTypeConfigSchema.shape,
     ...sessionConfigSchema.shape,
+    ...openidConnectConfigSchema.shape,
   });
 
   return configSchema.parse(configRaw);

@@ -22,6 +22,7 @@
         "libs/shared/web-client/base/ui-design/src/index.ts"
       ],
       "@huyasi/core-auth-bff-session": ["libs/core/auth-bff/session/src/index.ts"],
+      "@huyasi/core-auth-bff-openid-connect": ["libs/core/auth-bff/openid-connect/src/index.ts"],
       "@huyasi/core-auth-bff-app-type": ["libs/core/auth-bff/app-type/src/index.ts"]
     }
   },
