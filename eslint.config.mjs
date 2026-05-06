@@ -47,12 +47,7 @@ export default [
 
             {
               sourceTag: 'scope:public-web-client',
-              onlyDependOnLibsWithTags: [
-                'scope:public-web-client',
-                'scope:shared-web-client-base',
-                // Add your custom groups you want to include in this scope like this:
-                // 'scope:shared-web-client-<your-own-group>',
-              ],
+              onlyDependOnLibsWithTags: ['scope:public-web-client', 'scope:shared-web-client-base'],
             },
 
             {
