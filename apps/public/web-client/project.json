@@ -61,7 +61,8 @@
           "buildTarget": "public-web-client:build:production"
         },
         "development": {
-          "buildTarget": "public-web-client:build:development"
+          "buildTarget": "public-web-client:build:development",
+          "proxyConfig": "apps/public/web-client/local-proxy.conf.json"
         }
       },
       "defaultConfiguration": "development"
