@@ -3,9 +3,11 @@ import z from 'zod';
 const cookieSignIdSecretMinLength = 64;
 const cookieSignIdSecretSchema = z.string().min(cookieSignIdSecretMinLength);
 
-const ttlItemSchema = z.strictObject({
-  public: z.number().int().positive(),
-  admin: z.number().int().positive(),
+const ttlSchema = z.number().int().positive();
+
+const ttlForAppTypesSchema = z.strictObject({
+  public: ttlSchema,
+  admin: ttlSchema,
 });
 
 export const sessionConfigSchema = z.strictObject({
@@ -17,8 +19,8 @@ export const sessionConfigSchema = z.strictObject({
       signIdSecrets: z.array(cookieSignIdSecretSchema).min(1),
     }),
     ttl: z.strictObject({
-      idleMs: ttlItemSchema,
-      absoluteMs: ttlItemSchema,
+      idleMs: ttlForAppTypesSchema,
+      absoluteMs: ttlForAppTypesSchema,
     }),
   }),
 });
