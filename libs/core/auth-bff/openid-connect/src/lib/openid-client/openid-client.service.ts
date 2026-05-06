@@ -31,7 +31,7 @@ export class OpenidClientService {
   ) {}
 
   public async buildLoginUrl(
-    loginCallbackUrl: string,
+    loginCallbackUrl: URL,
     extraScopes?: Set<Exclude<OpenidConnectScope, 'oidc'>>,
   ): Promise<{ url: URL; state: string }> {
     const config = await this.configPromise;
@@ -42,7 +42,7 @@ export class OpenidClientService {
     const state = randomBytes(stateRandomBytesSize).toString('base64url');
 
     const url = openidClient.buildAuthorizationUrl(config, {
-      ['redirect_uri']: loginCallbackUrl,
+      ['redirect_uri']: loginCallbackUrl.href,
       scope: [...scopes].join(' '),
       state,
     });

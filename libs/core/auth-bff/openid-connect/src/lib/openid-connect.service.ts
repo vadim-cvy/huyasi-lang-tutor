@@ -14,7 +14,7 @@ export class OpenidConnectService {
   ) {}
 
   public async buildLoginUrl(session: RequestSession, loginCallbackUrlPath: string): Promise<URL> {
-    const loginCallbackUrl = `${this.appBaseUrl.toString()}/${loginCallbackUrlPath}`;
+    const loginCallbackUrl = new URL(this.appBaseUrl.toString() + loginCallbackUrlPath);
 
     const result = await this.openidClientService.buildLoginUrl(loginCallbackUrl);
 
