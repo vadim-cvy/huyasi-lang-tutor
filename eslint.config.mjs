@@ -162,8 +162,6 @@ export default [
       '@typescript-eslint/ban-tslint-comment': 'error',
       camelcase: ['error', { properties: 'never' }],
       '@typescript-eslint/class-literal-property-style': 'error',
-      'class-methods-use-this': 'off',
-      '@typescript-eslint/class-methods-use-this': 'error',
       '@typescript-eslint/consistent-generic-constructors': 'error',
       'consistent-return': 'off',
       '@typescript-eslint/consistent-return': 'error',
@@ -172,7 +170,6 @@ export default [
       '@typescript-eslint/consistent-type-exports': 'error',
       '@typescript-eslint/consistent-type-imports': 'error',
       curly: ['error', 'all'],
-      'default-case': 'error',
       'default-case-last': 'error',
       'default-param-last': 'off',
       '@typescript-eslint/default-param-last': 'error',
@@ -233,7 +230,14 @@ export default [
           ignoreNumericLiteralTypes: true,
           ignoreReadonlyClassProperties: true,
           ignoreTypeIndexes: true,
-          ignore: [-1, 0, 1],
+          ignore: [
+            -1, // frequently used for indexing
+            0, // frequently used for indexing
+            1, // frequently used for indexing
+            1000, // frequently used for time
+            60, // frequently used for time
+            24, // frequently used for time
+          ],
         },
       ],
       '@typescript-eslint/no-meaningless-void-operator': 'error',
@@ -341,10 +345,13 @@ export default [
       '@typescript-eslint/restrict-plus-operands': 'error',
       '@typescript-eslint/restrict-template-expressions': 'error',
       '@typescript-eslint/return-await': 'error',
-      '@typescript-eslint/strict-boolean-expressions': 'error',
       '@typescript-eslint/switch-exhaustiveness-check': [
         'error',
-        { considerDefaultExhaustiveForUnions: true },
+        {
+          allowDefaultCaseForExhaustiveSwitch: true,
+          considerDefaultExhaustiveForUnions: false,
+          requireDefaultForNonUnion: true,
+        },
       ],
       '@typescript-eslint/triple-slash-reference': 'error',
       '@typescript-eslint/unbound-method': 'error',
