@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { faBookOpen, faCog, faGamepad, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faBookOpen, faCog, faGamepad } from '@fortawesome/free-solid-svg-icons';
 import { NavPrimaryItemsService } from '@huyasi/shared-web-client-base-ui-components';
 
 @Injectable({
@@ -13,7 +13,6 @@ export class AppNavPrimaryItemsService {
       { label: 'Dictionary', route: '/dictionary', iconDefinition: faBookOpen },
       { label: 'Games', route: '/games', iconDefinition: faGamepad },
       { label: 'Settings', route: '/settings', iconDefinition: faCog },
-      { label: 'Profile', route: '/profile', iconDefinition: faUser },
     ];
   }
 }
