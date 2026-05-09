@@ -24,7 +24,14 @@
       ],
       "@huyasi/core-auth-bff-session": ["libs/core/auth-bff/session/src/index.ts"],
       "@huyasi/core-auth-bff-openid-connect": ["libs/core/auth-bff/openid-connect/src/index.ts"],
-      "@huyasi/core-auth-bff-app-type": ["libs/core/auth-bff/app-type/src/index.ts"]
+      "@huyasi/core-auth-bff-app-type": ["libs/core/auth-bff/app-type/src/index.ts"],
+      "@huyasi/shared-web-client-auth-feature": [
+        "libs/shared/web-client/auth/feature/src/index.ts"
+      ],
+      "@huyasi/shared-web-client-auth-ui-components": [
+        "libs/shared/web-client/auth/ui-components/src/index.ts"
+      ],
+      "@huyasi/shared-web-client-auth-utils": ["libs/shared/web-client/auth/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
