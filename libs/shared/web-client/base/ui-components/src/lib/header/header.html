@@ -10,9 +10,11 @@
 >
   <shared-base-logo-title />
 
-  <div class="header__actions --gap-lg-responsive">
-    <ng-content select="actions" />
+  <div class="header__actions">
+    <ng-content select="actions-main" />
 
     <shared-base-color-scheme-toggle />
+
+    <ng-content select="actions-secondary" />
   </div>
 </header>
