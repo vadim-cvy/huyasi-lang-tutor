@@ -1,4 +1,5 @@
 import { AppTypeModule } from '@huyasi/core-auth-bff-app-type';
+import { SessionModule } from '@huyasi/core-auth-bff-session';
 import { Module } from '@nestjs/common';
 
 import { OpenidConnectConfigService } from './config/openid-connect-config.service';
@@ -7,7 +8,7 @@ import { OpenidConnectController } from './openid-connect.controller';
 import { OpenidConnectService } from './openid-connect.service';
 
 @Module({
-  imports: [AppTypeModule],
+  imports: [AppTypeModule, SessionModule],
   controllers: [OpenidConnectController],
   providers: [OpenidConnectConfigService, OpenidClientService, OpenidConnectService],
 })
