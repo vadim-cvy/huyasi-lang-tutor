@@ -14,10 +14,12 @@ import type { ButtonBg } from './abstract/ButtonBg';
 import type { ButtonContentAlign } from './abstract/ButtonContentAlign';
 import type { ButtonIconPosition } from './abstract/ButtonIconPosition';
 import type { ButtonLabel } from './abstract/ButtonLabel';
+import type { ButtonLink } from './abstract/ButtonLink';
 import type { ButtonPaddingStrategy } from './abstract/ButtonPaddingStrategy';
 import type { ButtonSize } from './abstract/ButtonSize';
 import type { ButtonWidth } from './abstract/ButtonWidth';
 
+// FIXME: if button has no content, but only aria label - we should show arialabel content as a tooltip so user can see button functionality description on hover
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'shared-base-button',
@@ -26,14 +28,7 @@ import type { ButtonWidth } from './abstract/ButtonWidth';
   styleUrl: './button.scss',
 })
 export class Button {
-  public readonly link = input<{
-    url: string;
-    /**
-     * Indicates whether button should be treated as active (which will affect its styling)
-     * when the current route matches the link url.
-     */
-    isRouterLinkActiveSync?: boolean;
-  }>();
+  public readonly link = input<ButtonLink>();
 
   public readonly icon = input<
     ReadonlyDeep<{

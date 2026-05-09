@@ -5,7 +5,7 @@
 
   @if (buttonData(); as buttonData) {
   <shared-base-button
-    [link]="{url: buttonData.url}"
+    [link]="{url: buttonData.url, type: 'routerLink'}"
     [bg]="'accent'"
     [label]="{ content: buttonData.label }"
   />
