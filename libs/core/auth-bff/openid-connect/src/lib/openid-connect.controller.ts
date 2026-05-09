@@ -40,7 +40,7 @@ export class OpenidConnectController {
   }
 
   @Get(routes.endpoints.logout)
-  public logout() {
+  public logout(): void {
     // FIXME: implement this method
   }
 }
