@@ -15,6 +15,14 @@ export class OpenidConnectService {
 
   private readonly session: RequestSession = this.req.session;
 
+  private get sessionOpenidConnectDataRef(): NonNullable<RequestSession['oidc']> {
+    if (!this.session.oidc) {
+      this.session.oidc = {};
+    }
+
+    return this.session.oidc;
+  }
+
   public constructor(
     @Inject(REQUEST) private readonly req: Request,
     private readonly appTypeCurrentContextIdService: AppTypeCurrentContextIdService,
@@ -27,7 +35,7 @@ export class OpenidConnectService {
 
     const result = await this.openidClientService.buildLoginUrl(loginCallbackUrl);
 
-    this.session.oidcState = result.state;
+    this.sessionOpenidConnectDataRef.state = result.state;
     this.session.save();
 
     return result.url;
