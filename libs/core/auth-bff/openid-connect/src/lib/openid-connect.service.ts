@@ -1,4 +1,4 @@
-import { AppTypeCurrentContextIdPayloadService } from '@huyasi/core-auth-bff-app-type';
+import { AppTypeCurrentContextIdService } from '@huyasi/core-auth-bff-app-type';
 import { Injectable } from '@nestjs/common';
 
 import { OpenidClientService } from './openid-client/openid-client.service';
@@ -6,10 +6,10 @@ import { RequestSession } from './request-session.type';
 
 @Injectable()
 export class OpenidConnectService {
-  private readonly appBaseUrl: URL = this.appTypeCurrentContextIdPayloadService.appBaseUrl;
+  private readonly appBaseUrl: URL = this.appTypeCurrentContextIdService.appBaseUrl;
 
   public constructor(
-    private readonly appTypeCurrentContextIdPayloadService: AppTypeCurrentContextIdPayloadService,
+    private readonly appTypeCurrentContextIdService: AppTypeCurrentContextIdService,
     private readonly openidClientService: OpenidClientService,
   ) {}
 

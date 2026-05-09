@@ -1,4 +1,4 @@
-import { AppTypeRequestsUtilsService } from '@huyasi/core-auth-bff-app-type';
+import { AppTypeRequestUtilsService } from '@huyasi/core-auth-bff-app-type';
 import { Injectable } from '@nestjs/common';
 import { Request } from 'express';
 
@@ -10,11 +10,11 @@ import { SessionTtlAbsoluteHandler } from './session-ttl-absolute-handler';
 export class SessionTtlAbsoluteHandlerFactoryService {
   public constructor(
     private readonly sessionConfigService: SessionConfigService,
-    private readonly appTypeRequestsUtilsService: AppTypeRequestsUtilsService,
+    private readonly appTypeRequestUtilsService: AppTypeRequestUtilsService,
   ) {}
 
   public createSessionHandler(req: Request): SessionTtlAbsoluteHandler {
-    const appType = this.appTypeRequestsUtilsService.getAppTypeByRequest(req);
+    const appType = this.appTypeRequestUtilsService.getAppTypeByRequest(req);
 
     const session = this.getRequestSession(req);
 

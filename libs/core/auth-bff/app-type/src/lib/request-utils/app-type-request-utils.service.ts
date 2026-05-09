@@ -5,7 +5,7 @@ import type { AppType } from '../app-type.type';
 import { AppTypeConfigService } from '../config/app-type-config.service';
 
 @Injectable()
-export class AppTypeRequestsUtilsService {
+export class AppTypeRequestUtilsService {
   public constructor(private readonly appTypeConfigService: AppTypeConfigService) {}
 
   public getAppTypeByRequest(req: Request): AppType {
@@ -27,6 +27,6 @@ export class AppTypeRequestsUtilsService {
   }
 
   private getAppHost(appType: AppType): string {
-    return this.appTypeConfigService.get('appBaseUrl')[appType].host;
+    return this.appTypeConfigService.getAppBaseUrl(appType).host;
   }
 }

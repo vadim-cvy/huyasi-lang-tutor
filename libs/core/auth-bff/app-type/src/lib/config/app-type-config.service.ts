@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import z from 'zod';
 
+import { AppType } from '../app-type.type';
 import { appTypeConfigSchema } from './app-type-config.schema';
 
 type AppTypeConfig = z.infer<typeof appTypeConfigSchema>;
@@ -13,5 +14,9 @@ export class AppTypeConfigService {
 
   public get<K extends keyof AppTypeConfigUnwrapped>(key: K): AppTypeConfigUnwrapped[K] {
     return this.configService.get('appType', { infer: true })[key];
+  }
+
+  public getAppBaseUrl(appType: AppType): URL {
+    return this.get('appBaseUrl')[appType];
   }
 }

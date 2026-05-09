@@ -2,9 +2,9 @@ import type { ContextId, ContextIdStrategy, HostComponentInfo } from '@nestjs/co
 import { ContextIdFactory } from '@nestjs/core';
 import type { Request } from 'express';
 
-import type { AppType } from '../../app-type.type';
-import type { AppTypeRequestsUtilsService } from '../../requests-utils/app-type-requests-utils.service';
-import type { AppTypeContextIdPayload } from '../payload/app-type-context-id-payload.type';
+import type { AppType } from '../app-type.type';
+import type { AppTypeRequestUtilsService } from '../request-utils/app-type-request-utils.service';
+import type { AppTypeContextIdPayload } from './payload/app-type-context-id-payload.type';
 
 const appTypeContextIds = new Map<AppType, ContextId>();
 
@@ -30,16 +30,16 @@ const getAppTypeContextId = (appType: AppType): ContextId => {
  * @see https://docs.nestjs.com/fundamentals/injection-scopes#durable-providers
  */
 export class AppTypeContextIdStrategy implements ContextIdStrategy {
-  public constructor(private readonly AppTypeRequestsUtilsService: AppTypeRequestsUtilsService) {}
+  public constructor(private readonly requestAppTypeResolverService: AppTypeRequestUtilsService) {}
 
   public attach(
     defaultContextId: ContextId,
     req: Request,
   ): {
-    resolve(info: HostComponentInfo): ContextId;
     payload: AppTypeContextIdPayload;
+    resolve(info: HostComponentInfo): ContextId;
   } {
-    const appType = this.AppTypeRequestsUtilsService.getAppTypeByRequest(req);
+    const appType = this.requestAppTypeResolverService.getAppTypeByRequest(req);
 
     const appTypeContextId = getAppTypeContextId(appType);
 
