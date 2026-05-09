@@ -54,7 +54,6 @@ export class OpenidConnectService {
     const result = await this.openidClientService.buildLoginUrl(loginCallbackUrl);
 
     this.sessionOpenidConnectDataRef.state = result.state;
-    this.session.save();
 
     return result.url;
   }
