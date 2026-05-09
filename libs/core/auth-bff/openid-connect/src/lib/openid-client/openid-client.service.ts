@@ -35,7 +35,7 @@ export class OpenidClientService {
 
     const url = openidClient.buildAuthorizationUrl(config, {
       ['redirect_uri']: loginCallbackUrl.href,
-      scope: 'openid',
+      scope: 'openid offline_access',
       state,
     });
 
