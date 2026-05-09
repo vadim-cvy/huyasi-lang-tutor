@@ -1,6 +1,7 @@
 import type { OnInit } from '@angular/core';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { ButtonLogout } from '@huyasi/shared-web-client-auth-ui-components';
 import { Page } from '@huyasi/shared-web-client-base-ui-components';
 
 import { AppLogoTitleContentService } from './services/app-logo-title-content.service';
@@ -8,7 +9,7 @@ import { AppNavPrimaryItemsService } from './services/app-nav-primary-items.serv
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [Page, RouterModule],
+  imports: [Page, RouterModule, ButtonLogout],
   selector: 'app-root',
   templateUrl: './app.html',
 })
