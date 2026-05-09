@@ -1,0 +1,15 @@
+<h1 class="--text-size-lg-responsive">You're about to logout from {{ userNickname() }} account</h1>
+
+<p>Are you sure?</p>
+
+<!-- FIXME: create shared-base-buttons-group with [direction]=horizontal and use it here -->
+<div class="logout-confirmation__actions --gap-lg-responsive">
+  <!-- FIXME: this must be bg=secondary -->
+  <shared-base-button [label]="{ content: 'No, go back' }" (click)="goBack()" />
+
+  <shared-base-button
+    [link]="{ url: logoutUrl(), type: 'plainLink' }"
+    [label]="{ content: 'Yes, logout' }"
+    [bg]="'accent'"
+  />
+</div>
