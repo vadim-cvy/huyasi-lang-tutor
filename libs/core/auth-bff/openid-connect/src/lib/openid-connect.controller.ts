@@ -1,13 +1,4 @@
-import {
-  Controller,
-  Get,
-  HttpRedirectResponse,
-  HttpStatus,
-  Query,
-  Redirect,
-  Req,
-} from '@nestjs/common';
-import { Request } from 'express';
+import { Controller, Get, HttpRedirectResponse, HttpStatus, Redirect } from '@nestjs/common';
 
 import { OpenidConnectService } from './openid-connect.service';
 
@@ -28,11 +19,8 @@ export class OpenidConnectController {
 
   @Get(routes.endpoints.login)
   @Redirect()
-  public async login(@Req() req: Request): Promise<HttpRedirectResponse> {
-    const loginUrl = await this.openidConnectService.buildLoginUrl(
-      req.session,
-      loginCallbackUrlPath,
-    );
+  public async login(): Promise<HttpRedirectResponse> {
+    const loginUrl = await this.openidConnectService.buildLoginUrl(loginCallbackUrlPath);
 
     return {
       url: loginUrl.href,
@@ -40,9 +28,8 @@ export class OpenidConnectController {
     };
   }
 
-  // FIXME: add validation pipe
   @Get(routes.endpoints.loginCallback)
-  public loginCallback(@Query('code') code: string) {
+  public loginCallback() {
     // FIXME: implement this method
   }
 
