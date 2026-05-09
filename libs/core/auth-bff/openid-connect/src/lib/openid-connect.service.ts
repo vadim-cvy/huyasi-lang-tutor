@@ -48,7 +48,7 @@ export class OpenidConnectService {
   ) {}
 
   // FIXME: maybe throw error if user is logged in already (or at least we need to empty session, or maybe ask user to logout first, maybe we should do it in controller)
-  public async buildLoginUrl(loginCallbackUrlPath: string): Promise<URL> {
+  public async buildAuthServerLoginUrl(loginCallbackUrlPath: string): Promise<URL> {
     const loginCallbackUrl = new URL(this.appBaseUrl.toString() + loginCallbackUrlPath);
 
     const result = await this.openidClientService.buildLoginUrl(loginCallbackUrl);

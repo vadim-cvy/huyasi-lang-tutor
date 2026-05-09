@@ -20,10 +20,11 @@ export class OpenidConnectController {
   @Get(routes.endpoints.login)
   @Redirect()
   public async login(): Promise<HttpRedirectResponse> {
-    const loginUrl = await this.openidConnectService.buildLoginUrl(loginCallbackUrlPath);
+    const authServerLoginUrl =
+      await this.openidConnectService.buildAuthServerLoginUrl(loginCallbackUrlPath);
 
     return {
-      url: loginUrl.href,
+      url: authServerLoginUrl.href,
       statusCode: HttpStatus.TEMPORARY_REDIRECT,
     };
   }
