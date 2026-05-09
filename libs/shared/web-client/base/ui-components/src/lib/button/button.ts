@@ -30,6 +30,18 @@ import type { ButtonWidth } from './abstract/ButtonWidth';
 export class Button {
   public readonly link = input<ButtonLink>();
 
+  public readonly linkNormalized = computed<ButtonLink | undefined>(() => {
+    const link = this.link();
+
+    if (!link) {
+      return undefined;
+    }
+
+    const urlAbsolute = link.url.startsWith('/') ? link.url : `/${link.url}`;
+
+    return { ...link, url: urlAbsolute };
+  });
+
   public readonly icon = input<
     ReadonlyDeep<{
       definition: IconDefinition;

@@ -14,17 +14,17 @@
   }
 </ng-template>
 
-@if (link(); as link) {
-  @if (link.type === 'plainLink') {
-    <a [class]="cssClasses()" [aria-label]="ariaLabel()" [href]="link.url">
+@if (linkNormalized(); as linkNormalized) {
+  @if (linkNormalized.type === 'plainLink') {
+    <a [class]="cssClasses()" [aria-label]="ariaLabel()" [href]="linkNormalized.url">
       <ng-container *ngTemplateOutlet="buttonContent"></ng-container>
     </a>
   } @else {
     <a
       [class]="cssClasses()"
       [aria-label]="ariaLabel()"
-      [routerLink]="link.url"
-      [routerLinkActive]="link.isRouterLinkActiveSync ? '--is-force-overlay-visible' : ''"
+      [routerLink]="linkNormalized.url"
+      [routerLinkActive]="linkNormalized.isRouterLinkActiveSync ? '--is-force-overlay-visible' : ''"
     >
       <ng-container *ngTemplateOutlet="buttonContent"></ng-container>
     </a>
