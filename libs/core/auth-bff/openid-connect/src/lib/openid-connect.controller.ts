@@ -29,8 +29,14 @@ export class OpenidConnectController {
   }
 
   @Get(routes.endpoints.loginCallback)
-  public loginCallback() {
-    // FIXME: implement this method
+  @Redirect()
+  public async loginCallback(): Promise<HttpRedirectResponse> {
+    await this.openidConnectService.handleLoginCallback();
+
+    return {
+      url: '/',
+      statusCode: HttpStatus.TEMPORARY_REDIRECT,
+    };
   }
 
   @Get(routes.endpoints.logout)

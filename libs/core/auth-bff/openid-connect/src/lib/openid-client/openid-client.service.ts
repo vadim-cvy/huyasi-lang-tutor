@@ -41,4 +41,14 @@ export class OpenidClientService {
 
     return { url, state };
   }
+
+  public async handleLoginCallback(
+    currentUrl: URL,
+    expectedState: string,
+  ): ReturnType<(typeof openidClient)['authorizationCodeGrant']> {
+    const config = await this.configPromise;
+
+    // FIXME: catch openidClient ResponseBodyError and throw respective Nest HTTP error (this error appears for example when the same code is submitted twice)
+    return openidClient.authorizationCodeGrant(config, currentUrl, { expectedState });
+  }
 }
