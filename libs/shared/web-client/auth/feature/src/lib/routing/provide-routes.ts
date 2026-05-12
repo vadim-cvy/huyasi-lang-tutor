@@ -1,15 +1,17 @@
 import type { Route } from '@angular/router';
 import { sharedAuthFrontendPaths } from '@huyasi/shared-web-client-auth-utils';
 
-export const provideSharedAuthRoutes =
-  // FIXME: (loadLoginOrRegisterComponent: Route['loadComponent']):
+export const provideSharedAuthRoutes = ({
+  loadLoginOrRegisterComponent,
+}: {
+  loadLoginOrRegisterComponent: Route['loadComponent'];
+}): Route[] =>
   // FIXME: must be shown on isMinimalistic page
-  (): Route[] => [
-    // FIXME: implement
-    // {
-    //   path: frontendAuthPaths.loginOrRegister,
-    //   loadComponent: loadLoginOrRegisterComponent,
-    // },
+  [
+    {
+      path: sharedAuthFrontendPaths.loginOrRegister,
+      loadComponent: loadLoginOrRegisterComponent,
+    },
     {
       path: sharedAuthFrontendPaths.logoutConfirmation,
       loadComponent: async () =>
