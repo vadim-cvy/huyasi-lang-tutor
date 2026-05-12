@@ -1,2 +1,2 @@
-export * from './lib/auth.service';
+export * from './lib/routing/guard-routes';
 export * from './lib/routing/provide-routes';

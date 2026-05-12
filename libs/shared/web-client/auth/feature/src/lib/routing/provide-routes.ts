@@ -1,7 +1,7 @@
 import type { Route } from '@angular/router';
 import { sharedAuthFrontendPaths } from '@huyasi/shared-web-client-auth-utils';
 
-export const provideSharedAuthRoutes = ({
+export const sharedAuthProvideRoutes = ({
   loadLoginOrRegisterComponent,
 }: {
   loadLoginOrRegisterComponent: Route['loadComponent'];
