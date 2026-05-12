@@ -4,7 +4,7 @@
   "sourceRoot": "libs/public/web-client/auth/utils/src",
   "prefix": "lib",
   "projectType": "library",
-  "tags": [],
+  "tags": ["scope:public-web-client", "type:web-client-lib-utils"],
   "targets": {
     "test": {
       "executor": "@nx/vitest:test",
