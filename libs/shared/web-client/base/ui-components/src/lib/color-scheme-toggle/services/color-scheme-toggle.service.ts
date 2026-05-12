@@ -17,6 +17,7 @@ export class ColorSchemeToggleService {
   private readonly _scheme = injectLocalStorage<ColorScheme>(this.schemeStorageKey, {
     defaultValue: this.schemeDefault,
     parse: (valJSON): ColorScheme => {
+      // FIXME: this will throw an error on app first run (we don't want it). Check how it is implented in libs\shared\web-client\auth\data-access\src\lib\local-data-store\local-data-store.service.ts and implement it the same way. Here and in any other libs
       try {
         const val = JSON.parse(valJSON) as unknown;
 
