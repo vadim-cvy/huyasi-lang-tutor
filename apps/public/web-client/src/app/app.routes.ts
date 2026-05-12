@@ -1,4 +1,4 @@
 import type { Route } from '@angular/router';
-import { provideAuthRoutes } from '@huyasi/shared-web-client-auth-feature';
+import { provideSharedAuthRoutes } from '@huyasi/shared-web-client-auth-feature';
 
-export const appRoutes: Route[] = [...provideAuthRoutes()];
+export const appRoutes: Route[] = [...provideSharedAuthRoutes()];

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { frontendAuthPaths } from '@huyasi/shared-web-client-auth-utils';
+import { sharedAuthFrontendPaths } from '@huyasi/shared-web-client-auth-utils';
 import { Button } from '@huyasi/shared-web-client-base-ui-components';
 
 @Component({
@@ -10,5 +10,5 @@ import { Button } from '@huyasi/shared-web-client-base-ui-components';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LogoutResult {
-  public readonly loginOrRegisterUrl = signal(frontendAuthPaths.loginOrRegister);
+  public readonly loginOrRegisterUrl = signal(sharedAuthFrontendPaths.loginOrRegister);
 }

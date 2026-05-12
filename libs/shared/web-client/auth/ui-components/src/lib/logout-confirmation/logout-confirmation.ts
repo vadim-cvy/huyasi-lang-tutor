@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, input, signal } from '@angular/core';
-import { backendAuthPaths } from '@huyasi/shared-web-client-auth-utils';
+import { sharedAuthBackendPaths } from '@huyasi/shared-web-client-auth-utils';
 import { Button } from '@huyasi/shared-web-client-base-ui-components';
 
 @Component({
@@ -15,7 +15,7 @@ export class LogoutConfirmation {
 
   public readonly userNickname = input.required<string>();
 
-  public readonly logoutUrl = signal(backendAuthPaths.logout);
+  public readonly logoutUrl = signal(sharedAuthBackendPaths.logout);
 
   public goBack(): void {
     // FIXME: if the logout confirmation page was accessed directly (or linked from other site) - where location.back() will lead? to the home page?

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
-import { frontendAuthPaths } from '@huyasi/shared-web-client-auth-utils';
+import { sharedAuthFrontendPaths } from '@huyasi/shared-web-client-auth-utils';
 import { Button } from '@huyasi/shared-web-client-base-ui-components';
 
 @Component({
@@ -11,7 +11,7 @@ import { Button } from '@huyasi/shared-web-client-base-ui-components';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonLogout {
-  public readonly logoutConfirmationUrl = signal(frontendAuthPaths.logoutConfirmation);
+  public readonly logoutConfirmationUrl = signal(sharedAuthFrontendPaths.logoutConfirmation);
 
   public readonly iconDefinition = signal(faArrowRightFromBracket);
 }
