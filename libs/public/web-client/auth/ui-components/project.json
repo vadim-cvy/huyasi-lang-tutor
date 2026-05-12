@@ -1,0 +1,20 @@
+{
+  "name": "public-web-client-auth-ui-components",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/public/web-client/auth/ui-components/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": ["scope:public-web-client", "type:web-client-lib-ui-components"],
+  "targets": {
+    "test": {
+      "executor": "@nx/vitest:test",
+      "outputs": ["{options.reportsDirectory}"],
+      "options": {
+        "reportsDirectory": "coverage/libs/public/web-client/auth/ui-components"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

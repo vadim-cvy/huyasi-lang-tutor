@@ -31,7 +31,10 @@
       "@huyasi/shared-web-client-auth-ui-components": [
         "libs/shared/web-client/auth/ui-components/src/index.ts"
       ],
-      "@huyasi/shared-web-client-auth-utils": ["libs/shared/web-client/auth/utils/src/index.ts"]
+      "@huyasi/shared-web-client-auth-utils": ["libs/shared/web-client/auth/utils/src/index.ts"],
+      "@huyasi/public-web-client-auth-ui-components": [
+        "libs/public/web-client/auth/ui-components/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
