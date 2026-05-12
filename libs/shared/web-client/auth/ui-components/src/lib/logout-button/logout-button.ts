@@ -4,13 +4,13 @@ import { sharedAuthFrontendPaths } from '@huyasi/shared-web-client-auth-utils';
 import { Button } from '@huyasi/shared-web-client-base-ui-components';
 
 @Component({
-  selector: 'shared-auth-button-logout',
+  selector: 'shared-auth-logout-button',
   imports: [Button],
-  templateUrl: './button-logout.html',
-  styleUrl: './button-logout.scss',
+  templateUrl: './logout-button.html',
+  styleUrl: './logout-button.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ButtonLogout {
+export class LogoutButton {
   public readonly logoutConfirmationUrl = signal(sharedAuthFrontendPaths.logoutConfirmation);
 
   public readonly iconDefinition = signal(faArrowRightFromBracket);
