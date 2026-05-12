@@ -38,7 +38,8 @@
       "@huyasi/shared-web-client-auth-data-access": [
         "libs/shared/web-client/auth/data-access/src/index.ts"
       ],
-      "@huyasi/public-web-client-auth-utils": ["libs/public/web-client/auth/utils/src/index.ts"]
+      "@huyasi/public-web-client-auth-utils": ["libs/public/web-client/auth/utils/src/index.ts"],
+      "@huyasi/public-web-client-auth-feature": ["libs/public/web-client/auth/feature/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
