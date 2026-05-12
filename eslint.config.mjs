@@ -47,12 +47,12 @@ export default [
 
             {
               sourceTag: 'scope:public-web-client',
-              onlyDependOnLibsWithTags: ['scope:public-web-client', 'scope:shared-web-client-base'],
+              onlyDependOnLibsWithTags: ['scope:public-web-client', 'scope:shared-web-client'],
             },
 
             {
-              sourceTag: 'scope:shared-web-client-base',
-              onlyDependOnLibsWithTags: ['scope:shared-web-client-base'],
+              sourceTag: 'scope:shared-web-client',
+              onlyDependOnLibsWithTags: ['scope:shared-web-client'],
             },
             {
               sourceTag: 'scope:shared-service-global',

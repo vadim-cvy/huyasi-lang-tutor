@@ -44,10 +44,14 @@ Add the following tags for your new lib project:
     - `scope:<your-scope>`
     - Hint: you will find the scope tag in the `/apps/<path-to-the-app-you're-making-the-lib-for>/project.json`.
   - If you're creating a **shared** lib.
-    - Use **ONE** of the following:
-      - `scope:shared-web-client-<your-own-group>`
+    - For a **web client lib**:
+      - `scope:shared-web-client`
+    - For a **service lib** use **ONE** of the following:
+      - `scope:shared-service`
+        - This is what you need in most cases.
       - `scope:shared-service-<your-own-group>`
-    - **WARNING:** You must setup custom dependency rules in `/eslint.config.mjs` for your tag!
+        - This is applicable if your lib will be used by a very narrow range of apps.
+        - **WARNING:** You must setup custom dependency rules in `/eslint.config.mjs` for your tag!
 - Type tag:
   - For a **web client lib** use **ONE** of the following:
     - `type:web-client-lib-utils`

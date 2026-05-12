@@ -4,7 +4,7 @@
   "sourceRoot": "libs/shared/web-client/auth/utils/src",
   "prefix": "lib",
   "projectType": "library",
-  "tags": ["scope:shared-web-client-base", "type:web-client-lib-utils"],
+  "tags": ["scope:shared-web-client", "type:web-client-lib-utils"],
   "targets": {
     "test": {
       "executor": "@nx/vitest:test",

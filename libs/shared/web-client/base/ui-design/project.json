@@ -4,7 +4,7 @@
   "sourceRoot": "libs/shared/web-client/base/ui-design/src",
   "prefix": "lib",
   "projectType": "library",
-  "tags": ["scope:shared-web-client-base", "type:web-client-lib-ui-design"],
+  "tags": ["scope:shared-web-client", "type:web-client-lib-ui-design"],
   "targets": {
     "test": {
       "executor": "@nx/vitest:test",
