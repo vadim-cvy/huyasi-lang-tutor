@@ -10,16 +10,11 @@ const sharedAuthRoutes = sharedAuthProvideRoutes({
 });
 
 export const appRoutes: Route[] = sharedAuthGuardRoutes({
-  pathsWhitelistCustom: [
+  customPublicPaths: [
     // FIXME: whitelist register-form path here
   ],
+  // FIXME: redirect from root route ('') to /games after games are implemented
   routes: [
-    {
-      path: '',
-      // FIXME: this is just a placeholder, we don't have a component for this at the moment, but sharedAuthGuardRoutes will throw an erorr without a route for a root path.
-      redirectTo: '/placeholder',
-      pathMatch: 'full',
-    },
     ...sharedAuthRoutes,
     // Add your routes here
   ],

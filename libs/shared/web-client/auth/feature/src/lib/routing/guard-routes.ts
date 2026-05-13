@@ -21,10 +21,10 @@ const sharedAuthValidatePathsPresentedInRoutes = (
 };
 
 const sharedAuthCreateGuard =
-  (pathsWhitelist: Route['path'][]): CanActivateFn =>
+  (publicPaths: Route['path'][]): CanActivateFn =>
   (route, state): true | UrlTree => {
     const sharedAuthLocalDataStoreService = inject(SharedAuthLocalDataStoreService);
-    console.log('here');
+
     if (sharedAuthLocalDataStoreService.isLoggedIn()) {
       return true;
     }
@@ -35,7 +35,7 @@ const sharedAuthCreateGuard =
 
     const currentPathWithoutLeadingSlash = currentUrl.split('?')[0].slice(1);
 
-    if (pathsWhitelist.includes(currentPathWithoutLeadingSlash)) {
+    if (publicPaths.includes(currentPathWithoutLeadingSlash)) {
       return true;
     }
 
@@ -66,24 +66,21 @@ const sharedAuthGuardRoute = (route: Route, guard: CanActivateFn): Route => {
 
 export const sharedAuthGuardRoutes = ({
   routes,
-  pathsWhitelistCustom,
+  customPublicPaths,
 }: {
   routes: Route[];
-  pathsWhitelistCustom?: Route['path'][];
+  customPublicPaths?: Route['path'][];
 }): Route[] => {
-  const pathsWhitelistPredefined = [
+  const predefinedPublicPaths = [
     sharedAuthFrontendPaths.loginOrRegister,
     sharedAuthFrontendPaths.logoutResult,
   ];
 
-  const pathsWhitelistAll = [...(pathsWhitelistCustom ?? []), ...pathsWhitelistPredefined];
+  const allPublicPaths = [...(customPublicPaths ?? []), ...predefinedPublicPaths];
 
-  sharedAuthValidatePathsPresentedInRoutes(routes, pathsWhitelistAll);
+  sharedAuthValidatePathsPresentedInRoutes(routes, allPublicPaths);
 
-  // Check if root route exists
-  sharedAuthValidatePathsPresentedInRoutes(routes, ['']);
+  const guard = sharedAuthCreateGuard(allPublicPaths);
 
-  const authGuard = sharedAuthCreateGuard(pathsWhitelistAll);
-
-  return routes.map((route) => sharedAuthGuardRoute(route, authGuard));
+  return routes.map((route) => sharedAuthGuardRoute(route, guard));
 };
