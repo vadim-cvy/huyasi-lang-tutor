@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { publicAuthFrontendPaths } from '@huyasi/public-web-client-auth-utils';
 import { LoginButton } from '@huyasi/shared-web-client-auth-ui-components';
 import { Button } from '@huyasi/shared-web-client-base-ui-components';
 
@@ -10,6 +11,5 @@ import { Button } from '@huyasi/shared-web-client-base-ui-components';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginOrRegister {
-  // FIXME: implement utils like with sharedAuth*Paths (with provide*() method)
-  public readonly registerFrontendUrl = signal('');
+  public readonly registerFrontendUrl = signal(publicAuthFrontendPaths.register);
 }
