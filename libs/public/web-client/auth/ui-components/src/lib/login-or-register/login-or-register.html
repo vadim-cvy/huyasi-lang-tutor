@@ -11,7 +11,7 @@
     <!-- FIXME: implement login button style directive (in shared/auth/ui-components) so we can keep [bg] and [width] of "Create an Account" button the same as "Sign In" button -->
     <shared-base-button
       [label]="{ content: 'Create an Account' }"
-      [link]="{ url: registerUrl(), type: 'routerLink' }"
+      [link]="{ url: registerFrontendUrl(), type: 'routerLink' }"
       [bg]="'accent'"
       [width]="'full'"
     />

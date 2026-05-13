@@ -11,5 +11,5 @@ import { Button } from '@huyasi/shared-web-client-base-ui-components';
 })
 export class LoginOrRegister {
   // FIXME: implement utils like with sharedAuth*Paths (with provide*() method)
-  public readonly registerUrl = signal('');
+  public readonly registerFrontendUrl = signal('');
 }
