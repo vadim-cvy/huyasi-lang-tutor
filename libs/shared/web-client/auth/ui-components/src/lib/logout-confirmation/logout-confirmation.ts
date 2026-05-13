@@ -15,7 +15,7 @@ export class LogoutConfirmation {
 
   public readonly userNickname = input.required<string>();
 
-  public readonly logoutUrl = signal(sharedAuthBackendPaths.logout);
+  public readonly logoutBackendUrl = signal(sharedAuthBackendPaths.logout);
 
   public goBack(): void {
     // FIXME: if the logout confirmation page was accessed directly (or linked from other site) - where location.back() will lead? to the home page?
