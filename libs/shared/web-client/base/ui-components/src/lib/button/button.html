@@ -1,13 +1,11 @@
 <ng-template #buttonContent>
-  @if (icon(); as icon) {
+  @if (iconFinal(); as iconFinal) {
     <fa-icon
-      [icon]="icon.definition"
+      [icon]="iconFinal.definition"
       [ariaHidden]="true"
       [class]="`--text-size-${iconFontSize()}-responsive`"
     />
   }
-
-  <!-- this comment prevents prettier to stack @if as if they're part of the same. just ignore it -->
 
   @if (contentLabel(); as contentLabel) {
     <span class="button__content">{{ contentLabel }}</span>
@@ -30,7 +28,7 @@
     </a>
   }
 } @else {
-  <button type="button" [class]="cssClasses()" [aria-label]="ariaLabel()">
+  <button type="button" [class]="cssClasses()" [aria-label]="ariaLabel()" (click)="onButtonClick()">
     <ng-container *ngTemplateOutlet="buttonContent"></ng-container>
   </button>
 }

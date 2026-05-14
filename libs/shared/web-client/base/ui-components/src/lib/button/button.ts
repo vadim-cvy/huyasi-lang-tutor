@@ -1,22 +1,22 @@
 import { NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import type { IconDefinition } from '@fortawesome/angular-fontawesome';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import type { FontSize, WhitespaceSize } from '@huyasi/shared-web-client-base-ui-design';
 import {
   fontSizesNavigator,
   whitespaceSizesNavigator,
 } from '@huyasi/shared-web-client-base-ui-design';
-import type { ReadonlyDeep } from 'type-fest';
 
 import type { ButtonBg } from './abstract/ButtonBg';
 import type { ButtonContentAlign } from './abstract/ButtonContentAlign';
-import type { ButtonIconPosition } from './abstract/ButtonIconPosition';
+import type { ButtonIcon } from './abstract/ButtonIcon';
 import type { ButtonLabel } from './abstract/ButtonLabel';
 import type { ButtonLink } from './abstract/ButtonLink';
 import type { ButtonPaddingStrategy } from './abstract/ButtonPaddingStrategy';
 import type { ButtonSize } from './abstract/ButtonSize';
+import type { ButtonState } from './abstract/ButtonState';
 import type { ButtonWidth } from './abstract/ButtonWidth';
 
 // FIXME: if button has no content, but only aria label - we should show arialabel content as a tooltip so user can see button functionality description on hover
@@ -42,12 +42,20 @@ export class Button {
     return { ...link, url: urlAbsolute };
   });
 
-  public readonly icon = input<
-    ReadonlyDeep<{
-      definition: IconDefinition;
-      position: ButtonIconPosition;
-    }>
-  >();
+  public readonly icon = input<ButtonIcon>();
+
+  public readonly iconFinal = computed<ButtonIcon | undefined>(() => {
+    const commonStateIcon = this.icon();
+
+    if (this.isLoading()) {
+      return {
+        definition: faCircleNotch,
+        position: commonStateIcon?.position ?? 'right',
+      };
+    }
+
+    return commonStateIcon;
+  });
 
   public readonly label = input.required<ButtonLabel>();
 
@@ -122,30 +130,58 @@ export class Button {
 
   private readonly marginY = computed<WhitespaceSize>(() => this.size());
 
+  public readonly isLoading = input(false);
+
+  public readonly isDisabled = input(false);
+
+  public readonly state = computed<ButtonState>(() => {
+    if (this.isDisabled()) {
+      return 'disabled';
+    }
+
+    if (this.isLoading()) {
+      return 'loading';
+    }
+
+    return 'active';
+  });
+
+  public readonly buttonClick = output();
+
   public readonly cssClasses = computed<string[]>(() => {
     const bg = this.bg(),
       width = this.width(),
       contentAlign = this.contentAlign(),
-      icon = this.icon(),
+      iconFinal = this.iconFinal(),
       paddingX = this.paddingX(),
       paddingY = this.paddingY(),
       marginY = this.marginY(),
       baseFontSize = this.baseFontSize(),
-      isRounded = this.isRounded();
+      isRounded = this.isRounded(),
+      state = this.state();
 
     return [
       'button',
       `--bg-${bg}`,
-      `--has-overlay-before`,
       `--width-${width}`,
       `--content-align-${contentAlign}`,
-      icon ? `--icon-position-${icon.position}` : '',
-      `--gap-${icon?.position === 'top' ? 'xs' : 'md'}-responsive`,
+      iconFinal ? `--icon-position-${iconFinal.position}` : '',
+      `--gap-${iconFinal?.position === 'top' ? 'xs' : 'md'}-responsive`,
       `--padding-x-${paddingX}-responsive`,
       `--padding-y-${paddingY}-responsive`,
       `--margin-y-${marginY}-responsive`,
       `--text-size-${baseFontSize}-responsive`,
       isRounded ? '--border-radius' : '',
+      `--state-${state}`,
+      state === 'active' ? `--has-overlay-before` : '',
     ];
   });
+
+  public onButtonClick(): void {
+    if (this.isDisabled() || this.isLoading()) {
+      return;
+    }
+
+    this.buttonClick.emit();
+  }
 }

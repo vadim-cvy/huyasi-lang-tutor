@@ -3,7 +3,7 @@ import type { IconDefinition } from '@fortawesome/angular-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 import type { ButtonContentAlign } from '../button/abstract/ButtonContentAlign';
-import type { ButtonIconPosition } from '../button/abstract/ButtonIconPosition';
+import type { ButtonIcon } from '../button/abstract/ButtonIcon';
 import type { ButtonLabel } from '../button/abstract/ButtonLabel';
 import type { ButtonPaddingStrategy } from '../button/abstract/ButtonPaddingStrategy';
 import type { ButtonSize } from '../button/abstract/ButtonSize';
@@ -23,7 +23,7 @@ export class Sidebar {
 
   public readonly isExpanded = this.sidebarToggleService.isExpanded;
 
-  public readonly buttonsIconsPosition = computed<ButtonIconPosition>(() =>
+  public readonly buttonsIconsPosition = computed<ButtonIcon['position']>(() =>
     this.isExpanded() ? 'left' : 'top',
   );
 

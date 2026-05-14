@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 
 import type { ButtonContentAlign } from '../button/abstract/ButtonContentAlign';
-import type { ButtonIconPosition } from '../button/abstract/ButtonIconPosition';
+import type { ButtonIcon } from '../button/abstract/ButtonIcon';
 import type { ButtonPaddingStrategy } from '../button/abstract/ButtonPaddingStrategy';
 import type { ButtonSize } from '../button/abstract/ButtonSize';
 import { Button } from '../button/button';
@@ -24,7 +24,7 @@ export class NavPrimary {
 
   public readonly orientation = input.required<'horizontal' | 'vertical'>();
 
-  public readonly buttonsIconsPosition = input.required<ButtonIconPosition>();
+  public readonly buttonsIconsPosition = input.required<ButtonIcon['position']>();
 
   public readonly buttonsContentAlign = input.required<ButtonContentAlign>();
 
